@@ -1620,6 +1620,168 @@ footer {
   border-radius: 980px;
   margin-bottom: 20px;
 }
+
+  /* ── APP CATALOG ── */
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 780px;
+    margin: 32px auto 0;
+  }
+  @media (min-width: 720px) {
+    .catalog-grid { grid-template-columns: 1fr 1fr; }
+    .uc-card.span2 { grid-column: 1 / -1; }
+  }
+  .uc-card {
+    background: var(--bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .uc-card:hover { box-shadow: var(--shadow-md); }
+  .uc-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .uc-icon {
+    font-size: 24px;
+    width: 46px;
+    height: 46px;
+    background: var(--blue-soft);
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .uc-title-wrap { flex: 1; min-width: 0; }
+  .uc-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--blue);
+    margin-bottom: 3px;
+  }
+  .uc-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .uc-hook {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+  .uc-toggle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--bg-alt);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, transform 0.2s;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-2);
+  }
+  .uc-card.open .uc-toggle {
+    background: var(--blue);
+    color: #fff;
+    transform: rotate(45deg);
+  }
+  .uc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .uc-card.open .uc-body { max-height: 500px; }
+  .uc-detail {
+    padding: 16px 20px 20px;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+  }
+  .uc-detail strong { color: var(--text); }
+  .int-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .int-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-right: 2px;
+    white-space: nowrap;
+  }
+  .int-chip {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 40px;
+    white-space: nowrap;
+  }
+  .int-chip.built {
+    background: var(--bg-alt);
+    color: var(--text-2);
+    border: 1px solid #e0e0e5;
+  }
+  .int-chip.ext {
+    background: #fff7ed;
+    color: #b45309;
+    border: 1px solid #fed7aa;
+  }
+  .retainer-callout {
+    max-width: 780px;
+    margin: 28px auto 0;
+    background: linear-gradient(135deg, rgba(0,113,227,0.06) 0%, rgba(0,113,227,0.02) 100%);
+    border: 1px solid rgba(0,113,227,0.2);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .retainer-callout-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .retainer-callout h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .retainer-callout p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin: 0;
+  }
+
 </style>
 </head>
 <body>
@@ -2080,6 +2242,147 @@ footer {
 
 
 
+
+
+<!-- APP CATALOG -->
+<section style="background:var(--bg);padding:72px 24px;">
+  <div class="section-inner">
+    <div class="section-label">App catalog</div>
+    <h2 class="section-h2">The OS compounds. The retainer is why.</h2>
+    <p style="font-size:17px;color:var(--text-2);margin-top:12px;max-width:600px;line-height:1.55;">Initial setup builds the foundation. Every month on retainer, new skills are scoped, built, and activated around what your business actually needs. Month 1 might be pipeline. Month 3 might be ad health. Month 6 might be full finance automation. The catalog grows with you.</p>
+
+    <div class="catalog-grid">
+
+      <div class="uc-card" onclick="toggleCard(this)">
+        <div class="uc-header">
+          <div class="uc-icon">🔭</div>
+          <div class="uc-title-wrap">
+            <div class="uc-tag">For teams of 1&ndash;15</div>
+            <div class="uc-title">Lead Pipeline Visibility</div>
+            <div class="uc-hook">Know what's quoted, what's pending, and where next month's revenue comes from.</div>
+          </div>
+          <button class="uc-toggle" onclick="event.stopPropagation()">+</button>
+        </div>
+        <div class="uc-body">
+          <div class="uc-detail">
+            Browser-based quote tracker — <strong>no Airtable, no Monday, no subscription</strong>. Shows every open quote, when it was sent, and when to follow up. Auto follow-up fires on quotes not responded to in 5 days.<br><br>
+            Lead source tagging shows which channels are bringing paying jobs. Pipeline goes from invisible to predictable. <strong>The whole thing lives in your vault, owned by you permanently.</strong>
+            <div class="int-row">
+              <span class="int-label">Runs on</span>
+              <span class="int-chip built">Business OS HTML Builder</span>
+              <span class="int-chip built">Gmail API</span>
+              <span class="int-chip built">Browser localStorage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uc-card" onclick="toggleCard(this)">
+        <div class="uc-header">
+          <div class="uc-icon">📊</div>
+          <div class="uc-title-wrap">
+            <div class="uc-title">Meta / Google Ads Health</div>
+            <div class="uc-hook">Daily performance brief across both platforms, before you open a dashboard.</div>
+          </div>
+          <button class="uc-toggle" onclick="event.stopPropagation()">+</button>
+        </div>
+        <div class="uc-body">
+          <div class="uc-detail">
+            Pulls Meta and Google Ads data via <strong>native CLI</strong> — no logins, no dashboards to check manually. Surfaces spend, CPL, conversions, and anomalies every morning to Telegram.<br><br>
+            Auto-generates a weekly recommendations card: top performers, budget reallocation, negative keywords to add, ad schedule to tighten. <strong>Estimated recovery: 20&ndash;40% of wasted spend redirected to real leads.</strong>
+            <div class="int-row">
+              <span class="int-label">Runs on</span>
+              <span class="int-chip built">Meta Ads CLI</span>
+              <span class="int-chip built">Google Ads API</span>
+              <span class="int-chip built">Business OS Scheduler</span>
+              <span class="int-chip ext">Google Cloud Project (free setup)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uc-card" onclick="toggleCard(this)">
+        <div class="uc-header">
+          <div class="uc-icon">📅</div>
+          <div class="uc-title-wrap">
+            <div class="uc-title">Month-End Closer</div>
+            <div class="uc-hook">Compresses a multi-day close into an automated run.</div>
+          </div>
+          <button class="uc-toggle" onclick="event.stopPropagation()">+</button>
+        </div>
+        <div class="uc-body">
+          <div class="uc-detail">
+            Executes closing checklists, prepares journal entries, generates closing reports. <strong>Connects to Xero or MYOB</strong> — reconciles transactions, flags exceptions, and generates a board-ready summary.<br><br>
+            The finance agent handles the pattern work. You review the exceptions. <strong>What used to take 2&ndash;3 days of back-and-forth happens overnight.</strong>
+            <div class="int-row">
+              <span class="int-label">Runs on</span>
+              <span class="int-chip built">GL Reconciler Agent</span>
+              <span class="int-chip built">Business OS Scheduler</span>
+              <span class="int-chip ext">Xero API or MYOB API (free setup)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uc-card" onclick="toggleCard(this)">
+        <div class="uc-header">
+          <div class="uc-icon">⭐</div>
+          <div class="uc-title-wrap">
+            <div class="uc-title">Automated Review Generation</div>
+            <div class="uc-hook">Every completed job or transaction becomes a review request. Automatically.</div>
+          </div>
+          <button class="uc-toggle" onclick="event.stopPropagation()">+</button>
+        </div>
+        <div class="uc-body">
+          <div class="uc-detail">
+            Invoice paid &rarr; personalised request to the customer <strong>3&ndash;5 days later</strong>, using their name, job type, and context. No reply after 7 days? One polite follow-up. Sequence stops the moment they leave a review.<br><br>
+            Monthly report shows review velocity and which job types convert best. <strong>No more relying on anyone to remember to ask.</strong>
+            <div class="int-row">
+              <span class="int-label">Runs on</span>
+              <span class="int-chip built">Gmail API</span>
+              <span class="int-chip built">Business OS Scheduler</span>
+              <span class="int-chip ext">Google Business Profile API (free)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uc-card span2" onclick="toggleCard(this)">
+        <div class="uc-header">
+          <div class="uc-icon">✍️</div>
+          <div class="uc-title-wrap">
+            <div class="uc-title">Content on Autopilot</div>
+            <div class="uc-hook">Queue it once. The OS schedules, publishes, and repurposes across channels.</div>
+          </div>
+          <button class="uc-toggle" onclick="event.stopPropagation()">+</button>
+        </div>
+        <div class="uc-body">
+          <div class="uc-detail">
+            Share a photo, a voice note, or a rough idea via Telegram. The content agent drafts a post in your voice. Approve with a thumbs up and it schedules and publishes. <strong>No briefs. No copy sessions.</strong><br><br>
+            Monthly content calendar built automatically from your work history, your reviews, and what's performing. Consistent presence without consistent effort.
+            <div class="int-row">
+              <span class="int-label">Runs on</span>
+              <span class="int-chip built">Telegram Bot</span>
+              <span class="int-chip built">Claude Content Agent</span>
+              <span class="int-chip built">Google Business Profile API</span>
+              <span class="int-chip ext">Blotato or Buffer (~$20/mo)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="retainer-callout">
+      <div class="retainer-callout-icon">🔁</div>
+      <div>
+        <h4>Why the retainer compounds</h4>
+        <p>The setup gets you running. The retainer is where the real value builds. Each month we scope what's costing you the most, build the skill or automation to handle it, and activate it into your OS. You don't pay to maintain a static tool. You pay to keep the system evolving with your business. Most clients see their third month cover the entire year's cost.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- PULL QUOTE -->
 <section style="background:var(--bg);padding:56px 24px;text-align:center;">
@@ -2556,6 +2859,15 @@ function syncVault() {
     <div class="ownership-bar">🔒 <strong>Saves to your Obsidian vault.</strong> No subscription. No SaaS. Yours forever.</div>
   </div>
 </div>
+
+
+<script>
+function toggleCard(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.uc-card.open').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+</script>
 
 </body>
 </html>
