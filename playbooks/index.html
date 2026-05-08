@@ -480,7 +480,31 @@
     .ur-nav-badge { font-size: 11px; font-weight: 600; background: rgba(0,113,227,0.1); color: #0071e3; padding: 3px 8px; border-radius: 20px; }
     .ur-nav-back { font-size: 14px; color: #6e6e73; text-decoration: none; display: flex; align-items: center; gap: 4px; }
     .ur-nav-back:hover { color: #1d1d1f; }
-    .ur-nav-right { display: flex; align-items: center; gap: 16px; }
+    .ur-nav-right { display: flex; align-items: center; gap: 10px; }
+    .ur-nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .ur-nav-hamburger span { display: block; width: 20px; height: 2px; background: #1d1d1f; border-radius: 2px; }
+    .ur-mobile-nav {
+      display: none; position: fixed; top: 52px; left: 0; right: 0;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(210,210,215,0.5);
+      z-index: 199; flex-direction: column; padding: 0 24px;
+    }
+    .ur-mobile-nav.open { display: flex; }
+    .ur-mobile-nav a {
+      display: flex; align-items: center; gap: 8px; padding: 14px 0;
+      font-size: 16px; color: #1d1d1f; text-decoration: none;
+      border-bottom: 1px solid rgba(210,210,215,0.4);
+    }
+    .ur-mobile-nav a:last-child { border-bottom: none; }
+    @media (max-width: 680px) {
+      .ur-nav { padding: 0 16px; }
+      .ur-nav-back { display: none; }
+      .ur-nav-badge { display: none; }
+      .ur-nav-hamburger { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -489,8 +513,15 @@
   <div class="ur-nav-right">
     <a href="/signals" class="ur-nav-back">&#8592; The Signal Blog</a>
     <span class="ur-nav-badge">Playbooks</span>
+    <button class="ur-nav-hamburger" id="pb-nav-hamburger" onclick="togglePbNav()" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="ur-mobile-nav" id="pb-mobile-nav">
+  <a href="/">&#8592; uremarkable.com</a>
+  <a href="/signals">The Signal Blog</a>
+</div>
 
 
 <!-- HERO -->
@@ -1182,6 +1213,24 @@ function renderCards() {
 }
 
 renderCards();
+</script>
+<script>
+function togglePbNav() {
+  var nav = document.getElementById('pb-mobile-nav');
+  var btn = document.getElementById('pb-nav-hamburger');
+  var open = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.addEventListener('click', function(e) {
+  var nav = document.getElementById('pb-mobile-nav');
+  var btn = document.getElementById('pb-nav-hamburger');
+  if (nav && nav.classList.contains('open')) {
+    if (!nav.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  }
+});
 </script>
 </body>
 </html>
