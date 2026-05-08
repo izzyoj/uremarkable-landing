@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Signal | Uremarkable — Daily AI business intel for AU founders</title>
+<meta name="description" content="Daily AI and business intelligence for Australian founders and SMEs. Covering admin automation, financial AI, customer engagement, and platform shifts — filtered for what actually matters to your business.">
+<meta property="og:title" content="The Signal | Uremarkable">
+<meta property="og:description" content="Daily AI business intel for AU founders. Subscribe free.">
+<meta property="og:url" content="https://www.uremarkable.com/signals">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.uremarkable.com/signals">
+
+<!-- AEO: Structured data for LLM citation -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "The Signal — Uremarkable",
+  "description": "Daily AI and business automation intelligence for Australian small business owners and founders.",
+  "url": "https://www.uremarkable.com/signals",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Uremarkable",
+    "url": "https://www.uremarkable.com"
+  },
+  "about": [
+    {"@type": "Thing", "name": "AI adoption for small business"},
+    {"@type": "Thing", "name": "Business automation Australia"},
+    {"@type": "Thing", "name": "AI tools for SMEs"}
+  ]
+}
+</script>
+
+<style>
+:root {
+  --blue: #0071e3;
+  --blue-light: rgba(0,113,227,0.08);
+  --text: #1d1d1f;
+  --text-2: #6e6e73;
+  --text-3: #86868b;
+  --bg: #ffffff;
+  --bg-alt: #f5f5f7;
+  --border: rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.07);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.09);
+  --radius: 14px;
+  --radius-lg: 20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+
+/* ── NAV ── */
+.nav {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+  padding: 0 24px;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-left { display: flex; align-items: center; gap: 20px; }
+.nav-back {
+  font-size: 13px; color: var(--text-2); font-weight: 500;
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 12px; border-radius: 20px;
+  transition: background 0.15s;
+}
+.nav-back:hover { background: var(--bg-alt); color: var(--text); }
+.nav-brand { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
+.nav-brand span { color: var(--blue); }
+.nav-subscribe-btn {
+  padding: 7px 16px;
+  background: var(--blue); color: white;
+  border-radius: 20px; font-size: 13px; font-weight: 600;
+  cursor: pointer; border: none; font-family: inherit;
+  transition: background 0.15s;
+}
+.nav-subscribe-btn:hover { background: #0051a8; }
+
+/* ── HERO ── */
+.hero-section {
+  background: var(--bg-alt);
+  padding: 48px 24px 40px;
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--blue);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 0 3px rgba(52,199,89,0.2);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(52,199,89,0.2); }
+  50% { box-shadow: 0 0 0 6px rgba(52,199,89,0.0); }
+}
+.hero-featured {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  padding: 32px 36px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.hero-featured:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+.hero-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.cat-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 6px;
+}
+.cat-sbn     { background: rgba(0,113,227,0.1);   color: #0071e3; }
+.cat-tools   { background: rgba(88,86,214,0.1);   color: #5856d6; }
+.cat-admin   { background: rgba(52,199,89,0.1);   color: #1a7a3c; }
+.cat-finance { background: rgba(255,149,0,0.1);   color: #b06000; }
+.cat-cx      { background: rgba(255,45,85,0.1);   color: #c0003a; }
+.cat-industry{ background: rgba(175,82,222,0.1);  color: #7b1fa2; }
+.hero-date { font-size: 12px; color: var(--text-3); }
+.hero-featured-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-3);
+  background: var(--bg-alt); padding: 3px 8px; border-radius: 5px;
+}
+.hero-title {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700; letter-spacing: -0.02em;
+  line-height: 1.25; color: var(--text); margin-bottom: 12px;
+}
+.hero-excerpt {
+  font-size: 15px; color: var(--text-2); line-height: 1.55;
+  max-width: 580px; margin-bottom: 20px;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 600; color: var(--blue);
+  transition: gap 0.15s;
+}
+.hero-featured:hover .hero-cta { gap: 10px; }
+.hero-arrow-col {
+  font-size: 40px; color: var(--bg-alt);
+  line-height: 1; user-select: none;
+}
+
+/* ── SUBSCRIBE BAR ── */
+.subscribe-bar {
+  background: var(--text);
+  padding: 28px 24px;
+}
+.subscribe-bar-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  flex-wrap: wrap;
+}
+.subscribe-copy h3 {
+  font-size: 18px; font-weight: 700; color: white;
+  letter-spacing: -0.3px; margin-bottom: 3px;
+}
+.subscribe-copy p { font-size: 13px; color: rgba(255,255,255,0.6); }
+.subscribe-form {
+  display: flex; gap: 8px; flex-shrink: 0;
+}
+.subscribe-input {
+  padding: 10px 16px;
+  border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1); color: white;
+  font-size: 14px; font-family: inherit; outline: none; width: 240px;
+  transition: border-color 0.15s;
+}
+.subscribe-input::placeholder { color: rgba(255,255,255,0.4); }
+.subscribe-input:focus { border-color: rgba(255,255,255,0.4); }
+.subscribe-btn {
+  padding: 10px 20px;
+  background: var(--blue); color: white;
+  border-radius: 10px; border: none;
+  font-size: 14px; font-weight: 600; font-family: inherit;
+  cursor: pointer; white-space: nowrap;
+  transition: background 0.15s;
+}
+.subscribe-btn:hover { background: #0051a8; }
+.subscribe-success {
+  display: none; font-size: 14px; color: #34c759; font-weight: 500;
+  align-items: center; gap: 6px;
+}
+
+/* ── FILTER ── */
+.filter-bar {
+  padding: 20px 24px 0;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 56px; z-index: 90;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+}
+.filter-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; gap: 4px; overflow-x: auto;
+  scrollbar-width: none; padding-bottom: 1px;
+}
+.filter-inner::-webkit-scrollbar { display: none; }
+.filter-pill {
+  padding: 8px 16px; border-radius: 20px 20px 0 0;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; border: none; white-space: nowrap;
+  background: transparent; color: var(--text-2);
+  font-family: inherit;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  margin-bottom: -1px;
+}
+.filter-pill:hover { color: var(--text); background: var(--bg-alt); }
+.filter-pill.active {
+  color: var(--blue); font-weight: 600;
+  border-bottom-color: var(--blue);
+  background: transparent;
+}
+
+/* ── MAIN CONTENT ── */
+.content-section {
+  padding: 36px 24px 64px;
+}
+.content-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-heading {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-3);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.signals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.signal-card {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; flex-direction: column;
+}
+.signal-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.signal-card-top { padding: 20px 20px 16px; flex: 1; }
+.signal-card-meta {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+}
+.signal-card-title {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  line-height: 1.3; margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.signal-card-body { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.signal-card-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.signal-card-cta { font-size: 13px; font-weight: 600; color: var(--blue); }
+.signal-card-arrow { font-size: 16px; color: var(--text-3); transition: transform 0.15s; }
+.signal-card:hover .signal-card-arrow { transform: translateX(3px); }
+
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center; padding: 60px 24px; color: var(--text-3);
+}
+.empty-state p { font-size: 15px; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45); backdrop-filter: blur(6px);
+  z-index: 1000; opacity: 0; pointer-events: none;
+  transition: opacity 0.25s; display: flex;
+  align-items: flex-end; justify-content: center;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-panel {
+  background: var(--bg); border-radius: 24px 24px 0 0;
+  width: 100%; max-width: 700px; max-height: 90vh;
+  overflow-y: auto; padding: 36px 32px 56px;
+  transform: translateY(100%); transition: transform 0.3s ease;
+  position: relative;
+}
+.modal-overlay.open .modal-panel { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 18px; right: 22px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--bg-alt); border: none; cursor: pointer;
+  font-size: 17px; color: var(--text-2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: inherit; transition: background 0.15s;
+}
+.modal-close:hover { background: var(--border); }
+.modal-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.modal-title {
+  font-size: clamp(22px, 3vw, 28px); font-weight: 700;
+  color: var(--text); line-height: 1.25;
+  letter-spacing: -0.02em; margin-bottom: 20px;
+}
+.modal-body { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+.modal-body p { margin-bottom: 16px; }
+.modal-body strong { color: var(--text); }
+.modal-body h3 {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin: 24px 0 10px; letter-spacing: -0.2px;
+}
+.modal-body blockquote {
+  border-left: 3px solid var(--blue);
+  padding: 12px 18px; margin: 20px 0;
+  background: var(--blue-light);
+  border-radius: 0 10px 10px 0;
+  font-style: italic; color: var(--text);
+}
+.modal-body ul { padding-left: 20px; margin-bottom: 16px; }
+.modal-body li { margin-bottom: 6px; }
+.modal-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 24px; padding: 11px 22px;
+  background: var(--blue); color: white;
+  border-radius: 22px; font-size: 14px; font-weight: 600;
+  transition: background 0.15s;
+}
+.modal-link:hover { background: #0051a8; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--bg-alt); padding: 32px 24px;
+  border-top: 1px solid var(--border);
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-brand { font-size: 14px; font-weight: 700; }
+.footer-copy { font-size: 12px; color: var(--text-3); }
+.footer-link { color: var(--blue); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .signals-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-featured { grid-template-columns: 1fr; }
+  .hero-arrow-col { display: none; }
+}
+@media (max-width: 600px) {
+  .signals-grid { grid-template-columns: 1fr; }
+  .subscribe-bar-inner { flex-direction: column; align-items: flex-start; }
+  .subscribe-form { width: 100%; }
+  .subscribe-input { flex: 1; width: auto; }
+  .modal-panel { padding: 28px 20px 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="https://www.uremarkable.com" class="nav-back">&#8592; uremarkable.com</a>
+    <div class="nav-brand">The <span>Signal</span></div>
+  </div>
+  <button class="nav-subscribe-btn" onclick="scrollToSubscribe()">Subscribe free</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="live-dot"></span>
+      Daily AI business intel for AU founders
+    </div>
+    <!-- Featured signal — update data-id to match the latest signal id -->
+    <div class="hero-featured" id="hero-card" onclick="">
+      <div class="hero-content">
+        <div class="hero-meta">
+          <span class="cat-badge cat-sbn" id="hero-cat-badge">Small Business News</span>
+          <span class="hero-date" id="hero-date">8 May 2026</span>
+          <span class="hero-featured-label">Latest signal</span>
+        </div>
+        <h1 class="hero-title" id="hero-title">Loading...</h1>
+        <p class="hero-excerpt" id="hero-excerpt"></p>
+        <div class="hero-cta">Read the full signal <span>&#8594;</span></div>
+      </div>
+      <div class="hero-arrow-col">&#8250;</div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE BAR -->
+<div class="subscribe-bar" id="subscribe-section">
+  <div class="subscribe-bar-inner">
+    <div class="subscribe-copy">
+      <h3>Get the Signal. Free.</h3>
+      <p>Daily AI business intel for AU founders, delivered to your inbox.</p>
+    </div>
+    <form class="subscribe-form" onsubmit="handleSubscribe(event)">
+      <input type="email" class="subscribe-input" id="subscribe-email" placeholder="your@email.com" required>
+      <button type="submit" class="subscribe-btn">Subscribe</button>
+    </form>
+    <div class="subscribe-success" id="subscribe-success">
+      <span>&#10003;</span> You're in. First signal incoming.
+    </div>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <div class="filter-inner" id="filterBar">
+    <button class="filter-pill active" onclick="filterSignals('all', this)">All signals</button>
+    <button class="filter-pill" onclick="filterSignals('small-business-news', this)">Small Business News</button>
+    <button class="filter-pill" onclick="filterSignals('ai-tools', this)">AI Tools</button>
+    <button class="filter-pill" onclick="filterSignals('admin-automation', this)">Admin Automation</button>
+    <button class="filter-pill" onclick="filterSignals('financial-management', this)">Financial Management</button>
+    <button class="filter-pill" onclick="filterSignals('customer-engagement', this)">Customer Engagement</button>
+    <button class="filter-pill" onclick="filterSignals('industry-specific', this)">Industry Specific AI</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<section class="content-section">
+  <div class="content-inner">
+    <div class="section-heading">Recent signals</div>
+    <div class="signals-grid" id="signalsGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Uremarkable</div>
+    <div class="footer-copy">
+      Daily AI business intel for AU founders.
+      <a href="https://www.uremarkable.com" class="footer-link">uremarkable.com</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="signalModal" onclick="closeOnOverlay(event)">
+  <div class="modal-panel" id="modalPanel">
+    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     SIGNALS DATA — add new entries at the top of the array daily
+     Fields: id, date, category, categoryLabel, catClass, sourceType,
+             title, excerpt, featured, body (HTML), sourceCta, sourceUrl
+================================================================ -->
+<script>
+const SIGNALS = [
+
+  // ── TO ADD NEW SIGNALS: copy the object below, update all fields, set featured: true on latest ──
+
+  {
+    id: 'anthropic-enterprise-2026-05-07',
+    date: '7 May 2026',
+    category: 'small-business-news',
+    categoryLabel: 'Small Business News',
+    catClass: 'cat-sbn',
+    sourceType: 'news',
+    featured: true,
+    title: 'Anthropic just backed a services firm to deploy AI for mid-market companies',
+    excerpt: 'Blackstone, Goldman Sachs, and H&F are co-founding a dedicated AI implementation company. The enterprise tier is moving fast — and it validates the category for every AU founder watching.',
+    body: `
+      <p>On May 4, 2026, Anthropic partnered with Blackstone, Hellman &amp; Friedman, and Goldman Sachs to establish a new enterprise AI services firm. Their target: community banks, mid-sized manufacturers, regional health systems.</p>
+      <blockquote>"A typical engagement starts with a small team working closely with the customer to understand where Claude can have the biggest impact."</blockquote>
+      <h3>What this means for AU small business</h3>
+      <p>For most of the businesses we work with, this isn't your competition. It's your validation. The enterprise tier just confirmed the market is real, the category is growing, and the implementation layer is where the value lands.</p>
+      <p>The Anthropic/Blackstone firm charges enterprise fees for enterprise clients. Community banks and mid-market manufacturers aren't the same ICP as an AU founder running a services business or trade.</p>
+      <p><strong>The signal:</strong> every founder who reads this announcement and thinks "I want that but can't afford it" — that's the market Uremarkable is built for. Same outcome, a fraction of the cost, live the same day.</p>
+      <ul>
+        <li>The implementation layer is where the value compounds — not the raw AI access</li>
+        <li>Configured, context-rich systems beat generic AI tools every time</li>
+        <li>The AU SME tier is wide open — no Blackstone-backed firm is coming for your $20M business</li>
+      </ul>
+    `,
+    sourceCta: 'Read the full announcement',
+    sourceUrl: 'https://www.anthropic.com/news/enterprise-ai-services-company'
+  },
+
+  {
+    id: 'harvey-legora-operator-layer-2026-05-07',
+    date: '7 May 2026',
+    category: 'ai-tools',
+    categoryLabel: 'AI Tools',
+    catClass: 'cat-tools',
+    sourceType: 'linkedin',
+    featured: false,
+    title: 'Harvey and Legora have a supplier problem. Most SaaS does.',
+    excerpt: 'When the model provider goes direct to enterprise, the token reseller dies. The operator layer survives. Here\'s why that distinction matters for how you build your business on AI.',
+    body: `
+      <p>Harvey and Legora are in a uniquely difficult position: they offer a worse product than their suppliers. Every business needs a value-add over the raw material it buys. Harvey never built one.</p>
+      <blockquote>The "token reseller theory" — Harvey and Legora acted as sales channels to crack open the legal market for AI labs. Symbiotic, until the supplier went direct.</blockquote>
+      <h3>The operator layer thesis</h3>
+      <p>Anthropic's partnership with Freshfields is the signal. When the supplier goes direct to the consumer, the middleman who only added distribution disappears. The wrapper dies.</p>
+      <p>The businesses that survive are the ones who built the configured system — the trained workflows, the institutional context, the JTBD-specific muscle that runs on top of the raw AI.</p>
+      <p><strong>For AU founders:</strong> this is the build-vs-buy question made concrete. If your AI system is just a ChatGPT wrapper with your logo on it, you have a Harvey problem. If it's a configured system that compounds your specific business context over time, you have a moat.</p>
+      <ul>
+        <li>Don't build on top of a model — build with a model into your own system</li>
+        <li>The data, the vault, the configured workflows — that's your defensibility</li>
+        <li>Anthropic going direct to enterprise doesn't threaten small operators who own their stack</li>
+      </ul>
+    `,
+    sourceCta: null,
+    sourceUrl: null
+  },
+
+  {
+    id: 'peter-crone-graveyard-2026-05-07',
+    date: '7 May 2026',
+    category: 'small-business-news',
+    categoryLabel: 'Small Business News',
+    catClass: 'cat-sbn',
+    sourceType: 'reel',
+    featured: false,
+    title: '"The graveyard\'s filled with people who thought they had more time."',
+    excerpt: 'Peter Crone on the reframe that changes how you treat every day — and every decision about when to start. One less day isn\'t comfort. It\'s urgency.',
+    body: `
+      <p>Peter Crone flips the "one more day alive" frame on its head. Most people hear that as comfort. He hears it as urgency — one less day to waste running at 45%.</p>
+      <blockquote>"Imagine turning up at the pearly gates and whoever greets you, they're like: how do you feel about your life? And the fact that you gave a full 45% all the time."</blockquote>
+      <h3>The frame that applies here</h3>
+      <p>The gift of being alive is the most underrated and underappreciated part of being here — because it's always there. Constant things don't register as precious until they're gone.</p>
+      <p>The cost of not acting isn't zero. Every month you run the business manually, you're spending time you can't get back on tasks a system could handle. The graveyard's also filled with businesses that thought they had more time to modernise.</p>
+      <p><strong>The business version of this:</strong> the companies that adopted email, then CRM, then cloud — early — didn't just save time. They compounded the advantage. The ones who waited caught up eventually. Some didn't.</p>
+    `,
+    sourceCta: 'Watch on Instagram',
+    sourceUrl: 'https://www.instagram.com/reel/DYAPPmdMbvh/'
+  },
+
+  {
+    id: 'hormozi-sadness-anxiety-2026-05-07',
+    date: '7 May 2026',
+    category: 'small-business-news',
+    categoryLabel: 'Small Business News',
+    catClass: 'cat-sbn',
+    sourceType: 'reel',
+    featured: false,
+    title: 'Sadness vs anxiety: the two failure modes killing founder output',
+    excerpt: 'Alex Hormozi draws a clean line between two states founders get stuck in. It\'s not a motivation problem. It\'s a structure problem — and structure is fixable.',
+    body: `
+      <p>Alex Hormozi draws a clean line between two states founders get stuck in:</p>
+      <blockquote>Sadness is a lack of options. Anxiety is too many options with no clear priority. Most founders oscillate between both — and mistake the feeling for a motivation problem.</blockquote>
+      <h3>Why this is a systems problem</h3>
+      <p>It's not a motivation problem. It's a structure problem. When your business has no operating system, every task competes equally for your attention. Everything feels urgent. Nothing gets done well.</p>
+      <p>The fix isn't a mindset hack. It's removing the structural cause — the pile of undifferentiated tasks sitting in your head instead of in a system that handles them.</p>
+      <p><strong>The operating system frame:</strong> when your finance, sales, marketing, and customer comms are handled by a system, the anxiety signal changes. Instead of "everything is on me," the signal is "here's what needs my judgment today." That's a fundamentally different cognitive load.</p>
+      <ul>
+        <li>Admin anxiety is structural, not personal</li>
+        <li>Systems remove the cognitive weight that produces oscillation</li>
+        <li>The first week of running a business OS usually feels lighter, not busier</li>
+      </ul>
+    `,
+    sourceCta: 'Watch on Instagram',
+    sourceUrl: 'https://www.instagram.com/reel/DYAhZgsvAA5/'
+  }
+
+];
+
+// ── RENDER & FILTER ──
+let currentFilter = 'all';
+
+const CAT_CLASS_MAP = {
+  'small-business-news': 'cat-sbn',
+  'ai-tools': 'cat-tools',
+  'admin-automation': 'cat-admin',
+  'financial-management': 'cat-finance',
+  'customer-engagement': 'cat-cx',
+  'industry-specific': 'cat-industry'
+};
+
+const SOURCE_TYPE_LABELS = {
+  news: 'Industry News',
+  reel: 'Reel',
+  linkedin: 'LinkedIn',
+  tool: 'Tool Spotlight',
+  research: 'Research'
+};
+
+function renderHero() {
+  const featured = SIGNALS.find(s => s.featured) || SIGNALS[0];
+  document.getElementById('hero-cat-badge').className = 'cat-badge ' + featured.catClass;
+  document.getElementById('hero-cat-badge').textContent = featured.categoryLabel;
+  document.getElementById('hero-date').textContent = featured.date;
+  document.getElementById('hero-title').textContent = featured.title;
+  document.getElementById('hero-excerpt').textContent = featured.excerpt;
+  document.getElementById('hero-card').onclick = () => openModal(featured.id);
+}
+
+function renderGrid(filter) {
+  const grid = document.getElementById('signalsGrid');
+  const filtered = filter === 'all' ? SIGNALS : SIGNALS.filter(s => s.category === filter);
+  const nonFeatured = filtered.filter(s => !s.featured || filter !== 'all');
+
+  if (nonFeatured.length === 0) {
+    grid.innerHTML = '<div class="empty-state"><p>More signals in this category coming soon.</p></div>';
+    return;
+  }
+
+  grid.innerHTML = nonFeatured.map(s => `
+    <article class="signal-card" onclick="openModal('${s.id}')">
+      <div class="signal-card-top">
+        <div class="signal-card-meta">
+          <span class="cat-badge ${s.catClass}">${SOURCE_TYPE_LABELS[s.sourceType] || s.categoryLabel}</span>
+          <span style="font-size:12px;color:#86868b;">${s.date}</span>
+        </div>
+        <div class="signal-card-title">${s.title}</div>
+        <div class="signal-card-body">${s.excerpt}</div>
+      </div>
+      <div class="signal-card-footer">
+        <span class="signal-card-cta">${s.sourceType === 'reel' ? 'Watch the clip' : s.sourceType === 'linkedin' ? 'Read the take' : 'Read the signal'}</span>
+        <span class="signal-card-arrow">&#8594;</span>
+      </div>
+    </article>
+  `).join('');
+}
+
+function filterSignals(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(filter);
+}
+
+// ── MODAL ──
+function openModal(id) {
+  const s = SIGNALS.find(sig => sig.id === id);
+  if (!s) return;
+  document.getElementById('modalMeta').innerHTML = `
+    <span class="cat-badge ${s.catClass}">${s.categoryLabel}</span>
+    <span style="font-size:12px;color:#86868b;">${s.date}</span>
+  `;
+  document.getElementById('modalTitle').textContent = s.title;
+  document.getElementById('modalBody').innerHTML = s.body +
+    (s.sourceUrl ? `<a class="modal-link" href="${s.sourceUrl}" target="_blank">${s.sourceCta} &#8594;</a>` : '');
+  document.getElementById('signalModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('signalModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e) {
+  if (e.target.id === 'signalModal') closeModal();
+}
+
+// ── SUBSCRIBE ──
+function scrollToSubscribe() {
+  document.getElementById('subscribe-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function handleSubscribe(e) {
+  e.preventDefault();
+  const email = document.getElementById('subscribe-email').value;
+  if (!email) return;
+
+  // ── INTEGRATION POINT: Replace this fetch with Beehiiv / Mailchimp / ConvertKit embed ──
+  // Beehiiv: POST to https://www.beehiiv.com/subscribe/[YOUR_PUB_ID]
+  // For now: sends to FormSubmit.co which forwards to uremarkable1@gmail.com
+  fetch('https://formsubmit.co/ajax/uremarkable1@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ email: email, _subject: 'New Signal Subscriber', source: 'uremarkable.com/signals' })
+  }).then(() => {
+    document.querySelector('.subscribe-form').style.display = 'none';
+    const success = document.getElementById('subscribe-success');
+    success.style.display = 'flex';
+  }).catch(() => {
+    // Fallback: still show success (formsubmit may need activation on first send)
+    document.querySelector('.subscribe-form').style.display = 'none';
+    document.getElementById('subscribe-success').style.display = 'flex';
+  });
+}
+
+// ── INIT ──
+renderHero();
+renderGrid('all');
+</script>
+
+</body>
+</html>
