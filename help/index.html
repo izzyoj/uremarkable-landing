@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help — ClaudeClaw FAQ | uremarkable.com</title>
+<meta name="description" content="Common questions about ClaudeClaw — setup, voice, memory, apps, security, and troubleshooting.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.uremarkable.com/help">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Uremarkable">
+<meta property="og:title" content="Help — ClaudeClaw FAQ">
+<meta property="og:description" content="Common questions about your AI assistant — setup, voice, memory, apps, security, and troubleshooting.">
+<meta property="og:url" content="https://www.uremarkable.com/help">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #ffffff;
+    --bg-2:       #f5f5f7;
+    --bg-3:       #e8e8ed;
+    --blue:       #0071e3;
+    --blue-soft:  rgba(0,113,227,0.08);
+    --text:       #1d1d1f;
+    --text-2:     #6e6e73;
+    --text-3:     #86868b;
+    --border:     rgba(0,0,0,0.08);
+    --shadow:     0 1px 3px rgba(0,0,0,0.08);
+    --r:          14px;
+  }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: var(--bg-2);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .ur-nav {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(210,210,215,0.6);
+    padding: 0 24px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .ur-nav-logo {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .ur-nav-back {
+    font-size: 14px;
+    color: var(--text-2);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .ur-nav-back:hover { color: var(--text); }
+  .ur-nav-badge {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-3);
+    background: var(--bg-3);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--bg);
+    padding: 64px 24px 56px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--text-2);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-3);
+    font-size: 16px;
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--bg-2);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .search-input:focus {
+    border-color: var(--blue);
+    background: var(--bg);
+  }
+
+  /* CATEGORY TABS */
+  .tab-bar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-inner {
+    display: flex;
+    gap: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .tab-btn {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-2);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 14px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+  /* CONTENT */
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* SECTION */
+  .faq-section {
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ACCORDION */
+  .faq-item {
+    background: var(--bg);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+  }
+  .faq-item.open { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .faq-q-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-2);
+    transition: transform 0.2s, background 0.15s;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    background: var(--blue-soft);
+    color: var(--blue);
+  }
+  .faq-a {
+    display: none;
+    padding: 0 20px 20px;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-a p { margin-bottom: 10px; }
+  .faq-a p:last-child { margin-bottom: 0; }
+  .faq-a ul { padding-left: 18px; margin: 8px 0; }
+  .faq-a li { margin-bottom: 6px; }
+  .faq-a code {
+    font-family: 'SF Mono', Monaco, Consolas, monospace;
+    font-size: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--text);
+  }
+  .faq-a strong { color: var(--text); font-weight: 600; }
+  .faq-a .tip {
+    background: var(--blue-soft);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--blue);
+  }
+
+  /* NO RESULTS */
+  .no-results {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-2);
+    display: none;
+  }
+  .no-results.visible { display: block; }
+  .no-results h3 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
+  .no-results p { font-size: 14px; }
+
+  /* CONTACT CTA */
+  .contact-cta {
+    background: var(--text);
+    color: #fff;
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    margin-top: 56px;
+  }
+  .contact-cta h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .contact-cta p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 24px;
+    line-height: 1.55;
+  }
+  .contact-cta a {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 980px;
+    transition: opacity 0.15s;
+  }
+  .contact-cta a:hover { opacity: 0.88; }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    .hero { padding: 44px 20px 40px; }
+    .content { padding: 28px 16px 60px; }
+    .faq-q { padding: 16px; }
+    .faq-a { padding: 0 16px 16px; padding-top: 14px; }
+    .tab-btn { padding: 12px 12px; font-size: 12px; }
+    .contact-cta { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="ur-nav">
+  <a href="/" class="ur-nav-back">&#8592; uremarkable.com</a>
+  <span class="ur-nav-badge">Help</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">ClaudeClaw v4</div>
+  <h1>How can we help?</h1>
+  <p>Common questions about your AI assistant — from first setup to daily use.</p>
+  <div class="search-wrap">
+    <span class="search-icon">&#128269;</span>
+    <input class="search-input" type="text" id="faq-search" placeholder="Search questions..." autocomplete="off">
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="filterSection('all', this)">All</button>
+    <button class="tab-btn" onclick="filterSection('getting-started', this)">Getting started</button>
+    <button class="tab-btn" onclick="filterSection('day-to-day', this)">Day to day</button>
+    <button class="tab-btn" onclick="filterSection('memory', this)">Memory</button>
+    <button class="tab-btn" onclick="filterSection('apps', this)">Apps</button>
+    <button class="tab-btn" onclick="filterSection('automation', this)">Automation</button>
+    <button class="tab-btn" onclick="filterSection('security', this)">Security</button>
+    <button class="tab-btn" onclick="filterSection('troubleshooting', this)">Troubleshooting</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- GETTING STARTED -->
+  <div class="faq-section" data-section="getting-started">
+    <div class="section-label">Getting started</div>
+
+    <div class="faq-item" data-keywords="what is claudeclaw what is this how does it work overview">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What exactly is ClaudeClaw?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>ClaudeClaw is the layer that connects Claude (Anthropic's AI) to your Telegram. When Baz sets it up on your Mac, every message you send in Telegram goes directly to Claude running on your own machine. The reply comes back to your phone within seconds.</p>
+        <p>It's not a chatbot or a cloud service. Claude runs locally on your hardware, reads your files, connects to your apps, and operates like a member of your team you can reach at any hour.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="requirements what do i need before setup mac computer plan">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What do I need before my setup session with Baz?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Three things:</p>
+        <ul>
+          <li><strong>A Mac</strong> (MacOS is the primary setup — Windows is supported but less common)</li>
+          <li><strong>A Telegram account</strong> — any existing one works</li>
+          <li><strong>A Claude plan</strong> — Free and Pro work, but Claude Max ($100/month) on Opus is the recommended experience for anything complex</li>
+        </ul>
+        <p>Baz handles everything else — software installation, connecting your apps, configuring the assistant to know about your business.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="setup time how long does setup take installation">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How long does setup take?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>The software configuration itself takes about 5 minutes. The full setup session with Baz typically runs 60-90 minutes — this covers installing everything, connecting your apps (email, calendar, WhatsApp), and personalising the assistant so it knows your business, your preferences, and what you'll use it for most.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="windows pc does it work windows computer">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Does it work on Windows?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes, through WSL2 — a compatibility layer that lets Windows run Linux apps. Baz's standard setup is Mac-first, but Windows is supported. If you're on Windows, mention it before booking your session.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="claude plan free pro max which plan cost pricing">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Which Claude plan do I need?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Any plan works — Free, Pro, or Max. The difference is in performance on complex tasks:</p>
+        <ul>
+          <li><strong>Max ($100/mo)</strong> — recommended. Opus model handles multi-step tasks, building tools, and anything requiring real reasoning. Best overall experience.</li>
+          <li><strong>Pro ($20/mo)</strong> — works for day-to-day messages, but may struggle on complex or long-running tasks.</li>
+          <li><strong>Free</strong> — limited but functional for simple queries.</li>
+        </ul>
+        <div class="tip">Baz's setup is optimised for Max. If you're on Pro and hit limits, upgrading is the fastest fix.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="telegram bot what is a bot botfather how to create bot">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is a "Telegram bot" and why do I need one?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Telegram allows you to create a private bot — basically a dedicated chat account that belongs to you. Your ClaudeClaw assistant lives inside this bot. You message it like any contact, and it responds.</p>
+        <p>Baz creates this during your setup session using Telegram's BotFather tool. You end up with a private Telegram chat that's connected exclusively to your machine. No one else can access it.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="background service run automatically launchd keeps running always on">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Does it need to be running all the time? What happens when I close my laptop?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>ClaudeClaw runs as a background service on your Mac — it starts automatically when you log in and restarts itself if it ever crashes. You don't need to open a terminal or do anything manually.</p>
+        <p>If your Mac is closed or shut down, the assistant won't respond until it's back on. For scheduled tasks (like a morning briefing), your Mac needs to be running at that time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY TO DAY -->
+  <div class="faq-section" data-section="day-to-day">
+    <div class="section-label">Day to day use</div>
+
+    <div class="faq-item" data-keywords="how to message send text how do i use it talk to it">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I actually use it? Just type?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Open the Telegram chat Baz set up and type anything. No wake word, no special format. Just describe what you want and send it.</p>
+        <p>Some examples that work out of the box:</p>
+        <ul>
+          <li>"Check my calendar for tomorrow"</li>
+          <li>"Draft a reply to the email from Sarah about the proposal"</li>
+          <li>"What's the most recent message in my WhatsApp from James?"</li>
+          <li>"Create a summary of this document and send it to me as a PDF"</li>
+          <li>"Set a reminder to follow up with the Barangaroo lead on Friday"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="voice notes voice input can i speak talk voice note send voice">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I use voice notes instead of typing?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Hold the microphone button in Telegram, record, and send. It transcribes automatically and executes your request — same as if you'd typed it.</p>
+        <p>By default, replies come back as text. To get a voice reply back, say one of these anywhere in your message:</p>
+        <ul>
+          <li>"respond with voice"</li>
+          <li>"send me a voice back"</li>
+          <li>"voice reply"</li>
+        </ul>
+        <p>To switch voice replies on for every message, send <code>/voice</code>. Send it again to turn it off.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="photos documents pdf files send file attachment analyze">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I send photos, documents, and PDFs?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>All of these work. Just attach the file and send — with or without a caption:</p>
+        <ul>
+          <li><strong>Photos</strong> — analyzed immediately. No caption needed, but add one for specific instructions: "what are the key numbers in this?"</li>
+          <li><strong>PDFs, Word docs, CSVs, text files</strong> — read and processed. Try "summarize this", "extract the dates and amounts", or "draft a reply based on this"</li>
+          <li><strong>Videos</strong> — analyzed up to 20MB. Add a caption for what you need from it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="can it send files back create file pdf send back to me file output">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it create files and send them back to me?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Ask it to create something and it'll send the file as a Telegram attachment. Works up to 50MB.</p>
+        <p>Examples:</p>
+        <ul>
+          <li>"Summarize this week's emails into a PDF and send it to me"</li>
+          <li>"Build me a one-page comparison of these two quotes and send it as a spreadsheet"</li>
+          <li>"Create an HTML proposal for [client name] and send it"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="commands slash commands what commands can i type bot commands list">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What commands can I use?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Type <code>/</code> in Telegram to see the full list. The most useful ones:</p>
+        <ul>
+          <li><code>/newchat</code> — start a fresh conversation (clears current context)</li>
+          <li><code>/respin</code> — send immediately after /newchat to pull recent messages back in</li>
+          <li><code>/voice</code> — toggle voice replies on/off for all messages</li>
+          <li><code>/model haiku</code> / <code>/model sonnet</code> / <code>/model opus</code> — switch speed vs power</li>
+          <li><code>/memory</code> — see what your assistant remembers about you</li>
+          <li><code>/stop</code> — cancel whatever it's doing mid-task</li>
+          <li><code>/dashboard</code> — get a link to your live dashboard</li>
+          <li><code>/wa</code> — open WhatsApp interface</li>
+          <li><code>/slack</code> — open Slack interface</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="fresh start reset conversation newchat respin context window full">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I start a fresh conversation?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Send <code>/newchat</code>. This wipes the current session and starts completely fresh.</p>
+        <p>If you want to keep your recent messages for context, send <code>/respin</code> immediately after. It pulls the last 20 messages into the new session — so the assistant knows what you were just discussing, without carrying the full weight of a long conversation.</p>
+        <div class="tip">If responses start feeling off or slower than usual, /newchat + /respin is the fix 90% of the time.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="dashboard what is dashboard what can i see monitoring">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is the dashboard?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>A live web page that shows everything happening inside your assistant: scheduled tasks, what it remembers about you, how much you're spending on API calls, and whether everything is running healthy.</p>
+        <p>Send <code>/dashboard</code> in Telegram to get a clickable link. If Baz set up remote access during your session, the link works from your phone anywhere.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMORY -->
+  <div class="faq-section" data-section="memory">
+    <div class="section-label">Memory</div>
+
+    <div class="faq-item" data-keywords="memory remember things context between sessions persistent">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Does it remember things between conversations?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. ClaudeClaw has a layered memory system that works in the background:</p>
+        <ul>
+          <li><strong>Within a session</strong> — full context of everything said in the current conversation</li>
+          <li><strong>Between sessions</strong> — after each conversation, it extracts important things (preferences, decisions, business context) and stores them locally on your Mac. These surface automatically in future conversations when they're relevant.</li>
+        </ul>
+        <p>You don't need to re-explain who you are or what you're working on every time you open Telegram.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="how long memory lasts decay forget how long does it remember">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How long does it remember things for?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>It depends on how important the memory is and how often it gets used:</p>
+        <ul>
+          <li><strong>Core preferences and key rules</strong> — about 15 months (1% decay per day)</li>
+          <li><strong>General business context and decisions</strong> — about 8 months (2% decay per day)</li>
+          <li><strong>Frequently referenced memories</strong> — last longer, because each time a memory surfaces in a conversation it gets a salience boost</li>
+        </ul>
+        <p>Memories that prove useless fade out. Memories that keep coming up stay longer. The system learns what matters over time.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="see memories what does it remember view memory list">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I see what it remembers about me?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Send <code>/memory</code>. You'll see the recent memories stored for your chat.</p>
+        <p>You can also browse the full memory landscape in the dashboard — it shows importance scores, what's recently been retrieved, and anything that's starting to fade.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="forget delete memory clear remove something from memory">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I make it forget something?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Send <code>/forget</code> to clear the current session ID. This doesn't delete stored memories — those decay naturally over time.</p>
+        <p>If there's something specific you want removed, tell your assistant directly: "forget what I told you about [X]" and it will mark that memory as low importance so it fades faster.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPS -->
+  <div class="faq-section" data-section="apps">
+    <div class="section-label">Connecting your apps</div>
+
+    <div class="faq-item" data-keywords="gmail email read send check email inbox reply">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it read and send emails?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes — if Gmail was connected during your setup session. Ask it to:</p>
+        <ul>
+          <li>"Check my inbox and tell me what needs attention"</li>
+          <li>"Reply to [name]'s email saying I'll confirm by Friday"</li>
+          <li>"Send an email to [address] about [topic]"</li>
+          <li>"Find all unread emails from [company]"</li>
+        </ul>
+        <p>It uses Google's official OAuth — your password never touches ClaudeClaw, and it won't bypass your 2FA.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="calendar schedule meeting google calendar appointments availability">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it manage my calendar?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes — if Google Calendar was connected during setup. Ask it to:</p>
+        <ul>
+          <li>"What's on my calendar this week?"</li>
+          <li>"Schedule a call with [name] on Thursday at 2pm"</li>
+          <li>"Send [name] a calendar invite for Friday morning"</li>
+          <li>"Am I free next Monday between 10am and 12pm?"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="whatsapp can it use whatsapp connect whatsapp messages /wa">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it use WhatsApp?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes, with no extra cost or API key. It connects to your existing WhatsApp account via Linked Devices — same way WhatsApp Web works on your laptop. You scan a QR code once during setup, and it stays connected.</p>
+        <p>Send <code>/wa</code> to see your most recent chats (unread first). Select one, read the messages, and reply — all from Telegram. You also get a notification when someone messages you on WhatsApp.</p>
+        <div class="tip">Your WhatsApp message content is encrypted at rest and auto-deleted after 3 days. It never leaves your Mac.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="slack can it use slack connect slack read reply /slack">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it use Slack?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes — if Slack was configured during setup. Send <code>/slack</code> to see recent conversations with unread counts. Select a conversation, read it, and reply.</p>
+        <p>You can also ask naturally: "check my Slack" or "reply to Jane on Slack saying I'll be 10 minutes late".</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="google drive sheets docs workspace integrate other apps">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it access Google Drive, Sheets, or Docs?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>This requires the Google Workspace CLI — an optional tool Baz can install during or after your session. Once configured, your assistant can read, write, and search across Drive, Sheets, Docs, and every other Workspace API.</p>
+        <p>If you need this, mention it to Baz and it can be added in a follow-up session.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTOMATION -->
+  <div class="faq-section" data-section="automation">
+    <div class="section-label">Automation and scheduling</div>
+
+    <div class="faq-item" data-keywords="scheduled tasks cron automate automatically schedule run every day">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I set it up to do things automatically?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Just tell it in plain language what you want and when:</p>
+        <ul>
+          <li>"Every weekday morning at 8am, check my inbox and send me a briefing"</li>
+          <li>"Every Monday at 9am, pull last week's AI news and summarize it"</li>
+          <li>"Every Friday at 5pm, tell me what's on for next week"</li>
+        </ul>
+        <p>It creates and manages the schedule itself. Your Mac needs to be running at the scheduled time.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="manage tasks pause delete list scheduled tasks what is scheduled">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I manage scheduled tasks?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Just ask in plain language:</p>
+        <ul>
+          <li>"What tasks do I have scheduled?"</li>
+          <li>"Pause the Monday morning briefing"</li>
+          <li>"Delete the daily email check"</li>
+          <li>"Change the morning briefing to 7:30am instead of 8am"</li>
+        </ul>
+        <p>You can also view and manage them directly on the dashboard under Scheduled Tasks.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="agents multiple agents mission control team of agents specialist">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What are "agents" and do I need more than one?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Agents are specialist versions of your assistant, each with their own Telegram bot and focused role. Examples: a Comms agent that handles email and WhatsApp, a Research agent for deep lookups, an Ops agent for admin tasks.</p>
+        <p>Each agent gets its own 1-million-token context window, its own personality, and its own scheduled tasks. They share your data and skills.</p>
+        <p>Most users start with a single main assistant and add agents later as workload grows. It's entirely optional.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="faq-section" data-section="security">
+    <div class="section-label">Security and privacy</div>
+
+    <div class="faq-item" data-keywords="who can access bot secure other people access privacy lock">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Who else can access my bot?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Only you. ClaudeClaw locks to your specific Telegram account using your chat ID. Messages from any other Telegram user are silently dropped — they won't get a response or even an error. Group chats are blocked entirely.</p>
+        <p>You can also add a PIN lock for extra security. When enabled, the bot ignores all messages until you send the correct PIN. There's also an emergency kill phrase that immediately stops all processes if you ever need a hard shutdown.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="data safe cloud data privacy where does my data go local machine">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Does my data leave my machine?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Your data stays on your Mac. Conversations, files, memories — all stored locally in a database on your machine.</p>
+        <p>The external calls that do happen:</p>
+        <ul>
+          <li><strong>Anthropic</strong> — receives your individual queries to run Claude. Does not receive your full conversation history or stored memories.</li>
+          <li><strong>Google</strong> — if you connected Gmail, Calendar, or video analysis. Uses standard Google OAuth.</li>
+          <li><strong>Groq</strong> — if voice input is enabled, your voice note is transcribed there. Free tier.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="whatsapp slack data encrypted messages stored secure">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Are my WhatsApp and Slack messages stored safely?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Message content is encrypted at rest using AES-256-GCM before being written to your local database. If someone accessed the database file directly, they'd see ciphertext — not your messages.</p>
+        <p>Messages are also automatically deleted after 3 days. This is enforced in the code and can't be disabled without modifying the source.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="anthropic terms of service compliant is this allowed legal tos">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is using ClaudeClaw against Anthropic's rules?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>No. ClaudeClaw runs the official <code>claude</code> CLI on your machine. It doesn't extract OAuth tokens, impersonate Anthropic's infrastructure, or make API calls on your behalf outside of the official SDK.</p>
+        <p>What it does is identical to typing <code>claude</code> in your own terminal — except the input comes from Telegram and the output goes back there. Anthropic's terms allow exactly this kind of personal use.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <div class="faq-section" data-section="troubleshooting">
+    <div class="section-label">Troubleshooting</div>
+
+    <div class="faq-item" data-keywords="bot not responding no reply doesnt respond silent not working">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">My bot isn't responding</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>A few things to check in order:</p>
+        <ul>
+          <li><strong>Is your Mac on and awake?</strong> The assistant only works when the machine is running.</li>
+          <li><strong>macOS permission dialogs</strong> — on first run, your Mac shows "Node wants to access..." dialogs. If you missed clicking Allow, the bot hangs silently. Check your Mac screen.</li>
+          <li><strong>Are you messaging the right bot?</strong> It only responds to the Telegram account Baz linked during setup.</li>
+          <li><strong>Service check</strong> — contact Baz and ask him to run <code>npm run status</code> remotely to check if everything is healthy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="feels confused off context wrong weird responses not making sense">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">The bot is responding but feels confused or off</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>The conversation context window is probably getting too heavy after a long session. Fix:</p>
+        <ul>
+          <li>Send <code>/newchat</code></li>
+          <li>Immediately send <code>/respin</code></li>
+        </ul>
+        <p>This wipes the full session but pulls your recent messages back in — fresh context without losing the thread of what you were doing.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="voice not working voice error voice notes transcription groq">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Voice notes aren't working</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Voice transcription requires a Groq API key. If this wasn't configured during your setup session, contact Baz. The Groq free tier is more than enough for personal use — no credit card required.</p>
+        <p>If voice replies (audio back to you) aren't working, that's a separate thing — it requires an ElevenLabs API key and a voice clone. Mention to Baz which part isn't working.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="whatsapp not connecting qr code scan daemon whatsapp error">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">WhatsApp isn't connecting or showing my messages</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>WhatsApp requires a separate background process (the wa-daemon) running alongside ClaudeClaw. If it's stopped, you'll need to restart it and re-scan the QR code in WhatsApp on your phone.</p>
+        <p>The QR code expires after about 30 seconds. If it times out, kill the daemon and restart it. Contact Baz if you're unsure how to do this.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="update new version how do i update upgrade latest version">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I update to the latest version?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Ask your assistant directly: "update ClaudeClaw to the latest version" and it will walk you through the process on your machine.</p>
+        <p>Or contact Baz — updates are part of the ongoing maintenance included in your retainer.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="two instances running conflict 409 error duplicate running twice">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">I got an error about a "409 Conflict"</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>This means ClaudeClaw is running twice — two processes both trying to receive Telegram messages. Restart your Mac, or contact Baz to clear the duplicate process. It's a quick fix.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NO RESULTS -->
+  <div class="no-results" id="no-results">
+    <h3>Nothing matched that search</h3>
+    <p>Try a different word, or reach out to Baz directly.</p>
+  </div>
+
+  <!-- CONTACT CTA -->
+  <div class="contact-cta">
+    <h3>Still have a question?</h3>
+    <p>Baz set this up and knows your system. Reach out directly.</p>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank">Book a session</a>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+  function toggleFaq(qEl) {
+    const item = qEl.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Search
+  const searchInput = document.getElementById('faq-search');
+  const noResults = document.getElementById('no-results');
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const text = (item.querySelector('.faq-q-text').textContent + ' ' +
+                    (item.dataset.keywords || '') + ' ' +
+                    item.querySelector('.faq-a').textContent).toLowerCase();
+      const match = !q || text.includes(q);
+      item.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+
+    document.querySelectorAll('.faq-section').forEach(section => {
+      const visible = [...section.querySelectorAll('.faq-item')]
+        .some(item => item.style.display !== 'none');
+      section.style.display = visible ? '' : 'none';
+    });
+
+    noResults.classList.toggle('visible', visibleCount === 0);
+  });
+
+  // Tab filter
+  function filterSection(section, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    searchInput.value = '';
+
+    document.querySelectorAll('.faq-item').forEach(item => item.style.display = '');
+    document.querySelectorAll('.faq-section').forEach(sec => {
+      if (section === 'all') {
+        sec.style.display = '';
+      } else {
+        sec.style.display = sec.dataset.section === section ? '' : 'none';
+      }
+    });
+    noResults.classList.remove('visible');
+  }
+</script>
+
+</body>
+</html>
