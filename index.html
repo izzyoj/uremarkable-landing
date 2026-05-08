@@ -1622,23 +1622,12 @@ footer {
   section { padding: 56px 20px; }
   .hero { padding: 56px 20px 56px; }
   .modal { padding: 24px 20px; }
-  /* 3-step lifecycle → horizontal scroll */
+  /* 3-step lifecycle → stack vertically */
   .step-grid {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 16px;
     margin-top: 24px;
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 12px;
-    cursor: grab;
   }
-  .step-grid::-webkit-scrollbar { display: none; }
-  .step-grid:active { cursor: grabbing; }
-  .step-grid > div { flex: 0 0 256px; }
   /* Moat strip → stacked rows */
   .moat-grid {
     grid-template-columns: 1fr;
