@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playbooks — What Uremarkable builds | uremarkable.com</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:           #ffffff;
+    --bg-2:         #f5f5f7;
+    --bg-3:         #e8e8ed;
+    --accent:       #0071e3;
+    --accent-soft:  #e8f0fb;
+    --text:         #1d1d1f;
+    --text-2:       #6e6e73;
+    --text-3:       #86868b;
+    --border:       rgba(0,0,0,0.08);
+    --shadow-sm:    0 1px 3px rgba(0,0,0,0.07);
+    --shadow-md:    0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg:    0 8px 32px rgba(0,0,0,0.09);
+    --r:            14px;
+    --r-sm:         8px;
+  }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: var(--bg-2);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--text);
+    color: #fff;
+    padding: 72px 24px 64px;
+    text-align: center;
+  }
+  .hero-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: #0071e3; }
+  .hero p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 2px;
+  }
+
+  /* ── FILTERS ── */
+  .filter-bar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .filter-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-3);
+    pointer-events: none;
+    font-size: 14px;
+  }
+  .search-input {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--bg-2);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-input:focus { border-color: var(--accent); background: var(--bg); }
+
+  .filter-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-right: 4px;
+  }
+  .chip {
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ── GRID ── */
+  .grid-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+  .results-bar {
+    font-size: 13px;
+    color: var(--text-3);
+    margin-bottom: 20px;
+  }
+  .results-bar strong { color: var(--text-2); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 18px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--bg);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .card.expanded { cursor: default; }
+  .card.hidden { display: none; }
+
+  .card-header {
+    padding: 22px 22px 18px;
+  }
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 13px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .tag-industry { background: #f0f4ff; color: #3b5bdb; }
+  .tag-industry.trade { background: #fff3e0; color: #e65100; }
+  .tag-industry.real-estate { background: #e8f5e9; color: #2e7d32; }
+  .tag-industry.founder { background: #f3e5f5; color: #6a1b9a; }
+  .tag-industry.contractor { background: #e3f2fd; color: #1565c0; }
+  .tag-industry.education { background: #fff8e1; color: #f57f17; }
+  .tag-industry.pm { background: #fce4ec; color: #880e4f; }
+  .tag-industry.personal-brand { background: #e0f7fa; color: #00695c; }
+  .tag-industry.consulting { background: #f9fbe7; color: #558b2f; }
+  .tag-industry.general { background: var(--bg-2); color: var(--text-3); }
+
+  .tag-tool { background: var(--accent-soft); color: var(--accent); }
+
+  .card-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .card-hook {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.55;
+    font-style: italic;
+  }
+  .card-hook::before { content: '"'; }
+  .card-hook::after { content: '"'; }
+
+  /* Expand button */
+  .card-footer {
+    padding: 14px 22px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-footer-label {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 500;
+  }
+  .expand-btn {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .expand-btn svg { transition: transform 0.2s; }
+  .card.expanded .expand-btn svg { transform: rotate(180deg); }
+
+  /* ── EXPANDED BODY ── */
+  .card-body {
+    display: none;
+    padding: 0 22px 22px;
+  }
+  .card.expanded .card-body { display: block; }
+
+  .section {
+    margin-top: 20px;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .section-text {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+  .ask-quote {
+    background: var(--bg-2);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    font-size: 14px;
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .prompt-box {
+    background: #1d1d1f;
+    border-radius: var(--r-sm);
+    padding: 14px 16px;
+    font-family: 'SF Mono', 'Fira Code', 'Menlo', monospace;
+    font-size: 12.5px;
+    color: #e8e8ed;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+  .copy-btn.copied { background: #34c759; color: #fff; }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 80px 24px;
+    display: none;
+  }
+  .empty-state.visible { display: block; }
+  .empty-state p { font-size: 16px; color: var(--text-3); }
+
+  /* ── FORMULA SECTION ── */
+  .formula-section {
+    background: var(--text);
+    color: #fff;
+    padding: 56px 24px;
+    margin-top: 0;
+  }
+  .formula-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .formula-inner h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+  .formula-inner .sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .formula-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--r);
+    padding: 28px 32px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 15px;
+    color: #e8e8ed;
+    text-align: left;
+    line-height: 1.9;
+  }
+  .formula-box .var { color: #0a84ff; }
+  .formula-box .arrow { color: rgba(255,255,255,0.3); }
+
+  .tool-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 24px;
+  }
+  .tool-type-card {
+    background: var(--bg);
+    border-radius: var(--r-sm);
+    padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+  }
+  .tool-type-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .tool-type-card p {
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.5;
+  }
+  .tool-type-trigger {
+    font-size: 11px;
+    font-style: italic;
+    color: var(--accent);
+    margin-top: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; }
+    .filter-inner { flex-direction: column; align-items: flex-start; }
+    .hero-stats { gap: 24px; }
+    .formula-box { font-size: 13px; padding: 20px; }
+  }
+</style>
+
+  <!-- Uremarkable nav -->
+  <style>
+    .ur-nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(210,210,215,0.5);
+      padding: 0 24px; height: 52px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    }
+    .ur-nav-logo { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; color: #1d1d1f; text-decoration: none; }
+    .ur-nav-badge { font-size: 11px; font-weight: 600; background: rgba(0,113,227,0.1); color: #0071e3; padding: 3px 8px; border-radius: 20px; }
+    .ur-nav-back { font-size: 14px; color: #6e6e73; text-decoration: none; display: flex; align-items: center; gap: 4px; }
+    .ur-nav-back:hover { color: #1d1d1f; }
+    .ur-nav-right { display: flex; align-items: center; gap: 16px; }
+  </style>
+</head>
+<body>
+<nav class="ur-nav">
+  <a href="/" class="ur-nav-logo">Uremarkable</a>
+  <div class="ur-nav-right">
+    <a href="/signals" class="ur-nav-back">&#8592; The Signal Blog</a>
+    <span class="ur-nav-badge">Playbooks</span>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Uremarkable × ClaudeClaw</div>
+  <h1>What's <span>possible</span> in one session.</h1>
+  <p>Real tools built for real problems. Every card is a use case you can steal, a formula you can run, a problem that used to take weeks.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num" id="total-count">30</div>
+      <div class="stat-label">use cases</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-label">tool types</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">industries</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">SaaS subscriptions</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULA BAR -->
+<div style="background:#0071e3; padding: 14px 24px; text-align:center;">
+  <span style="font-size:13px; color:rgba(255,255,255,0.8); font-family:'SF Mono','Fira Code',monospace; letter-spacing:0.02em;">
+    [WHO] needs to [DO WHAT] with [WHAT DATA] at [TRIGGER] → Build a [TOOL TYPE]
+  </span>
+</div>
+
+<!-- FILTERS -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="search" placeholder="Search use cases…" oninput="applyFilters()">
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Industry</span>
+      <button class="chip active" data-filter="industry" data-value="all" onclick="setFilter('industry','all',this)">All</button>
+      <button class="chip" data-filter="industry" data-value="trade" onclick="setFilter('industry','trade',this)">Trade</button>
+      <button class="chip" data-filter="industry" data-value="real-estate" onclick="setFilter('industry','real-estate',this)">Real estate</button>
+      <button class="chip" data-filter="industry" data-value="founder" onclick="setFilter('industry','founder',this)">Founder</button>
+      <button class="chip" data-filter="industry" data-value="contractor" onclick="setFilter('industry','contractor',this)">Contractor</button>
+      <button class="chip" data-filter="industry" data-value="education" onclick="setFilter('industry','education',this)">Education</button>
+      <button class="chip" data-filter="industry" data-value="pm" onclick="setFilter('industry','pm',this)">Product</button>
+      <button class="chip" data-filter="industry" data-value="personal-brand" onclick="setFilter('industry','personal-brand',this)">Personal brand</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Tool</span>
+      <button class="chip active" data-filter="tool" data-value="all" onclick="setFilter('tool','all',this)">All</button>
+      <button class="chip" data-filter="tool" data-value="crm" onclick="setFilter('tool','crm',this)">CRM</button>
+      <button class="chip" data-filter="tool" data-value="proposal" onclick="setFilter('tool','proposal',this)">Proposal</button>
+      <button class="chip" data-filter="tool" data-value="precall" onclick="setFilter('tool','precall',this)">Pre-call</button>
+      <button class="chip" data-filter="tool" data-value="sysmap" onclick="setFilter('tool','sysmap',this)">System map</button>
+      <button class="chip" data-filter="tool" data-value="flyer" onclick="setFilter('tool','flyer',this)">Flyer</button>
+      <button class="chip" data-filter="tool" data-value="calculator" onclick="setFilter('tool','calculator',this)">Calculator</button>
+      <button class="chip" data-filter="tool" data-value="dashboard" onclick="setFilter('tool','dashboard',this)">Dashboard</button>
+      <button class="chip" data-filter="tool" data-value="canvas" onclick="setFilter('tool','canvas',this)">Canvas</button>
+      <button class="chip" data-filter="tool" data-value="landing" onclick="setFilter('tool','landing',this)">Landing</button>
+    </div>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid-wrap">
+  <div class="results-bar" id="results-bar">Showing <strong id="shown-count">30</strong> of 30 use cases</div>
+  <div class="grid" id="card-grid"></div>
+  <div class="empty-state" id="empty-state">
+    <p>No use cases match your filters. Try broadening your search.</p>
+  </div>
+</div>
+
+<!-- FORMULA SECTION -->
+<div class="formula-section">
+  <div class="formula-inner">
+    <h2>The formula behind all of them</h2>
+    <p class="sub">Every tool was built from the same six questions. The answers become the prompt. The prompt becomes the tool.</p>
+    <div class="formula-box">
+<span class="var">[WHO]</span> needs to <span class="var">[DO WHAT]</span>
+with <span class="var">[WHAT DATA]</span>
+at the moment of <span class="var">[WORKFLOW TRIGGER]</span>
+<span class="arrow">→</span> Build a <span class="var">[TOOL TYPE]</span>
+with <span class="var">[INTERACTIVE ELEMENTS]</span></div>
+  </div>
+</div>
+
+<div class="tool-types-grid">
+  <div class="tool-type-card">
+    <h4>CRM / Pipeline</h4>
+    <p>Tracks people or deals through stages. Status, notes, follow-up dates.</p>
+    <div class="tool-type-trigger">"I don't know where my leads are"</div>
+  </div>
+  <div class="tool-type-card">
+    <h4>Proposal Page</h4>
+    <p>Personalised async briefing. Their pain mapped to your capabilities.</p>
+    <div class="tool-type-trigger">"I need to send something before the call"</div>
+  </div>
+  <div class="tool-type-card">
+    <h4>Pre-call Guide</h4>
+    <p>Structured brief — context, talking points, questions, outcome goal.</p>
+    <div class="tool-type-trigger">"I need to prep and not go in cold"</div>
+  </div>
+  <div class="tool-type-card">
+    <h4>System Map</h4>
+    <p>Visual diagram of how pieces connect. Gaps, owners, priorities.</p>
+    <div class="tool-type-trigger">"I need to show how it all fits together"</div>
+  </div>
+  <div class="tool-type-card">
+    <h4>Flyer / One-Pager</h4>
+    <p>Push-first persuasion asset. The pain, the offer, the CTA.</p>
+    <div class="tool-type-trigger">"I need something to hand someone"</div>
+  </div>
+  <div class="tool-type-card">
+    <h4>Calculator</h4>
+    <p>Interactive inputs → output. ROI, savings, cost, rate. Makes the value visible.</p>
+    <div class="tool-type-trigger">"I need to show them the numbers"</div>
+  </div>
+  <div class="tool-type-card">
+    <h4>Dashboard / Cockpit</h4>
+    <p>One-page view of what matters. Status, activity, priorities, flags.</p>
+    <div class="tool-type-trigger">"I need to see what's happening without 5 tabs"</div>
+  </div>
+  <div class="tool-type-card">
+    <h4>Canvas / Framework</h4>
+    <p>Interactive methodology tool. Any framework made usable and portable.</p>
+    <div class="tool-type-trigger">"I need this methodology to survive the session"</div>
+  </div>
+</div>
+
+<div style="padding:40px 24px; text-align:center; color:var(--text-3); font-size:13px;">
+  Built by <strong style="color:var(--text)">Baz Ozturk</strong> with <strong style="color:var(--text)">Izzy (ClaudeClaw)</strong> — <a href="https://www.uremarkable.com" style="color:var(--accent); text-decoration:none;">uremarkable.com</a>
+</div>
+
+<script>
+const CASES = [
+  {
+    id: 1,
+    num: "01",
+    title: "The Van Quote",
+    industry: "trade",
+    industryLabel: "Trade",
+    tool: "calculator",
+    toolLabel: "Voice-to-Quote",
+    hook: "A tradesman who quotes from his van — no laptop, no Word doc, no delay",
+    situation: "Mike drives between job sites all day. Every time he needs to quote a job, he either pulls over to type something into Word, or relies on memory until he gets home. By then details are fuzzy, the client has moved on, and the quote is a day late.",
+    ask: "I've got a site visit at 11 and I'll be driving after. Can I just say what the job is into my phone and have the quote ready to send by the time I park?",
+    built: "Voice-to-Quote — Mike records a voice note in Telegram on the drive back. The bot transcribes it, extracts structured fields (sqm, system type, substrate, labour, client name, site address), generates line items from his rate card, drafts the client email. He reviews and taps send. 3 minutes.",
+    prompt: "Build a voice-to-quote tool for [TRADE TYPE]. Input: transcribed voice note. Extract: client name, site address, job type, sqm, substrate, labour notes. Apply rate card: [rate per sqm by system type]. Generate: line item quote + client email draft. Output should be reviewable before sending. Mobile-first, works in Telegram.",
+    angle: "The gap between how trades actually work (driving, on site, hands dirty) and how every SaaS tool is designed (desk, screen, forms). Voice is the interface. The quote is the output."
+  },
+  {
+    id: 2,
+    num: "02",
+    title: "The Job That Spans a Week",
+    industry: "trade",
+    industryLabel: "Trade",
+    tool: "dashboard",
+    toolLabel: "Phase Tracker",
+    hook: "The feature every trades SaaS is missing — because they were built for plumbers",
+    situation: "An epoxy floor job isn't a one-day event. Prep Monday. Primer Tuesday (can't start until Monday's cure time passes). Base coat Wednesday–Thursday. Topcoat Friday. Mike has himself and Callin across multiple jobs in parallel. ServiceM8 shows jobs as single events. It has no concept of phase dependencies.",
+    ask: "ServiceM8's calendar is useless for me. A job isn't one day — it's a week. And day 3 can't start until day 2 is done and cured. There's no way to show that.",
+    built: "Multi-day job phase tracker — browser-based timeline per booked job. Phases: Prep / Primer / Base / Topcoat / Cure. Each phase has planned start/end, assignee (Mike or Callin), status (pending / in progress / done). Phases locked until dependency is complete. Mike sees the whole week at a glance.",
+    prompt: "Build a multi-phase job tracker for [TRADE TYPE]. Jobs have [N] sequential phases: [Phase 1] → [Phase 2] → [Phase 3] → [Phase 4]. Each phase: start date, end date, assignee, status (pending/active/done). Phase N+1 locked until Phase N = done. Multiple jobs visible in timeline view. localStorage persistence.",
+    angle: "Generic software assumes every job is the same shape. It never is. The specialist who builds their own tool owns the workflow."
+  },
+  {
+    id: 3,
+    num: "03",
+    title: "The Quote That Went Cold",
+    industry: "trade",
+    industryLabel: "Trade",
+    tool: "crm",
+    toolLabel: "Pipeline CRM",
+    hook: "He had $40k of open quotes he'd forgotten about",
+    situation: "Mike sends quotes. Sometimes clients respond. Sometimes they don't. Mike has no system to know which quotes are sitting unanswered, how long they've been there, or when to follow up. Jobs are slipping through on silence.",
+    ask: "I've got quotes I sent weeks ago and I don't even know if they're still open. I should be following up but I don't have a list of who needs chasing.",
+    built: "Quote Pipeline CRM — drag-and-drop browser tool with stages: New enquiry → Site visit booked → Site visited → Quote sent → Follow-up 1 → Follow-up 2 → Booked → Dead. Every open quote visible. Overdue flag at 7 days no movement. Paired with 5-day and 10-day automated follow-up drafts via Telegram.",
+    prompt: "Build a quote pipeline CRM for [BUSINESS TYPE]. Stages: [Stage 1] → [Stage 2] → ... → Won / Dead. Fields: client name, job type, quote value, site address, last contact date, notes. Overdue flag: [N] days no movement. Drag between stages. Filter by stage. localStorage persistence. Mobile-friendly.",
+    angle: "The follow-up is where most trade businesses leak revenue. Not in the quoting — in the silence after."
+  },
+  {
+    id: 4,
+    num: "04",
+    title: "Explaining the System Before the Call",
+    industry: "trade",
+    industryLabel: "Trade",
+    tool: "sysmap",
+    toolLabel: "System Map",
+    hook: "Sent a click-through system diagram instead of a proposal PDF — client arrived at the call already bought in",
+    situation: "Mike agreed to a ClaudeClaw installation. Before the call, he needed to understand what was being built — what connects to what, what he does vs what the system does, and where the gaps are. A wall of text won't work. Neither will a 20-slide deck.",
+    ask: "Can you build something Mike can click through himself before we get on the call? Something visual that shows the system.",
+    built: "Interactive system map — layered diagram of the Surfex ClaudeClaw stack. Nodes for each component (Telegram, Gmail, Voice-to-Quote, CRM, Phase Tracker). Click a node to see what it does. Priority badges (P1–P5). Client annotation mode so Mike could leave questions before the install call. Shareable link.",
+    prompt: "Build a system map for [CLIENT]'s [SYSTEM]. Components: [Component 1], [Component 2], [Component 3]. Click each node to expand description. Owner colour-coding: [colour 1 = X], [colour 2 = Y]. Priority badge P1–P5. Client annotation mode (sticky note on each node). Shareable link. Desktop-optimised.",
+    angle: "The pre-call tool is the close. If someone understands the system before you explain it, the call is a confirmation, not a pitch."
+  },
+  {
+    id: 5,
+    num: "05",
+    title: "The Missed Call Problem",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "flyer",
+    toolLabel: "Flyer",
+    hook: "The flyer that led with the problem, not the product — and converted better",
+    situation: "Real estate agents miss calls constantly — they're on the road, in viewings, on other calls. Every missed call is a potential buyer or seller who just rang your competitor next. Scale Reception built an AI receptionist (Shazza) that handles those calls. They needed something to hand to agents that made the problem feel real before presenting the solution.",
+    ask: "I need a flyer that opens with the pain, not the pitch. Something that makes the agent feel the cost of every missed call before we tell them we've solved it.",
+    built: "Missed call flyer — Push-first. Opens with: \"Every missed call is a buyer or seller dialling someone else.\" The ironic CTA: \"Keep wrestling voicemails\" vs \"Let Shazza handle it.\" Clean, mobile-friendly, screenshot-able for Facebook groups and DMs.",
+    prompt: "Build a flyer for [PRODUCT/SERVICE]. Target: [WHO READS THIS]. Push (their pain): [specific cost of current state]. Pull (the offer): [what changes when they say yes]. Ironic CTA: \"[Stay in pain option]\" vs \"[Take the solution]\" Button. Include [name/brand], [contact], [logo if applicable]. Mobile-first, screenshot-able.",
+    angle: "Most flyers open with features. This one opened with the felt cost of the status quo. JTBD push forces at work."
+  },
+  {
+    id: 6,
+    num: "06",
+    title: "The Founder Who Needed to See the ROI",
+    industry: "founder",
+    industryLabel: "Founder",
+    tool: "calculator",
+    toolLabel: "Pricing Model",
+    hook: "When a $699/mo price felt expensive — until the calculator showed $2,400/mo in recovered value",
+    situation: "Founders kept asking \"but how much will I save?\" before committing to FounderBud. The answer was complex — it depended on which tasks they were replacing, at what rate. A verbal explanation wasn't landing. Yalcin had pushback on the price for a single JTBD.",
+    ask: "They don't get the compounding value. I need something that shows what this actually saves across multiple jobs-to-be-done — not just one.",
+    built: "FounderBud pricing model — interactive calculator. Three JTBDs (Finance admin, Marketing ops, Code review). Sliders for hours saved per week, current hourly rate, tasks completed. Output: monthly value recovered per JTBD, combined total, ÷3 = retainer logic. The \"Value ÷ 3 = what you pay\" formula made visible.",
+    prompt: "Build a value calculator for [PRODUCT]. JTBDs (user-selectable): [JTBD 1], [JTBD 2], [JTBD 3]. Per JTBD: hours saved/week slider, current hourly rate input. Output: monthly value recovered per JTBD, total combined value. Show the ratio: [value] ÷ [pricing logic] = [price]. CTA below the result.",
+    angle: "Pricing isn't about cost. It's about the ratio. Make the numerator visible before you show the denominator."
+  },
+  {
+    id: 7,
+    num: "07",
+    title: "Prep for the Discovery Call",
+    industry: "founder",
+    industryLabel: "Founder",
+    tool: "precall",
+    toolLabel: "Pre-call Guide",
+    hook: "Prepped for a first call in 8 minutes — not by Googling, but by asking the right question",
+    situation: "Baz had a first discovery call with Vic — a founder with a GTM background evaluating FounderBud for her business. No shared context, first meeting. Going in cold with a generic pitch would waste the call.",
+    ask: "I need to know who Vic is, what her pain probably is given her background, what to open with, what to listen for, and what a good outcome from this call looks like. In one page I can skim 10 minutes before.",
+    built: "Personalised pre-call guide for Vic — who she is, her likely JTBD based on GTM role, three talking points mapped to her context, five discovery questions (pain surface, qualification, next step), two anticipated objections with responses. Skimmable accordion layout.",
+    prompt: "Build a pre-call guide for a call with [NAME] at [COMPANY]. Context: [call purpose]. Known facts: [Fact 1], [Fact 2], [Fact 3]. Talking points: [Point 1], [Point 2], [Point 3]. Discovery questions: [3 questions]. Anticipated objections + responses: [Objection 1], [Objection 2]. Call outcome goal: [goal]. Accordion, skimmable in under 10 mins.",
+    angle: "The pre-call brief is the difference between a conversation and a performance. One page, right information, no wasted air."
+  },
+  {
+    id: 8,
+    num: "08",
+    title: "Does This Actually Cost What I Think?",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "calculator",
+    toolLabel: "Cost Model",
+    hook: "The real cost of an AI receptionist — broken down per call",
+    situation: "When pitching Scale Reception's AI receptionist, agents would ask \"how much does something like this actually cost to run?\" — not the retail price, but the infrastructure cost. ElevenLabs for voice. Retell for call handling. Telephony. It looked expensive until you saw the numbers clearly.",
+    ask: "I need a cost model that shows what the AI receptionist actually costs us to run — not just the client price. Show AUD and USD because the costs are in USD but the revenue is in AUD.",
+    built: "Voice agent cost model — dual-column table (USD infrastructure / AUD revenue). Line items: ElevenLabs per-minute voice cost, Retell call handling fee, Twilio telephony, total per call, total per month at volume. Gross margin visible. Pricing decision informed.",
+    prompt: "Build a cost model for [SERVICE/PRODUCT]. Input: volume (calls/users/units per month). Line items: [Cost 1 per unit $], [Cost 2 per unit $], [Cost 3 per unit $]. Calculate: total cost at volume, revenue at [price], gross margin %. Show dual currency if applicable: [Currency A] costs vs [Currency B] revenue. Toggle volume slider.",
+    angle: "Transparency builds trust. Showing the cost structure is a persuasion tool, not a vulnerability."
+  },
+  {
+    id: 9,
+    num: "09",
+    title: "The Agent Who Needed Their Own CRM",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "crm",
+    toolLabel: "CRM",
+    hook: "Built a real estate agent a CRM in one session — no subscription, no login, no learning curve",
+    situation: "Harry manages a pipeline of property leads across Mosman. Buyer enquiries, appraisals, listings, follow-ups. Nothing centralised. Some in email, some in memory, some in his phone contacts. He didn't want to pay for another SaaS subscription. He wanted to own his own data, update it himself, have it work on his phone.",
+    ask: "Can we build Harry something that works like a CRM but without the monthly fee and the learning curve?",
+    built: "Harry Mosman CRM — browser-based, no login, localStorage persistence. Pipeline stages specific to real estate (Enquiry → Appraisal → Listed → Under offer → Sold / Dead). Fields per contact: name, phone, property address, type (buyer/seller/landlord), last contact, notes. Branded in his colours. Works on iPhone.",
+    prompt: "Build a CRM for [NAME], a [ROLE]. Pipeline stages: [Stage 1] → [Stage 2] → [Stage 3] → Won/Dead. Fields per contact: name, phone, [business-specific field 1], [field 2], status, last contact date, notes. No login. localStorage persistence. Branded: [primary colour]. Mobile-first. Filter by stage. Search by name.",
+    angle: "Most CRMs are built for sales teams, not solo operators. When you build your own, it fits your pipeline, your language, your workflow."
+  },
+  {
+    id: 10,
+    num: "10",
+    title: "The Business That Needed to See Itself",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "dashboard",
+    toolLabel: "Cockpit",
+    hook: "A one-page cockpit for a business with no staff — everything visible in 30 seconds",
+    situation: "Scale Reception was running with multiple moving parts — live prospects, pricing decisions, product decisions, partner updates. No single place to see the health of it all without switching between files, emails, and memory.",
+    ask: "I need a cockpit. One page that shows me where everything is — active prospects, key decisions, what's next — without me opening five things.",
+    built: "Scale Reception cockpit — status dashboard. Active prospects with stage and last update. Key product decisions locked. Revenue model summary. Next actions by priority. Opens in browser, updates manually, saves to localStorage.",
+    prompt: "Build an ops cockpit for [BUSINESS NAME]. Sections: (1) Active pipeline — [N] prospects with stage + last update, (2) Key decisions — [list of locked decisions], (3) Revenue model — [summary metrics], (4) Next actions — prioritised list. Manual update. localStorage. Minimal design, everything visible above fold on desktop.",
+    angle: "The solo operator's biggest risk is losing track. Not of big things — of the 6 small things that compound into a decision made badly."
+  },
+  {
+    id: 11,
+    num: "11",
+    title: "Introducing the AI Before the Call",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "flyer",
+    toolLabel: "Pitch Flyer",
+    hook: "The pre-call DM that replaced the cold email",
+    situation: "Before getting on a call with a real estate principal, Baz needed to send something that introduced himself and Shazza — personal enough to feel human, clear enough to explain the product, and short enough to actually be read.",
+    ask: "I need something I can send via DM before a call. Something that introduces me and Shazza. Not a pitch deck. A page that feels like it came from a real person.",
+    built: "Baz pitch flyer — Baz's photo and bio (PM background, AI/automation stack). Shazza's introduction (AI receptionist, handles missed calls, converts leads). The Roastville closer (invitation for a coffee). LinkedIn + Instagram links. Social proof strip. Screenshot-able for Instagram DMs.",
+    prompt: "Build a pre-call introduction flyer for [NAME], [ROLE]. Sections: (1) Person intro — photo, name, headline, 2–3 sentence background, (2) Product intro — what it does in plain English, (3) The ask — low-commitment CTA (coffee / 15-min call), (4) Links — LinkedIn, social, calendar. Screenshot-able. Mobile-first.",
+    angle: "A warm introduction isn't a pitch. It's a person + a product + a way to meet. One page does all three."
+  },
+  {
+    id: 12,
+    num: "12",
+    title: "Seven Agent Profiles in One Session",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "precall",
+    toolLabel: "Profile Cards",
+    hook: "7 cold call briefs built in one session — each one personalised before I picked up the phone",
+    situation: "Scale Reception had 7 real estate agent prospects — Mosman and surrounds, two agencies. Each needed their own OSINT brief before a cold call: their listing history, their online presence, what to echo back, what to hook with.",
+    ask: "Can you build individual profile cards for each agent? Something I can open before the call, see who they are, and know exactly what to lead with?",
+    built: "7 individual agent profile cards. Each: photo, agency, current listings count, estimated GCI, OSINT insights, suggested echo lines, call opening, objection script. Colour-coded by agency. Desktop-width layout for use during the call.",
+    prompt: "Build [N] agent profile cards for [PROSPECT LIST]. Per card: photo, name, role/agency, [metric 1], [metric 2], OSINT insights (3 bullets), suggested opening line, 2 echo-back hooks, 1 objection + response. Colour-coded by [grouping]. Desktop layout — meant to be open during the call.",
+    angle: "Cold calling isn't cold when you know more about them than they expect. Research at scale, personalised at depth."
+  },
+  {
+    id: 13,
+    num: "13",
+    title: "Replacing the SaaS Subscription",
+    industry: "trade",
+    industryLabel: "Trade",
+    tool: "dashboard",
+    toolLabel: "Full Stack",
+    hook: "He was paying $600/year for a tool he hated. We replaced it for $0 in one session.",
+    situation: "Mike has ServiceM8 ($50/mo). It's designed for plumbers. He pays for features he doesn't use, lacks features he needs, and his business partner refuses to use it because it's too complex.",
+    ask: "I don't want to pay for ServiceM8, Odoo, Airtable or Monday. I just want something that works for how I actually work.",
+    built: "A bespoke stack — Quote Pipeline CRM + Phase Tracker + Voice-to-Quote + Contractor Dashboard. Four tools. Zero subscriptions. Runs in the browser. Works on his phone. Built for epoxy flooring, not plumbing.",
+    prompt: "Replace [SAAS TOOL] for [BUSINESS TYPE]. Their actual workflow: [step 1], [step 2], [step 3]. Build: (1) [Tool 1 to replace Feature A], (2) [Tool 2 to replace Feature B]. Requirements: no login, localStorage, works on phone, zero subscription. Optimise for [PRIMARY USER]: non-desk, field-based, [other constraints].",
+    angle: "The SaaS market builds for the median customer. If you're not the median, you're paying for someone else's workflow. Build your own."
+  },
+  {
+    id: 14,
+    num: "14",
+    title: "The Landing Page That Explained the Why",
+    industry: "founder",
+    industryLabel: "Founder",
+    tool: "landing",
+    toolLabel: "Landing Page",
+    hook: "The landing page that kept answering 'what' when founders were asking 'why'",
+    situation: "The Uremarkable landing page v1 and v2 led with features and capabilities. Founders were landing on it and not getting it. The persuasion wasn't working because the page was answering \"what is it?\" before \"why does it matter?\"",
+    ask: "The landing page leads with what. I need it to lead with why. Founders need to feel the cost of the fragmented tool problem before they hear about the solution.",
+    built: "Uremarkable landing v3 — six persuasion gaps resolved. Emotional destination added above fold. Social identity signal. The \"why\" rewritten before the \"what.\" JTBD calculator. Day-31 anxiety removed. Technical setup surfaced.",
+    prompt: "Rebuild [LANDING PAGE] to lead with why, not what. Above fold: [transformation — where they go, not what the tool does]. Then: (1) Name the pain they're living right now, (2) The insight that makes this solvable now, (3) The product (brief), (4) The value visible (calculator or comparison), (5) Who this is for. No features before feelings.",
+    angle: "The gap between a landing page that explains and one that converts is always the same: features before feelings."
+  },
+  {
+    id: 15,
+    num: "15",
+    title: "The Professional Who Couldn't Name Their Price",
+    industry: "contractor",
+    industryLabel: "Contractor",
+    tool: "calculator",
+    toolLabel: "Rate Calculator",
+    hook: "The number most contractors get wrong — and the calculator that fixes it in 90 seconds",
+    situation: "Moving from permanent employment to contracting means naming a day rate — often in a phone call, without preparation. Getting this number wrong costs thousands per contract. Too high and you get screened out. Too low and you leave money on the table.",
+    ask: "I need to know what my day rate should actually be, based on what I want to take home and how the contracting numbers actually work. Not a guess. The real number.",
+    built: "Contractor Rate Calculator — inputs for target annual take-home, superannuation rate, estimated unbillable days, overhead costs, tax bracket. Output: minimum day rate required, recommended market rate with 15% buffer, breakdown showing how each variable affects the number.",
+    prompt: "Build a contractor day rate calculator. Inputs: target annual take-home ($), super rate (%), unbillable days/year (default 45), annual overheads ($), tax bracket (%). Formula: gross annual needed = (take-home + super + overheads) ÷ (1 - tax rate); day rate = gross annual ÷ billable days. Show min rate + recommended rate with 15% buffer. Breakdown per variable.",
+    angle: "Day rates aren't intuition. They're math. The problem is nobody shows you the math until you've already named the wrong number on a call."
+  },
+  {
+    id: 16,
+    num: "16",
+    title: "Pitching to a Persona, Not a Person",
+    industry: "founder",
+    industryLabel: "Founder",
+    tool: "proposal",
+    toolLabel: "Proposal",
+    hook: "The same product. Totally different page. Because the person reading it is different.",
+    situation: "FounderBud had multiple ICP personas — founders, GTM leads, engineering managers. Each had different pain, different vocabulary, different objections. Sending the same proposal to all of them wasn't landing.",
+    ask: "I need a proposal built for the Engineering Manager persona — someone who manages 5–10 engineers, drowns in context switching, and has zero patience for fluff. What can FounderBud actually do for them?",
+    built: "FounderBud × Engineering Managers proposal page — persona-specific framing. Use cases mapped to EM pain: async code review, architecture decision documentation, incident debrief synthesis, RFC drafting, tech debt triage. ROI framed in engineering hours recovered.",
+    prompt: "Build a proposal page for [PRODUCT] targeting [SPECIFIC PERSONA]. Their pain (specific to persona): [Pain 1], [Pain 2], [Pain 3]. Use cases that map to their world: [UC 1], [UC 2], [UC 3]. ROI framed in [persona-specific metric — e.g. 'engineering hours', 'calls answered', 'deals closed']. Tone: [technical / commercial / warm]. CTA: [book / trial / contact].",
+    angle: "A proposal that speaks to one person converts better than one that speaks to everyone. Persona specificity is precision."
+  },
+  {
+    id: 17,
+    num: "17",
+    title: "30 Days of Content, Planned in One Session",
+    industry: "personal-brand",
+    industryLabel: "Personal brand",
+    tool: "dashboard",
+    toolLabel: "Content Storyboard",
+    hook: "30 reels planned in one session — zero decision fatigue on shoot day",
+    situation: "Baz was building a 30-day Instagram Reel series to establish his personal brand. Planning 30 pieces of content — hooks, formats, themes, filming cues — normally takes weeks of iteration or gets abandoned after 5 episodes.",
+    ask: "I want to map out 30 reels — what each one is, what the hook is, what the angle is, how they connect into a narrative arc. Not a list. A storyboard I can actually use.",
+    built: "30-Day Reel Storyboard — interactive grid of 30 cards, each with episode number, topic, hook line, format type, theme tag, and filming notes. Cards colour-coded by theme cluster. Narrative arc visible across the grid.",
+    prompt: "Build a [N]-day content storyboard for [CREATOR]. Series theme: [e.g. 'AI tools for solopreneurs']. Grid of [N] cards. Each card: episode number, topic, hook (one sentence), format (talking head / B-roll / screen record), theme tag, filming note. Colour-code by theme cluster. Show narrative arc: intro → proof → framework → teach → CTA.",
+    angle: "The blank content calendar is the enemy. Pre-loading the arc turns execution into follow-the-map."
+  },
+  {
+    id: 18,
+    num: "18",
+    title: "Turning a Framework Into a Tool",
+    industry: "consulting",
+    industryLabel: "Consulting",
+    tool: "canvas",
+    toolLabel: "Framework Canvas",
+    hook: "Any framework becomes more useful when it's a tool, not a transcript",
+    situation: "CCORE is a structured methodology for evaluating AI opportunities. Running it as a conversation produces insight. Running it as a structured tool produces a reusable output the client can reference, share, and return to.",
+    ask: "Can we capture the CCORE session outputs in something the client can actually use after — not just a transcript, but a structured canvas that maps each phase to what we found?",
+    built: "CCORE assessment canvas — five-section interactive document (Capture, Clarify, Organise, Reason, Execute). Each section: findings, decisions, open questions, next actions. Progress tracker. Status indicators (done / retake / pending). localStorage, shareable.",
+    prompt: "Build a [FRAMEWORK NAME] assessment canvas. Phases: [Phase 1], [Phase 2], [Phase 3], [Phase 4], [Phase 5]. Each phase section: findings, decisions made, open questions, next actions. Status per phase: done / in progress / pending. Progress bar header. localStorage persistence. Export to clipboard. Apple-style.",
+    angle: "Methodologies that live in conversations die in conversations. The canvas is the artefact that makes insight portable."
+  },
+  {
+    id: 19,
+    num: "19",
+    title: "Showing a Founder How Their Finance Stack Connected",
+    industry: "founder",
+    industryLabel: "Founder",
+    tool: "sysmap",
+    toolLabel: "Architecture Diagram",
+    hook: "The architecture diagram that replaced three meetings about the same system",
+    situation: "Yalcin's company Vendo had a finance automation layer — GAM (Google Ad Manager) feeding into Xero via a custom integration. He needed to show investors and team members how data flowed, where the manual steps were, and what would change with the proposed integration.",
+    ask: "Can you build something that shows how our data flows from GAM into Xero — the steps, the owners, the gaps, what we're automating and what's still manual?",
+    built: "GAM → Xero architecture diagram — layered system map showing data ingestion, transformation layer, reconciliation steps, Xero push, error handling. Manual vs automated steps colour-coded. Owner labels. Gap annotations. Click-to-expand per component.",
+    prompt: "Build a data flow architecture diagram for [CLIENT]. Flow: [Source] → [Transform step] → [Destination]. Label each node: input, process, output. Colour-code: automated (blue) / manual (orange) / gap (red). Owner per step. Click to expand detail. Gap annotation with 'what this costs' note. Shareable link.",
+    angle: "When everyone can see the system, they stop arguing about it. A shared diagram is a shared understanding."
+  },
+  {
+    id: 20,
+    num: "20",
+    title: "The Creator Who Needed a Brain for Their Content",
+    industry: "personal-brand",
+    industryLabel: "Personal brand",
+    tool: "dashboard",
+    toolLabel: "Content Pipeline",
+    hook: "The content kanban that turned scattered posts into a pipeline",
+    situation: "Running a content pipeline means managing dozens of posts across stages — drafting, revising, queuing, scheduling, posted. The mental overhead of tracking what's ready, what needs work, and what to post next was killing momentum.",
+    ask: "I need something that shows me my content pipeline at a glance — what's in draft, what's ready, what's queued for this week, what's already gone out.",
+    built: "LinkedIn Content Studio — kanban-style pipeline: Draft / Ready / Scheduled / Posted. Card fields: title, format, topic tag, hook preview. Drag between lanes. localStorage. Week's scheduled posts surfaced at top. Calendar toggle view.",
+    prompt: "Build a content pipeline dashboard for [CREATOR]. Lanes: Draft / Ready / Scheduled / Posted. Card fields: title, content type (post / carousel / video / reel), topic tag, hook (first line). Drag-and-drop between lanes. localStorage. This week's scheduled items pinned to top. Toggle: kanban view ↔ calendar view.",
+    angle: "Content without a pipeline is noise. A pipeline turns output into strategy."
+  },
+  {
+    id: 21,
+    num: "21",
+    title: "The Sales Tool Built for the Call, Not the Filing Cabinet",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "canvas",
+    toolLabel: "Call Canvas",
+    hook: "The tool that sits open on screen during the call — not in a folder after it",
+    situation: "Real estate sales calls have a predictable structure — rapport, surface need, handle objections, close on next step. But agents forget the script under pressure, miss qualification questions, and fumble objection handling.",
+    ask: "I need a call canvas — something I can have open on my screen during the call. Not a document. A live tool that tells me what to say next and lets me log what I'm hearing.",
+    built: "SalesBud Call Canvas — two-pane: left (live notes, objection log, qualification checklist), right (script prompt by call stage — Opener / Discovery / Handle Objection / Close). Click a stage to surface the script. Pre-loaded objection responses. WhatsApp prefill for post-call follow-up.",
+    prompt: "Build a call canvas for [PRODUCT/SERVICE]. Call stages: Opener → Discovery → Objection handling → Close. Right pane: script prompt per stage (click to surface). Left pane: live notes, qualification checklist ([Q1], [Q2], [Q3]), objection log. Pre-load [N] common objections with response scripts. WhatsApp prefill CTA after the call.",
+    angle: "Scripts only work if you can access them under pressure. The tool that's live during the call is the tool that gets used."
+  },
+  {
+    id: 22,
+    num: "22",
+    title: "The Contractor Who Made a Flyer of Himself",
+    industry: "contractor",
+    industryLabel: "Contractor",
+    tool: "flyer",
+    toolLabel: "Personal Flyer",
+    hook: "A one-page recruiter brief that replaced the CV — and got callbacks faster",
+    situation: "Recruiters get hundreds of CVs. Baz wanted something that would arrive in a recruiter's inbox and feel different — a one-pager that showed who he was, what he'd built, and what he could do for a team in 30 seconds.",
+    ask: "I need a recruiter flyer — basically a one-page brief of me. Photo, background, what I can do, what I'm looking for. Something a recruiter can open and immediately know whether to call me.",
+    built: "Baz Ozturk Recruiter Flyer — photo + name + headline. Three sections: Background (experience, companies, clearance), What I bring (3 core capabilities with outcomes), What I'm looking for (role type, environment, location). LinkedIn, calendar CTA, phone.",
+    prompt: "Build a recruiter flyer for [NAME], a [ROLE TYPE]. Sections: (1) Headline — who they are in one line, (2) Background — 3 bullet points of most relevant experience, (3) What they bring — 3 specific capabilities with outcomes, (4) What they're looking for — role, environment, location. Photo, LinkedIn, contact CTA. Single scroll, mobile-friendly.",
+    angle: "A CV is about the past. A flyer is about the fit. The question a recruiter is really asking is: can this person help me right now?"
+  },
+  {
+    id: 23,
+    num: "23",
+    title: "The Engineer Who Needed to Learn, Not Just Read",
+    industry: "education",
+    industryLabel: "Education",
+    tool: "canvas",
+    toolLabel: "Study Guide",
+    hook: "The study guide built for the way people actually learn — not the way docs are written",
+    situation: "Learning Docker from documentation is painful — the docs assume you already know the mental model. Reading linearly produces facts without structure. Baz needed to build a working understanding fast for a certification and for practical use.",
+    ask: "I need a Docker study guide I can actually learn from — not a transcript of the docs. Something that shows how the pieces connect, with examples I can run and a way to check what I know.",
+    built: "Docker Study Guide — five modules (Containers, Images, Volumes, Networking, Compose). Each module: concept summary, mental model diagram, real command examples, \"try this\" exercises, knowledge check questions. Toggle learn mode / reference mode. Command cheat sheet sidebar. Progress tracker.",
+    prompt: "Build an interactive study guide for [TOPIC] with [N] modules: [Module 1], [Module 2], [Module 3]. Each module: concept overview (mental model first), key commands/facts, worked example, 'try this' exercise, 3 knowledge check questions. Toggle: learn mode (guided) ↔ reference mode (quick lookup). Progress tracker. Cheat sheet sidebar.",
+    angle: "Documentation tells you what. A study guide builds the why. The model comes before the facts."
+  },
+  {
+    id: 24,
+    num: "24",
+    title: "Product Ops in the Browser",
+    industry: "pm",
+    industryLabel: "Product",
+    tool: "canvas",
+    toolLabel: "PM Canvas",
+    hook: "The PM framework that escaped Miro and ran in the browser for free",
+    situation: "Opportunity trees, outcome-based OKRs, sprint canvases — these are powerful frameworks but they live in Miro, Confluence, or PowerPoint, which cost money, require logins, and can't be customised. Baz needed these as tools he could use, share, and adapt.",
+    ask: "Can we build the opportunity tree and sprint canvas from the OneOS framework as actual browser tools I can use and share — not locked in Miro?",
+    built: "Two tools: (1) OneOS Opportunity Tree — interactive canvas for outcome-based opportunity mapping (opportunity statement → sub-opportunities → experiments → metrics). (2) OneOS Sprint Canvas — sprint planning template with goal, capacity, commitments, risks, retrospective fields. Both: localStorage, export to clipboard.",
+    prompt: "Build a [FRAMEWORK NAME] canvas for [USE CASE]. Structure: [Level 1] → [Level 2] → [Level 3]. Interactive: click to add nodes, drag to reposition, click to expand detail. Export: copy canvas to clipboard as structured text. localStorage persistence. Desktop-optimised for workshop use. No Miro, no login, no subscription.",
+    angle: "The best tools are the ones you own. Every framework that lives in a SaaS subscription is a framework you're renting."
+  },
+  {
+    id: 25,
+    num: "25",
+    title: "Prepping a Tutor for the First Student Call",
+    industry: "education",
+    industryLabel: "Education",
+    tool: "precall",
+    toolLabel: "Pre-call Guide",
+    hook: "The AI tutor that knew the student before they said hello",
+    situation: "StudyBestie pairs AI tutors with students. Before the first call, the tutor needs to know who the student is, what they're struggling with, what their learning style is, and what a successful first session looks like. Going in cold produces generic tutoring, not personalised learning.",
+    ask: "I need a pre-call guide for the tutor side — something that briefs on the student's profile, their pain, what to open with, and what success looks like for the first session.",
+    built: "StudyBestie Pre-call Guide — student profile (subject, year level, current grade, target grade, exam date), pain surface (what they're stuck on, what they've already tried), learning style indicators, opening question bank, session goal, success definition. Accordion, skimmable in 5 minutes.",
+    prompt: "Build a pre-call guide for a [ROLE] about to meet [PERSONA]. Profile: [field 1], [field 2], [field 3]. Pain surface: what they're stuck on, what hasn't worked. Opening questions: 3 diagnostic questions (not leading). Session goal: what 'done' looks like. Success definition. Accordion layout, 5-min read. Print-friendly.",
+    angle: "Personalisation starts before the session. A brief changes the first five minutes — and the first five minutes changes everything."
+  },
+  {
+    id: 26,
+    num: "26",
+    title: "The Business Narrative That Replaced the Pitch Deck",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "landing",
+    toolLabel: "Founding Story",
+    hook: "The page that answered 'why should I trust this?' before the question was asked",
+    situation: "Scale Reception had a product and a pitch but no narrative. When a prospect asked \"why should I trust this?\", the founders were winging the origin story. A founding narrative needed to exist — a real account of why this was built, by whom, and for what.",
+    ask: "We need our founding story written up — why we built this, what problem we've lived ourselves, what Scale Reception actually is. Something Harry and I can both point to and say 'read this first.'",
+    built: "Scale Reception Founding Page — structured narrative: The problem (missed calls in real estate, lived experience), the insight (AI voice now good enough), the product (Shazza), the people (Baz + Harry, why they credibly own this), the mission. Mobile-friendly, shareable link before any sales conversation.",
+    prompt: "Build a founding story page for [COMPANY]. Sections: (1) The Problem — specific pain, told from lived experience, (2) The Insight — what changed that made this solvable now, (3) The Product — what it does, simply, (4) The People — founders, why they're credible on this problem, (5) The Mission. Narrative tone, not pitch deck. Mobile-friendly.",
+    angle: "Origin stories aren't marketing. They're credibility. Telling them well is the work."
+  },
+  {
+    id: 27,
+    num: "27",
+    title: "The System That Onboarded Itself",
+    industry: "founder",
+    industryLabel: "Founder",
+    tool: "precall",
+    toolLabel: "Client Pre-call",
+    hook: "The onboarding doc clients actually read — because it's a tool, not a PDF",
+    situation: "When ClaudeClaw gets installed for a client, there's a handover moment — the client needs to understand what they've got, how to use it, and what to expect in the first week. A verbal walkthrough takes 45 minutes and gets forgotten. A PDF never gets read.",
+    ask: "I need a pre-call guide for ClaudeClaw clients — something they get before our setup call that explains the system, sets expectations, and tells them what to do first.",
+    built: "ClaudeClaw Client Pre-call Guide — what the system is, what's included (skills list, scheduled rituals, memory layers), what happens on the setup call, what the first week looks like, three things to try before the call. Accordion, mobile-first, links to live docs.",
+    prompt: "Build a client pre-call guide for [PRODUCT]. Sections: (1) What this is — one-paragraph plain English, (2) What's included — feature/capability list, (3) What happens on the setup call, (4) What the first week looks like, (5) Three things to try before the call. Accordion, mobile-first, links where relevant. Skimmable, not a wall of text.",
+    angle: "Onboarding is a product, not an afterthought. When the setup doc is an interactive tool, clients arrive prepared instead of anxious."
+  },
+  {
+    id: 28,
+    num: "28",
+    title: "The Founder's Why, Written Before the What",
+    industry: "personal-brand",
+    industryLabel: "Personal brand",
+    tool: "landing",
+    toolLabel: "Why Page",
+    hook: "The page nobody builds — and the one that closes the most doors that matter",
+    situation: "Every product Baz builds eventually gets asked: \"why do you actually do this?\" The answer lived in his head. But it had never been written down in a form he could point to. The homepage led with what. Nobody had asked him to write the why first.",
+    ask: "I want a page that's just my why. Not a product pitch, not a portfolio. Just why I do this — the real answer, written well.",
+    built: "Uremarkable 'Why I Do This' page — four sections: The gap he saw (SMBs can't access enterprise-quality tools), The belief (leverage is the most valuable thing you can give a solo operator), The work (what he builds and why), The invitation (who this is for). No CTAs above the fold. Writing-led, minimal design.",
+    prompt: "Build a 'why I do this' page for [NAME]. Sections: (1) The gap I saw — specific inequity or problem that motivated starting, (2) The belief — core conviction that drives the work, (3) The work — what's being built and how it connects to the belief, (4) The invitation — who this is for. Long-form, writing-led. No CTAs above fold. Minimal design. First-person, honest.",
+    angle: "A why page isn't for everyone. It's for the right people. Writing it filters as much as it attracts — which is the point."
+  },
+  {
+    id: 29,
+    num: "29",
+    title: "The Discovery Call That Started Before It Began",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "dashboard",
+    toolLabel: "Pre-call Scan",
+    hook: "The 5 questions that replaced 10 minutes of 'so tell me about your process'",
+    situation: "Harry books discovery calls with real estate agent prospects. The typical pattern: agents show up cold, haven't thought about their own numbers, low pain. Harry spends the first 10 minutes finding out what he could have known before he picked up. The conversion is harder than it needs to be.",
+    ask: "Worth actually building that scan as a step in the Cockpit. Five questions, they submit answers, Harry walks in already knowing the cost. No warmup needed.",
+    built: "Pre-call Scan tab inside the Scale Reception Cockpit — 5 fields: missed calls per week, CRM in use, lost listing cost, Saturday voicemails, current missed-call process. 'Copy pre-call brief' button compiles all answers into a structured block Harry copies before the call. Why-it-works panel references Morgan Gillis's ASL method and Hormozi: pain is the pitch.",
+    prompt: "Build a pre-call readiness scan for [SALES CONTEXT] discovery calls. Fields: [5 questions that surface prospect pain — e.g. missed calls/week, current tool, cost of a lost deal, peak pain moment, current workaround]. 'Copy brief' button compiles answers into a structured pre-call note. Collapsed 'why this works' section referencing the self-assessment mechanism. Built as a new tab inside an existing cockpit / dashboard.",
+    angle: "If you make the prospect surface their pain before the call, you don't have to find it during. An assessment gate doesn't just prep the sales person — it primes the prospect. They arrive knowing their own number. That's a very different conversation."
+  },
+  {
+    id: 30,
+    num: "30",
+    title: "The Website That Talked Like the Flyer",
+    industry: "real-estate",
+    industryLabel: "Real estate",
+    tool: "landing",
+    toolLabel: "Website Copy Rewrite",
+    hook: "When the flyer sounds better than the homepage — we fixed that",
+    situation: "Scale Reception had strong, iterated collateral — founding offer flyer, zero-risk flyer, Cockpit — all speaking the same language: Shazza named, irony-first, listings-focused, specific maths. The website was still generic product copy. Same company. Two different brands.",
+    ask: "Now with all these great changes we've made, I see that we need to update the website copy as well, as it should carry the humour, the names, the language and also the positioning.",
+    built: "Scale Reception website rewrite — all six touchpoints aligned: hero ('Voicemail had a good run.'), problem (psychic/cold plunge scenario, DOM angle, $25K stat), How It Works ('Let Shazza run her mouth.' header, matchmaker/trooper/brrrr steps), Pricing (Founding 5 Offer with $499 strikethrough + 20% off retainer 6 months, Professional with Cartesia), CTA (Olympics closer), Demo button ('Speak to Shazza'). No generic copy.",
+    prompt: "Rewrite the copy of [PRODUCT WEBSITE] to match the voice and positioning of its existing collateral. Align across: hero (H1, subhead), problem section (felt cost first, not feature first), how it works (named character/mechanism, specific steps), pricing (match the founding offer mechanics), CTA (same energy as the collateral). The website should sound like the same person who wrote the flyer.",
+    angle: "Brand consistency across touchpoints isn't a design rule. It's a trust signal. If your flyer sounds like a different company than your website, you've got two products and no brand. Copy alignment is conversion work."
+  }
+];
+
+let filters = { industry: 'all', tool: 'all' };
+let searchQuery = '';
+
+function setFilter(type, value, el) {
+  filters[type] = value;
+  document.querySelectorAll(`[data-filter="${type}"]`).forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  searchQuery = document.getElementById('search').value.toLowerCase();
+  let shown = 0;
+  document.querySelectorAll('.card').forEach(card => {
+    const id = parseInt(card.dataset.id);
+    const c = CASES.find(x => x.id === id);
+    const matchIndustry = filters.industry === 'all' || c.industry === filters.industry;
+    const matchTool = filters.tool === 'all' || c.tool === filters.tool;
+    const searchTarget = (c.title + c.hook + c.situation + c.built + c.industryLabel + c.toolLabel).toLowerCase();
+    const matchSearch = !searchQuery || searchTarget.includes(searchQuery);
+    if (matchIndustry && matchTool && matchSearch) {
+      card.classList.remove('hidden');
+      shown++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  document.getElementById('shown-count').textContent = shown;
+  document.getElementById('empty-state').classList.toggle('visible', shown === 0);
+}
+
+function toggleCard(id) {
+  const card = document.querySelector(`.card[data-id="${id}"]`);
+  const expanded = card.classList.toggle('expanded');
+  const btn = card.querySelector('.expand-btn');
+  btn.innerHTML = expanded
+    ? 'Less <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    : 'See more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+function copyPrompt(id, el) {
+  const c = CASES.find(x => x.id === id);
+  navigator.clipboard.writeText(c.prompt).then(() => {
+    el.textContent = 'Copied!';
+    el.classList.add('copied');
+    setTimeout(() => { el.textContent = 'Copy'; el.classList.remove('copied'); }, 1800);
+  });
+}
+
+function renderCards() {
+  const grid = document.getElementById('card-grid');
+  grid.innerHTML = CASES.map(c => `
+    <div class="card" data-id="${c.id}" onclick="if(!event.target.closest('.card-body')) toggleCard(${c.id})">
+      <div class="card-header">
+        <div class="card-tags">
+          <span class="tag tag-industry ${c.industry}">${c.industryLabel}</span>
+          <span class="tag tag-tool">${c.toolLabel}</span>
+        </div>
+        <div class="card-num">USE CASE ${c.num}</div>
+        <div class="card-title">${c.title}</div>
+        <div class="card-hook">${c.hook}</div>
+      </div>
+      <div class="card-footer" onclick="event.stopPropagation(); toggleCard(${c.id})">
+        <span class="card-footer-label">${c.industryLabel} · ${c.toolLabel}</span>
+        <button class="expand-btn">
+          See more
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="card-body" onclick="event.stopPropagation()">
+        <div class="section">
+          <div class="section-label">The situation</div>
+          <div class="section-text">${c.situation}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">The ask</div>
+          <div class="ask-quote">${c.ask}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">What was built</div>
+          <div class="section-text">${c.built}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">The content angle</div>
+          <div class="section-text" style="font-style:italic; color: var(--text-3);">${c.angle}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">The buildable prompt</div>
+          <div class="prompt-box" style="position:relative">${c.prompt}<button class="copy-btn" onclick="copyPrompt(${c.id}, this)">Copy</button></div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('total-count').textContent = CASES.length;
+  document.getElementById('shown-count').textContent = CASES.length;
+  document.getElementById('results-bar').innerHTML = `Showing <strong id="shown-count">${CASES.length}</strong> of ${CASES.length} use cases`;
+}
+
+renderCards();
+</script>
+</body>
+</html>

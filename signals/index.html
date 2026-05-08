@@ -374,6 +374,44 @@ img { max-width: 100%; }
   .subscribe-input { flex: 1; width: auto; }
   .modal-panel { padding: 28px 20px 48px; }
 }
+/* PLAYBOOKS SECTION */
+.playbooks-section {
+  padding: 64px 24px;
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.playbooks-inner { max-width: 1100px; margin: 0 auto; }
+.playbooks-header { margin-bottom: 32px; }
+.playbooks-label {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: #0071e3;
+  margin-bottom: 10px;
+}
+.playbooks-h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: #1d1d1f; margin-bottom: 8px; }
+.playbooks-sub { font-size: 15px; color: #6e6e73; max-width: 540px; }
+.playbooks-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px;
+}
+.pb-card {
+  background: #f5f5f7; border-radius: 12px; padding: 20px;
+  transition: transform 0.15s, box-shadow 0.15s; cursor: default;
+}
+.pb-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+.pb-type {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: #86868b; margin-bottom: 8px;
+}
+.pb-title { font-size: 15px; font-weight: 700; color: #1d1d1f; line-height: 1.3; margin-bottom: 6px; }
+.pb-hook { font-size: 13px; color: #6e6e73; line-height: 1.5; font-style: italic; }
+.playbooks-cta-row { text-align: center; }
+.playbooks-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 15px; font-weight: 600; color: #0071e3; text-decoration: none;
+}
+.playbooks-cta:hover { opacity: 0.8; }
+@media (max-width: 768px) { .playbooks-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .playbooks-grid { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 <body>
@@ -382,6 +420,7 @@ img { max-width: 100%; }
 <nav class="nav">
   <div class="nav-left">
     <a href="https://www.uremarkable.com" class="nav-back">&#8592; uremarkable.com</a>
+    <a href="/playbooks" style="font-size:14px;color:#6e6e73;text-decoration:none;font-weight:500;" onmouseover="this.style.color='#1d1d1f'" onmouseout="this.style.color='#6e6e73'">Playbooks</a>
     <div class="nav-brand">The <span>Signal</span></div>
   </div>
   <button class="nav-subscribe-btn" onclick="scrollToSubscribe()">Subscribe free</button>
@@ -451,6 +490,52 @@ img { max-width: 100%; }
 </section>
 
 <!-- FOOTER -->
+
+<section class="playbooks-section">
+  <div class="playbooks-inner">
+    <div class="playbooks-header">
+      <div class="playbooks-label">Playbooks</div>
+      <h2 class="playbooks-h2">What Uremarkable builds in a session.</h2>
+      <p class="playbooks-sub">30 real tools built for real problems. Every card is a use case you can run yourself, or have us build in one session.</p>
+    </div>
+    <div class="playbooks-grid">
+      <div class="pb-card">
+        <div class="pb-type">CRM</div>
+        <div class="pb-title">The Van Quote</div>
+        <div class="pb-hook">"Before I get there, they should already know the price."</div>
+      </div>
+      <div class="pb-card">
+        <div class="pb-type">Calculator</div>
+        <div class="pb-title">Does This Actually Cost What I Think?</div>
+        <div class="pb-hook">"I keep saying yes to jobs that cost me money."</div>
+      </div>
+      <div class="pb-card">
+        <div class="pb-type">Pre-call Guide</div>
+        <div class="pb-title">Explaining the System Before the Call</div>
+        <div class="pb-hook">"They need to trust the AI before they book."</div>
+      </div>
+      <div class="pb-card">
+        <div class="pb-type">Dashboard</div>
+        <div class="pb-title">The Business That Needed to See Itself</div>
+        <div class="pb-hook">"I run the business. I've never seen the business."</div>
+      </div>
+      <div class="pb-card">
+        <div class="pb-type">System Map</div>
+        <div class="pb-title">Showing a Founder How Their Finance Stack Connected</div>
+        <div class="pb-hook">"I have five tools. None of them talk to each other."</div>
+      </div>
+      <div class="pb-card">
+        <div class="pb-type">Landing Page</div>
+        <div class="pb-title">The Landing Page That Explained the Why</div>
+        <div class="pb-hook">"People land on the page and don't get it."</div>
+      </div>
+    </div>
+    <div class="playbooks-cta-row">
+      <a href="/playbooks" class="playbooks-cta">Browse all 30 playbooks &rarr;</a>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">Uremarkable</div>
