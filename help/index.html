@@ -69,6 +69,28 @@
     padding: 3px 10px;
     border-radius: 20px;
   }
+  .ur-nav-right { display: flex; align-items: center; gap: 12px; }
+  .ur-nav-hamburger {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; width: 32px; height: 32px;
+  }
+  .ur-nav-hamburger span { display: block; width: 20px; height: 2px; background: #1d1d1f; border-radius: 2px; }
+  .ur-mobile-nav {
+    display: none; flex-direction: column; position: fixed; top: 52px; left: 0; right: 0;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); z-index: 99;
+    border-bottom: 1px solid rgba(210,210,215,0.6); padding: 8px 0;
+  }
+  .ur-mobile-nav.open { display: flex; }
+  .ur-mobile-nav a {
+    padding: 13px 24px; font-size: 15px; font-weight: 500; color: var(--text);
+    text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .ur-mobile-nav a:last-child { border-bottom: none; }
+  @media (max-width: 640px) {
+    .ur-nav-badge { display: none; }
+    .ur-nav-back { display: none; }
+    .ur-nav-hamburger { display: flex; }
+  }
 
   /* HERO */
   .hero {
@@ -346,8 +368,16 @@
 <!-- NAV -->
 <nav class="ur-nav">
   <a href="/" class="ur-nav-back">&#8592; uremarkable.com</a>
-  <span class="ur-nav-badge">Help</span>
+  <div class="ur-nav-right">
+    <span class="ur-nav-badge">Help</span>
+    <button class="ur-nav-hamburger" id="help-hamburger" onclick="toggleHelpNav()" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
 </nav>
+<div class="ur-mobile-nav" id="help-mobile-nav">
+  <a href="/">&#8592; uremarkable.com</a>
+  <a href="/signals">The Signal Blog</a>
+  <a href="/playbooks">Playbooks</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
