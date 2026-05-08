@@ -309,6 +309,27 @@
   }
   .contact-cta a:hover { opacity: 0.88; }
 
+  /* OBSIDIAN FOLDER TREE */
+  .folder-tree {
+    background: #1a1a2e;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 12px 0 8px;
+    overflow-x: auto;
+  }
+  .folder-tree pre {
+    font-family: 'SF Mono','Fira Code','Menlo',monospace;
+    font-size: 12px;
+    line-height: 1.75;
+    color: #e8e8f0;
+    margin: 0;
+    white-space: pre;
+  }
+  .folder-tree .dir  { color: #a78bfa; font-weight: 700; }
+  .folder-tree .file { color: #86efac; }
+  .folder-tree .tb   { color: #6e6e8a; }
+  .folder-tree .cm   { color: #6e6e8a; font-style: italic; }
+
   /* MOBILE */
   @media (max-width: 640px) {
     .hero { padding: 44px 20px 40px; }
@@ -565,18 +586,67 @@
   <div class="faq-section" data-section="memory">
     <div class="section-label">Memory</div>
 
-    <div class="faq-item" data-keywords="memory remember things context between sessions persistent">
+    <div class="faq-item" data-keywords="memory remember things context between sessions persistent obsidian two layers">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">Does it remember things between conversations?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Your AI Business Operating System has a layered memory system that works in the background:</p>
+        <p>Yes. Your AI Business Operating System has two memory layers working together:</p>
         <ul>
           <li><strong>Within a session:</strong> full context of everything said in the current conversation</li>
-          <li><strong>Between sessions:</strong> after each conversation, it extracts important things (preferences, decisions, business context) and stores them locally on your Mac. These surface automatically in future conversations when they're relevant.</li>
+          <li><strong>Short-term (conversation memory):</strong> recent back-and-forth is stored locally and surfaces automatically when relevant. Auto-purges after 3 days.</li>
+          <li><strong>Long-term (second brain):</strong> important things, preferences, decisions, and business context get written to Obsidian, a local note-taking app on your Mac. This layer never fades.</li>
         </ul>
         <p>You don't need to re-explain who you are or what you're working on every time you open Telegram.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="obsidian second brain what is obsidian permanent memory vault layers notes">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is the second brain and how is it different from regular memory?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>The two memory layers do completely different jobs:</p>
+        <ul>
+          <li><strong>Conversation memory (SQLite):</strong> short-term, auto-purges after 3 days. Holds the recent back-and-forth and surfaces context at the start of each session.</li>
+          <li><strong>Second brain (Obsidian):</strong> permanent. Everything that should stick around lives here. Notes you've captured, daily logs, research, tools built for your business, project records, decisions. This does not fade.</li>
+        </ul>
+        <p>Obsidian is a free note-taking app. Your vault is a folder on your Mac with a standard structure the assistant writes to automatically:</p>
+        <div class="folder-tree">
+          <pre><span class="dir">YourBrain/</span>
+<span class="tb">├── </span><span class="dir">inbox/</span>         <span class="cm"># quick captures, voice note transcripts</span>
+<span class="tb">├── </span><span class="dir">daily/</span>         <span class="cm"># daily notes, YYYY-MM-DD.md</span>
+<span class="tb">├── </span><span class="dir">projects/</span>      <span class="cm"># active work, decisions, research</span>
+<span class="tb">├── </span><span class="dir">content/</span>       <span class="cm"># content pipeline</span>
+<span class="tb">│   └── </span><span class="dir">linkedin/</span>
+<span class="tb">│       ├── </span><span class="dir">queue/</span> <span class="cm"># drafts ready to post</span>
+<span class="tb">│       └── </span><span class="dir">posted/</span><span class="cm"># confirmed published</span>
+<span class="tb">├── </span><span class="dir">tools/</span>         <span class="cm"># HTML tools, dashboards, proposals built for you</span>
+<span class="tb">├── </span><span class="dir">assets/</span>        <span class="cm"># reusable contact details, credentials</span>
+<span class="tb">└── </span><span class="file">memory.md</span>      <span class="cm"># readable log of what your assistant knows</span></pre>
+        </div>
+        <p>Everything in the vault is plain text files. Readable in any editor, not locked to any platform or subscription. The graph view in Obsidian shows every note and how they connect, a visual map of everything that's been built for your business.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="obsidian setup install configure do i need to manage vault set up">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do I need to set up or manage Obsidian myself?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Baz installs it and connects it to your assistant during your setup session. You don't need to configure anything.</p>
+        <p>After setup, your assistant writes to the vault automatically:</p>
+        <ul>
+          <li>Things you capture in conversation land in <code>inbox/</code></li>
+          <li>Daily notes get written at the start of each day (if you have that scheduled)</li>
+          <li>Tools and files Baz builds for you go in <code>tools/</code></li>
+          <li>Research and project notes go in <code>projects/</code></li>
+        </ul>
+        <p>You can open Obsidian at any time to browse, search, or edit what's accumulated. Most people end up using it as a live record of everything their business has built and decided, without ever having to maintain it manually.</p>
+        <div class="tip">Obsidian is free. Download it at <a href="https://obsidian.md" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;">obsidian.md</a> before your setup session if you want a head start.</div>
       </div>
     </div>
 
