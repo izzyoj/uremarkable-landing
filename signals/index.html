@@ -137,6 +137,7 @@ img { max-width: 100%; }
 .cat-finance { background: rgba(255,149,0,0.1);   color: #b06000; }
 .cat-cx      { background: rgba(255,45,85,0.1);   color: #c0003a; }
 .cat-industry{ background: rgba(175,82,222,0.1);  color: #7b1fa2; }
+.cat-deepdive{ background: rgba(26,26,26,0.07);  color: #1a1a1a; }
 .hero-date { font-size: 12px; color: var(--text-3); }
 .hero-featured-label {
   font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
@@ -437,6 +438,7 @@ img { max-width: 100%; }
     <button class="filter-pill" onclick="filterSignals('financial-management', this)">Financial Management</button>
     <button class="filter-pill" onclick="filterSignals('customer-engagement', this)">Customer Engagement</button>
     <button class="filter-pill" onclick="filterSignals('industry-specific', this)">Industry Specific AI</button>
+    <button class="filter-pill" onclick="filterSignals('baz-deep-dives', this)">Baz Deep Dives</button>
   </div>
 </div>
 
@@ -477,6 +479,38 @@ img { max-width: 100%; }
 ================================================================ -->
 <script>
 const SIGNALS = [
+
+  {
+    id: 'the-day-my-system-taught-me-2026-04-26',
+    date: '26 Apr 2026',
+    category: 'baz-deep-dives',
+    categoryLabel: 'Baz Deep Dives',
+    catClass: 'cat-deepdive',
+    sourceType: 'deep-dive',
+    featured: false,
+    title: 'The day my system taught me',
+    excerpt: 'Gemini quota hit at 7am. Two reels unread. Six principles encoded by end of day. None of them came from reading — they came from hitting walls and routing around them.',
+    body: `
+      <p>April 26 started with a wall. Gemini quota exhausted overnight, two Instagram reels stuck in the workspace queue. Default move: flag it, wait for reset, come back tomorrow.</p>
+      <blockquote>Default moves are what got me here.</blockquote>
+      <p>So I spawned a mission task to the research agent. Groq Whisper. Transcripts back in four minutes. Work continued. But the transcript wasn't what stayed with me. The gap was.</p>
+      <p><em>Why didn't that routing happen automatically?</em></p>
+      <p>I'd built a system. CLAUDE.md. Twenty skills with documented triggers. Scheduled rituals. A five-agent architecture that runs while I sleep. And when it hit the most basic block imaginable — API quota exhausted — it stopped cold and waited.</p>
+      <p><strong>Six principles encoded that day:</strong></p>
+      <ul>
+        <li><strong>Hard Stop Reasoning</strong> — When blocked, find the path. Never silent fail.</li>
+        <li><strong>Why Beats What</strong> — Schemas generalise. Directives break at the edge.</li>
+        <li><strong>Neural Pathway Encoding</strong> — Reasoning = trained pattern. Rules = lookup table.</li>
+        <li><strong>JTBD Market Forces</strong> — Push fires before Pull converts. Check the quadrant.</li>
+        <li><strong>Pop-up SaaS / Marketplace</strong> — The ask as the unit of value, curated with proof.</li>
+        <li><strong>Vault-First Manifesto</strong> — The principle under every product, now written down.</li>
+      </ul>
+      <p>Not one of them came from reading. They came from hitting walls. Routing around them. Then asking why the route didn't exist already.</p>
+    `,
+    sourceCta: 'Read the full deep dive',
+    sourceUrl: '/signals/deep-dives/the-day-my-system-taught-me.html',
+    isDeepDive: true
+  },
 
   // ── TO ADD NEW SIGNALS: copy the object below, update all fields, set featured: true on latest ──
 
@@ -598,6 +632,7 @@ const CAT_CLASS_MAP = {
 };
 
 const SOURCE_TYPE_LABELS = {
+  'deep-dive': 'Deep Dive',
   news: 'Industry News',
   reel: 'Reel',
   linkedin: 'LinkedIn',
