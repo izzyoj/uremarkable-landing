@@ -454,7 +454,7 @@ img { max-width: 100%; }
 }
 .pb-card {
   background: #f5f5f7; border-radius: 12px; padding: 20px;
-  transition: transform 0.15s, box-shadow 0.15s; cursor: default;
+  transition: transform 0.15s, box-shadow 0.15s; cursor: pointer;
 }
 .pb-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
 .pb-type {
@@ -463,6 +463,22 @@ img { max-width: 100%; }
 }
 .pb-title { font-size: 15px; font-weight: 700; color: #1d1d1f; line-height: 1.3; margin-bottom: 6px; }
 .pb-hook { font-size: 13px; color: #6e6e73; line-height: 1.5; font-style: italic; }
+.pb-toggle {
+  font-size: 12px; font-weight: 600; color: #0071e3;
+  margin-top: 12px; display: flex; align-items: center; gap: 4px;
+}
+.pb-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.pb-card.open .pb-body { max-height: 200px; }
+.pb-body-inner {
+  padding-top: 10px; margin-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  font-size: 13px; color: #6e6e73; line-height: 1.55;
+}
+.pb-view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12px; font-weight: 600; color: #0071e3;
+  text-decoration: none; margin-top: 8px;
+}
 .playbooks-cta-row { text-align: center; }
 .playbooks-cta {
   display: inline-flex; align-items: center; gap: 6px;
@@ -568,35 +584,59 @@ img { max-width: 100%; }
       <p class="playbooks-sub">30 real tools built for real problems. Every card is a use case you can run yourself, or have us build in one session.</p>
     </div>
     <div class="playbooks-grid">
-      <div class="pb-card">
+      <div class="pb-card" onclick="togglePbCard(this)">
         <div class="pb-type">CRM</div>
         <div class="pb-title">The Van Quote</div>
         <div class="pb-hook">"Before I get there, they should already know the price."</div>
+        <div class="pb-body">
+          <div class="pb-body-inner">Browser-based quote tracker with built-in follow-up triggers. Shows every open quote, when it was sent, and when to follow up. Price on screen before you leave the driveway.<a href="/playbooks" class="pb-view-link">View in Playbooks &rarr;</a></div>
+        </div>
+        <div class="pb-toggle">See more &darr;</div>
       </div>
-      <div class="pb-card">
+      <div class="pb-card" onclick="togglePbCard(this)">
         <div class="pb-type">Calculator</div>
         <div class="pb-title">Does This Actually Cost What I Think?</div>
         <div class="pb-hook">"I keep saying yes to jobs that cost me money."</div>
+        <div class="pb-body">
+          <div class="pb-body-inner">Maps real job costs — materials, labour, travel, overheads — so you know on the spot if a quote is worth taking. Built in one session, runs in your browser.<a href="/playbooks" class="pb-view-link">View in Playbooks &rarr;</a></div>
+        </div>
+        <div class="pb-toggle">See more &darr;</div>
       </div>
-      <div class="pb-card">
+      <div class="pb-card" onclick="togglePbCard(this)">
         <div class="pb-type">Pre-call Guide</div>
         <div class="pb-title">Explaining the System Before the Call</div>
         <div class="pb-hook">"They need to trust the AI before they book."</div>
+        <div class="pb-body">
+          <div class="pb-body-inner">A structured walkthrough that primes clients on how the AI system works before a call. Cuts objections before they start and gets them to the booking stage faster.<a href="/playbooks" class="pb-view-link">View in Playbooks &rarr;</a></div>
+        </div>
+        <div class="pb-toggle">See more &darr;</div>
       </div>
-      <div class="pb-card">
+      <div class="pb-card" onclick="togglePbCard(this)">
         <div class="pb-type">Dashboard</div>
         <div class="pb-title">The Business That Needed to See Itself</div>
         <div class="pb-hook">"I run the business. I've never seen the business."</div>
+        <div class="pb-body">
+          <div class="pb-body-inner">One-page live view of revenue, pipeline, and costs. Built to your actual numbers, running on your machine — no SaaS subscription required.<a href="/playbooks" class="pb-view-link">View in Playbooks &rarr;</a></div>
+        </div>
+        <div class="pb-toggle">See more &darr;</div>
       </div>
-      <div class="pb-card">
+      <div class="pb-card" onclick="togglePbCard(this)">
         <div class="pb-type">System Map</div>
         <div class="pb-title">Showing a Founder How Their Finance Stack Connected</div>
         <div class="pb-hook">"I have five tools. None of them talk to each other."</div>
+        <div class="pb-body">
+          <div class="pb-body-inner">Diagrams how your tools — Xero, Gmail, bank feeds, CRM — connect and where the gaps are costing you time. Session-built, yours to keep and update.<a href="/playbooks" class="pb-view-link">View in Playbooks &rarr;</a></div>
+        </div>
+        <div class="pb-toggle">See more &darr;</div>
       </div>
-      <div class="pb-card">
+      <div class="pb-card" onclick="togglePbCard(this)">
         <div class="pb-type">Landing Page</div>
         <div class="pb-title">The Landing Page That Explained the Why</div>
         <div class="pb-hook">"People land on the page and don't get it."</div>
+        <div class="pb-body">
+          <div class="pb-body-inner">Full product landing page written to a specific ICP, structured around the job-to-be-done. Push copy, clear CTA, built in one session — no agency, no waiting.<a href="/playbooks" class="pb-view-link">View in Playbooks &rarr;</a></div>
+        </div>
+        <div class="pb-toggle">See more &darr;</div>
       </div>
     </div>
     <div class="playbooks-cta-row">
@@ -918,6 +958,21 @@ document.addEventListener('click', function(e) {
     }
   }
 });
+</script>
+<script>
+function togglePbCard(card) {
+  var isOpen = card.classList.contains('open');
+  document.querySelectorAll('.pb-card.open').forEach(function(c) {
+    c.classList.remove('open');
+    var t = c.querySelector('.pb-toggle');
+    if (t) t.innerHTML = 'See more &darr;';
+  });
+  if (!isOpen) {
+    card.classList.add('open');
+    var toggle = card.querySelector('.pb-toggle');
+    if (toggle) toggle.innerHTML = 'See less &uarr;';
+  }
+}
 </script>
 
 </body>
