@@ -206,6 +206,11 @@ img { max-width: 100%; }
 }
 
 /* ── FILTER ── */
+.nav-text-link {
+  font-size: 14px; color: #6e6e73; text-decoration: none; font-weight: 500;
+  transition: color 0.15s; white-space: nowrap;
+}
+.nav-text-link:hover { color: #1d1d1f; }
 .filter-bar {
   padding: 20px 24px 0;
   border-bottom: 1px solid var(--border);
@@ -368,6 +373,7 @@ img { max-width: 100%; }
   .hero-arrow-col { display: none; }
 }
 @media (max-width: 600px) {
+  .nav-text-link { display: none; }
   .signals-grid { grid-template-columns: 1fr; }
   .subscribe-bar-inner { flex-direction: column; align-items: flex-start; }
   .subscribe-form { width: 100%; }
@@ -420,7 +426,7 @@ img { max-width: 100%; }
 <nav class="nav">
   <div class="nav-left">
     <a href="https://www.uremarkable.com" class="nav-back">&#8592; uremarkable.com</a>
-    <a href="/playbooks" style="font-size:14px;color:#6e6e73;text-decoration:none;font-weight:500;" onmouseover="this.style.color='#1d1d1f'" onmouseout="this.style.color='#6e6e73'">Playbooks</a>
+    <a href="/playbooks" class="nav-text-link">Playbooks</a>
     <div class="nav-brand">The <span>Signal</span></div>
   </div>
   <button class="nav-subscribe-btn" onclick="scrollToSubscribe()">Subscribe free</button>

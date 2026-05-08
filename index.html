@@ -107,6 +107,11 @@ nav {
   transition: color 0.15s;
 }
 .nav-signal-link:hover { color: var(--text); }
+.nav-text-link {
+  font-size: 14px; color: var(--text-2); text-decoration: none; font-weight: 500;
+  transition: color 0.15s; white-space: nowrap;
+}
+.nav-text-link:hover { color: var(--text); }
 .nav-pulse {
   width: 7px;
   height: 7px;
@@ -1550,6 +1555,8 @@ footer {
 @media (max-width: 680px) {
   nav { gap: 8px; }
   .nav-links { display: none; }
+  .nav-signal-link { display: none; }
+  .nav-text-link { display: none; }
   .problem-grid { grid-template-columns: 1fr; }
   .app-grid { grid-template-columns: 1fr; }
   .quiz-grid { grid-template-columns: 1fr; }
@@ -1981,7 +1988,7 @@ footer {
     <a href="/signals" class="nav-signal-link">
       <span class="nav-pulse"></span>The Signal Blog
     </a>
-    <a href="/playbooks" style="font-size:14px;color:#6e6e73;text-decoration:none;font-weight:500;" onmouseover="this.style.color='#1d1d1f'" onmouseout="this.style.color='#6e6e73'">Playbooks</a>
+    <a href="/playbooks" class="nav-text-link">Playbooks</a>
     <!-- Try free — re-enable once demo bot is live at t.me/uremarkablebot
     <a href="https://t.me/uremarkablebot" class="nav-cta" target="_blank">Try free</a> -->
     <a href="/signals#subscribe-section" class="nav-cta">Get early access</a>
