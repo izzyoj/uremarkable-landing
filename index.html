@@ -144,6 +144,56 @@ nav {
 
 .nav-cta:hover { background: var(--blue-dark); }
 
+/* Mobile nav hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 52px;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(210,210,215,0.6);
+  padding: 8px 24px 16px;
+  z-index: 999;
+  flex-direction: column;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-nav a:last-child { border-bottom: none; }
+
 /* HERO */
 .hero {
   background: linear-gradient(180deg, #eef5ff 0%, #ffffff 60%);
@@ -1557,6 +1607,7 @@ footer {
   .nav-links { display: none; }
   .nav-signal-link { display: none; }
   .nav-text-link { display: none; }
+  .nav-hamburger { display: flex; }
   .problem-grid { grid-template-columns: 1fr; }
   .app-grid { grid-template-columns: 1fr; }
   .quiz-grid { grid-template-columns: 1fr; }
@@ -2036,9 +2087,16 @@ footer {
     <a href="/playbooks" class="nav-text-link">Playbooks</a>
     <!-- Try free — re-enable once demo bot is live at t.me/uremarkablebot
     <a href="https://t.me/uremarkablebot" class="nav-cta" target="_blank">Try free</a> -->
+    <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <a href="/signals#subscribe-section" class="nav-cta">Get early access</a>
   </div>
 </nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="/signals"><span class="nav-pulse"></span>The Signal Blog</a>
+  <a href="/playbooks">Playbooks</a>
+</div>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
@@ -3361,5 +3419,23 @@ function closeSignalModalOnOverlay(e, id) {
   scroll.addEventListener('mouseup', function() { isDown = false; });
   scroll.addEventListener('mousemove', function(e) { if (!isDown) return; e.preventDefault(); var x = e.pageX - scroll.offsetLeft; scroll.scrollLeft = scrollLeft - (x - startX) * 1.5; });
 })();
+</script>
+<script>
+function toggleMobileNav() {
+  var nav = document.getElementById('mobile-nav');
+  var btn = document.getElementById('nav-hamburger');
+  var open = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.addEventListener('click', function(e) {
+  var nav = document.getElementById('mobile-nav');
+  var btn = document.getElementById('nav-hamburger');
+  if (nav && nav.classList.contains('open')) {
+    if (!nav.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  }
+});
 </script>
 </body></html>
