@@ -686,6 +686,14 @@ function filterSignals(filter, btn) {
 }
 
 // ── MODAL ──
+function utmLink(url) {
+  if (!url) return url;
+  if (url.startsWith('http')) {
+    const sep = url.includes('?') ? '&' : '?';
+    return url + sep + 'utm_source=uremarkable&utm_medium=signals';
+  }
+  return url; // internal paths untouched
+}
 function openModal(id) {
   const s = SIGNALS.find(sig => sig.id === id);
   if (!s) return;
@@ -695,7 +703,7 @@ function openModal(id) {
   `;
   document.getElementById('modalTitle').textContent = s.title;
   document.getElementById('modalBody').innerHTML = s.body +
-    (s.sourceUrl ? `<a class="modal-link" href="${s.sourceUrl}" target="_blank">${s.sourceCta} &#8594;</a>` : '');
+    (s.sourceUrl ? `<a class="modal-link" href="${utmLink(s.sourceUrl)}" target="_blank">${s.sourceCta} &#8594;</a>` : '');
   document.getElementById('signalModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
