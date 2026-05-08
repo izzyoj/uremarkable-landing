@@ -74,6 +74,35 @@ nav {
 
 .nav-links a:hover { color: var(--text); }
 
+.nav-signal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-signal-link:hover { color: var(--text); }
+.nav-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34c759;
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;
+}
+
 .nav-cta {
   background: var(--blue);
   color: #fff;
@@ -1925,10 +1954,12 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Uremarkable</div>
-  <ul class="nav-links">
-    <li><a href="/signals">The Signal</a></li>
-  </ul>
-  <a href="https://t.me/uremarkablebot" class="nav-cta" target="_blank">Try free</a>
+  <div class="nav-right">
+    <a href="/signals" class="nav-signal-link">
+      <span class="nav-pulse"></span>The Signal Blog
+    </a>
+    <a href="https://t.me/uremarkablebot" class="nav-cta" target="_blank">Try free</a>
+  </div>
 </nav>
 <!-- HERO -->
 <section class="hero">
