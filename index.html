@@ -1622,12 +1622,23 @@ footer {
   section { padding: 56px 20px; }
   .hero { padding: 56px 20px 56px; }
   .modal { padding: 24px 20px; }
-  /* 3-step lifecycle → stack vertically */
+  /* 3-step lifecycle → horizontal scroll carousel */
   .step-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     gap: 16px;
+    padding: 4px 0 20px;
     margin-top: 24px;
+    scrollbar-width: none;
   }
+  .step-grid::-webkit-scrollbar { display: none; }
+  .step-grid .step-card {
+    min-width: 256px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+  .step-dots { display: flex !important; justify-content: center; gap: 8px; margin-top: 4px; }
   /* Moat strip → stacked rows */
   .moat-grid {
     grid-template-columns: 1fr;
@@ -1635,7 +1646,7 @@ footer {
     gap: 0;
   }
   .moat-grid > div {
-    padding: 20px 0;
+    padding: 20px 0 !important;
     border-bottom: 1px solid var(--border);
   }
   .moat-grid > div:last-child { border-bottom: none; }
@@ -1928,6 +1939,14 @@ footer {
   gap: 20px;
   margin-top: 32px;
 }
+.step-dots { display: none; }
+.step-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--border);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.step-dot.active { background: var(--blue); }
 /* ── Moat strip ── */
 .moat-grid {
   display: grid;
@@ -2327,22 +2346,27 @@ footer {
   <div class="section-inner">
     <div class="section-label">3 step lifecycle</div>
     <h2 class="section-h2">Set up in a day. Run 100k's an hour.</h2>
-    <div class="step-grid">
-      <div style="background:var(--bg-alt);border-radius:16px;padding:28px 24px;border-left:3px solid var(--blue);">
+    <div class="step-grid" id="stepScroll">
+      <div class="step-card" style="background:var(--bg-alt);border-radius:16px;padding:28px 24px;border-left:3px solid var(--blue);">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:8px;white-space:nowrap;">Day 1</div>
         <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px;">Setup + First JTBD Live</div>
         <div style="font-size:14px;color:var(--text-2);line-height:1.55;">In one guided session, your system is live. Accounts connected, first workflow running, you're talking to your OS on Telegram by the end of the call.</div>
       </div>
-      <div style="background:var(--bg-alt);border-radius:16px;padding:28px 24px;border-left:3px solid var(--blue);">
+      <div class="step-card" style="background:var(--bg-alt);border-radius:16px;padding:28px 24px;border-left:3px solid var(--blue);">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:8px;white-space:nowrap;">Days 2–30</div>
         <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px;">Support + Tune</div>
         <div style="font-size:14px;color:var(--text-2);line-height:1.55;">30 days of hands-on support. Daily check-ins and weekly calls to calibrate workflows, handle edge cases, and tighten the system around real usage.</div>
       </div>
-      <div style="background:var(--bg-alt);border-radius:16px;padding:28px 24px;border-left:3px solid var(--blue);">
+      <div class="step-card" style="background:var(--bg-alt);border-radius:16px;padding:28px 24px;border-left:3px solid var(--blue);">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:8px;white-space:nowrap;">Month 2+</div>
         <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px;">Retainer or Run Solo</div>
         <div style="font-size:14px;color:var(--text-2);line-height:1.55;">You own the system. Base retainer covers skills tuning, priority support, audits, and a monthly check-in. Additional workflows scoped and quoted separately.</div>
       </div>
+    </div>
+    <div class="step-dots">
+      <div class="step-dot active" onclick="scrollToStep(0)"></div>
+      <div class="step-dot" onclick="scrollToStep(1)"></div>
+      <div class="step-dot" onclick="scrollToStep(2)"></div>
     </div>
   </div>
 </section>
@@ -3426,5 +3450,21 @@ document.addEventListener('click', function(e) {
     }
   }
 });
+</script>
+<script>
+// 3-step carousel dots
+(function() {
+  var scroll = document.getElementById('stepScroll');
+  var dots = document.querySelectorAll('.step-dot');
+  if (!scroll || !dots.length) return;
+  scroll.addEventListener('scroll', function() {
+    var cardW = 256 + 16; // card width + gap
+    var i = Math.min(Math.round(scroll.scrollLeft / cardW), dots.length - 1);
+    dots.forEach(function(d, idx) { d.classList.toggle('active', idx === i); });
+  }, { passive: true });
+  window.scrollToStep = function(i) {
+    scroll.scrollTo({ left: i * (256 + 16), behavior: 'smooth' });
+  };
+})();
 </script>
 </body></html>
