@@ -717,6 +717,30 @@
         <p>If there's something specific you want removed, tell your assistant directly: "forget what I told you about [X]" and it will mark that memory as low importance so it fades faster.</p>
       </div>
     </div>
+
+    <div class="faq-item" data-keywords="compaction context compression bot forgot session memory long conversation context window reset">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is compaction and why does it make the bot forget things?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Claude Code compresses long conversations to stay within its context limit. This is called compaction. When it happens, the bot loses its working memory of what happened earlier in the session. It can still use tools and build things, but it genuinely doesn't remember "I already sent you that file."</p>
+        <p>This isn't a bug. It's a design trade-off that keeps long sessions running. The fix is to not rely on the bot's memory — use the file system as memory instead.</p>
+        <p>Your assistant handles this automatically using versioned filenames (e.g. <code>v1-report-9-May-26.html</code>). Before sending any file, it checks what version already exists on disk — so even after compaction it picks up at the right version without needing session memory.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="checkpoint save session context new chat reset start fresh preserve remember before newchat">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I make sure the bot remembers the session before I start a new chat?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Send <code>checkpoint</code> before starting a new chat.</p>
+        <p>This saves a tight summary of the current session to both the short-term memory database and your second brain (Obsidian). After <code>/newchat</code>, that context is still retrievable — the session resets but the record survives.</p>
+        <p>Use checkpoint any time the session has been productive, you've made an important decision, or you're switching to a completely different task and want a clean slate without losing what was built.</p>
+      </div>
+    </div>
   </div>
 
   <!-- APPS -->
@@ -970,6 +994,30 @@
       </div>
       <div class="faq-a">
         <p>This means the system is running twice, with two processes both trying to receive Telegram messages. Restart your Mac, or contact Baz to clear the duplicate process. It's a quick fix.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="file disappeared restart lost file tmp temporary where did my file go mac restart deleted">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">A file the bot sent me disappeared after I restarted my Mac</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>The file was staged in <code>/tmp</code>, a temporary folder on your Mac that gets cleared on every restart. That's by design — /tmp is the post box, not the filing cabinet.</p>
+        <p>Every file your assistant sends should also be saved to your vault (the Obsidian folder), where it survives restarts, compaction, and session resets. If a file disappeared, the vault copy wasn't made.</p>
+        <p>To prevent it: after your bot delivers a file, ask "also save this to my vault" and it will copy it to the right project folder. A properly configured bot does this automatically for every Telegram delivery.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="same file twice duplicate file resent multiple times compaction version sent again already sent">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">I received the same file multiple times</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>This is a compaction side effect. After context compaction, the bot has no memory of sending a file earlier in the session. Without version numbers in the filename, every send looks like the first send.</p>
+        <p>The fix is file versioning: filenames like <code>v1-report-9-May-26.html</code>, <code>v2-report-9-May-26.html</code>. Before sending, the bot checks which version already exists on disk — so it always knows where it is in the iteration cycle, even after a compact.</p>
+        <p>If this keeps happening, let Baz know. It means the versioning protocol isn't configured for your bot and can be added in a quick session.</p>
       </div>
     </div>
   </div>
