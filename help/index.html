@@ -727,6 +727,8 @@
         <p>Claude Code compresses long conversations to stay within its context limit. This is called compaction. When it happens, the bot loses its working memory of what happened earlier in the session. It can still use tools and build things, but it genuinely doesn't remember "I already sent you that file."</p>
         <p>This isn't a bug. It's a design trade-off that keeps long sessions running. The fix is to not rely on the bot's memory — use the file system as memory instead.</p>
         <p>Your assistant handles this automatically using versioned filenames (e.g. <code>v1-report-9-May-26.html</code>). Before sending any file, it checks what version already exists on disk — so even after compaction it picks up at the right version without needing session memory.</p>
+        <div class="tip"><strong>If you need to explain this to a team member:</strong><br><br>
+        "You may see a notification from the bot saying <em>'Context window was auto-compacted...'</em> That's just her managing her own memory during a long session. The system does it automatically to keep her responses accurate. Nothing's broken. The side effect is that files created during a long session may not get saved properly — they end up in a temporary folder that clears when the Mac restarts. The versioning system handles this automatically. If you ever notice a file is missing, let Baz know."</div>
       </div>
     </div>
 
