@@ -13,6 +13,375 @@
 <meta property="og:description" content="Common questions about your AI assistant: setup, voice, memory, apps, security, and troubleshooting.">
 <meta property="og:url" content="https://www.uremarkable.com/help">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What exactly is the AI Business Operating System?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your AI Business Operating System connects Claude (Anthropic's AI) to your Telegram. When installed on your Mac, every message you send in Telegram goes directly to Claude running on your own machine. It reads your files, connects to your apps, and works like a team member available at any hour."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I need before my setup session?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three things: a Mac (macOS is the primary setup; Windows is supported via WSL2), a Telegram account, and a Claude plan. Free and Pro work, but Claude Max (~$155/month AUD) is recommended. Your setup provider handles everything else including software installation, app connections, and configuration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does setup take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The software configuration takes about 5 minutes. The full setup session typically runs 60-90 minutes, covering installation, connecting your apps (email, calendar, WhatsApp), and personalising the assistant so it knows your business and preferences."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on Windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, through WSL2 — a compatibility layer that lets Windows run Linux apps. The standard setup is Mac-first, but Windows is supported. If you are on Windows, mention it before booking your setup session."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Claude plan do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any plan works. Claude Max (~$155/month AUD) is recommended — the Opus model handles multi-step tasks and complex reasoning. Claude Pro (~$31/month AUD) works for day-to-day messages but may struggle on complex tasks. Free is limited but functional for simple queries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Telegram bot and why do I need one?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Telegram allows you to create a private bot — a dedicated chat account that belongs to you. Your AI Business Operating System lives inside this bot. You message it like any contact and it responds. It is created during your setup session using Telegram's BotFather tool. No one else can access it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it need to be running all the time? What happens when I close my laptop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It runs as a background service that starts automatically when you log in and restarts itself if it crashes. If your Mac is closed or shut down, the assistant won't respond. For scheduled tasks like a morning briefing, your Mac needs to be running at the scheduled time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I actually use it? Just type?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Open your Telegram chat and type anything — no wake word, no special format. Examples: 'Check my calendar for tomorrow', 'Draft a reply to the email from Sarah about the proposal', 'Set a reminder to follow up with the Barangaroo lead on Friday', 'Create a summary of this document and send it as a PDF'."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use voice notes instead of typing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Hold the microphone button in Telegram, record, and send. It transcribes automatically and executes your request. By default replies come back as text. To get a voice reply back, say 'respond with voice' or 'voice reply' in your message. Send /voice to toggle voice replies on for every message."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I send photos, documents, and PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All of these work. Photos are analyzed immediately — add a caption for specific instructions. PDFs, Word docs, CSVs, and text files are read and processed. Videos up to 20MB are analyzed. Just attach the file and send with or without a caption."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it create files and send them back to me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Ask it to create something and it will send the file as a Telegram attachment up to 50MB. Examples: 'Summarize this week's emails into a PDF', 'Build a one-page comparison of these quotes as a spreadsheet', 'Create an HTML proposal for this client'."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What commands can I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Type / in Telegram to see the full list. Key commands: /newchat starts a fresh conversation, /respin pulls the last 20 messages into a new session, /voice toggles voice replies on or off, /model switches between speed and power, /memory shows recent memories, /stop cancels a running task, /dashboard gets your live dashboard link."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I start a fresh conversation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send /newchat. This wipes the current session and starts completely fresh. If you want to keep your recent messages for context, send /respin immediately after — it pulls the last 20 messages into the new session without carrying the full weight of a long conversation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it remember things between conversations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Your AI Business Operating System has two memory layers: short-term conversation memory that auto-purges after 3 days, and long-term second brain memory written to Obsidian on your Mac that never fades. You do not need to re-explain who you are or what you are working on every session."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the second brain and how is it different from regular memory?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Conversation memory (SQLite) is short-term and auto-purges after 3 days. The second brain (Obsidian) is permanent — notes, daily logs, research, tools built for your business, decisions. Obsidian is a free note-taking app and your vault is a folder on your Mac the assistant writes to automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to set up or manage Obsidian myself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It gets installed and connected during your setup session. After setup, your assistant writes to the vault automatically: captures go to inbox/, daily notes are created at day start, tools go in tools/, research goes in projects/. You can open Obsidian at any time to browse what has accumulated without maintaining it manually."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it remember things for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Core preferences and key rules last about 15 months. General business context lasts about 8 months. Frequently referenced memories last longer — each time a memory surfaces in a conversation it gets a salience boost. Memories that prove useless fade; memories that keep coming up stay longer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I see what it remembers about me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send /memory in Telegram. You will see the recent memories stored for your chat. The dashboard also shows importance scores, what has recently been retrieved, and anything starting to fade."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I make it forget something?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send /forget to clear the current session ID. Stored memories decay naturally over time. For something specific, tell your assistant directly: 'forget what I told you about X' and it will mark that memory as low importance so it fades faster."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is compaction and why does it make the bot forget things?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claude Code compresses long conversations to stay within its context limit — this is called compaction. When it happens the bot loses its working memory of what happened earlier in the session but can still use tools and build things. Your assistant handles this with versioned filenames so it always knows what version of a file exists even after compaction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I make sure the bot remembers the session before I start a new chat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send 'checkpoint' before starting a new chat. This saves a tight summary of the current session to both the short-term memory database and your second brain (Obsidian). After /newchat, that context is still retrievable. Use checkpoint whenever the session has been productive or an important decision was made."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it read and send emails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if Gmail was connected during your setup session. You can ask it to check your inbox, reply to emails, send emails, or find emails from specific senders. It uses Google's official OAuth — your password never touches the system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it manage my calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if Google Calendar was connected during setup. Ask it what is on your calendar this week, schedule meetings, send calendar invites, or check your availability for specific times."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it use WhatsApp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with no extra cost or API key. It connects to your existing WhatsApp via Linked Devices — the same way WhatsApp Web works. You scan a QR code once during setup and it stays connected. Send /wa in Telegram to see your most recent chats, read messages, and reply. Message content is encrypted at rest and auto-deleted after 3 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it use Slack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if Slack was configured during setup. Send /slack to see recent conversations with unread counts. You can also ask naturally: 'check my Slack' or 'reply to Jane on Slack saying I will be 10 minutes late'."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it access Google Drive, Sheets, or Docs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This requires the Google Workspace CLI, an optional tool installed during or after your setup session. Once configured your assistant can read, write, and search across Drive, Sheets, Docs, and all other Workspace APIs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I set it up to do things automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Just tell it in plain language what you want and when. Examples: 'Every weekday morning at 8am, check my inbox and send me a briefing', 'Every Monday at 9am, pull last week's AI news and summarize it'. It creates and manages the schedule itself. Your Mac needs to be running at the scheduled time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I manage scheduled tasks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Just ask in plain language: 'What tasks do I have scheduled?', 'Pause the Monday morning briefing', 'Delete the daily email check', 'Change the morning briefing to 7:30am'. You can also view and manage them on the dashboard under Scheduled Tasks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are agents and do I need more than one?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Agents are specialist versions of your assistant, each with their own Telegram bot and focused role — for example a Comms agent for email and WhatsApp, a Research agent for deep lookups. Each gets its own 1-million-token context window, personality, and scheduled tasks. Most users start with one main assistant and add agents later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who else can access my bot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only you. The system locks to your specific Telegram account using your chat ID. Messages from any other Telegram user are silently dropped. Group chats are blocked entirely. You can also add a PIN lock for extra security and an emergency kill phrase that immediately stops all processes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my data leave my machine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your conversations, files, and memories are stored locally on your Mac. External calls that do happen: Anthropic receives your individual queries to run Claude (not your full history or stored memories), Google if you connected Gmail or Calendar, and Groq if voice input is enabled for transcription."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my WhatsApp and Slack messages stored safely?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Message content is encrypted at rest using AES-256-GCM. If someone accessed the database file directly they would see ciphertext, not your messages. Messages are also automatically deleted after 3 days and this cannot be disabled without modifying the source code."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this against Anthropic's rules?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your AI Business Operating System runs the official claude CLI on your machine — identical to typing claude in your own terminal. The input comes from Telegram and the output goes back there. Anthropic's terms allow exactly this kind of personal use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why isn't my Telegram bot responding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check: Is your Mac on and awake? Did you miss any macOS permission dialogs on first run? Are you messaging the right bot — it only responds to the Telegram account linked during setup. Try screenshotting any error and using an AI tool to explain it. If unresolved, contact support for a remote service check."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my assistant stop responding after I restarted my Mac?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your assistant is set up to restart automatically every time your Mac turns on. If it does not come back on its own: open Terminal, type 'pm2 status' to check if the bot is running. If stopped or errored, type 'pm2 restart [your-bot-name]' and wait 30 seconds. If this happens repeatedly, contact support — the startup hook may not be configured."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my bot feel confused or give strange responses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The conversation context window is probably too heavy after a long session. Send /newchat then immediately send /respin. This wipes the full session but pulls your recent messages back in, giving you fresh context without losing the thread of what you were discussing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why aren't voice notes working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Voice transcription requires a Groq API key. If this was not configured during your setup session, contact support — the Groq free tier is more than enough for personal use and requires no credit card. If voice replies (audio back to you) are not working, that requires a separate ElevenLabs API key. Contact support and specify which part is not working."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why isn't WhatsApp connecting or showing my messages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WhatsApp requires a separate background process running alongside your AI Business Operating System. If it has stopped, you will need to restart it and re-scan the QR code in WhatsApp on your phone. The QR code expires after about 30 seconds — if it times out, kill the process and restart it. Contact support if you are unsure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I update to the latest version?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask your assistant directly: 'update the AI Business Operating System to the latest version' and it will walk you through the process. Or contact support — updates are part of the ongoing maintenance included in your retainer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a 409 Conflict error mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 409 Conflict error means the system is running twice, with two processes both trying to receive Telegram messages. Restart your Mac to clear it, or use an AI tool to help identify and stop the duplicate process. If the error returns, contact support — it is a quick fix."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did a file from my bot disappear after restarting my Mac?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The file was staged in /tmp, a temporary folder on your Mac that gets cleared on every restart. Every file your assistant sends should also be saved to your vault (Obsidian), where it survives restarts. After your bot delivers a file, ask 'also save this to my vault' to copy it to the right project folder. A properly configured bot does this automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Context window likely exhausted or 0k tokens mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This means your AI subscription's 5-hour usage bucket has run out. To recover: send /newchat to clear the empty session, wait for confirmation, then send /respin to pull your last 20 messages back in. The bucket resets on a rolling 5-hour window. If this interrupts your workflow regularly, upgrading from Claude Pro to Max gives 5x more usage per window."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my assistant stop working with a claude auth error?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The authentication token connecting your assistant to Claude has expired. To fix it: open Terminal, type 'claude auth login' and press Enter, sign in when the browser opens, then type 'pm2 restart [your-bot-name]'. The assistant should start responding within 30 seconds. This is not a subscription issue — just a one-time token refresh."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I see an error with my bot on Telegram — how do I get AI help to understand it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Screenshot the error and paste it into a free AI tool. Three options: (1) Claude Code in Terminal — open Terminal, type 'claude', paste the error, ask what it means. (2) Cursor — free at cursor.com, press Cmd+L, paste the screenshot. Works even when your Claude quota is exhausted. (3) Browser AI at claude.ai or chatgpt.com — paste the screenshot and ask 'What does this error mean and what should I do?'"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my bot keep sending me the same file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is a compaction side effect. After context compaction, the bot has no memory of sending a file earlier in the session. The fix is file versioning — filenames like v1-report-9-May-26.html let the bot check which version already exists on disk before sending. If this keeps happening, contact support to add the versioning protocol to your bot."
+      }
+    }
+  ]
+}
+</script>
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -927,7 +1296,7 @@
 
     <div class="faq-item" data-keywords="bot not responding no reply doesnt respond silent not working">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">My bot isn't responding</span>
+        <span class="faq-q-text">Why isn't my Telegram bot responding?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -943,7 +1312,7 @@
 
     <div class="faq-item" data-keywords="assistant stopped after restart mac reboot not working after restarting mac turned off pm2 not started">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">The assistant stopped responding after I restarted my Mac</span>
+        <span class="faq-q-text">Why did my assistant stop responding after I restarted my Mac?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -962,7 +1331,7 @@
 
     <div class="faq-item" data-keywords="feels confused off context wrong weird responses not making sense">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">The bot is responding but feels confused or off</span>
+        <span class="faq-q-text">Why does my bot feel confused or give strange responses?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -977,7 +1346,7 @@
 
     <div class="faq-item" data-keywords="voice not working voice error voice notes transcription groq">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Voice notes aren't working</span>
+        <span class="faq-q-text">Why aren't voice notes working?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -988,7 +1357,7 @@
 
     <div class="faq-item" data-keywords="whatsapp not connecting qr code scan daemon whatsapp error">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">WhatsApp isn't connecting or showing my messages</span>
+        <span class="faq-q-text">Why isn't WhatsApp connecting or showing my messages?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -1010,7 +1379,7 @@
 
     <div class="faq-item" data-keywords="two instances running conflict 409 error duplicate running twice">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">I got an error about a "409 Conflict"</span>
+        <span class="faq-q-text">What does a "409 Conflict" error mean?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -1020,7 +1389,7 @@
 
     <div class="faq-item" data-keywords="file disappeared restart lost file tmp temporary where did my file go mac restart deleted">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">A file the bot sent me disappeared after I restarted my Mac</span>
+        <span class="faq-q-text">Why did a file from my bot disappear after restarting my Mac?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -1032,7 +1401,7 @@
 
     <div class="faq-item" data-keywords="context window exhausted 0k tokens usage limit 5 hour reset quota exhausted pro max plan limit hit wall">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">I see "Context window likely exhausted" or "0k tokens"</span>
+        <span class="faq-q-text">What does "Context window likely exhausted" or "0k tokens" mean?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -1050,7 +1419,7 @@
 
     <div class="faq-item" data-keywords="re-authenticate claude auth login authentication expired not logged in claude login browser">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">The assistant stopped working and I see a "claude auth" error</span>
+        <span class="faq-q-text">Why did my assistant stop working with a "claude auth" error?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -1102,7 +1471,7 @@
 
     <div class="faq-item" data-keywords="same file twice duplicate file resent multiple times compaction version sent again already sent">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">I received the same file multiple times</span>
+        <span class="faq-q-text">Why does my bot keep sending me the same file?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
