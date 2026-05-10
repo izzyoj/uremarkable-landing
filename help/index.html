@@ -417,14 +417,14 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Your AI Business Operating System is the layer that connects Claude (Anthropic's AI) to your Telegram. When Baz sets it up on your Mac, every message you send in Telegram goes directly to Claude running on your own machine. The reply comes back to your phone within seconds.</p>
+        <p>Your AI Business Operating System is the layer that connects Claude (Anthropic's AI) to your Telegram. When installed on your Mac, every message you send in Telegram goes directly to Claude running on your own machine. The reply comes back to your phone within seconds.</p>
         <p>It's not a chatbot or a cloud service. Claude runs locally on your hardware, reads your files, connects to your apps, and operates like a member of your team you can reach at any hour.</p>
       </div>
     </div>
 
     <div class="faq-item" data-keywords="requirements what do i need before setup mac computer plan">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What do I need before my setup session with Baz?</span>
+        <span class="faq-q-text">What do I need before my setup session?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
@@ -434,7 +434,7 @@
           <li><strong>A Telegram account</strong>, any existing one works</li>
           <li><strong>A Claude plan</strong>. Free and Pro work, but Claude Max (~$155/month AUD) on Opus is the recommended experience for anything complex</li>
         </ul>
-        <p>Baz handles everything else: software installation, connecting your apps, configuring the assistant to know about your business.</p>
+        <p>Your setup provider handles everything else: software installation, connecting your apps, configuring the assistant to know about your business.</p>
       </div>
     </div>
 
@@ -444,7 +444,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>The software configuration itself takes about 5 minutes. The full setup session with Baz typically runs 60-90 minutes. This covers installing everything, connecting your apps (email, calendar, WhatsApp), and personalising the assistant so it knows your business, your preferences, and what you'll use it for most.</p>
+        <p>The software configuration itself takes about 5 minutes. The full setup session typically runs 60-90 minutes. This covers installing everything, connecting your apps (email, calendar, WhatsApp), and personalising the assistant so it knows your business, your preferences, and what you'll use it for most.</p>
       </div>
     </div>
 
@@ -454,7 +454,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes, through WSL2, a compatibility layer that lets Windows run Linux apps. Baz's standard setup is Mac-first, but Windows is supported. If you're on Windows, mention it before booking your session.</p>
+        <p>Yes, through WSL2, a compatibility layer that lets Windows run Linux apps. The standard setup is Mac-first, but Windows is supported. If you're on Windows, mention it before booking your session.</p>
       </div>
     </div>
 
@@ -470,7 +470,7 @@
           <li><strong>Pro (~$31/month AUD):</strong> works for day-to-day messages, but may struggle on complex or long-running tasks.</li>
           <li><strong>Free:</strong> limited but functional for simple queries.</li>
         </ul>
-        <div class="tip">Baz's setup is optimised for Max. If you're on Pro and hit limits, upgrading is the fastest fix.</div>
+        <div class="tip">The setup is optimised for Max. If you're on Pro and hit limits, upgrading is the fastest fix.</div>
       </div>
     </div>
 
@@ -481,7 +481,7 @@
       </div>
       <div class="faq-a">
         <p>Telegram allows you to create a private bot, basically a dedicated chat account that belongs to you. Your AI Business Operating System lives inside this bot. You message it like any contact, and it responds.</p>
-        <p>Baz creates this during your setup session using Telegram's BotFather tool. You end up with a private Telegram chat connected exclusively to your machine. No one else can access it.</p>
+        <p>This is created during your setup session using Telegram's BotFather tool. You end up with a private Telegram chat connected exclusively to your machine. No one else can access it.</p>
       </div>
     </div>
 
@@ -507,7 +507,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Open the Telegram chat Baz set up and type anything. No wake word, no special format. Just describe what you want and send it.</p>
+        <p>Yes. Open your Telegram chat and type anything. No wake word, no special format. Just describe what you want and send it.</p>
         <p>Some examples that work out of the box:</p>
         <ul>
           <li>"Check my calendar for tomorrow"</li>
@@ -607,7 +607,7 @@
       </div>
       <div class="faq-a">
         <p>A live web page that shows everything happening inside your assistant: scheduled tasks, what it remembers about you, how much you're spending on API calls, and whether everything is running healthy.</p>
-        <p>Send <code>/dashboard</code> in Telegram to get a clickable link. If Baz set up remote access during your session, the link works from your phone anywhere.</p>
+        <p>Send <code>/dashboard</code> in Telegram to get a clickable link. If remote access was set up during your session, the link works from your phone anywhere.</p>
       </div>
     </div>
   </div>
@@ -667,12 +667,12 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Baz installs it and connects it to your assistant during your setup session. You don't need to configure anything.</p>
+        <p>It gets installed and connected to your assistant during your setup session. You don't need to configure anything.</p>
         <p>After setup, your assistant writes to the vault automatically:</p>
         <ul>
           <li>Things you capture in conversation land in <code>inbox/</code></li>
           <li>Daily notes get written at the start of each day (if you have that scheduled)</li>
-          <li>Tools and files Baz builds for you go in <code>tools/</code></li>
+          <li>Tools and files built for you go in <code>tools/</code></li>
           <li>Research and project notes go in <code>projects/</code></li>
         </ul>
         <p>You can open Obsidian at any time to browse, search, or edit what's accumulated. Most people end up using it as a live record of everything their business has built and decided, without ever having to maintain it manually.</p>
@@ -728,7 +728,7 @@
         <p>This isn't a bug. It's a design trade-off that keeps long sessions running. The fix is to not rely on the bot's memory — use the file system as memory instead.</p>
         <p>Your assistant handles this automatically using versioned filenames (e.g. <code>v1-report-9-May-26.html</code>). Before sending any file, it checks what version already exists on disk — so even after compaction it picks up at the right version without needing session memory.</p>
         <div class="tip"><strong>If you need to explain this to a team member:</strong><br><br>
-        "You may see a notification from the bot saying <em>'Context window was auto-compacted...'</em> That's just her managing her own memory during a long session. The system does it automatically to keep her responses accurate. Nothing's broken. The side effect is that files created during a long session may not get saved properly — they end up in a temporary folder that clears when the Mac restarts. The versioning system handles this automatically. If you ever notice a file is missing, let Baz know."</div>
+        "You may see a notification from the bot saying <em>'Context window was auto-compacted...'</em> That's just her managing her own memory during a long session. The system does it automatically to keep her responses accurate. Nothing's broken. The side effect is that files created during a long session may not get saved properly — they end up in a temporary folder that clears when the Mac restarts. The versioning system handles this automatically. If you ever notice a file is missing, contact support."</div>
       </div>
     </div>
 
@@ -811,8 +811,8 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>This requires the Google Workspace CLI, an optional tool Baz can install during or after your session. Once configured, your assistant can read, write, and search across Drive, Sheets, Docs, and every other Workspace API.</p>
-        <p>If you need this, mention it to Baz and it can be added in a follow-up session.</p>
+        <p>This requires the Google Workspace CLI, an optional tool that can be installed during or after your setup session. Once configured, your assistant can read, write, and search across Drive, Sheets, Docs, and every other Workspace API.</p>
+        <p>If you need this, mention it during setup or follow-up and it can be added in a separate session.</p>
       </div>
     </div>
   </div>
@@ -935,8 +935,8 @@
         <ul>
           <li><strong>Is your Mac on and awake?</strong> The assistant only works when the machine is running.</li>
           <li><strong>macOS permission dialogs.</strong> On first run, your Mac shows "Node wants to access..." dialogs. If you missed clicking Allow, the bot hangs silently. Check your Mac screen.</li>
-          <li><strong>Are you messaging the right bot?</strong> It only responds to the Telegram account Baz linked during setup.</li>
-          <li><strong>Service check.</strong> Contact Baz and ask him to run <code>npm run status</code> remotely to check if everything is healthy.</li>
+          <li><strong>Are you messaging the right bot?</strong> It only responds to the Telegram account linked during setup.</li>
+          <li><strong>Try AI help first.</strong> Screenshot what you're seeing and use the steps in "I see an error with my bot on Telegram" below. If that doesn't resolve it, contact support for a remote service check.</li>
         </ul>
       </div>
     </div>
@@ -955,8 +955,8 @@
           <li>If the status shows "stopped" or "errored", type <code>pm2 restart [your-bot-name]</code> and press Enter</li>
           <li>Wait about 30 seconds and try messaging it</li>
         </ol>
-        <p>If you're not sure of the bot name, it's shown in the pm2 status output (left column). You can also contact Baz and he can check and restart it remotely.</p>
-        <div class="tip">If this happens repeatedly after restarts, the startup hook may not be set. Let Baz know — it's a one-line fix that makes the auto-start permanent.</div>
+        <p>If you're not sure of the bot name, it's shown in the pm2 status output (left column). If that doesn't work, contact support — they can check and restart it remotely.</p>
+        <div class="tip">If this happens repeatedly after restarts, the startup hook may not be set. Contact support — it's a one-line fix that makes the auto-start permanent.</div>
       </div>
     </div>
 
@@ -981,8 +981,8 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Voice transcription requires a Groq API key. If this wasn't configured during your setup session, contact Baz. The Groq free tier is more than enough for personal use. No credit card required.</p>
-        <p>If voice replies (audio back to you) aren't working, that's a separate thing. It requires an ElevenLabs API key and a voice clone. Mention to Baz which part isn't working.</p>
+        <p>Voice transcription requires a Groq API key. If this wasn't configured during your setup session, contact support. The Groq free tier is more than enough for personal use. No credit card required.</p>
+        <p>If voice replies (audio back to you) aren't working, that's a separate thing. It requires an ElevenLabs API key and a voice clone. Let support know which part isn't working.</p>
       </div>
     </div>
 
@@ -993,7 +993,7 @@
       </div>
       <div class="faq-a">
         <p>WhatsApp requires a separate background process running alongside your AI Business Operating System. If it's stopped, you'll need to restart it and re-scan the QR code in WhatsApp on your phone.</p>
-        <p>The QR code expires after about 30 seconds. If it times out, kill the process and restart it. Contact Baz if you're unsure how to do this.</p>
+        <p>The QR code expires after about 30 seconds. If it times out, kill the process and restart it. Try AI help first if you're unsure — see "I see an error with my bot on Telegram" above. Or contact support.</p>
       </div>
     </div>
 
@@ -1004,7 +1004,7 @@
       </div>
       <div class="faq-a">
         <p>Ask your assistant directly: "update the AI Business Operating System to the latest version" and it will walk you through the process on your machine.</p>
-        <p>Or contact Baz. Updates are part of the ongoing maintenance included in your retainer.</p>
+        <p>Or contact support. Updates are part of the ongoing maintenance included in your retainer.</p>
       </div>
     </div>
 
@@ -1014,7 +1014,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>This means the system is running twice, with two processes both trying to receive Telegram messages. Restart your Mac, or contact Baz to clear the duplicate process. It's a quick fix.</p>
+        <p>This means the system is running twice, with two processes both trying to receive Telegram messages. Restart your Mac, or refer to "I see an error with my bot on Telegram — how do I get AI help to understand it?" above to help clear the duplicate process. If that doesn't resolve it, contact support. It's a quick fix.</p>
       </div>
     </div>
 
@@ -1044,7 +1044,7 @@
           <li>If <code>/respin</code> also fails, skip it. Just send <code>/newchat</code> and describe what you need. Your assistant's long-term memory is unaffected.</li>
         </ul>
         <p><strong>Important:</strong> Do not send <code>/respin</code> without doing <code>/newchat</code> first. Sending them out of order causes a loop where you keep seeing the same wall message.</p>
-        <p>The bucket resets on a rolling 5-hour window — you may not need to wait the full 5 hours. If this is happening regularly and interrupting your workflow, upgrading from Pro to Max gives you 5x more usage per window. Contact Baz to walk through the upgrade (no reconfiguration needed on your end).</p>
+        <p>The bucket resets on a rolling 5-hour window — you may not need to wait the full 5 hours. If this is happening regularly and interrupting your workflow, upgrading from Pro to Max gives you 5x more usage per window. Contact support to walk through the upgrade (no reconfiguration needed on your end).</p>
       </div>
     </div>
 
@@ -1063,7 +1063,7 @@
           <li>Sign in, approve the connection, and close the browser</li>
           <li>Back in Terminal, type <code>pm2 restart [your-bot-name]</code> and press Enter</li>
         </ul>
-        <p>The assistant should start responding again within 30 seconds. If you're unsure which bot name to use, contact Baz — he can check remotely.</p>
+        <p>The assistant should start responding again within 30 seconds. If you're unsure which bot name to use, contact support — they can check remotely.</p>
         <div class="tip">This is different from your Claude subscription. You don't need to cancel or change anything — just refresh the login token.</div>
       </div>
     </div>
@@ -1085,18 +1085,18 @@
         <p><strong>Step 2: Paste it into an AI and ask</strong></p>
         <p>Three options — use whichever is available:</p>
         <ol>
-          <li><strong>Claude Code in Terminal (fastest if you have it)</strong> — open Terminal, type <code>claude</code>, paste the error and ask what it means. Already installed if Baz set up your system. Note: won't work if your Claude 5-hour usage window has run out.</li>
+          <li><strong>Claude Code in Terminal (fastest if you have it)</strong> — open Terminal, type <code>claude</code>, paste the error and ask what it means. Already installed if your system is set up with Claude Code. Note: won't work if your Claude 5-hour usage window has run out.</li>
           <li><strong>Cursor (free backup)</strong> — open Cursor, press <code>Cmd + L</code>, paste the screenshot. Works even when your Claude window is exhausted because it runs on its own quota. Download free at <a href="https://cursor.com" target="_blank">cursor.com</a>.</li>
           <li><strong>Browser AI (works for anyone)</strong> — go to <a href="https://claude.ai" target="_blank">claude.ai</a> or <a href="https://chatgpt.com" target="_blank">chatgpt.com</a>, press <code>Cmd + V</code> to paste your screenshot, and ask what the error means.</li>
         </ol>
 
         <p>In all cases, the message to send is simple: <em>"What does this error mean and what should I do?"</em> The AI will translate it into plain English and tell you the next step.</p>
 
-        <div class="tip"><strong>Also send the screenshot to Baz.</strong> Even if you figure out what it means, Baz can often fix it remotely in a few minutes without you needing to do anything in Terminal.</div>
+        <div class="tip"><strong>Also contact support.</strong> Even after AI help explains the error, support can often fix it remotely in a few minutes without you needing to do anything in Terminal.</div>
 
-        <p><strong>If the error is in Terminal (not Telegram):</strong> Same process — screenshot it and paste into any of the three options above. Or if Baz asked you to open Terminal to run a command and something went wrong, copy the error text and send it directly to him via Telegram.</p>
+        <p><strong>If the error is in Terminal (not Telegram):</strong> Same process — screenshot it and paste into any of the three options above. Or if you were asked to open Terminal to run a command and something went wrong, copy the error text and share it with support via Telegram.</p>
 
-        <p style="font-size:13px;color:#515154;margin-top:12px;"><strong>Premium option:</strong> Warp is a terminal replacement with a full AI agent built in — subscription required. If you're running commands regularly and want the most seamless experience, ask Baz about it.</p>
+        <p style="font-size:13px;color:#515154;margin-top:12px;"><strong>Premium option:</strong> Warp is a terminal replacement with a full AI agent built in — subscription required. If you're running commands regularly and want the most seamless experience, contact support to discuss.</p>
       </div>
     </div>
 
@@ -1108,7 +1108,7 @@
       <div class="faq-a">
         <p>This is a compaction side effect. After context compaction, the bot has no memory of sending a file earlier in the session. Without version numbers in the filename, every send looks like the first send.</p>
         <p>The fix is file versioning: filenames like <code>v1-report-9-May-26.html</code>, <code>v2-report-9-May-26.html</code>. Before sending, the bot checks which version already exists on disk — so it always knows where it is in the iteration cycle, even after a compact.</p>
-        <p>If this keeps happening, let Baz know. It means the versioning protocol isn't configured for your bot and can be added in a quick session.</p>
+        <p>If this keeps happening, contact support. It means the versioning protocol isn't configured for your bot and can be added in a quick session.</p>
       </div>
     </div>
   </div>
@@ -1116,13 +1116,13 @@
   <!-- NO RESULTS -->
   <div class="no-results" id="no-results">
     <h3>Nothing matched that search</h3>
-    <p>Try a different word, or reach out to Baz directly.</p>
+    <p>Try a different word, or reach out to support directly.</p>
   </div>
 
   <!-- CONTACT CTA -->
   <div class="contact-cta">
     <h3>Still have a question?</h3>
-    <p>Baz set this up and knows your system. Reach out directly.</p>
+    <p>Your setup provider knows your system. Reach out directly.</p>
     <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank">Book a session</a>
   </div>
 
