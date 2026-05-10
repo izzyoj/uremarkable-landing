@@ -1068,36 +1068,36 @@
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="terminal error screenshot paste AI help troubleshoot error message debug claude chatgpt ai explain error copy paste">
+    <div class="faq-item" data-keywords="terminal error screenshot paste AI help troubleshoot error message debug claude chatgpt ai explain error copy paste cursor warp claude code">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">I see an error in Terminal — how do I get AI help to understand it?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>You have two options depending on what's easier — screenshot it and paste into a browser, or copy the text and ask directly in Terminal.</p>
+        <p>There are three options depending on your situation. Use Option 1 first — it's the fastest. If your Claude usage window has run out, use Option 2 as a backup. Option 3 is the premium upgrade if you want it built into your terminal permanently.</p>
 
-        <p><strong>Option 1: Screenshot and paste (easiest)</strong></p>
-        <ol>
-          <li>Press <code>Cmd + Shift + 4</code> on your Mac keyboard</li>
-          <li>Your cursor turns into a crosshair — click and drag to select just the error text on screen</li>
-          <li>Let go. The screenshot saves to your Desktop automatically</li>
-          <li>Open <a href="https://claude.ai" target="_blank">claude.ai</a> or <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> in your browser (both free)</li>
-          <li>Drag the screenshot from your Desktop into the chat, or click the paperclip icon and attach it</li>
-          <li>Type: <em>"What does this error mean and how do I fix it?"</em> and send</li>
-        </ol>
-        <div class="tip"><strong>Faster clipboard shortcut:</strong> Press <code>Cmd + Ctrl + Shift + 4</code> instead. This skips saving to Desktop and copies the screenshot straight to your clipboard. Then just <code>Cmd + V</code> to paste directly into the chat.</div>
-
-        <p><strong>Option 2: Ask Claude directly in Terminal (if your system is set up)</strong></p>
-        <p>If Baz set up your AI system, you already have Claude installed on your machine. You can ask it questions directly from Terminal without opening a browser:</p>
+        <p><strong>Option 1: Claude Code in Terminal (fastest — already installed)</strong></p>
+        <p>If Baz set up your AI system, Claude Code is already installed on your machine. Open Terminal and type:</p>
         <ol>
           <li>Open Terminal on your Mac</li>
-          <li>Type <code>claude</code> and press Enter — this opens an interactive AI session</li>
-          <li>Type or paste the error message and ask what it means</li>
-          <li>When done, type <code>exit</code> or press <code>Ctrl + C</code> to close the session</li>
+          <li>Type <code>claude</code> and press Enter — this opens an AI session right there in the terminal</li>
+          <li>Paste the error and type: <em>"What does this error mean and how do I fix it?"</em></li>
+          <li>When done, press <code>Ctrl + C</code> to close</li>
         </ol>
-        <p>You can also do it as a one-liner: <code>claude "what does this error mean: [paste error here]"</code></p>
+        <div class="tip">One-liner shortcut: <code>claude "what does this error mean: [paste error here]"</code> — no interactive session needed.</div>
 
-        <p>Both options work. Option 2 is faster if you're already in Terminal. Option 1 works for anyone, even without a custom setup.</p>
+        <p><strong>Option 2: Cursor (free — use this if your Claude window is exhausted)</strong></p>
+        <p>Your Claude Pro subscription has a 5-hour rolling usage window. If that's run out, the <code>claude</code> command in Terminal won't work either — it uses the same subscription. Cursor is a free code editor with its own built-in AI that runs on a separate quota.</p>
+        <ol>
+          <li>Download Cursor from <a href="https://cursor.com" target="_blank">cursor.com</a> — free to install</li>
+          <li>Open Cursor and press <code>Cmd + L</code> to open the AI chat sidebar</li>
+          <li>Type or paste your error and ask what it means</li>
+        </ol>
+        <p>Cursor's free tier gives you enough AI completions for occasional troubleshooting. It's a good backup to have installed even if you never use it for code editing.</p>
+        <div class="tip"><strong>Screenshot method (works anywhere):</strong> Press <code>Cmd + Ctrl + Shift + 4</code>, drag to select the error on screen, and the screenshot copies straight to your clipboard. Then paste it (<code>Cmd + V</code>) directly into Cursor's AI chat, claude.ai, or chatgpt.com.</div>
+
+        <p><strong>Option 3: Warp (paid upgrade — AI built into the terminal)</strong></p>
+        <p>Warp is a terminal replacement with a full AI agent built in. You describe what you want, it suggests and runs the commands. The AI features require a Warp subscription. If you're running into terminal errors regularly and want the most seamless experience, it's worth the upgrade — contact Baz to discuss.</p>
       </div>
     </div>
 
