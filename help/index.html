@@ -1011,6 +1011,44 @@
       </div>
     </div>
 
+    <div class="faq-item" data-keywords="context window exhausted 0k tokens usage limit 5 hour reset quota exhausted pro max plan limit hit wall">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">I see "Context window likely exhausted" or "0k tokens"</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>This means your AI subscription's 5-hour usage bucket has run out, not that anything has broken. Claude Pro and Max have a rolling usage window — heavy sessions can use it up faster than light ones. When the bucket empties, the assistant restarts fresh and shows "0k tokens" because it has no conversation history yet.</p>
+        <p><strong>To recover immediately:</strong></p>
+        <ul>
+          <li>Send <code>/newchat</code> — this clears the empty session</li>
+          <li>Wait for confirmation, then send <code>/respin</code> — this pulls your last 20 messages back in</li>
+          <li>If <code>/respin</code> also fails, skip it. Just send <code>/newchat</code> and describe what you need. Your assistant's long-term memory is unaffected.</li>
+        </ul>
+        <p><strong>Important:</strong> Do not send <code>/respin</code> without doing <code>/newchat</code> first. Sending them out of order causes a loop where you keep seeing the same wall message.</p>
+        <p>The bucket resets on a rolling 5-hour window — you may not need to wait the full 5 hours. If this is happening regularly and interrupting your workflow, upgrading from Pro to Max gives you 5x more usage per window. Contact Baz to walk through the upgrade (no reconfiguration needed on your end).</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="re-authenticate claude auth login authentication expired not logged in claude login browser">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">The assistant stopped working and I see a "claude auth" error</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Occasionally, the authentication token that connects your assistant to Claude expires and needs to be refreshed. This is separate from your subscription — it's a one-time login step that most people only ever do once.</p>
+        <p><strong>To fix it:</strong></p>
+        <ul>
+          <li>Open Terminal on your Mac</li>
+          <li>Type <code>claude auth login</code> and press Enter</li>
+          <li>A browser window will open asking you to sign in to claude.ai</li>
+          <li>Sign in, approve the connection, and close the browser</li>
+          <li>Back in Terminal, type <code>pm2 restart [your-bot-name]</code> and press Enter</li>
+        </ul>
+        <p>The assistant should start responding again within 30 seconds. If you're unsure which bot name to use, contact Baz — he can check remotely.</p>
+        <div class="tip">This is different from your Claude subscription. You don't need to cancel or change anything — just refresh the login token.</div>
+      </div>
+    </div>
+
     <div class="faq-item" data-keywords="same file twice duplicate file resent multiple times compaction version sent again already sent">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">I received the same file multiple times</span>
