@@ -941,6 +941,25 @@
       </div>
     </div>
 
+    <div class="faq-item" data-keywords="assistant stopped after restart mac reboot not working after restarting mac turned off pm2 not started">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">The assistant stopped responding after I restarted my Mac</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Your assistant is set up to restart automatically every time your Mac turns on. Most of the time you'll never need to do anything. If it doesn't come back on its own after a reboot, the fix is a single Terminal command.</p>
+        <p><strong>To check and restart:</strong></p>
+        <ol>
+          <li>Open Terminal on your Mac (search "Terminal" in Spotlight)</li>
+          <li>Type <code>pm2 status</code> and press Enter — this shows whether the bot is running or stopped</li>
+          <li>If the status shows "stopped" or "errored", type <code>pm2 restart [your-bot-name]</code> and press Enter</li>
+          <li>Wait about 30 seconds and try messaging it</li>
+        </ol>
+        <p>If you're not sure of the bot name, it's shown in the pm2 status output (left column). You can also contact Baz and he can check and restart it remotely.</p>
+        <div class="tip">If this happens repeatedly after restarts, the startup hook may not be set. Let Baz know — it's a one-line fix that makes the auto-start permanent.</div>
+      </div>
+    </div>
+
     <div class="faq-item" data-keywords="feels confused off context wrong weird responses not making sense">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">The bot is responding but feels confused or off</span>
