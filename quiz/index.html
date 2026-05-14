@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reclaim Your Hours | FounderBud Admin Blueprint</title>
+<meta name="description" content="See the exact back-office system small business owners use to recover 10+ hours a week. Personalised to your situation in 60 seconds.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #0071e3;
+  --blue-light: rgba(0,113,227,0.08);
+  --text: #1d1d1f;
+  --text-2: #6e6e73;
+  --text-3: #86868b;
+  --bg: #ffffff;
+  --bg-2: #f5f5f7;
+  --border: rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.nav-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+.nav-back {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-3);
+  text-decoration: none;
+}
+.nav-back:hover { color: var(--blue); }
+
+/* ── SECTIONS ── */
+.section { padding: 72px 24px; }
+.section-inner { max-width: 640px; margin: 0 auto; }
+.section-inner.wide { max-width: 900px; }
+.section-bg { background: var(--bg-2); }
+
+/* ── LABELS ── */
+.offer-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--blue-light);
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 20px;
+}
+
+/* ── HERO ── */
+.hero-section { padding: 80px 24px 72px; text-align: center; }
+.hero-h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 16px;
+}
+@media (max-width: 600px) { .hero-h1 { font-size: 30px; } }
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--text-2);
+  line-height: 1.55;
+  max-width: 520px;
+  margin: 0 auto 32px;
+}
+@media (max-width: 600px) { .hero-sub { font-size: 16px; } }
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 32px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: -0.01em;
+}
+.btn-primary:hover { background: #005bbf; }
+.btn-primary:active { transform: scale(0.98); }
+
+.hero-meta {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-3);
+}
+.hero-meta span { display: flex; align-items: center; gap: 4px; }
+.hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); }
+
+/* ── BUNDLE GRID ── */
+.bundle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+@media (max-width: 600px) { .bundle-grid { grid-template-columns: 1fr; } }
+
+.bundle-card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bundle-icon { font-size: 22px; }
+.bundle-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.bundle-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+/* ── OUTCOMES ── */
+.outcomes-list { display: flex; flex-direction: column; gap: 0; }
+.outcome-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.outcome-item:last-child { border-bottom: none; }
+.outcome-num {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: 0.04em;
+  width: 28px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.outcome-text {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* ── POSITIONING STRIP ── */
+.pos-strip {
+  padding: 40px 24px;
+  background: var(--text);
+  text-align: center;
+}
+.pos-strip-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.pos-quote {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+@media (max-width: 500px) { .pos-quote { font-size: 17px; } }
+.pos-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+}
+
+/* ── QUIZ SECTION ── */
+.quiz-section { padding: 72px 24px 80px; background: var(--bg-2); }
+.quiz-header { max-width: 640px; margin: 0 auto 32px; }
+.quiz-h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.quiz-h2-sub {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+/* ── QUIZ CARD ── */
+.quiz-card {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  background: var(--bg);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.card-body { padding: 32px 28px; }
+@media (max-width: 480px) { .card-body { padding: 24px 18px; } }
+
+/* ── PROGRESS ── */
+.progress-wrap { padding: 18px 28px 0; }
+@media (max-width: 480px) { .progress-wrap { padding: 14px 18px 0; } }
+.progress-track {
+  height: 3px;
+  background: var(--bg-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.progress-label {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 8px;
+  text-align: right;
+}
+
+/* ── SCREENS ── */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ── START SCREEN ── */
+.start-inner { text-align: center; }
+.start-h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.start-sub {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+.start-chips {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.start-chip {
+  font-size: 12px;
+  color: var(--text-3);
+  background: var(--bg-2);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.btn-start {
+  width: 100%;
+  padding: 15px 24px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn-start:hover { background: #005bbf; }
+.btn-start:active { transform: scale(0.98); }
+
+/* ── QUESTION ── */
+.q-category {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+.q-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+@media (max-width: 400px) { .q-text { font-size: 18px; } }
+
+.answers { display: flex; flex-direction: column; gap: 9px; }
+.answer-btn {
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--bg-2);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: all 0.15s;
+  line-height: 1.35;
+}
+.answer-btn:hover { border-color: var(--blue); background: var(--blue-light); }
+.answer-btn.selected { background: var(--blue); border-color: var(--blue); color: #fff; }
+.answer-btn:active { transform: scale(0.98); }
+
+.q-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+}
+.btn-back {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-3);
+  cursor: pointer;
+  font-family: var(--font);
+  padding: 8px 0;
+}
+.btn-back:hover { color: var(--text); }
+.btn-next {
+  padding: 11px 26px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn-next:hover { background: #005bbf; }
+.btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ── SCORE ── */
+.score-tier-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+.tier-drowning { background: #fff0f0; color: #c00; }
+.tier-treading  { background: #fff8e6; color: #a65c00; }
+.tier-almost    { background: #edfaf3; color: #0a7a3f; }
+
+.score-headline {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.score-sub {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+.score-stats {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.score-stat {
+  flex: 1;
+  background: var(--bg-2);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  text-align: center;
+}
+.score-stat-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.score-stat-label { font-size: 11px; color: var(--text-3); font-weight: 500; }
+
+.breakdown-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-3);
+  margin-bottom: 12px;
+}
+.breakdown-rows { display: flex; flex-direction: column; gap: 9px; margin-bottom: 26px; }
+.breakdown-row { display: flex; align-items: center; gap: 10px; }
+.breakdown-cat { font-size: 12px; color: var(--text-2); width: 72px; flex-shrink: 0; }
+.breakdown-track {
+  flex: 1;
+  height: 5px;
+  background: var(--bg-2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.breakdown-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--blue);
+  transition: width 0.6s ease;
+}
+.breakdown-fill.high { background: #c00; }
+.breakdown-fill.mid  { background: #f5a623; }
+.breakdown-hrs { font-size: 11px; font-weight: 600; color: var(--text-3); width: 38px; text-align: right; flex-shrink: 0; }
+
+/* ── EMAIL UNLOCK ── */
+.unlock-divider { height: 1px; background: var(--border); margin: 0 -28px 24px; }
+@media (max-width: 480px) { .unlock-divider { margin: 0 -18px 20px; } }
+
+.unlock-h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.unlock-sub {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.unlock-bullets {
+  list-style: none;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.unlock-bullets li {
+  font-size: 13px;
+  color: var(--text-2);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+.unlock-bullets li::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+.email-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.email-input {
+  flex: 1;
+  min-width: 160px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.email-input::placeholder { color: var(--text-3); }
+.email-input:focus { border-color: var(--blue); }
+.btn-unlock {
+  padding: 12px 20px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.btn-unlock:hover { background: #005bbf; }
+.btn-unlock:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.unlock-success {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #edfaf3;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: #0a7a3f;
+  font-weight: 500;
+}
+.unlock-success.visible { display: flex; }
+.unlock-privacy { margin-top: 10px; font-size: 11px; color: var(--text-3); }
+
+.walkthrough-link {
+  margin-top: 18px;
+  text-align: center;
+}
+.walkthrough-link a {
+  font-size: 13px;
+  color: var(--text-3);
+  text-decoration: none;
+}
+.walkthrough-link a span { color: var(--blue); text-decoration: underline; }
+
+/* ── FOOTER ── */
+.site-footer {
+  padding: 32px 24px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.site-footer a {
+  font-size: 13px;
+  color: var(--text-3);
+  text-decoration: none;
+  margin: 0 10px;
+}
+.site-footer a:hover { color: var(--blue); }
+
+/* ── BLUEPRINT REVEAL ── */
+.blueprint-reveal {
+  display: none;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+.blueprint-reveal.visible { display: block; }
+
+.bp-confirm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #edfaf3;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: #0a7a3f;
+  margin-bottom: 28px;
+}
+
+.bp-section { margin-bottom: 28px; }
+.bp-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 14px;
+}
+.bp-section-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+/* Priority cards */
+.bp-priority-list { display: flex; flex-direction: column; gap: 10px; }
+.bp-priority-card {
+  background: var(--bg-2);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.bp-priority-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+  flex-shrink: 0;
+  width: 20px;
+}
+.bp-priority-body {}
+.bp-priority-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.bp-priority-why {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+/* Telegram demos */
+.bp-tg-list { display: flex; flex-direction: column; gap: 12px; }
+.bp-tg-item { background: var(--bg-2); border-radius: var(--radius-sm); padding: 14px 16px; }
+.bp-tg-cat {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.bp-tg-message {
+  font-size: 13px;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.tg-you { font-size: 10px; font-weight: 700; color: var(--blue); flex-shrink: 0; padding-top: 1px; }
+.bp-tg-result {
+  font-size: 12px;
+  color: var(--text-3);
+  line-height: 1.4;
+  padding-left: 2px;
+}
+
+/* Ramp */
+.bp-ramp-list { display: flex; flex-direction: column; gap: 0; }
+.bp-ramp-item {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.bp-ramp-item:last-child { border-bottom: none; }
+.bp-ramp-month {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue);
+  width: 52px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.bp-ramp-text { font-size: 13px; color: var(--text-2); line-height: 1.45; }
+.bp-ramp-text strong { color: var(--text); }
+
+/* CTA */
+.bp-cta {
+  background: var(--text);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  text-align: center;
+  margin-top: 4px;
+}
+.bp-cta-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.bp-cta-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+.bp-cta-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.bp-cta-btn:hover { background: #005bbf; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim { animation: fadeUp 0.3s ease both; }
+@keyframes blueprintIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.blueprint-reveal.visible { animation: blueprintIn 0.4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="https://www.uremarkable.com" class="nav-brand">
+    <div class="nav-dot"></div>
+    FounderBud
+  </a>
+  <a href="https://www.uremarkable.com" class="nav-back">Back to site</a>
+</nav>
+
+<!-- ── SECTION 1: HERO ── -->
+<section class="hero-section">
+  <div class="section-inner" style="text-align:center;">
+    <div class="offer-label">Free Resource</div>
+    <h1 class="hero-h1">Find out which workflows are costing you the most</h1>
+    <p class="hero-sub">Back office tasks. Get a personalised blueprint: priority map, 90-day elimination roadmap, admin audit ranked by ROI. Reclaim the hours admin is stealing from your customers.</p>
+    <a href="#quiz" class="btn-primary">Take the 60-second audit</a>
+    <div class="hero-meta">
+      <span>60 seconds</span>
+      <span class="dot"></span>
+      <span>Score on screen, no signup</span>
+      <span class="dot"></span>
+      <span>Blueprint unlocks on screen</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: WHAT'S INSIDE ── -->
+<section class="section section-bg">
+  <div class="section-inner wide">
+    <div class="section-label">Inside the blueprint</div>
+    <div class="bundle-grid">
+      <div class="bundle-card">
+        <div class="bundle-icon">📊</div>
+        <div class="bundle-title">Personalised Admin Audit</div>
+        <div class="bundle-desc">Your numbers. Hours lost by category, monthly cost in owner time, and exactly where your week is going based on your answers.</div>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-icon">🗺️</div>
+        <div class="bundle-title">Workflow Priority Map</div>
+        <div class="bundle-desc">Which of the 5 Business OS verticals to tackle first, ranked by ROI. Start with the workflow that pays back the fastest for your situation.</div>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-icon">💬</div>
+        <div class="bundle-title">Business OS Walkthrough</div>
+        <div class="bundle-desc">What FounderBud actually looks like inside Telegram day to day. Finance, Sales, Content, Admin, and Research in real examples, not diagrams.</div>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-icon">📅</div>
+        <div class="bundle-title">90-Day Ramp Guide</div>
+        <div class="bundle-desc">A single first step: the one workflow to activate in week one that recovers the most time. Then Month 1, Month 2, Month 3. A realistic timeline for what gets switched on when, and what.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: QUIZ ── -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-header">
+    <div class="section-label">Step 1: Get your personalised blueprint</div>
+    <h2 class="quiz-h2">Take the 60-second admin audit</h2>
+    <p class="quiz-h2-sub">7 questions about where your time goes. Your score and personalised blueprint appear on screen instantly. Drop your email to unlock it.</p>
+  </div>
+
+  <div class="quiz-card">
+
+    <!-- Progress bar -->
+    <div class="progress-wrap" id="progressWrap" style="display:none;">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-label" id="progressLabel">Question 1 of 7</div>
+    </div>
+
+    <div class="card-body">
+
+      <!-- Start screen -->
+      <div class="screen active" id="screen-start">
+        <div class="anim start-inner">
+          <div class="start-h3">Ready when you are</div>
+          <div class="start-sub">7 questions. One at a time. Your score is calculated on-screen. No email needed to see your result.</div>
+          <div class="start-chips">
+            <div class="start-chip">60 seconds</div>
+            <div class="start-chip">No signup to score</div>
+            <div class="start-chip">Personalised output</div>
+          </div>
+          <button class="btn-start" onclick="startQuiz()">Start the audit</button>
+        </div>
+      </div>
+
+      <!-- Question screen -->
+      <div class="screen" id="screen-quiz">
+        <div id="questionContainer"></div>
+      </div>
+
+      <!-- Score screen -->
+      <div class="screen" id="screen-score">
+        <div id="scoreContainer"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <a href="https://www.uremarkable.com">uremarkable.com</a>
+  <a href="https://www.uremarkable.com/help/">Help</a>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank">Book a call</a>
+</footer>
+
+<script>
+// ── QUESTIONS ─────────────────────────────────────────────────────────────
+
+const questions = [
+  {
+    category: 'Finance Admin',
+    text: 'How many hours per week do you spend on invoicing, bookkeeping, or chasing payments?',
+    key: 'finance',
+    answers: [
+      { label: 'Under 1 hour', hrs: 0.5, pts: 1 },
+      { label: '1 to 3 hours', hrs: 2, pts: 2 },
+      { label: '3 to 5 hours', hrs: 4, pts: 3 },
+      { label: '5+ hours, and it never ends', hrs: 6.5, pts: 4 }
+    ]
+  },
+  {
+    category: 'Sales and Pipeline',
+    text: 'How do you currently track your deals and follow-ups?',
+    key: 'sales',
+    answers: [
+      { label: 'Actual system: CRM with automated reminders', hrs: 0.5, pts: 1 },
+      { label: 'A CRM, sort of, but I forget to update it', hrs: 1.5, pts: 2 },
+      { label: 'Spreadsheet or notes app', hrs: 3, pts: 3 },
+      { label: 'In my head', hrs: 5, pts: 4 }
+    ]
+  },
+  {
+    category: 'Content and Outreach',
+    text: 'How many hours per week do you spend writing emails, proposals, or posts?',
+    key: 'content',
+    answers: [
+      { label: 'Under 1 hour', hrs: 0.5, pts: 1 },
+      { label: '1 to 3 hours', hrs: 2, pts: 2 },
+      { label: '3 to 5 hours', hrs: 4, pts: 3 },
+      { label: '5+ hours, it kills my week', hrs: 6.5, pts: 4 }
+    ]
+  },
+  {
+    category: 'Admin and Comms',
+    text: 'How long does it take to sort your inbox and schedule meetings each week?',
+    key: 'admin',
+    answers: [
+      { label: 'Under 30 minutes', hrs: 0.25, pts: 1 },
+      { label: '30 to 60 minutes', hrs: 0.75, pts: 2 },
+      { label: '1 to 2 hours', hrs: 1.5, pts: 3 },
+      { label: '2+ hours, my inbox owns me', hrs: 3, pts: 4 }
+    ]
+  },
+  {
+    category: 'Research and Intel',
+    text: 'How often do you waste time on competitor lookups, market data, or supplier research?',
+    key: 'research',
+    answers: [
+      { label: 'Never, I have a system for it', hrs: 0, pts: 1 },
+      { label: 'Occasionally, maybe monthly', hrs: 0.5, pts: 2 },
+      { label: 'Weekly, it adds up', hrs: 1.5, pts: 3 },
+      { label: "It's constant, I'm always looking things up", hrs: 3, pts: 4 }
+    ]
+  },
+  {
+    category: 'Current Support',
+    text: 'What admin support do you have right now?',
+    key: 'support',
+    answers: [
+      { label: 'Multiple staff or a fully outsourced team', hrs: 0, pts: 1 },
+      { label: 'A bookkeeper or accountant', hrs: 1, pts: 2 },
+      { label: 'A part-time VA', hrs: 2, pts: 3 },
+      { label: 'Just me. I do everything.', hrs: 4, pts: 4 }
+    ]
+  },
+  {
+    category: 'Reality Check',
+    text: 'Which of these sounds most like you right now?',
+    key: 'feeling',
+    answers: [
+      { label: "Pretty on top of it. I'm in control.", hrs: 0, pts: 1 },
+      { label: "OK but I know I'm leaking time somewhere", hrs: 1, pts: 2 },
+      { label: "Managing, but barely keeping up", hrs: 2, pts: 3 },
+      { label: "Drowning. My business owns me, not the other way around.", hrs: 3, pts: 4 }
+    ]
+  }
+];
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+
+let currentQ = 0;
+const answers = {};
+
+// ── NAVIGATION ─────────────────────────────────────────────────────────────
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+}
+
+function startQuiz() {
+  currentQ = 0;
+  showScreen('quiz');
+  document.getElementById('progressWrap').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  const pct = Math.round((currentQ / questions.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = 'Question ' + (currentQ + 1) + ' of ' + questions.length;
+
+  const selected = answers[q.key];
+  const isLast = currentQ === questions.length - 1;
+
+  const html = '<div class="anim">' +
+    '<div class="q-category">' + q.category + '</div>' +
+    '<div class="q-text">' + q.text + '</div>' +
+    '<div class="answers">' +
+    q.answers.map(function(a, i) {
+      return '<button class="answer-btn' + (selected && selected.label === a.label ? ' selected' : '') + '" onclick="selectAnswer(\'' + q.key + '\',' + i + ')">' + a.label + '</button>';
+    }).join('') +
+    '</div>' +
+    '<div class="q-nav">' +
+    '<button class="btn-back" onclick="goBack()" ' + (currentQ === 0 ? 'style="visibility:hidden"' : '') + '>&larr; Back</button>' +
+    '<button class="btn-next" id="btnNext" onclick="goNext()" ' + (selected ? '' : 'disabled') + '>' + (isLast ? 'See my results' : 'Next') + '</button>' +
+    '</div></div>';
+
+  document.getElementById('questionContainer').innerHTML = html;
+}
+
+function selectAnswer(key, idx) {
+  const a = questions[currentQ].answers[idx];
+  answers[key] = { pts: a.pts, hrs: a.hrs, label: a.label };
+  document.querySelectorAll('.answer-btn').forEach(function(btn, i) {
+    btn.classList.toggle('selected', i === idx);
+  });
+  document.getElementById('btnNext').disabled = false;
+}
+
+function goNext() {
+  if (!answers[questions[currentQ].key]) return;
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function goBack() {
+  if (currentQ > 0) { currentQ--; renderQuestion(); }
+}
+
+// ── SCORING ────────────────────────────────────────────────────────────────
+
+function calcScore() {
+  const keys = ['finance','sales','content','admin','research','support','feeling'];
+  const totalPts = keys.reduce(function(s,k){ return s + (answers[k] ? answers[k].pts : 0); }, 0);
+  const totalHrs = keys.reduce(function(s,k){ return s + (answers[k] ? answers[k].hrs : 0); }, 0);
+  const dollarLoss = Math.round(totalHrs * 85 / 10) * 10;
+
+  var tier, tierLabel, tierClass, headline, sub;
+  if (totalPts >= 22) {
+    tier = 'drowning'; tierLabel = 'Drowning'; tierClass = 'tier-drowning';
+    headline = 'Your admin is costing you ~$' + dollarLoss.toLocaleString() + '/month in owner time';
+    sub = Math.round(totalHrs) + ' hours a week going to work that should not need your brain. The system exists. You just have not plugged it in yet.';
+  } else if (totalPts >= 15) {
+    tier = 'treading'; tierLabel = 'Treading Water'; tierClass = 'tier-treading';
+    headline = '~$' + dollarLoss.toLocaleString() + '/month sitting in your admin pile';
+    sub = 'You are managing, but the leaks are real. ' + Math.round(totalHrs) + ' hours a week going to tasks a configured system handles automatically. The gap between where you are and where you should be is smaller than you think.';
+  } else {
+    tier = 'almost'; tierLabel = 'Almost There'; tierClass = 'tier-almost';
+    headline = 'Targeted fixes could recover ~$' + dollarLoss.toLocaleString() + '/month';
+    sub = 'You have more sorted than most. But ' + Math.round(totalHrs) + ' hours a week is still leaking to admin. A few well-placed automations and that number drops close to zero.';
+  }
+
+  return { totalPts: totalPts, totalHrs: Math.round(totalHrs * 10) / 10, dollarLoss: dollarLoss, tier: tier, tierLabel: tierLabel, tierClass: tierClass, headline: headline, sub: sub };
+}
+
+function showResults() {
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressLabel').textContent = 'Done';
+
+  var sc = calcScore();
+
+  var cats = [
+    { label: 'Finance', key: 'finance', max: 6.5 },
+    { label: 'Sales', key: 'sales', max: 5 },
+    { label: 'Content', key: 'content', max: 6.5 },
+    { label: 'Admin', key: 'admin', max: 3 },
+    { label: 'Research', key: 'research', max: 3 }
+  ];
+
+  var barHTML = cats.map(function(c) {
+    var hrs = answers[c.key] ? answers[c.key].hrs : 0;
+    var pct = Math.min(100, Math.round((hrs / c.max) * 100));
+    var cls = pct >= 70 ? 'high' : pct >= 40 ? 'mid' : '';
+    var label = hrs === 0 ? 'None' : hrs < 1 ? Math.round(hrs * 60) + 'min' : hrs + 'h';
+    return '<div class="breakdown-row"><div class="breakdown-cat">' + c.label + '</div><div class="breakdown-track"><div class="breakdown-fill ' + cls + '" style="width:0%" data-target="' + pct + '"></div></div><div class="breakdown-hrs">' + label + '/wk</div></div>';
+  }).join('');
+
+  var html = '<div class="anim">' +
+    '<div class="score-tier-label ' + sc.tierClass + '">' + sc.tierLabel + '</div>' +
+    '<div class="score-headline">' + sc.headline + '</div>' +
+    '<div class="score-sub">' + sc.sub + '</div>' +
+    '<div class="score-stats">' +
+    '<div class="score-stat"><div class="score-stat-val">' + sc.totalHrs + 'h</div><div class="score-stat-label">hours / week lost</div></div>' +
+    '<div class="score-stat"><div class="score-stat-val">$' + sc.dollarLoss.toLocaleString() + '</div><div class="score-stat-label">est. monthly admin cost</div></div>' +
+    '</div>' +
+    '<div class="breakdown-title">Where the time goes</div>' +
+    '<div class="breakdown-rows">' + barHTML + '</div>' +
+    '<div class="unlock-divider"></div>' +
+    '<div class="unlock-h2">Unlock your personalised blueprint</div>' +
+    '<div class="unlock-sub">Workflow priority map, Business OS walkthrough, and 90-day ramp, personalised to your answers. Reveals instantly below.</div>' +
+    '<ul class="unlock-bullets">' +
+    '<li>Your top 3 automations ranked by ROI for your situation</li>' +
+    '<li>What each workflow looks like inside FounderBud via Telegram</li>' +
+    '<li>A realistic 90-day ramp based on your score</li>' +
+    '</ul>' +
+    '<div id="emailForm">' +
+    '<div class="email-row">' +
+    '<input type="email" class="email-input" id="blueprintEmail" placeholder="your@email.com" />' +
+    '<button class="btn-unlock" id="btnUnlock" onclick="submitEmail()">Unlock the blueprint</button>' +
+    '</div>' +
+    '<div class="unlock-privacy">We\'ll use your email to follow up, with your permission. Unsubscribe any time.</div>' +
+    '</div>' +
+    '<div id="blueprintReveal" class="blueprint-reveal"></div>' +
+    '</div>';
+
+  document.getElementById('scoreContainer').innerHTML = html;
+  showScreen('score');
+
+  requestAnimationFrame(function() {
+    setTimeout(function() {
+      document.querySelectorAll('.breakdown-fill[data-target]').forEach(function(el) {
+        el.style.width = el.dataset.target + '%';
+      });
+    }, 100);
+  });
+}
+
+// ── EMAIL SUBMIT ───────────────────────────────────────────────────────────
+
+function submitEmail() {
+  var email = document.getElementById('blueprintEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('blueprintEmail').focus();
+    return;
+  }
+  var btn = document.getElementById('btnUnlock');
+  btn.disabled = true;
+  btn.textContent = 'Loading blueprint...';
+
+  var sc = calcScore();
+
+  // Capture lead (fire and forget)
+  fetch('https://formsubmit.co/ajax/uremarkable1@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      email: email,
+      _subject: 'FounderBud Quiz: Blueprint Unlock',
+      source: 'uremarkable.com/quiz',
+      tier: sc.tierLabel,
+      hours_lost: sc.totalHrs + ' hrs/week',
+      monthly_cost: '$' + sc.dollarLoss.toLocaleString(),
+      score: sc.totalPts + '/28',
+      finance_hrs: (answers.finance ? answers.finance.hrs : 0) + ' hrs/wk',
+      sales_hrs: (answers.sales ? answers.sales.hrs : 0) + ' hrs/wk',
+      content_hrs: (answers.content ? answers.content.hrs : 0) + ' hrs/wk',
+      admin_hrs: (answers.admin ? answers.admin.hrs : 0) + ' hrs/wk',
+      research_hrs: (answers.research ? answers.research.hrs : 0) + ' hrs/wk'
+    })
+  }).catch(function() {}); // silent: blueprint reveals regardless
+
+  // Reveal blueprint immediately
+  setTimeout(function() { revealBlueprint(sc); }, 400);
+}
+
+// ── BLUEPRINT GENERATOR ────────────────────────────────────────────────────
+
+function revealBlueprint(sc) {
+  document.getElementById('emailForm').style.display = 'none';
+
+  // Category data with Telegram examples, sorted by hours desc
+  var catMeta = [
+    {
+      name: 'Finance Admin', key: 'finance',
+      why: 'Invoice follow-up, payment chasing, and bookkeeping eat owner time fast. Most founders spend 2-4x more here than they estimate.',
+      tgPrompt: 'Who owes me money this week?',
+      tgResult: 'Returns a ranked list of outstanding invoices with days overdue and a draft follow-up message for each one, ready to send.'
+    },
+    {
+      name: 'Sales Pipeline', key: 'sales',
+      why: 'If deals live in your head or a half-updated spreadsheet, follow-ups slip and revenue leaks. A live pipeline costs almost nothing to maintain when the system does the updates.',
+      tgPrompt: "What's in my pipeline?",
+      tgResult: 'Returns deal status, days since last contact, estimated close date, and a follow-up draft ready to review and send.'
+    },
+    {
+      name: 'Content and Outreach', key: 'content',
+      why: 'Proposals, follow-up emails, and LinkedIn posts drain creative energy that should go to clients. Most of this is templatable once you have the context layer.',
+      tgPrompt: 'Draft a follow-up for [client name], they went quiet after the proposal.',
+      tgResult: 'Personalised follow-up in your tone, referencing the proposal context, ready to review in under 90 seconds.'
+    },
+    {
+      name: 'Admin and Comms', key: 'admin',
+      why: 'Inbox triage and scheduling are low-cognition work that still takes real time. Routing rules and scheduling automation recover 1-2 hours a week with no quality tradeoff.',
+      tgPrompt: 'Book a meeting with [name] for next week, 30 minutes.',
+      tgResult: 'Checks your calendar, proposes three slots, drafts the invite. One reply from you to confirm.'
+    },
+    {
+      name: 'Research and Intel', key: 'research',
+      why: 'Market lookups, competitor checks, and supplier research feel quick but compound into hours. A research layer that runs on demand replaces a part-time research retainer.',
+      tgPrompt: "What's [competitor] doing in the [market] space right now?",
+      tgResult: 'Returns a brief: recent moves, positioning changes, relevant news. Sources included. Replaces 45-60 minutes of manual searching.'
+    }
+  ];
+
+  // Sort by hours descending, filter out zero-hour categories
+  var sorted = catMeta.map(function(c) {
+    return Object.assign({}, c, { hrs: answers[c.key] ? answers[c.key].hrs : 0 });
+  }).sort(function(a, b) { return b.hrs - a.hrs; });
+
+  var top3 = sorted.filter(function(c) { return c.hrs > 0; }).slice(0, 3);
+  if (top3.length === 0) top3 = sorted.slice(0, 3); // fallback if all zeros
+
+  // Priority map HTML
+  var priorityHTML = top3.map(function(c, i) {
+    return '<div class="bp-priority-card">' +
+      '<div class="bp-priority-num">0' + (i + 1) + '</div>' +
+      '<div class="bp-priority-body">' +
+      '<div class="bp-priority-name">' + c.name + '</div>' +
+      '<div class="bp-priority-why">' + c.why + '</div>' +
+      '</div></div>';
+  }).join('');
+
+  // Telegram demo HTML
+  var tgHTML = top3.map(function(c) {
+    return '<div class="bp-tg-item">' +
+      '<div class="bp-tg-cat">' + c.name + '</div>' +
+      '<div class="bp-tg-message"><span class="tg-you">YOU</span><span>' + c.tgPrompt + '</span></div>' +
+      '<div class="bp-tg-result">FounderBud: ' + c.tgResult + '</div>' +
+      '</div>';
+  }).join('');
+
+  // 90-day ramp based on tier
+  var ramp;
+  if (sc.tier === 'drowning') {
+    ramp = [
+      { month: 'Week 1', text: '<strong>Start with ' + (top3[0] ? top3[0].name : 'Finance Admin') + '.</strong> Your highest-cost workflow, configured first. This is the one that pays back fastest.' },
+      { month: 'Month 1', text: '<strong>' + (top3[0] ? top3[0].name : 'Finance Admin') + ' and ' + (top3[1] ? top3[1].name : 'Sales Pipeline') + ' live.</strong> Expect to recover 8-10 hours a week by end of month.' },
+      { month: 'Month 2', text: '<strong>' + (top3[2] ? top3[2].name : 'Content and outreach') + ' automated.</strong> Proposals and follow-ups drafted on command. Admin load drops to under 6 hours a week.' },
+      { month: 'Month 3', text: '<strong>The system runs.</strong> You do the work only you can do. Everything else is delegated to the OS. Under 4 hours of admin a week.' }
+    ];
+  } else if (sc.tier === 'treading') {
+    ramp = [
+      { month: 'Week 1', text: '<strong>Start with ' + (top3[0] ? top3[0].name : 'Finance Admin') + '.</strong> Your single highest-cost category, activated first. Hours back in your week before month one ends.' },
+      { month: 'Month 1', text: '<strong>' + (top3[0] ? top3[0].name : 'Finance Admin') + ' live.</strong> Your highest-cost category automated first. Expect 4-5 hours recovered per week.' },
+      { month: 'Month 2', text: '<strong>' + (top3[1] ? top3[1].name : 'Sales Pipeline') + ' added.</strong> Second workflow running. Combined recovery: 6-8 hours a week.' },
+      { month: 'Month 3', text: '<strong>Pipeline stable, outreach consistent.</strong> Admin is no longer the thing that slows you down.' }
+    ];
+  } else {
+    ramp = [
+      { month: 'Week 1', text: '<strong>Start with ' + (top3[0] ? top3[0].name : 'Finance Admin') + '.</strong> One targeted fix, your biggest remaining gap. You will feel it inside a week.' },
+      { month: 'Month 1', text: '<strong>' + (top3[0] ? top3[0].name : 'Finance Admin') + ' tightened.</strong> One or two targeted fixes close your biggest remaining gap. 2-3 hours recovered.' },
+      { month: 'Month 2', text: '<strong>Second improvement in.</strong> ' + (top3[1] ? top3[1].name : 'Sales Pipeline') + ' running lean. You are not reacting to admin anymore.' },
+      { month: 'Month 3', text: '<strong>System optimised.</strong> Each month the context layer gets richer. The system gets faster. You get more of your week back.' }
+    ];
+  }
+
+  var rampHTML = ramp.map(function(r) {
+    return '<div class="bp-ramp-item"><div class="bp-ramp-month">' + r.month + '</div><div class="bp-ramp-text">' + r.text + '</div></div>';
+  }).join('');
+
+  var blueprintHTML =
+    '<div class="bp-confirm"><span>&#10003;</span><span>Blueprint unlocked for your ' + sc.tierLabel + ' profile</span></div>' +
+
+    '<div class="bp-section">' +
+    '<div class="bp-section-label">Workflow Priority Map</div>' +
+    '<div class="bp-section-title">Start here, in this order</div>' +
+    '<div class="bp-priority-list">' + priorityHTML + '</div>' +
+    '</div>' +
+
+    '<div class="bp-section">' +
+    '<div class="bp-section-label">Business OS in practice</div>' +
+    '<div class="bp-section-title">What it looks like via Telegram</div>' +
+    '<div class="bp-tg-list">' + tgHTML + '</div>' +
+    '</div>' +
+
+    '<div class="bp-section">' +
+    '<div class="bp-section-label">90-Day Ramp</div>' +
+    '<div class="bp-section-title">Your rollout, week by week</div>' +
+    '<div class="bp-ramp-list">' + rampHTML + '</div>' +
+    '</div>' +
+
+    '<div class="pos-strip" style="margin: 28px -28px;">' +
+    '<div class="pos-strip-inner">' +
+    '<div class="pos-quote">Not a chatbot. A back-office hire.</div>' +
+    '<div class="pos-sub">FounderBud runs on your machine via Telegram. Finance, Sales, Content, Admin, Research. Your data stays local. Your context compounds.</div>' +
+    '</div></div>' +
+
+    '<div class="bp-cta">' +
+    '<div class="bp-cta-title">Ready to see it live?</div>' +
+    '<div class="bp-cta-sub">One setup session. Your existing Mac. Live by end of day.</div>' +
+    '<a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" class="bp-cta-btn">Book a 15-min walkthrough</a>' +
+    '</div>';
+
+  var el = document.getElementById('blueprintReveal');
+  el.innerHTML = blueprintHTML;
+  el.classList.add('visible');
+
+  // Smooth scroll to blueprint
+  setTimeout(function() {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+</script>
+</body>
+</html>
