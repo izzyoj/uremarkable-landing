@@ -567,13 +567,15 @@
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="background service run automatically keeps running always on startup">
+    <div class="faq-item" data-keywords="background service run automatically keeps running always on startup awake sleep mac keep awake toggle">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">Does it keep running in the background?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Claude Desktop launches at login and stays available. Scheduled workflows run in the background on their own timer — you do not need to have Claude open for them to fire. Your business context (CLAUDE.md) loads automatically at the start of every new session, so Claude always knows where it is.</p>
+        <p>Partly. Claude Desktop launches at login and your business context loads automatically at the start of every session. But there is one hard requirement: <strong>your Mac must be awake and Claude Desktop must be open</strong> for Claude to work on tasks. If your Mac sleeps or Claude closes, task execution stops.</p>
+        <p>During setup, Claude Desktop shows a toggle to <strong>Keep this computer awake</strong> — turn that on. It prevents your Mac from sleeping while Claude is working, which matters most for longer scheduled workflows and background tasks running while you are away from your desk.</p>
+        <p>If you leave your Mac on during the day with Claude Desktop open, everything runs automatically with no further action from you.</p>
       </div>
     </div>
 
@@ -825,6 +827,27 @@
         <p>The Cowork connector library includes: Gmail, Google Calendar, Google Drive, Microsoft 365, HubSpot, Slack, Canva, Figma, Notion, Atlassian Rovo, Ironclad, NetDocuments, and more.</p>
         <p>For accounting tools, Xero connects via Xero CLI and MYOB connects via MYOB API — these are configured during your setup session or added as part of a retainer scope.</p>
         <p>If a tool you use is not listed, ask during your discovery call. Custom connectors and CLI integrations are often possible.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="give claude access files folder obsidian vault file access toggle setup permission local files">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I give Claude access to my files?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>During Claude Desktop setup, you will see a toggle to <strong>Give Claude access to your files</strong> — turn it on. When prompted to select a folder, choose your <strong>Obsidian vault folder</strong>. That is the folder Claude reads from and writes to for all output.</p>
+        <p>Your vault is a regular folder on your Mac, typically inside Documents:</p>
+        <div class="folder-tree"><pre><span class="dir">~/Documents/</span>
+  <span class="dir">YourVaultName/</span>      <span class="cm">&lt;-- select this folder</span>
+    <span class="tb">├─</span> <span class="dir">inbox/</span>
+    <span class="tb">├─</span> <span class="dir">projects/</span>
+    <span class="tb">├─</span> <span class="dir">content/</span>
+    <span class="tb">├─</span> <span class="dir">daily/</span>
+    <span class="tb">├─</span> <span class="dir">tools/</span>
+    <span class="tb">└─</span> <span class="file">memory.md</span></pre></div>
+        <p>Not sure which folder is your vault? Open Obsidian and check the vault name in the bottom-left corner. The folder with that name in your Documents is what to select.</p>
+        <p>Your setup provider configures this during the setup session, so you will not need to figure this out alone on your first day.</p>
       </div>
     </div>
 
