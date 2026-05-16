@@ -693,6 +693,38 @@ img { max-width: 100%; }
 ================================================================ -->
 <script>
 const SIGNALS = [
+  {
+    id: 'claude-for-small-business-2026-05-13',
+    date: '13 May 2026',
+    category: 'small-business-news',
+    categoryLabel: 'Small Business News',
+    catClass: 'cat-sbn',
+    sourceType: 'news',
+    featured: true,
+    title: 'Anthropic built the thing small businesses have been waiting for',
+    excerpt: '15 workflows. One toggle. No IT required. Payroll, reconciliation, invoice chasing, tax prep. Here is what it means downunder.',
+    body: `
+      <p>On 13 May 2026, Anthropic launched Claude for Small Business. Not a chatbot. A workflow engine: 15 ready-to-run automations that install in one toggle through Claude Cowork, covering the jobs that drain small business owners every week.</p>
+      <p><strong>The 15 workflows span six areas:</strong></p>
+      <ul>
+        <li><strong>Finance:</strong> Payroll planning, month-end close, cash-flow analysis, tax-season prep</li>
+        <li><strong>Operations:</strong> Invoice chasing, margin analysis, reconciliation, month-end preparation</li>
+        <li><strong>Sales:</strong> Lead triage, campaign management, margin analysis</li>
+        <li><strong>Content:</strong> Content strategy</li>
+        <li><strong>Legal:</strong> Contract review</li>
+        <li><strong>Customer:</strong> Customer pulse monitoring</li>
+      </ul>
+      <p>Connects natively to QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, and Microsoft 365. US-first rollout, with an SMB Tour kicking off in Chicago.</p>
+      <h3>Downunder</h3>
+      <p>The native connectors are US-centric, but the same workflows are fully achievable here with Xero CLI, MYOB MCP, Stripe, Canva, HubSpot, and DocuSign. The stack exists. It just needs configuring.</p>
+      <p><strong>The watch-out:</strong> every connector reads and writes through Claude's memory layer. That layer isn't passive. It applies salience scoring to decide what it keeps. For most businesses that's fine. For a business owner building context across months of sessions, it means your key client relationship, your pricing logic, a decision that cost you six months to figure out -- could score low and disappear. Their model decides what's important, not you.</p>
+      <p><strong>The signal for you:</strong> Anthropic just validated exactly what we've been saying. The implementation layer is where the value lands. The workflows exist. The question is whether your setup is configured to your business, or just running on defaults.</p>
+    \`,
+    sourceCta: 'Read the full announcement',
+    sourceUrl: 'https://www.anthropic.com/news/claude-for-small-business'
+  },
+
+  // ── TO ADD NEW SIGNALS: copy the object below, update all fields, set featured: true on latest ──
 
   {
     id: 'the-day-my-system-taught-me-2026-04-26',
@@ -726,8 +758,6 @@ const SIGNALS = [
     isDeepDive: true
   },
 
-  // ── TO ADD NEW SIGNALS: copy the object below, update all fields, set featured: true on latest ──
-
   {
     id: 'anthropic-enterprise-2026-05-07',
     date: '7 May 2026',
@@ -735,7 +765,7 @@ const SIGNALS = [
     categoryLabel: 'Small Business News',
     catClass: 'cat-sbn',
     sourceType: 'news',
-    featured: true,
+    featured: false,
     title: 'Anthropic just backed a services firm to deploy AI for mid-market companies',
     excerpt: 'Blackstone, Goldman Sachs, and H&F are co-founding a dedicated AI implementation company. The enterprise tier is moving fast — and it validates the category for every AU founder watching.',
     body: `
