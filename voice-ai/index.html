@@ -568,7 +568,21 @@
   </style>
 
   <!-- Retell Web Call SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@latest/dist/index.umd.js"></script>
+  <!-- Retell Chat Widget — browser voice, no phone number needed -->
+  <script
+    id="retell-widget"
+    src="https://dashboard.retellai.com/retell-widget.js"
+    type="module"
+    data-public-key="public_key_eebbbfc0e04f2d8bb1b4b"
+    data-agent-id="agent_0b604f8b186beb691666b93e86"
+    data-title="Scale Reception Demo"
+    data-color="#2c8f87"
+    data-bot-name="Shazza"
+    data-popup-message="Give Shazza a ring — she's ready now 🤙"
+    data-show-ai-popup="true"
+    data-show-ai-popup-time="8"
+    data-auto-open="false"
+  ></script>
 </head>
 <body>
 
@@ -718,70 +732,23 @@
 
 
   <script>
-    (function() {
-      var PUBLIC_KEY = 'public_key_eebbbfc0e04f2d8bb1b4b';
-      var AGENT_ID   = 'agent_0b604f8b186beb691666b93e86';
-      var client, callActive = false;
-
-      function getBtn() { return document.getElementById('hero-demo-btn'); }
-
-      function setBtnState(state) {
-        var btn = getBtn();
-        if (!btn) return;
-        if (state === 'idle') {
-          btn.innerHTML = '<span class="btn-icon">📞</span> Speak with Shazza now';
-          btn.disabled = false;
-          btn.style.background = '';
-        } else if (state === 'connecting') {
-          btn.innerHTML = '⏳ Connecting...';
-          btn.disabled = true;
-        } else if (state === 'active') {
-          btn.innerHTML = '🔴 End call';
-          btn.disabled = false;
-          btn.style.background = '#c0392b';
-        }
+    // Wire hero button to open the Retell Chat Widget
+    document.addEventListener('DOMContentLoaded', function() {
+      var heroBtn = document.getElementById('hero-demo-btn');
+      if (heroBtn) {
+        heroBtn.addEventListener('click', function() {
+          var widget = document.getElementById('retell-widget');
+          if (widget && typeof widget.open === 'function') {
+            widget.open();
+          } else if (widget && widget.shadowRoot) {
+            var inner = widget.shadowRoot.querySelector('button');
+            if (inner) inner.click();
+          } else if (widget) {
+            widget.click();
+          }
+        });
       }
-
-      async function toggleCall() {
-        if (callActive) {
-          client && client.stopCall();
-          return;
-        }
-
-        setBtnState('connecting');
-
-        try {
-          client = new window.RetellWebClient({ publicKey: PUBLIC_KEY });
-
-          client.on('call_started', function() {
-            callActive = true;
-            setBtnState('active');
-          });
-
-          client.on('call_ended', function() {
-            callActive = false;
-            setBtnState('idle');
-          });
-
-          client.on('error', function(err) {
-            console.error('Retell error:', err);
-            callActive = false;
-            setBtnState('idle');
-          });
-
-          await client.startCall({ agentId: AGENT_ID });
-
-        } catch(e) {
-          console.error('Failed to start call:', e);
-          setBtnState('idle');
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var btn = getBtn();
-        if (btn) btn.addEventListener('click', toggleCall);
-      });
-    })();
+    });
   </script>
 
 </body>
