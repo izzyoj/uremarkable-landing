@@ -21,361 +21,71 @@
     {
       "@type": "Question",
       "name": "What exactly is the AI Business Operating System?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Your AI Business Operating System connects Claude (Anthropic's AI) to your Telegram. When installed on your Mac, every message you send in Telegram goes directly to Claude running on your own machine. It reads your files, connects to your apps, and works like a team member available at any hour."
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Your AI Business Operating System is a configured Claude Cowork setup built around your business. Claude Desktop runs on your Mac, connected to your tools and loaded with your business context via CLAUDE.md. It reads your files, handles your workflows, and operates like a team member available at any hour."
       }
     },
     {
       "@type": "Question",
       "name": "What do I need before my setup session?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Three things: a Mac (macOS is the primary setup; Windows is supported via WSL2), a Telegram account, and a Claude plan. Free and Pro work, but Claude Max (~$155/month AUD) is recommended. Your setup provider handles everything else including software installation, app connections, and configuration."
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Two things: a Mac running macOS and a Claude plan. Pro (A$30.91/month) is the recommended starting point. Max gives more headroom for heavy workflows. Your setup provider handles everything else including software installation, connecting your apps, and loading your business context."
       }
     },
     {
       "@type": "Question",
-      "name": "How long does setup take?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The software configuration takes about 5 minutes. The full setup session typically runs 60-90 minutes, covering installation, connecting your apps (email, calendar, WhatsApp), and personalising the assistant so it knows your business and preferences."
+      "name": "What is Claude Cowork and what does Uremarkable configure?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Claude Cowork is Anthropic's platform for connecting Claude to your business tools via connectors, plugins, and scheduled workflows. Uremarkable configures Claude Desktop on your Mac, loads your business context into CLAUDE.md, connects your tools (Gmail, M365, HubSpot, Slack), and sets up your Obsidian vault as a permanent output layer."
       }
     },
     {
       "@type": "Question",
-      "name": "Does it work on Windows?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, through WSL2 — a compatibility layer that lets Windows run Linux apps. The standard setup is Mac-first, but Windows is supported. If you are on Windows, mention it before booking your setup session."
+      "name": "How do I use it day-to-day?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Open Claude Desktop on your Mac and type or speak naturally. No wake word, no special format. On mobile, use Dispatch to send tasks and check results from your phone. Examples: Check my calendar for tomorrow, Draft a reply to the email from Sarah about the proposal, Create a summary of this document."
       }
     },
     {
       "@type": "Question",
-      "name": "Which Claude plan do I need?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Any plan works. Claude Max (~$155/month AUD) is recommended — the Opus model handles multi-step tasks and complex reasoning. Claude Pro (~$31/month AUD) works for day-to-day messages but may struggle on complex tasks. Free is limited but functional for simple queries."
+      "name": "Can I use voice input?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Yes. In Dispatch on your phone, hold the microphone button, record, and send. It transcribes automatically and executes your request. You can also ask for a voice reply back."
       }
     },
     {
       "@type": "Question",
-      "name": "What is a Telegram bot and why do I need one?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Telegram allows you to create a private bot — a dedicated chat account that belongs to you. Your AI Business Operating System lives inside this bot. You message it like any contact and it responds. It is created during your setup session using Telegram's BotFather tool. No one else can access it."
+      "name": "Can it produce and deliver files?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Yes. Ask it to create something and the file gets saved to your Obsidian vault automatically. Examples: Summarize this week's emails into a PDF, Build a one-page comparison of these quotes, Create an HTML proposal for this client."
       }
     },
     {
       "@type": "Question",
-      "name": "Does it need to be running all the time? What happens when I close my laptop?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It runs as a background service that starts automatically when you log in and restarts itself if it crashes. If your Mac is closed or shut down, the assistant won't respond. For scheduled tasks like a morning briefing, your Mac needs to be running at the scheduled time."
+      "name": "How does memory work?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Two layers. CLAUDE.md is the curated layer: your business context, rules, and key facts, loaded at the start of every session. It never decays. Anthropic's native memory is automatic: it synthesises conversations on a 24-hour cycle, surfacing relevant context. Your Obsidian vault is the permanent output layer: everything Claude produces gets saved there."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I actually use it? Just type?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Open your Telegram chat and type anything — no wake word, no special format. Examples: 'Check my calendar for tomorrow', 'Draft a reply to the email from Sarah about the proposal', 'Set a reminder to follow up with the Barangaroo lead on Friday', 'Create a summary of this document and send it as a PDF'."
+      "name": "How long does memory last?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "CLAUDE.md context never decays — it loads fresh every session. Anthropic native memory runs on a 24-hour synthesis cycle and scores salience automatically. Your Obsidian vault is permanent and fully searchable — everything saved there stays indefinitely."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I use voice notes instead of typing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Hold the microphone button in Telegram, record, and send. It transcribes automatically and executes your request. By default replies come back as text. To get a voice reply back, say 'respond with voice' or 'voice reply' in your message. Send /voice to toggle voice replies on for every message."
+      "name": "Who can access my setup?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Only you. Claude Desktop is tied to your Anthropic account. CLAUDE.md lives on your Mac. Your Obsidian vault is a local folder on your machine. No one else has access unless you explicitly share files."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I send photos, documents, and PDFs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "All of these work. Photos are analyzed immediately — add a caption for specific instructions. PDFs, Word docs, CSVs, and text files are read and processed. Videos up to 20MB are analyzed. Just attach the file and send with or without a caption."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can it create files and send them back to me?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Ask it to create something and it will send the file as a Telegram attachment up to 50MB. Examples: 'Summarize this week's emails into a PDF', 'Build a one-page comparison of these quotes as a spreadsheet', 'Create an HTML proposal for this client'."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What commands can I use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Type / in Telegram to see the full list. Key commands: /newchat starts a fresh conversation, /respin pulls the last 20 messages into a new session, /voice toggles voice replies on or off, /model switches between speed and power, /memory shows recent memories, /stop cancels a running task, /dashboard gets your live dashboard link."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I start a fresh conversation?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Send /newchat. This wipes the current session and starts completely fresh. If you want to keep your recent messages for context, send /respin immediately after — it pulls the last 20 messages into the new session without carrying the full weight of a long conversation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it remember things between conversations?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Your AI Business Operating System has two memory layers: short-term conversation memory that auto-purges after 3 days, and long-term second brain memory written to Obsidian on your Mac that never fades. You do not need to re-explain who you are or what you are working on every session."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the second brain and how is it different from regular memory?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Conversation memory (SQLite) is short-term and auto-purges after 3 days. The second brain (Obsidian) is permanent — notes, daily logs, research, tools built for your business, decisions. Obsidian is a free note-taking app and your vault is a folder on your Mac the assistant writes to automatically."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need to set up or manage Obsidian myself?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. It gets installed and connected during your setup session. After setup, your assistant writes to the vault automatically: captures go to inbox/, daily notes are created at day start, tools go in tools/, research goes in projects/. You can open Obsidian at any time to browse what has accumulated without maintaining it manually."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does it remember things for?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Core preferences and key rules last about 15 months. General business context lasts about 8 months. Frequently referenced memories last longer — each time a memory surfaces in a conversation it gets a salience boost. Memories that prove useless fade; memories that keep coming up stay longer."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I see what it remembers about me?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Send /memory in Telegram. You will see the recent memories stored for your chat. The dashboard also shows importance scores, what has recently been retrieved, and anything starting to fade."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I make it forget something?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Send /forget to clear the current session ID. Stored memories decay naturally over time. For something specific, tell your assistant directly: 'forget what I told you about X' and it will mark that memory as low importance so it fades faster."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is compaction and why does it make the bot forget things?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Claude Code compresses long conversations to stay within its context limit — this is called compaction. When it happens the bot loses its working memory of what happened earlier in the session but can still use tools and build things. Your assistant handles this with versioned filenames so it always knows what version of a file exists even after compaction."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I make sure the bot remembers the session before I start a new chat?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Send 'checkpoint' before starting a new chat. This saves a tight summary of the current session to both the short-term memory database and your second brain (Obsidian). After /newchat, that context is still retrievable. Use checkpoint whenever the session has been productive or an important decision was made."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can it read and send emails?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, if Gmail was connected during your setup session. You can ask it to check your inbox, reply to emails, send emails, or find emails from specific senders. It uses Google's official OAuth — your password never touches the system."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can it manage my calendar?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, if Google Calendar was connected during setup. Ask it what is on your calendar this week, schedule meetings, send calendar invites, or check your availability for specific times."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can it use WhatsApp?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, with no extra cost or API key. It connects to your existing WhatsApp via Linked Devices — the same way WhatsApp Web works. You scan a QR code once during setup and it stays connected. Send /wa in Telegram to see your most recent chats, read messages, and reply. Message content is encrypted at rest and auto-deleted after 3 days."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can it use Slack?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, if Slack was configured during setup. Send /slack to see recent conversations with unread counts. You can also ask naturally: 'check my Slack' or 'reply to Jane on Slack saying I will be 10 minutes late'."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can it access Google Drive, Sheets, or Docs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "This requires the Google Workspace CLI, an optional tool installed during or after your setup session. Once configured your assistant can read, write, and search across Drive, Sheets, Docs, and all other Workspace APIs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I set it up to do things automatically?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Just tell it in plain language what you want and when. Examples: 'Every weekday morning at 8am, check my inbox and send me a briefing', 'Every Monday at 9am, pull last week's AI news and summarize it'. It creates and manages the schedule itself. Your Mac needs to be running at the scheduled time."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I manage scheduled tasks?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Just ask in plain language: 'What tasks do I have scheduled?', 'Pause the Monday morning briefing', 'Delete the daily email check', 'Change the morning briefing to 7:30am'. You can also view and manage them on the dashboard under Scheduled Tasks."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What are agents and do I need more than one?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Agents are specialist versions of your assistant, each with their own Telegram bot and focused role — for example a Comms agent for email and WhatsApp, a Research agent for deep lookups. Each gets its own 1-million-token context window, personality, and scheduled tasks. Most users start with one main assistant and add agents later."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Who else can access my bot?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Only you. The system locks to your specific Telegram account using your chat ID. Messages from any other Telegram user are silently dropped. Group chats are blocked entirely. You can also add a PIN lock for extra security and an emergency kill phrase that immediately stops all processes."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does my data leave my machine?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Your conversations, files, and memories are stored locally on your Mac. External calls that do happen: Anthropic receives your individual queries to run Claude (not your full history or stored memories), Google if you connected Gmail or Calendar, and Groq if voice input is enabled for transcription."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my WhatsApp and Slack messages stored safely?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Message content is encrypted at rest using AES-256-GCM. If someone accessed the database file directly they would see ciphertext, not your messages. Messages are also automatically deleted after 3 days and this cannot be disabled without modifying the source code."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is this against Anthropic's rules?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Your AI Business Operating System runs the official claude CLI on your machine — identical to typing claude in your own terminal. The input comes from Telegram and the output goes back there. Anthropic's terms allow exactly this kind of personal use."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why isn't my Telegram bot responding?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Check: Is your Mac on and awake? Did you miss any macOS permission dialogs on first run? Are you messaging the right bot — it only responds to the Telegram account linked during setup. Try screenshotting any error and using an AI tool to explain it. If unresolved, contact support for a remote service check."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why did my assistant stop responding after I restarted my Mac?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Your assistant is set up to restart automatically every time your Mac turns on. If it does not come back on its own: open Terminal, type 'pm2 status' to check if the bot is running. If stopped or errored, type 'pm2 restart [your-bot-name]' and wait 30 seconds. If this happens repeatedly, contact support — the startup hook may not be configured."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why does my bot feel confused or give strange responses?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The conversation context window is probably too heavy after a long session. Send /newchat then immediately send /respin. This wipes the full session but pulls your recent messages back in, giving you fresh context without losing the thread of what you were discussing."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why aren't voice notes working?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Voice transcription requires a Groq API key. If this was not configured during your setup session, contact support — the Groq free tier is more than enough for personal use and requires no credit card. If voice replies (audio back to you) are not working, that requires a separate ElevenLabs API key. Contact support and specify which part is not working."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why isn't WhatsApp connecting or showing my messages?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "WhatsApp requires a separate background process running alongside your AI Business Operating System. If it has stopped, you will need to restart it and re-scan the QR code in WhatsApp on your phone. The QR code expires after about 30 seconds — if it times out, kill the process and restart it. Contact support if you are unsure."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I update to the latest version?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ask your assistant directly: 'update the AI Business Operating System to the latest version' and it will walk you through the process. Or contact support — updates are part of the ongoing maintenance included in your retainer."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does a 409 Conflict error mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A 409 Conflict error means the system is running twice, with two processes both trying to receive Telegram messages. Restart your Mac to clear it, or use an AI tool to help identify and stop the duplicate process. If the error returns, contact support — it is a quick fix."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why did a file from my bot disappear after restarting my Mac?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The file was staged in /tmp, a temporary folder on your Mac that gets cleared on every restart. Every file your assistant sends should also be saved to your vault (Obsidian), where it survives restarts. After your bot delivers a file, ask 'also save this to my vault' to copy it to the right project folder. A properly configured bot does this automatically."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does Context window likely exhausted or 0k tokens mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "This means your AI subscription's 5-hour usage bucket has run out. To recover: send /newchat to clear the empty session, wait for confirmation, then send /respin to pull your last 20 messages back in. The bucket resets on a rolling 5-hour window. If this interrupts your workflow regularly, upgrading from Claude Pro to Max gives 5x more usage per window."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why did my assistant stop working with a claude auth error?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The authentication token connecting your assistant to Claude has expired. To fix it: open Terminal, type 'claude auth login' and press Enter, sign in when the browser opens, then type 'pm2 restart [your-bot-name]'. The assistant should start responding within 30 seconds. This is not a subscription issue — just a one-time token refresh."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "I see an error with my bot on Telegram — how do I get AI help to understand it?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Screenshot the error and paste it into a free AI tool. Three options: (1) Claude Code in Terminal — open Terminal, type 'claude', paste the error, ask what it means. (2) Cursor — free at cursor.com, press Cmd+L, paste the screenshot. Works even when your Claude quota is exhausted. (3) Browser AI at claude.ai or chatgpt.com — paste the screenshot and ask 'What does this error mean and what should I do?'"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why does my bot keep sending me the same file?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "This is a compaction side effect. After context compaction, the bot has no memory of sending a file earlier in the session. The fix is file versioning — filenames like v1-report-9-May-26.html let the bot check which version already exists on disk before sending. If this keeps happening, contact support to add the versioning protocol to your bot."
+      "name": "Why isn't Claude responding?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Check: Is your Mac on and awake? Is Claude Desktop open? Did you miss any macOS permission dialogs on first run? Try closing and reopening Claude Desktop. If unresolved, contact support for a remote service check."
       }
     }
   ]
@@ -780,40 +490,39 @@
   <div class="faq-section" data-section="getting-started">
     <div class="section-label">Getting started</div>
 
-    <div class="faq-item" data-keywords="what is ai business operating system what is this how does it work overview">
+    <div class="faq-item" data-keywords="what is ai business operating system what is this how does it work overview cowork claude desktop">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">What exactly is the AI Business Operating System?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Your AI Business Operating System is the layer that connects Claude (Anthropic's AI) to your Telegram. When installed on your Mac, every message you send in Telegram goes directly to Claude running on your own machine. The reply comes back to your phone within seconds.</p>
-        <p>It's not a chatbot or a cloud service. Claude runs locally on your hardware, reads your files, connects to your apps, and operates like a member of your team you can reach at any hour.</p>
+        <p>Your AI Business Operating System is a configured Claude Cowork setup built around your business. Claude Desktop runs on your Mac, connected to your tools and loaded with your business context. It reads your files, handles your workflows, and operates like a team member available at any hour.</p>
+        <p>It is not a chatbot and not a cloud service you rent. The setup is configured to know your clients, your formats, your rules. That configuration persists and compounds over time.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="requirements what do i need before setup mac computer plan">
+    <div class="faq-item" data-keywords="requirements what do i need before setup mac computer plan claude pro max">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">What do I need before my setup session?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Three things:</p>
+        <p>Two things:</p>
         <ul>
-          <li><strong>A Mac</strong> (MacOS is the primary setup; Windows is supported but less common)</li>
-          <li><strong>A Telegram account</strong>, any existing one works</li>
-          <li><strong>A Claude plan</strong>. Free and Pro work, but Claude Max (~$155/month AUD) on Opus is the recommended experience for anything complex</li>
+          <li><strong>A Mac</strong> running macOS</li>
+          <li><strong>A Claude plan</strong> — Pro (A$30.91/month) is the recommended starting point. Max gives more headroom for heavy workflows</li>
         </ul>
-        <p>Your setup provider handles everything else: software installation, connecting your apps, configuring the assistant to know about your business.</p>
+        <p>Your setup provider handles everything else: installing Claude Desktop, connecting your apps, and loading your business context so Claude knows your business from session one.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="setup time how long does setup take installation">
+    <div class="faq-item" data-keywords="setup time how long does setup take installation one day">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">How long does setup take?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>The software configuration itself takes about 5 minutes. The full setup session typically runs 60-90 minutes. This covers installing everything, connecting your apps (email, calendar, WhatsApp), and personalising the assistant so it knows your business, your preferences, and what you'll use it for most.</p>
+        <p>One session. By the end of your setup call, Claude Desktop is configured, your business context is loaded, your first connectors are active, and at least one workflow is running. Same day.</p>
       </div>
     </div>
 
@@ -823,7 +532,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes, through WSL2, a compatibility layer that lets Windows run Linux apps. The standard setup is Mac-first, but Windows is supported. If you're on Windows, mention it before booking your session.</p>
+        <p>Claude Desktop runs on Windows. macOS is the primary setup environment and gets the smoothest experience, but Windows is supported. Mention this during your discovery call so your setup is configured correctly.</p>
       </div>
     </div>
 
@@ -833,656 +542,492 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Any plan works. Free, Pro, or Max. The difference is in performance on complex tasks:</p>
+        <p>Pro (A$30.91/month billed monthly, or A$26/month annual) is the recommended starting point for most businesses. If you are running heavy workflows — large files, many daily tasks, complex automations — Max gives significantly more usage headroom:</p>
         <ul>
-          <li><strong>Max (~$155/month AUD):</strong> recommended. Opus model handles multi-step tasks, building tools, and anything requiring real reasoning. Best overall experience.</li>
-          <li><strong>Pro (~$31/month AUD):</strong> works for day-to-day messages, but may struggle on complex or long-running tasks.</li>
-          <li><strong>Free:</strong> limited but functional for simple queries.</li>
+          <li><strong>Max 5x</strong> — A$154.54/month</li>
+          <li><strong>Max 20x</strong> — A$309.09/month</li>
         </ul>
-        <div class="tip">The setup is optimised for Max. If you're on Pro and hit limits, upgrading is the fastest fix.</div>
+        <p>You pay Anthropic directly. Your setup provider does not handle or mark up your Claude subscription.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="telegram bot what is a bot botfather how to create bot">
+    <div class="faq-item" data-keywords="cowork what is cowork dispatch connector plugin workflow anthropic">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What is a "Telegram bot" and why do I need one?</span>
+        <span class="faq-q-text">What is Claude Cowork and what does Uremarkable configure?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Telegram allows you to create a private bot, basically a dedicated chat account that belongs to you. Your AI Business Operating System lives inside this bot. You message it like any contact, and it responds.</p>
-        <p>This is created during your setup session using Telegram's BotFather tool. You end up with a private Telegram chat connected exclusively to your machine. No one else can access it.</p>
+        <p>Claude Cowork is Anthropic's platform for running Claude alongside your business tools. It has three components your setup draws on:</p>
+        <ul>
+          <li><strong>Connectors</strong> — live links to Gmail, M365, HubSpot, Slack, Google Drive, and more</li>
+          <li><strong>Plugins</strong> — domain packs covering Finance, Sales, Operations, Legal, and others</li>
+          <li><strong>Scheduled workflows</strong> — tasks that run automatically on a schedule you define</li>
+        </ul>
+        <p>Uremarkable configures all of this for your business: installs Claude Desktop, writes your CLAUDE.md business context file, connects your tools, and sets up your Obsidian vault as a permanent output layer.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="background service run automatically launchd keeps running always on">
+    <div class="faq-item" data-keywords="background service run automatically keeps running always on startup">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Does it need to be running all the time? What happens when I close my laptop?</span>
+        <span class="faq-q-text">Does it keep running in the background?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Your AI Business Operating System runs as a background service on your Mac. It starts automatically when you log in and restarts itself if it ever crashes. You don't need to open a terminal or do anything manually.</p>
-        <p>If your Mac is closed or shut down, the assistant won't respond until it's back on. For scheduled tasks (like a morning briefing), your Mac needs to be running at that time.</p>
+        <p>Claude Desktop launches at login and stays available. Scheduled workflows run in the background on their own timer — you do not need to have Claude open for them to fire. Your business context (CLAUDE.md) loads automatically at the start of every new session, so Claude always knows where it is.</p>
       </div>
     </div>
+
   </div>
 
-  <!-- DAY TO DAY -->
   <div class="faq-section" data-section="day-to-day">
-    <div class="section-label">Day to day use</div>
+    <div class="section-label">Day to day</div>
 
-    <div class="faq-item" data-keywords="how to message send text how do i use it talk to it">
+    <div class="faq-item" data-keywords="how to message send text how do i use it talk to it type">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">How do I actually use it? Just type?</span>
+        <span class="faq-q-text">How do I use it day-to-day?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Open your Telegram chat and type anything. No wake word, no special format. Just describe what you want and send it.</p>
-        <p>Some examples that work out of the box:</p>
+        <p>Open Claude Desktop on your Mac and type naturally. No wake word, no special format. On mobile, use Dispatch to send tasks and check results from your phone, in one continuous conversation.</p>
+        <p>Examples of what you can ask:</p>
         <ul>
-          <li>"Check my calendar for tomorrow"</li>
-          <li>"Draft a reply to the email from Sarah about the proposal"</li>
-          <li>"What's the most recent message in my WhatsApp from James?"</li>
-          <li>"Create a summary of this document and send it to me as a PDF"</li>
-          <li>"Set a reminder to follow up with the Barangaroo lead on Friday"</li>
+          <li>Check my calendar for tomorrow</li>
+          <li>Draft a reply to the email from Sarah about the proposal</li>
+          <li>Set a reminder to follow up with the Barangaroo lead on Friday</li>
+          <li>Create a summary of this document and save it to my vault</li>
         </ul>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="voice notes voice input can i speak talk voice note send voice">
+    <div class="faq-item" data-keywords="voice notes voice input can i speak talk voice note send voice dispatch mobile">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Can I use voice notes instead of typing?</span>
+        <span class="faq-q-text">Can I use voice input?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Hold the microphone button in Telegram, record, and send. It transcribes automatically and executes your request, same as if you'd typed it.</p>
-        <p>By default, replies come back as text. To get a voice reply back, say one of these anywhere in your message:</p>
-        <ul>
-          <li>"respond with voice"</li>
-          <li>"send me a voice back"</li>
-          <li>"voice reply"</li>
-        </ul>
-        <p>To switch voice replies on for every message, send <code>/voice</code>. Send it again to turn it off.</p>
+        <p>Yes. In Dispatch on your phone, hold the microphone button, record, and send. It transcribes automatically and executes your request. By default replies come back as text. To get a voice reply, say "respond with voice" or "voice reply" in your message.</p>
+        <p>On desktop, Claude Desktop supports dictation via macOS built-in dictation (Fn Fn) or any voice input tool you use.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="photos documents pdf files send file attachment analyze">
+    <div class="faq-item" data-keywords="photos documents pdf files send file attachment analyze image">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">Can I send photos, documents, and PDFs?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>All of these work. Just attach the file and send, with or without a caption:</p>
+        <p>Yes. Drop files directly into Claude Desktop or attach them in Dispatch. Claude reads PDFs, Word docs, images, spreadsheets, and more. It will analyse, summarise, extract data, or take action based on what you send.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="can it produce files create file pdf send back to me file output obsidian vault">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it produce and deliver files?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Ask it to create something and the file gets saved to your Obsidian vault automatically, in the right project folder. Examples:</p>
         <ul>
-          <li><strong>Photos:</strong> analyzed immediately. No caption needed, but add one for specific instructions: "what are the key numbers in this?"</li>
-          <li><strong>PDFs, Word docs, CSVs, text files:</strong> read and processed. Try "summarize this", "extract the dates and amounts", or "draft a reply based on this"</li>
-          <li><strong>Videos:</strong> analyzed up to 20MB. Add a caption for what you need from it.</li>
+          <li>Summarise this week's emails into a PDF</li>
+          <li>Build a one-page comparison of these quotes as a spreadsheet</li>
+          <li>Create an HTML proposal for this client</li>
         </ul>
+        <p>Files in your vault stay permanently. They do not disappear after a session ends.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="can it send files back create file pdf send back to me file output">
+    <div class="faq-item" data-keywords="fresh start reset conversation new session context window full long conversation">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Can it create files and send them back to me?</span>
+        <span class="faq-q-text">How do I start fresh when a conversation gets too long?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Ask it to create something and it'll send the file as a Telegram attachment. Works up to 50MB.</p>
-        <p>Examples:</p>
-        <ul>
-          <li>"Summarize this week's emails into a PDF and send it to me"</li>
-          <li>"Build me a one-page comparison of these two quotes and send it as a spreadsheet"</li>
-          <li>"Create an HTML proposal for [client name] and send it"</li>
-        </ul>
+        <p>Say "checkpoint" before starting a new conversation. This saves a tight summary of the current session to your Obsidian vault so nothing important is lost. Then start a new Claude session — your business context (CLAUDE.md) loads automatically and the checkpoint is retrievable.</p>
+        <p>If you are mid-task and notice responses getting slower or less accurate, that is usually a sign the session context is getting heavy. Checkpoint and reset.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="commands slash commands what commands can i type bot commands list">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What commands can I use?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Type <code>/</code> in Telegram to see the full list. The most useful ones:</p>
-        <ul>
-          <li><code>/newchat</code>: start a fresh conversation (clears current context)</li>
-          <li><code>/respin</code>: send immediately after /newchat to pull recent messages back in</li>
-          <li><code>/voice</code>: toggle voice replies on/off for all messages</li>
-          <li><code>/model haiku</code> / <code>/model sonnet</code> / <code>/model opus</code>: switch between speed and power</li>
-          <li><code>/memory</code>: see what your assistant remembers about you</li>
-          <li><code>/stop</code>: cancel whatever it's doing mid-task</li>
-          <li><code>/dashboard</code>: get a link to your live dashboard</li>
-          <li><code>/wa</code>: open WhatsApp interface</li>
-          <li><code>/slack</code>: open Slack interface</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="faq-item" data-keywords="fresh start reset conversation newchat respin context window full">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">How do I start a fresh conversation?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Send <code>/newchat</code>. This wipes the current session and starts completely fresh.</p>
-        <p>If you want to keep your recent messages for context, send <code>/respin</code> immediately after. It pulls the last 20 messages into the new session so the assistant knows what you were just discussing, without carrying the full weight of a long conversation.</p>
-        <div class="tip">If responses start feeling off or slower than usual, /newchat + /respin is the fix 90% of the time.</div>
-      </div>
-    </div>
-
-    <div class="faq-item" data-keywords="dashboard what is dashboard what can i see monitoring">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What is the dashboard?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>A live web page that shows everything happening inside your assistant: scheduled tasks, what it remembers about you, how much you're spending on API calls, and whether everything is running healthy.</p>
-        <p>Send <code>/dashboard</code> in Telegram to get a clickable link. If remote access was set up during your session, the link works from your phone anywhere.</p>
-      </div>
-    </div>
   </div>
 
-  <!-- MEMORY -->
   <div class="faq-section" data-section="memory">
     <div class="section-label">Memory</div>
 
-    <div class="faq-item" data-keywords="memory remember things context between sessions persistent obsidian two layers">
+    <div class="faq-item" data-keywords="memory remember things context between sessions persistent obsidian claude.md two layers">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Does it remember things between conversations?</span>
+        <span class="faq-q-text">How does memory work?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Your AI Business Operating System has two memory layers working together:</p>
+        <p>Two layers work together:</p>
         <ul>
-          <li><strong>Within a session:</strong> full context of everything said in the current conversation</li>
-          <li><strong>Short-term (conversation memory):</strong> recent back-and-forth is stored locally and surfaces automatically when relevant. Auto-purges after 3 days.</li>
-          <li><strong>Long-term (second brain):</strong> important things, preferences, decisions, and business context get written to Obsidian, a local note-taking app on your Mac. This layer never fades.</li>
+          <li><strong>CLAUDE.md</strong> — the curated layer. Your business context, key clients, rules, pricing logic, and decisions. Written and maintained by your setup provider. Loads at the start of every session. Never decays.</li>
+          <li><strong>Anthropic native memory</strong> — automatic. Synthesises your conversations on a 24-hour cycle, surfacing relevant context when needed. Managed by Anthropic.</li>
         </ul>
-        <p>You don't need to re-explain who you are or what you're working on every time you open Telegram.</p>
+        <p>Your Obsidian vault is the output layer: everything Claude produces gets saved there. It is not memory — it is your permanent record. Decisions, documents, research, tools built for your business. All searchable, all yours.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="obsidian second brain what is obsidian permanent memory vault layers notes">
+    <div class="faq-item" data-keywords="obsidian second brain what is obsidian permanent memory vault notes folder">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What is the second brain and how is it different from regular memory?</span>
+        <span class="faq-q-text">What is Obsidian and why do I need it?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>The two memory layers do completely different jobs:</p>
-        <ul>
-          <li><strong>Conversation memory (SQLite):</strong> short-term, auto-purges after 3 days. Holds the recent back-and-forth and surfaces context at the start of each session.</li>
-          <li><strong>Second brain (Obsidian):</strong> permanent. Everything that should stick around lives here. Notes you've captured, daily logs, research, tools built for your business, project records, decisions. This does not fade.</li>
-        </ul>
-        <p>Obsidian is a free note-taking app. Your vault is a folder on your Mac with a standard structure the assistant writes to automatically:</p>
-        <div class="folder-tree">
-          <pre><span class="dir">YourBrain/</span>
-<span class="tb">├── </span><span class="dir">inbox/</span>         <span class="cm"># quick captures, voice note transcripts</span>
-<span class="tb">├── </span><span class="dir">daily/</span>         <span class="cm"># daily notes, YYYY-MM-DD.md</span>
-<span class="tb">├── </span><span class="dir">projects/</span>      <span class="cm"># active work, decisions, research</span>
-<span class="tb">├── </span><span class="dir">content/</span>       <span class="cm"># content pipeline</span>
-<span class="tb">│   └── </span><span class="dir">linkedin/</span>
-<span class="tb">│       ├── </span><span class="dir">queue/</span> <span class="cm"># drafts ready to post</span>
-<span class="tb">│       └── </span><span class="dir">posted/</span><span class="cm"># confirmed published</span>
-<span class="tb">├── </span><span class="dir">tools/</span>         <span class="cm"># HTML tools, dashboards, proposals built for you</span>
-<span class="tb">├── </span><span class="dir">assets/</span>        <span class="cm"># reusable contact details, credentials</span>
-<span class="tb">└── </span><span class="file">memory.md</span>      <span class="cm"># readable log of what your assistant knows</span></pre>
-        </div>
-        <p>Everything in the vault is plain text files. Readable in any editor, not locked to any platform or subscription. The graph view in Obsidian shows every note and how they connect, a visual map of everything that's been built for your business.</p>
+        <p>Obsidian is a free note-taking app that works on local files — your vault is a folder on your Mac that Claude writes to automatically. It is the permanent output layer of your system.</p>
+        <p>Every document Claude produces, every summary, every decision gets saved to the right project folder in your vault. Over time it becomes a searchable record of everything your business has done, built, and decided. Not a chat window you scroll back through — a structured second brain.</p>
+        <p>Obsidian is free to download at obsidian.md.</p>
       </div>
     </div>
 
     <div class="faq-item" data-keywords="obsidian setup install configure do i need to manage vault set up">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Do I need to set up or manage Obsidian myself?</span>
+        <span class="faq-q-text">Do I need to manage Obsidian myself?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>It gets installed and connected to your assistant during your setup session. You don't need to configure anything.</p>
-        <p>After setup, your assistant writes to the vault automatically:</p>
+        <p>No. Your setup provider configures the vault folder structure during setup and Claude writes to it automatically. You can open Obsidian to browse and search your notes, but you never have to touch the folder structure or maintain it.</p>
+        <p>Think of Obsidian as a filing cabinet Claude fills for you. You just open the drawer when you need something.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="how long memory lasts decay forget how long does it remember claude.md permanent">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How long does memory last?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Depends on the layer:</p>
         <ul>
-          <li>Things you capture in conversation land in <code>inbox/</code></li>
-          <li>Daily notes get written at the start of each day (if you have that scheduled)</li>
-          <li>Tools and files built for you go in <code>tools/</code></li>
-          <li>Research and project notes go in <code>projects/</code></li>
+          <li><strong>CLAUDE.md</strong> — never decays. Loads fresh every session. Key facts stay until you or your setup provider explicitly remove them.</li>
+          <li><strong>Anthropic native memory</strong> — runs on a 24-hour synthesis cycle. Salience scoring determines what surfaces. High-importance context (clients, decisions, ongoing projects) tends to persist.</li>
+          <li><strong>Obsidian vault</strong> — permanent. Nothing decays. Files stay until you delete them.</li>
         </ul>
-        <p>You can open Obsidian at any time to browse, search, or edit what's accumulated. Most people end up using it as a live record of everything their business has built and decided, without ever having to maintain it manually.</p>
-        <div class="tip">Obsidian is free. Download it at <a href="https://obsidian.md" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;">obsidian.md</a> before your setup session if you want a head start.</div>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="how long memory lasts decay forget how long does it remember">
+    <div class="faq-item" data-keywords="see memories what does it remember view memory list claude.md check">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">How long does it remember things for?</span>
+        <span class="faq-q-text">How do I see what it knows about my business?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>It depends on how important the memory is and how often it gets used:</p>
+        <p>Two ways:</p>
         <ul>
-          <li><strong>Core preferences and key rules</strong> last about 15 months (1% decay per day)</li>
-          <li><strong>General business context and decisions</strong> last about 8 months (2% decay per day)</li>
-          <li><strong>Frequently referenced memories</strong> last longer. Each time a memory surfaces in a conversation it gets a salience boost</li>
+          <li>Ask Claude directly: "What do you know about my business?" or "What context do you have loaded?" It will summarise what is in CLAUDE.md and any retrieved memory.</li>
+          <li>Open your CLAUDE.md file directly — it is a plain text file in your project folder and contains everything your setup provider has encoded about your business.</li>
         </ul>
-        <p>Memories that prove useless fade out. Memories that keep coming up stay longer. The system learns what matters over time.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="see memories what does it remember view memory list">
+    <div class="faq-item" data-keywords="forget delete memory clear remove something from memory update claude.md">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">How do I see what it remembers about me?</span>
+        <span class="faq-q-text">How do I update or remove something from memory?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Send <code>/memory</code>. You'll see the recent memories stored for your chat.</p>
-        <p>You can also browse the full memory landscape in the dashboard. It shows importance scores, what's recently been retrieved, and anything that's starting to fade.</p>
+        <p>Tell Claude directly: "Remove [X] from your context" or "Update your understanding of [Y] to [Z]." It will edit CLAUDE.md on the spot.</p>
+        <p>You can also open CLAUDE.md in any text editor and edit it yourself. It is a plain text file. Changes take effect from the next session.</p>
+        <p>For anything that needs a bigger update — a rebrand, a new service offering, a change in client approach — contact your setup provider. Updating CLAUDE.md properly is part of the monthly retainer.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="forget delete memory clear remove something from memory">
+    <div class="faq-item" data-keywords="compaction context compression forgot session memory long conversation context window reset">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Can I make it forget something?</span>
+        <span class="faq-q-text">What is compaction and why does it matter?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Send <code>/forget</code> to clear the current session ID. This doesn't delete stored memories. Those decay naturally over time.</p>
-        <p>If there's something specific you want removed, tell your assistant directly: "forget what I told you about [X]" and it will mark that memory as low importance so it fades faster.</p>
+        <p>Claude has a context window — the amount it can hold in working memory at once. For very long sessions, it compresses earlier parts of the conversation to make room. This is called compaction.</p>
+        <p>After compaction, Claude can still use tools and build things, but it may not remember specific details from earlier in the session. The fix: use versioned filenames (e.g. v2-report-16-May-26.html) so Claude can always check which version exists on disk, regardless of what it remembers from the conversation.</p>
+        <p>If you notice it losing track, say "checkpoint" and start a fresh session.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="compaction context compression bot forgot session memory long conversation context window reset">
+    <div class="faq-item" data-keywords="checkpoint save session context new session reset start fresh preserve remember">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What is compaction and why does it make the bot forget things?</span>
+        <span class="faq-q-text">How do I save a session before starting fresh?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Claude Code compresses long conversations to stay within its context limit. This is called compaction. When it happens, the bot loses its working memory of what happened earlier in the session. It can still use tools and build things, but it genuinely doesn't remember "I already sent you that file."</p>
-        <p>This isn't a bug. It's a design trade-off that keeps long sessions running. The fix is to not rely on the bot's memory — use the file system as memory instead.</p>
-        <p>Your assistant handles this automatically using versioned filenames (e.g. <code>v1-report-9-May-26.html</code>). Before sending any file, it checks what version already exists on disk — so even after compaction it picks up at the right version without needing session memory.</p>
-        <div class="tip"><strong>If you need to explain this to a team member:</strong><br><br>
-        "You may see a notification from the bot saying <em>'Context window was auto-compacted...'</em> That's just her managing her own memory during a long session. The system does it automatically to keep her responses accurate. Nothing's broken. The side effect is that files created during a long session may not get saved properly — they end up in a temporary folder that clears when the Mac restarts. The versioning system handles this automatically. If you ever notice a file is missing, contact support."</div>
+        <p>Say "checkpoint" before ending or resetting a session. Claude saves a tight summary of the key decisions, files created, and context from the current session to your Obsidian vault. That record is retrievable in any future session.</p>
+        <p>Use checkpoint any time the session has produced something important — a decision, a built tool, a new client brief. It is your session insurance.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="checkpoint save session context new chat reset start fresh preserve remember before newchat">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">How do I make sure the bot remembers the session before I start a new chat?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Send <code>checkpoint</code> before starting a new chat.</p>
-        <p>This saves a tight summary of the current session to both the short-term memory database and your second brain (Obsidian). After <code>/newchat</code>, that context is still retrievable — the session resets but the record survives.</p>
-        <p>Use checkpoint any time the session has been productive, you've made an important decision, or you're switching to a completely different task and want a clean slate without losing what was built.</p>
-      </div>
-    </div>
   </div>
 
-  <!-- APPS -->
   <div class="faq-section" data-section="apps">
-    <div class="section-label">Connecting your apps</div>
+    <div class="section-label">Apps and connectors</div>
 
-    <div class="faq-item" data-keywords="gmail email read send check email inbox reply">
+    <div class="faq-item" data-keywords="gmail email read send check email inbox reply connector">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Can it read and send emails?</span>
+        <span class="faq-q-text">Can it read and reply to my emails?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes, if Gmail was connected during your setup session. Ask it to:</p>
+        <p>Yes. Gmail connects via the Cowork connector during setup. Claude can list your inbox, read threads, draft replies in your voice, send emails, and flag what needs your attention. Examples:</p>
         <ul>
-          <li>"Check my inbox and tell me what needs attention"</li>
-          <li>"Reply to [name]'s email saying I'll confirm by Friday"</li>
-          <li>"Send an email to [address] about [topic]"</li>
-          <li>"Find all unread emails from [company]"</li>
+          <li>What emails came in today that need a reply?</li>
+          <li>Draft a reply to James's email about the proposal — keep it brief and confirm Friday</li>
+          <li>Find all emails from Barangaroo Realty in the last two weeks</li>
         </ul>
-        <p>It uses Google's official OAuth. Your password never touches the system and it won't bypass your 2FA.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="calendar schedule meeting google calendar appointments availability">
+    <div class="faq-item" data-keywords="calendar schedule meeting google calendar appointments availability create event">
       <div class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text">Can it manage my calendar?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes, if Google Calendar was connected during setup. Ask it to:</p>
+        <p>Yes. Google Calendar connects via the Cowork connector. Claude can check your availability, create events, send invites with Meet links, and reschedule meetings. Examples:</p>
         <ul>
-          <li>"What's on my calendar this week?"</li>
-          <li>"Schedule a call with [name] on Thursday at 2pm"</li>
-          <li>"Send [name] a calendar invite for Friday morning"</li>
-          <li>"Am I free next Monday between 10am and 12pm?"</li>
+          <li>What does my Tuesday look like?</li>
+          <li>Book a 30-minute call with Sarah on Friday morning and send her an invite</li>
+          <li>Block two hours on Thursday afternoon for deep work</li>
         </ul>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="whatsapp can it use whatsapp connect whatsapp messages /wa">
+    <div class="faq-item" data-keywords="slack can it use slack connect slack read reply message channel">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Can it use WhatsApp?</span>
+        <span class="faq-q-text">Can it read and respond in Slack?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes, with no extra cost or API key. It connects to your existing WhatsApp account via Linked Devices, the same way WhatsApp Web works on your laptop. You scan a QR code once during setup, and it stays connected.</p>
-        <p>Send <code>/wa</code> to see your most recent chats (unread first). Select one, read the messages, and reply, all from Telegram. You also get a notification when someone messages you on WhatsApp.</p>
-        <div class="tip">Your WhatsApp message content is encrypted at rest and auto-deleted after 3 days. It never leaves your Mac.</div>
+        <p>Yes. Slack connects via the Cowork connector. Claude can read channels, surface messages that need your attention, draft replies, and post updates. Setup configures which channels and workspaces are in scope.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="slack can it use slack connect slack read reply /slack">
+    <div class="faq-item" data-keywords="google drive m365 microsoft hubspot canva figma notion other apps connectors">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Can it use Slack?</span>
+        <span class="faq-q-text">What other tools can it connect to?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes, if Slack was configured during setup. Send <code>/slack</code> to see recent conversations with unread counts. Select a conversation, read it, and reply.</p>
-        <p>You can also ask naturally: "check my Slack" or "reply to Jane on Slack saying I'll be 10 minutes late".</p>
+        <p>The Cowork connector library includes: Gmail, Google Calendar, Google Drive, Microsoft 365, HubSpot, Slack, Canva, Figma, Notion, Atlassian Rovo, Ironclad, NetDocuments, and more.</p>
+        <p>For accounting tools, Xero connects via Xero CLI and MYOB connects via MYOB API — these are configured during your setup session or added as part of a retainer scope.</p>
+        <p>If a tool you use is not listed, ask during your discovery call. Custom connectors and CLI integrations are often possible.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="google drive sheets docs workspace integrate other apps">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Can it access Google Drive, Sheets, or Docs?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>This requires the Google Workspace CLI, an optional tool that can be installed during or after your setup session. Once configured, your assistant can read, write, and search across Drive, Sheets, Docs, and every other Workspace API.</p>
-        <p>If you need this, mention it during setup or follow-up and it can be added in a separate session.</p>
-      </div>
-    </div>
   </div>
 
-  <!-- AUTOMATION -->
   <div class="faq-section" data-section="automation">
     <div class="section-label">Automation and scheduling</div>
 
-    <div class="faq-item" data-keywords="scheduled tasks cron automate automatically schedule run every day">
+    <div class="faq-item" data-keywords="scheduled tasks cron automate automatically schedule run every day morning briefing">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Can I set it up to do things automatically?</span>
+        <span class="faq-q-text">Can it run tasks on a schedule?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Just tell it in plain language what you want and when:</p>
+        <p>Yes. Scheduled workflows run automatically on whatever cadence you set. Common examples:</p>
         <ul>
-          <li>"Every weekday morning at 8am, check my inbox and send me a briefing"</li>
-          <li>"Every Monday at 9am, pull last week's AI news and summarize it"</li>
-          <li>"Every Friday at 5pm, tell me what's on for next week"</li>
+          <li>Morning briefing at 8am — calendar, unread emails, top priorities</li>
+          <li>End-of-week report every Friday — project status, pending follow-ups</li>
+          <li>Monthly reconciliation trigger — pulls transactions, flags mismatches, saves report</li>
         </ul>
-        <p>It creates and manages the schedule itself. Your Mac needs to be running at the scheduled time.</p>
+        <p>Schedules are set during your session or retainer calls. You do not need Claude Desktop open for them to run.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="manage tasks pause delete list scheduled tasks what is scheduled">
+    <div class="faq-item" data-keywords="manage tasks pause delete list scheduled tasks change schedule">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">How do I manage scheduled tasks?</span>
+        <span class="faq-q-text">How do I manage my scheduled workflows?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Just ask in plain language:</p>
-        <ul>
-          <li>"What tasks do I have scheduled?"</li>
-          <li>"Pause the Monday morning briefing"</li>
-          <li>"Delete the daily email check"</li>
-          <li>"Change the morning briefing to 7:30am instead of 8am"</li>
-        </ul>
-        <p>You can also view and manage them directly on the dashboard under Scheduled Tasks.</p>
+        <p>Tell Claude what you need: "Pause the Friday report for the next two weeks", "Change the morning briefing to 7:30am", "Add a Wednesday check-in at noon." It handles the schedule update directly.</p>
+        <p>For bigger workflow changes — new automations, new tools to connect, rewriting a workflow — that is retainer scope work done in a monthly session.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="agents multiple agents mission control team of agents specialist">
+    <div class="faq-item" data-keywords="agents multiple agents specialist research comms content ops team">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What are "agents" and do I need more than one?</span>
+        <span class="faq-q-text">Can I have multiple assistants for different jobs?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Agents are specialist versions of your assistant, each with their own Telegram bot and focused role. Examples: a Comms agent that handles email and WhatsApp, a Research agent for deep lookups, an Ops agent for admin tasks.</p>
-        <p>Each agent gets its own 1-million-token context window, its own personality, and its own scheduled tasks. They share your data and skills.</p>
-        <p>Most users start with a single main assistant and add agents later as workload grows. It's entirely optional.</p>
+        <p>Yes. Specialist agents can be added: a Comms agent for email and calendar, a Research agent for deep lookups, a Content agent for drafting and publishing. Each has its own context window, CLAUDE.md configuration, and scheduled tasks.</p>
+        <p>Most businesses start with one main assistant and add specialists as their workflows grow. Ask your setup provider about multi-agent configuration.</p>
       </div>
     </div>
+
   </div>
 
-  <!-- SECURITY -->
   <div class="faq-section" data-section="security">
     <div class="section-label">Security and privacy</div>
 
-    <div class="faq-item" data-keywords="who can access bot secure other people access privacy lock">
+    <div class="faq-item" data-keywords="who can access secure other people access privacy lock my account">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Who else can access my bot?</span>
+        <span class="faq-q-text">Who can access my setup?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Only you. The system locks to your specific Telegram account using your chat ID. Messages from any other Telegram user are silently dropped. They won't get a response or even an error. Group chats are blocked entirely.</p>
-        <p>You can also add a PIN lock for extra security. When enabled, the bot ignores all messages until you send the correct PIN. There's also an emergency kill phrase that immediately stops all processes if you ever need a hard shutdown.</p>
+        <p>Only you. Claude Desktop is tied to your Anthropic account. CLAUDE.md lives on your Mac. Your Obsidian vault is a local folder on your machine. No one else has access unless you explicitly share files or credentials.</p>
+        <p>Your setup provider configures the system during setup sessions but does not retain ongoing access to your machine or files.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="data safe cloud data privacy where does my data go local machine">
+    <div class="faq-item" data-keywords="data where does data go privacy obsidian local cloud anthropic cowork">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Does my data leave my machine?</span>
+        <span class="faq-q-text">Where does my data go?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Your data stays on your Mac. Conversations, files, memories, all stored locally in a database on your machine.</p>
-        <p>The external calls that do happen:</p>
-        <ul>
-          <li><strong>Anthropic</strong>: receives your individual queries to run Claude. Does not receive your full conversation history or stored memories.</li>
-          <li><strong>Google</strong>: if you connected Gmail, Calendar, or video analysis. Uses standard Google OAuth.</li>
-          <li><strong>Groq</strong>: if voice input is enabled, your voice note is transcribed there. Free tier.</li>
-        </ul>
+        <p>When you connect tools via Cowork connectors (Gmail, Slack, HubSpot, etc.), that data routes through Anthropic's cloud as part of Claude processing your requests. Anthropic's Enterprise and Team plans do not use your data to train models by default.</p>
+        <p>Everything Claude produces — summaries, documents, reports, proposals — gets saved to your Obsidian vault, which is a local folder on your Mac. That copy is yours permanently and does not require any cloud service to access.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="whatsapp slack data encrypted messages stored secure">
+    <div class="faq-item" data-keywords="slack data security encryption workspace messages">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Are my WhatsApp and Slack messages stored safely?</span>
+        <span class="faq-q-text">What about Slack data security?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Message content is encrypted at rest using AES-256-GCM before being written to your local database. If someone accessed the database file directly, they'd see ciphertext, not your messages.</p>
-        <p>Messages are also automatically deleted after 3 days. This is enforced in the code and can't be disabled without modifying the source.</p>
+        <p>Slack access is scoped during setup to only the channels and workspaces you specify. Message content is processed by Anthropic in the same way as any other connector. Claude does not store Slack message history — it reads what is needed for the current task and nothing more.</p>
+        <p>If your business has specific data handling requirements, raise these during your discovery call.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="anthropic terms of service compliant is this allowed legal tos">
+    <div class="faq-item" data-keywords="anthropic terms of service compliance legal allowed permitted claude cli">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Is this against Anthropic's rules?</span>
+        <span class="faq-q-text">Is this within Anthropic's terms of service?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>No. Your AI Business Operating System runs the official <code>claude</code> CLI on your machine. It doesn't extract OAuth tokens, impersonate Anthropic's infrastructure, or make API calls outside the official SDK.</p>
-        <p>What it does is identical to typing <code>claude</code> in your own terminal. The input comes from Telegram and the output goes back there. Anthropic's terms allow exactly this kind of personal use.</p>
+        <p>Yes. Uremarkable uses Anthropic's official Claude Desktop application and Cowork platform, both of which are designed and supported by Anthropic for exactly this kind of business use. There is no third-party wrapper, no unofficial API access, and no terms violation.</p>
+        <p>You subscribe to Claude directly through Anthropic. Uremarkable provides the implementation and configuration service on top of it.</p>
       </div>
     </div>
+
   </div>
 
-  <!-- TROUBLESHOOTING -->
   <div class="faq-section" data-section="troubleshooting">
     <div class="section-label">Troubleshooting</div>
 
-    <div class="faq-item" data-keywords="bot not responding no reply doesnt respond silent not working">
+    <div class="faq-item" data-keywords="claude not responding what to check not working offline mac">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Why isn't my Telegram bot responding?</span>
+        <span class="faq-q-text">Claude is not responding — what do I check?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>A few things to check in order:</p>
-        <ul>
-          <li><strong>Is your Mac on and awake?</strong> The assistant only works when the machine is running.</li>
-          <li><strong>macOS permission dialogs.</strong> On first run, your Mac shows "Node wants to access..." dialogs. If you missed clicking Allow, the bot hangs silently. Check your Mac screen.</li>
-          <li><strong>Are you messaging the right bot?</strong> It only responds to the Telegram account linked during setup.</li>
-          <li><strong>Try AI help first.</strong> Screenshot what you're seeing and use the steps in "I see an error with my bot on Telegram" below. If that doesn't resolve it, contact support for a remote service check.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="faq-item" data-keywords="assistant stopped after restart mac reboot not working after restarting mac turned off pm2 not started">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Why did my assistant stop responding after I restarted my Mac?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Your assistant is set up to restart automatically every time your Mac turns on. Most of the time you'll never need to do anything. If it doesn't come back on its own after a reboot, the fix is a single Terminal command.</p>
-        <p><strong>To check and restart:</strong></p>
+        <p>Start here:</p>
         <ol>
-          <li>Open Terminal on your Mac (search "Terminal" in Spotlight)</li>
-          <li>Type <code>pm2 status</code> and press Enter — this shows whether the bot is running or stopped</li>
-          <li>If the status shows "stopped" or "errored", type <code>pm2 restart [your-bot-name]</code> and press Enter</li>
-          <li>Wait about 30 seconds and try messaging it</li>
+          <li>Is your Mac on and connected to the internet?</li>
+          <li>Is Claude Desktop open? Check the menu bar icon.</li>
+          <li>Did you miss a macOS permission dialog on first run? Check System Settings, Privacy and Security.</li>
+          <li>Try closing and reopening Claude Desktop.</li>
         </ol>
-        <p>If you're not sure of the bot name, it's shown in the pm2 status output (left column). If that doesn't work, contact support — they can check and restart it remotely.</p>
-        <div class="tip">If this happens repeatedly after restarts, the startup hook may not be set. Contact support — it's a one-line fix that makes the auto-start permanent.</div>
+        <p>If none of these fix it, screenshot any error you see and contact support. Most issues are diagnosed and resolved remotely in a few minutes.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="feels confused off context wrong weird responses not making sense">
+    <div class="faq-item" data-keywords="does not restart after reboot mac restart auto start login item background">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Why does my bot feel confused or give strange responses?</span>
+        <span class="faq-q-text">Claude did not restart after my Mac rebooted</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>The conversation context window is probably getting too heavy after a long session. Fix:</p>
-        <ul>
-          <li>Send <code>/newchat</code></li>
-          <li>Immediately send <code>/respin</code></li>
-        </ul>
-        <p>This wipes the full session but pulls your recent messages back in, giving you fresh context without losing the thread of what you were doing.</p>
+        <p>Claude Desktop should reopen automatically after a reboot via your Mac login items. If it does not:</p>
+        <ol>
+          <li>Open Claude Desktop manually from your Applications folder</li>
+          <li>Go to System Settings, General, Login Items, and check that Claude is listed</li>
+          <li>If it is not listed, add it</li>
+        </ol>
+        <p>Scheduled workflows use a separate background process. If those are not running after a reboot, contact support — the background launcher may need reconfiguring.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="voice not working voice error voice notes transcription groq">
+    <div class="faq-item" data-keywords="claude confused strange responses wrong context off losing track">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Why aren't voice notes working?</span>
+        <span class="faq-q-text">Claude is giving strange or confused responses</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Voice transcription requires a Groq API key. If this wasn't configured during your setup session, contact support. The Groq free tier is more than enough for personal use. No credit card required.</p>
-        <p>If voice replies (audio back to you) aren't working, that's a separate thing. It requires an ElevenLabs API key and a voice clone. Let support know which part isn't working.</p>
+        <p>This usually means the session context has gotten too long or something has been compacted. Try:</p>
+        <ol>
+          <li>Say "checkpoint" to save the session, then start a new conversation</li>
+          <li>In the new session, Claude loads your CLAUDE.md context fresh and should be back on track</li>
+        </ol>
+        <p>If the confusion is about your business specifically — wrong client name, outdated information — that is a CLAUDE.md update. Tell Claude to correct it or contact your setup provider.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="whatsapp not connecting qr code scan daemon whatsapp error">
+    <div class="faq-item" data-keywords="voice notes not working voice input dispatch microphone transcription">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Why isn't WhatsApp connecting or showing my messages?</span>
+        <span class="faq-q-text">Voice input is not working</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>WhatsApp requires a separate background process running alongside your AI Business Operating System. If it's stopped, you'll need to restart it and re-scan the QR code in WhatsApp on your phone.</p>
-        <p>The QR code expires after about 30 seconds. If it times out, kill the process and restart it. Try AI help first if you're unsure — see "I see an error with my bot on Telegram" above. Or contact support.</p>
+        <p>For voice in Dispatch: check that your phone has microphone permission enabled for the Dispatch app (Settings, Dispatch, Microphone). Hold the microphone button until it turns red, then release to send.</p>
+        <p>For desktop dictation on Mac: use Fn Fn to activate macOS dictation in any text field. If neither works, contact support.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="update new version how do i update upgrade latest version">
+    <div class="faq-item" data-keywords="context window full 0k tokens response slow long session exhausted">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">How do I update to the latest version?</span>
+        <span class="faq-q-text">Claude says my context window is full or responses mention 0k tokens</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Ask your assistant directly: "update the AI Business Operating System to the latest version" and it will walk you through the process on your machine.</p>
-        <p>Or contact support. Updates are part of the ongoing maintenance included in your retainer.</p>
+        <p>The session has hit Claude's context limit. This is normal in long working sessions. The fix:</p>
+        <ol>
+          <li>Say "checkpoint" — Claude saves a summary to your vault</li>
+          <li>Start a new conversation — CLAUDE.md and the checkpoint are both available in the fresh session</li>
+          <li>Continue where you left off</li>
+        </ol>
+        <p>This is not a subscription issue. It is a session length issue and is expected for heavy working days.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="two instances running conflict 409 error duplicate running twice">
+    <div class="faq-item" data-keywords="login claude auth expire authentication token re-authenticate">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What does a "409 Conflict" error mean?</span>
+        <span class="faq-q-text">Claude keeps asking me to log in again</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>This means the system is running twice, with two processes both trying to receive Telegram messages. Restart your Mac, or refer to "I see an error with my bot on Telegram — how do I get AI help to understand it?" above to help clear the duplicate process. If that doesn't resolve it, contact support. It's a quick fix.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-keywords="file disappeared restart lost file tmp temporary where did my file go mac restart deleted">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Why did a file from my bot disappear after restarting my Mac?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>The file was staged in <code>/tmp</code>, a temporary folder on your Mac that gets cleared on every restart. That's by design — /tmp is the post box, not the filing cabinet.</p>
-        <p>Every file your assistant sends should also be saved to your vault (the Obsidian folder), where it survives restarts, compaction, and session resets. If a file disappeared, the vault copy wasn't made.</p>
-        <p>To prevent it: after your bot delivers a file, ask "also save this to my vault" and it will copy it to the right project folder. A properly configured bot does this automatically for every Telegram delivery.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-keywords="context window exhausted 0k tokens usage limit 5 hour reset quota exhausted pro max plan limit hit wall">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What does "Context window likely exhausted" or "0k tokens" mean?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>This means your AI subscription's 5-hour usage bucket has run out, not that anything has broken. Claude Pro and Max have a rolling usage window — heavy sessions can use it up faster than light ones. When the bucket empties, the assistant restarts fresh and shows "0k tokens" because it has no conversation history yet.</p>
-        <p><strong>To recover immediately:</strong></p>
-        <ul>
-          <li>Send <code>/newchat</code> — this clears the empty session</li>
-          <li>Wait for confirmation, then send <code>/respin</code> — this pulls your last 20 messages back in</li>
-          <li>If <code>/respin</code> also fails, skip it. Just send <code>/newchat</code> and describe what you need. Your assistant's long-term memory is unaffected.</li>
-        </ul>
-        <p><strong>Important:</strong> Do not send <code>/respin</code> without doing <code>/newchat</code> first. Sending them out of order causes a loop where you keep seeing the same wall message.</p>
-        <p>The bucket resets on a rolling 5-hour window — you may not need to wait the full 5 hours. If this is happening regularly and interrupting your workflow, upgrading from Pro to Max gives you 5x more usage per window. Contact support to walk through the upgrade (no reconfiguration needed on your end).</p>
-      </div>
-    </div>
-
-    <div class="faq-item" data-keywords="re-authenticate claude auth login authentication expired not logged in claude login browser">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Why did my assistant stop working with a "claude auth" error?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Occasionally, the authentication token that connects your assistant to Claude expires and needs to be refreshed. This is separate from your subscription — it's a one-time login step that most people only ever do once.</p>
-        <p><strong>To fix it:</strong></p>
-        <ul>
-          <li>Open Terminal on your Mac</li>
+        <p>The authentication token connecting Claude Desktop to your Anthropic account has expired. To fix it:</p>
+        <ol>
+          <li>Open Terminal</li>
           <li>Type <code>claude auth login</code> and press Enter</li>
-          <li>A browser window will open asking you to sign in to claude.ai</li>
-          <li>Sign in, approve the connection, and close the browser</li>
-          <li>Back in Terminal, type <code>pm2 restart [your-bot-name]</code> and press Enter</li>
-        </ul>
-        <p>The assistant should start responding again within 30 seconds. If you're unsure which bot name to use, contact support — they can check remotely.</p>
-        <div class="tip">This is different from your Claude subscription. You don't need to cancel or change anything — just refresh the login token.</div>
-      </div>
-    </div>
-
-    <div class="faq-item" data-keywords="telegram bot error message strange behavior not working right error screenshot paste AI help troubleshoot debug claude chatgpt ai explain terminal error cursor warp claude code">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">I see an error with my bot on Telegram — how do I get AI help to understand it?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>The fastest thing you can do is screenshot what you're seeing and paste it into a free AI tool. You don't need to understand the error yourself — just show it to the AI and ask what it means.</p>
-
-        <p><strong>Step 1: Take a screenshot of the error</strong></p>
-        <ul>
-          <li>On your Mac: press <code>Cmd + Ctrl + Shift + 4</code>, drag to select the error text — the screenshot copies straight to your clipboard</li>
-          <li>On your phone: press the side button and volume up to screenshot, then AirDrop or message it to yourself</li>
-        </ul>
-
-        <p><strong>Step 2: Paste it into an AI and ask</strong></p>
-        <p>Three options — use whichever is available:</p>
-        <ol>
-          <li><strong>Claude Code in Terminal (fastest if you have it)</strong> — open Terminal, type <code>claude</code>, paste the error and ask what it means. Already installed if your system is set up with Claude Code. Note: won't work if your Claude 5-hour usage window has run out.</li>
-          <li><strong>Cursor (free backup)</strong> — open Cursor, press <code>Cmd + L</code>, paste the screenshot. Works even when your Claude window is exhausted because it runs on its own quota. Download free at <a href="https://cursor.com" target="_blank">cursor.com</a>. New to Cursor? <a href="/help/cursor-setup.html">Step-by-step setup guide →</a></li>
-          <li><strong>Browser AI (works for anyone)</strong> — go to <a href="https://claude.ai" target="_blank">claude.ai</a> or <a href="https://chatgpt.com" target="_blank">chatgpt.com</a>, press <code>Cmd + V</code> to paste your screenshot, and ask what the error means.</li>
+          <li>Sign in when the browser opens</li>
+          <li>Restart Claude Desktop</li>
         </ol>
-
-        <p>In all cases, the message to send is simple: <em>"What does this error mean and what should I do?"</em> The AI will translate it into plain English and tell you the next step.</p>
-
-        <div class="tip"><strong>Also contact support.</strong> Even after AI help explains the error, support can often fix it remotely in a few minutes without you needing to do anything in Terminal.</div>
-
-        <p><strong>If the error is in Terminal (not Telegram):</strong> Same process — screenshot it and paste into any of the three options above. Or if you were asked to open Terminal to run a command and something went wrong, copy the error text and share it with support via Telegram.</p>
-
-        <p style="font-size:13px;color:#515154;margin-top:12px;"><strong>Premium option:</strong> Warp is a terminal replacement with a full AI agent built in — subscription required. If you're running commands regularly and want the most seamless experience, contact support to discuss.</p>
+        <p>This is a one-time token refresh, not a subscription problem. It happens occasionally and takes under two minutes.</p>
       </div>
     </div>
 
-    <div class="faq-item" data-keywords="same file twice duplicate file resent multiple times compaction version sent again already sent">
+    <div class="faq-item" data-keywords="error what does this error mean how to get help ai help cursor debug">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Why does my bot keep sending me the same file?</span>
+        <span class="faq-q-text">I see an error — how do I get help understanding it?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>This is a compaction side effect. After context compaction, the bot has no memory of sending a file earlier in the session. Without version numbers in the filename, every send looks like the first send.</p>
-        <p>The fix is file versioning: filenames like <code>v1-report-9-May-26.html</code>, <code>v2-report-9-May-26.html</code>. Before sending, the bot checks which version already exists on disk — so it always knows where it is in the iteration cycle, even after a compact.</p>
-        <p>If this keeps happening, contact support. It means the versioning protocol isn't configured for your bot and can be added in a quick session.</p>
+        <p>Screenshot the error and paste it into an AI tool to get a plain-English explanation:</p>
+        <ol>
+          <li><strong>Cursor</strong> (free at cursor.com) — press Cmd+L, paste the screenshot. Works even when your Claude quota is low.</li>
+          <li><strong>Claude.ai</strong> in your browser — paste the screenshot and ask "What does this error mean and what should I do?"</li>
+        </ol>
+        <p>If the AI explanation does not resolve it, forward the screenshot to your setup provider. Most issues are diagnosed remotely in a few minutes. See also: <a href="/help/cursor-setup.html" style="color:var(--blue)">How to use Cursor for troubleshooting</a>.</p>
       </div>
     </div>
+
+    <div class="faq-item" data-keywords="same file twice duplicate file send compaction version versioning">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Claude keeps delivering the same file twice</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>This is a compaction side effect. After context compaction, Claude has no memory of delivering a file earlier in the session. The fix is versioned filenames — files like <code>v2-report-16-May-26.html</code> let Claude check what version already exists on disk before sending again.</p>
+        <p>If this keeps happening, contact your setup provider to add the versioning protocol to your configuration.</p>
+      </div>
+    </div>
+
   </div>
 
-  <!-- NO RESULTS -->
   <div class="no-results" id="no-results">
     <h3>Nothing matched that search</h3>
     <p>Try a different word, or reach out to support directly.</p>
