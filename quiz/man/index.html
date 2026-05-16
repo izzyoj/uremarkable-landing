@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Gap | MAN Protocol Identity Diagnostic</title>
+<meta name="description" content="Nine questions. A personalised protocol brief built from your answers. Find the pillar holding everything else back.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #b8860b;
+  --gold-dark: #9a7009;
+  --gold-light: rgba(184,134,11,0.09);
+  --gold-border: rgba(184,134,11,0.25);
+  --text: #1d1d1f;
+  --text-2: #6e6e73;
+  --text-3: #86868b;
+  --bg: #ffffff;
+  --bg-2: #f5f5f7;
+  --border: rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo { font-size: 15px; font-weight: 800; color: var(--gold); letter-spacing: 0.15em; }
+.nav-sep { width: 1px; height: 16px; background: var(--border); }
+.nav-tagline { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+.nav-cta {
+  font-size: 13px; font-weight: 600; color: var(--gold); text-decoration: none;
+  padding: 7px 14px; border: 1px solid var(--gold-border); border-radius: 8px; transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+.nav-about { font-size: 13px; font-weight: 500; color: var(--text-2); text-decoration: none; transition: color 0.15s; }
+.nav-about:hover { color: var(--text); }
+
+.section { padding: 72px 24px; }
+.section-inner { max-width: 640px; margin: 0 auto; }
+.section-bg { background: var(--bg-2); }
+
+.offer-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gold); background: var(--gold-light); border: 1px solid var(--gold-border);
+  padding: 5px 12px; border-radius: 20px; margin-bottom: 18px;
+}
+.section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); margin-bottom: 20px; }
+
+.hero-section { padding: 80px 24px 72px; text-align: center; }
+.hero-h1 { font-size: 44px; font-weight: 800; color: var(--text); line-height: 1.08; letter-spacing: -0.04em; margin-bottom: 18px; }
+@media (max-width: 600px) { .hero-h1 { font-size: 30px; } }
+.hero-sub { font-size: 18px; color: var(--text-2); line-height: 1.55; max-width: 520px; margin: 0 auto 32px; }
+@media (max-width: 600px) { .hero-sub { font-size: 16px; } }
+.btn-primary {
+  display: inline-block; padding: 16px 32px; background: var(--gold); color: #fff;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; text-decoration: none; transition: background 0.15s, transform 0.1s;
+}
+.btn-primary:hover { background: var(--gold-dark); }
+.btn-primary:active { transform: scale(0.98); }
+.hero-meta { margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--text-3); }
+.hero-meta span { display: flex; align-items: center; gap: 4px; }
+.hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); }
+
+.pillars-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 32px; }
+@media (max-width: 600px) { .pillars-grid { grid-template-columns: 1fr; } }
+.pillar-card { background: var(--bg); border-radius: var(--radius); border: 1px solid var(--border); padding: 22px 20px; }
+.pillar-letter { font-size: 28px; font-weight: 800; color: var(--gold); letter-spacing: 0.05em; margin-bottom: 6px; }
+.pillar-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.pillar-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+.bundle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+@media (max-width: 600px) { .bundle-grid { grid-template-columns: 1fr; } }
+.bundle-card { background: var(--bg); border-radius: var(--radius); border: 1px solid var(--border); padding: 22px 20px; display: flex; flex-direction: column; gap: 10px; }
+.bundle-icon { font-size: 22px; }
+.bundle-title { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; line-height: 1.3; }
+.bundle-desc { font-size: 14px; color: var(--text-2); line-height: 1.5; }
+
+.pos-strip { padding: 40px 24px; background: var(--text); text-align: center; }
+.pos-strip-inner { max-width: 560px; margin: 0 auto; }
+.pos-quote { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; letter-spacing: -0.02em; margin-bottom: 10px; }
+.pos-gold { color: var(--gold); }
+@media (max-width: 500px) { .pos-quote { font-size: 17px; } }
+.pos-sub-heading { font-size: 17px; font-weight: 700; color: rgba(255,255,255,0.9); line-height: 1.3; margin: 14px 0 10px; letter-spacing: -0.01em; }
+.pos-sub { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; text-align: left; }
+
+.quiz-section { padding: 72px 24px 80px; background: var(--bg-2); }
+.quiz-header { max-width: 640px; margin: 0 auto 32px; }
+.quiz-h2 { font-size: 28px; font-weight: 800; color: var(--text); letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 10px; }
+.quiz-h2-sub { font-size: 15px; color: var(--text-2); line-height: 1.5; }
+
+.quiz-card { width: 100%; max-width: 540px; margin: 0 auto; background: var(--bg); border-radius: 20px; box-shadow: var(--shadow-md); border: 1px solid var(--border); overflow: hidden; }
+.card-body { padding: 32px 28px; }
+@media (max-width: 480px) { .card-body { padding: 24px 18px; } }
+
+.progress-wrap { padding: 18px 28px 0; }
+@media (max-width: 480px) { .progress-wrap { padding: 14px 18px 0; } }
+.progress-track { height: 3px; background: var(--bg-2); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+.progress-label { font-size: 12px; color: var(--text-3); margin-top: 8px; text-align: right; }
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+.start-inner { text-align: center; }
+.start-h3 { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px; }
+.start-sub { font-size: 14px; color: var(--text-2); line-height: 1.5; margin-bottom: 20px; }
+.start-chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+.start-chip { font-size: 12px; font-weight: 600; color: var(--text-3); background: var(--bg-2); border-radius: 20px; padding: 5px 12px; }
+.btn-start { display: inline-block; padding: 14px 28px; background: var(--gold); color: #fff; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: background 0.15s; }
+.btn-start:hover { background: var(--gold-dark); }
+
+.q-pillar { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.q-text { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.35; letter-spacing: -0.01em; margin-bottom: 20px; }
+@media (max-width: 480px) { .q-text { font-size: 15px; } }
+.answers { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.answer-btn { width: 100%; text-align: left; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 14px; font-family: var(--font); color: var(--text); cursor: pointer; line-height: 1.4; transition: border-color 0.15s, background 0.15s; }
+.answer-btn:hover { border-color: var(--gold); background: var(--gold-light); }
+.answer-btn.selected { border-color: var(--gold); background: var(--gold-light); font-weight: 600; }
+.q-nav { display: flex; align-items: center; justify-content: space-between; }
+.btn-back { font-size: 13px; font-weight: 500; color: var(--text-3); background: none; border: none; cursor: pointer; padding: 8px 0; font-family: var(--font); }
+.btn-back:hover { color: var(--text); }
+.btn-next { padding: 11px 22px; background: var(--gold); color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: background 0.15s, opacity 0.15s; }
+.btn-next:hover { background: var(--gold-dark); }
+.btn-next:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.score-tier-label { display: inline-flex; align-items: center; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+.tier-warrior { background: rgba(34,197,94,0.1); color: #16a34a; }
+.tier-dialed { background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold-border); }
+.tier-intent { background: rgba(249,115,22,0.1); color: #ea580c; }
+.tier-civilian { background: rgba(239,68,68,0.1); color: #dc2626; }
+.score-headline { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 10px; }
+.score-sub { font-size: 14px; color: var(--text-2); line-height: 1.55; margin-bottom: 22px; }
+
+.pillar-bars { margin-bottom: 22px; }
+.pillar-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.pillar-bar-label { font-size: 13px; font-weight: 700; color: var(--text); width: 80px; flex-shrink: 0; }
+.pillar-bar-track { flex: 1; height: 6px; background: var(--bg-2); border-radius: 3px; overflow: hidden; }
+.pillar-bar-fill { height: 100%; background: var(--gold); border-radius: 3px; width: 0%; transition: width 0.6s ease; opacity: 0.35; }
+.pillar-bar-fill.dominant { opacity: 1; }
+.pillar-bar-score { font-size: 12px; color: var(--text-3); font-weight: 600; width: 36px; text-align: right; }
+
+.unlock-divider { height: 1px; background: var(--border); margin: 24px 0; }
+.unlock-h2 { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; margin-bottom: 6px; }
+.unlock-sub { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 14px; }
+.unlock-bullets { list-style: none; margin-bottom: 18px; display: flex; flex-direction: column; gap: 6px; }
+.unlock-bullets li { font-size: 13px; color: var(--text-2); padding-left: 18px; position: relative; line-height: 1.4; }
+.unlock-bullets li::before { content: ''; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.email-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.email-input { flex: 1; min-width: 180px; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; font-family: var(--font); color: var(--text); background: var(--bg-2); outline: none; transition: border-color 0.15s; }
+.email-input:focus { border-color: var(--gold); background: var(--bg); }
+.btn-unlock { padding: 12px 20px; background: var(--gold); color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: var(--font); cursor: pointer; white-space: nowrap; transition: background 0.15s; }
+.btn-unlock:hover { background: var(--gold-dark); }
+.btn-unlock:disabled { opacity: 0.5; cursor: not-allowed; }
+.unlock-privacy { font-size: 11px; color: var(--text-3); margin-top: 8px; line-height: 1.4; }
+
+.blueprint-reveal { display: none; margin-top: 8px; }
+.blueprint-reveal.visible { display: block; }
+.bp-confirm { display: flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); border-radius: 10px; padding: 12px 16px; font-size: 13px; font-weight: 600; color: #16a34a; margin-bottom: 24px; }
+.bp-section { margin-bottom: 28px; }
+.bp-section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+.bp-section-title { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; margin-bottom: 14px; line-height: 1.3; }
+
+.bp-pillar-card { background: var(--gold-light); border: 1px solid var(--gold-border); border-radius: var(--radius); padding: 20px; }
+.bp-pillar-letter { font-size: 24px; font-weight: 800; color: var(--gold); letter-spacing: 0.05em; margin-bottom: 4px; }
+.bp-pillar-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.bp-pillar-diagnosis { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+
+.bp-mechanism { background: var(--bg-2); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; }
+.bp-mechanism-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.bp-mechanism-text { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
+.bp-today-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.bp-today-text { font-size: 13px; color: var(--text); font-weight: 600; line-height: 1.5; }
+
+.bp-tg-item { background: var(--bg-2); border-radius: var(--radius); border: 1px solid var(--border); padding: 18px; }
+.bp-tg-message { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 14px; }
+.tg-you { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--gold); padding-top: 3px; flex-shrink: 0; }
+.tg-msg-text { font-size: 13px; color: var(--text); line-height: 1.45; background: var(--bg); border-radius: 10px; padding: 10px 12px; border: 1px solid var(--border); }
+.tg-ai-label { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-3); text-transform: uppercase; margin-bottom: 6px; }
+.bp-tg-result { font-size: 13px; color: var(--text-2); line-height: 1.5; border-left: 2px solid var(--gold); padding-left: 12px; }
+
+.bp-ramp-list { display: flex; flex-direction: column; }
+.bp-ramp-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.bp-ramp-item:last-child { border-bottom: none; }
+.bp-ramp-month { font-size: 12px; font-weight: 700; color: var(--gold); width: 68px; flex-shrink: 0; padding-top: 1px; }
+.bp-ramp-text { font-size: 14px; color: var(--text); line-height: 1.5; }
+
+.bp-cta { text-align: center; padding: 28px 20px; background: var(--bg-2); border-radius: var(--radius); margin-top: 8px; }
+.bp-cta-title { font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; margin-bottom: 6px; }
+.bp-cta-sub { font-size: 14px; color: var(--text-2); margin-bottom: 22px; line-height: 1.7; text-align: left; }
+.bp-cta-btn { display: inline-block; padding: 14px 28px; background: var(--gold); color: #fff; border-radius: 12px; font-size: 15px; font-weight: 600; text-decoration: none; transition: background 0.15s; }
+.bp-cta-btn:hover { background: var(--gold-dark); }
+
+.bp-further { margin: 20px 0 0; padding: 20px; background: var(--bg-2); border-radius: var(--radius); border: 1px solid var(--border); }
+.bp-further-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+.bp-further-title { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; margin-bottom: 5px; }
+.bp-further-sub { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 14px; }
+.bp-prompt-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13px; color: var(--text); line-height: 1.65; font-style: italic; margin-bottom: 12px; }
+.bp-copy-btn { width: 100%; padding: 11px 16px; background: none; border: 1.5px solid var(--border); border-radius: 10px; font-size: 13px; font-weight: 600; color: var(--text-2); font-family: var(--font); cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+.bp-copy-btn:hover { border-color: var(--gold); color: var(--text); }
+
+.site-footer { padding: 32px 24px; text-align: center; border-top: 1px solid var(--border); display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.site-footer a { font-size: 13px; color: var(--text-3); text-decoration: none; }
+.site-footer a:hover { color: var(--text); }
+
+.pull-quote { margin: 24px 0 0; padding: 16px 20px; border-left: 3px solid var(--gold); background: var(--gold-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.pull-quote-text { font-size: 14px; font-style: italic; color: var(--text); line-height: 1.6; margin-bottom: 6px; }
+.pull-quote-attr { font-size: 12px; font-weight: 600; color: var(--text-3); letter-spacing: 0.02em; }
+.inspired-line { font-size: 13px; color: var(--text-3); margin-top: 10px; font-style: italic; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.anim { animation: fadeUp 0.3s ease forwards; }
+
+/* ── Brief page ─────────────────────────────────────────── */
+.brief-page { min-height: 100vh; background: #0f0f0f; padding: 24px 16px 60px; }
+.brief-top-bar { display: flex; justify-content: space-between; align-items: center; max-width: 460px; margin: 0 auto 16px; padding: 0 4px; }
+.brief-top-btn { font-size: 13px; color: rgba(255,255,255,0.5); background: none; border: none; cursor: pointer; font-family: var(--font); padding: 8px 0; transition: color 0.15s; }
+.brief-top-btn:hover { color: rgba(255,255,255,0.85); }
+.brief-card { background: #fff; border-radius: 20px; overflow: hidden; max-width: 460px; margin: 0 auto; box-shadow: 0 24px 80px rgba(0,0,0,0.65); }
+.brief-header-strip { background: var(--gold); padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+.brief-header-brand { font-size: 17px; font-weight: 800; color: #fff; letter-spacing: 0.15em; }
+.brief-header-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.09em; text-transform: uppercase; }
+.brief-hero { padding: 28px 24px 22px; border-bottom: 1px solid var(--border); }
+.brief-hero-tier { display: inline-flex; align-items: center; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+.brief-hero-headline { font-size: 21px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; }
+.brief-hero-sub { font-size: 13px; color: var(--text-2); line-height: 1.55; margin-bottom: 20px; }
+.brief-score-row { display: flex; align-items: baseline; gap: 5px; margin-bottom: 20px; }
+.brief-score-num { font-size: 36px; font-weight: 800; color: var(--gold); letter-spacing: -0.04em; line-height: 1; }
+.brief-score-denom { font-size: 16px; font-weight: 600; color: var(--text-3); }
+.brief-score-label { font-size: 12px; color: var(--text-3); font-weight: 500; margin-left: 6px; }
+.brief-body { padding: 24px; }
+.brief-gate-title { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; margin-bottom: 6px; }
+.brief-gate-sub { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 14px; }
+.brief-doc-date { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 10px; }
+.brief-share-row { display: flex; gap: 10px; max-width: 460px; margin: 16px auto 0; }
+.brief-share-btn { flex: 1; padding: 14px 12px; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: background 0.15s; }
+.brief-share-primary { background: var(--gold); color: #fff; }
+.brief-share-primary:hover { background: var(--gold-dark); }
+.brief-share-secondary { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.15); }
+.brief-share-secondary:hover { background: rgba(255,255,255,0.14); }
+
+@media print {
+  #quiz-app { display: none !important; }
+  #brief-app { display: block !important; }
+  .brief-page { background: #fff !important; padding: 0 !important; }
+  .brief-top-bar, .brief-share-row { display: none !important; }
+  .brief-card { box-shadow: none !important; border-radius: 0 !important; max-width: 100% !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="quiz-app">
+<nav class="site-nav">
+  <a class="nav-brand" href="/">
+    <span class="nav-logo">M.A.N</span>
+    <span class="nav-sep"></span>
+    <span class="nav-tagline">Identity Protocol</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="/man/" class="nav-about">About the protocol</a>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="nav-cta" target="_blank">Book a call</a>
+  </div>
+</nav>
+
+<section class="hero-section">
+  <div style="max-width:640px; margin:0 auto;">
+    <div class="offer-label">Identity Discovery</div>
+    <h1 class="hero-h1">Know who you are, so you can operate with clarity.</h1>
+    <p class="hero-sub">Get a personalised brief based on how you think, decide, work, and respond to everyday life.</p>
+    <a href="#quiz" class="btn-primary">Take the quiz</a>
+    <div class="hero-meta">
+      <span>90 seconds</span>
+      <span class="dot"></span>
+      <span>No signup required</span>
+      <span class="dot"></span>
+      <span>Instant personalised brief</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section-bg">
+  <div class="section-inner">
+    <div class="section-label">The Protocol</div>
+    <h2 style="font-size:24px; font-weight:800; color:var(--text); letter-spacing:-0.03em; line-height:1.2; margin-bottom:12px;">Three pillars. One 24-hour operating system.</h2>
+    <p style="font-size:15px; color:var(--text-2); line-height:1.6; margin-bottom:4px;">MAN is a framework built on one truth: who you are being determines what you do. Change the being. Everything else follows. Know your defaults. Know your strengths. Know what drains you.</p>
+    <p class="inspired-line">Inspired by James Clear, Peter Crone, Chase Hughes, Nir Eyal and more.</p>
+    <div class="pull-quote">
+      <div class="pull-quote-text">"You do not rise to the level of your goals. You fall to the level of your systems."</div>
+      <div class="pull-quote-attr">James Clear, Atomic Habits</div>
+    </div>
+    <div class="pillars-grid" style="margin-top:28px;">
+      <div class="pillar-card">
+        <div class="pillar-letter">M</div>
+        <div class="pillar-name">Mindset</div>
+        <div class="pillar-desc">Identity architecture. How you narrate setbacks. How you gain momentum. How the internal voice steers you throughout the day.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-letter">A</div>
+        <div class="pillar-name">Action</div>
+        <div class="pillar-desc">The gap between planning and the rep. Fear of being seen. Waiting for motivation to propel you forward.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-letter">N</div>
+        <div class="pillar-name">Nutrition</div>
+        <div class="pillar-desc">Biochemical substrate. Gut-brain axis. What you consume: food, media, and environment.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">What you could unlock</div>
+    <h2 style="font-size:24px; font-weight:800; color:var(--text); letter-spacing:-0.03em; line-height:1.2; margin-bottom:12px;">To become what you already are</h2>
+    <p style="font-size:15px; color:var(--text-2); line-height:1.6; margin-bottom:4px;">Society tells you: get the result first, then you will feel like the person. You have been trying to do your way into being. Identity does not follow outcomes... outcomes follow identity. A sequencing problem we can recalibrate.</p>
+    <div class="pull-quote" style="margin-bottom:0;">
+      <div class="pull-quote-text">"The moment you become aware of who you are being, you have the power to choose who you want to be."</div>
+      <div class="pull-quote-attr">Peter Crone</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-bg">
+  <div class="section-inner">
+    <div class="section-label">What the brief will deliver</div>
+    <div class="bundle-grid" style="margin-top:0;">
+      <div class="bundle-card">
+        <div class="bundle-icon">🔎</div>
+        <div class="bundle-title">Your Dominant Gap</div>
+        <div class="bundle-desc">Which of the three pillars is creating the most drag in your system right now, and what it is actually costing you across the whole day.</div>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-icon">⚙️</div>
+        <div class="bundle-title">The One Mechanism</div>
+        <div class="bundle-desc">The specific tool from that pillar you can implement today. Not eventually. Not after more research. The rep you can take before you sleep today.</div>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-icon">📅</div>
+        <div class="bundle-title">Your 30-Day Ramp</div>
+        <div class="bundle-desc">A single first step in Week 1 that matches your gap and tier. Then a realistic sequence across the month. Then check in to see how we take it to the next level and beyond.</div>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-icon">💬</div>
+        <div class="bundle-title">AI Coach OS Walkthrough</div>
+        <div class="bundle-desc">What your daily check-ins could actually look like with a dedicated AI Coach available 24/7, personalised to you. Pattern recognition from your own data, not generic responses.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pos-strip">
+  <div class="pos-strip-inner">
+    <div class="pos-quote"><span class="pos-gold">Be. Do. Have.</span></div>
+    <div class="pos-sub" style="text-align:center;">The protocol starts with who you are deciding to be.</div>
+  </div>
+</div>
+
+<section class="quiz-section" id="quiz">
+  <div class="quiz-header">
+    <div class="section-label">Step 1: Get your personalised brief</div>
+    <h2 class="quiz-h2">90 seconds between you and your current identity</h2>
+    <p class="quiz-h2-sub">Nine questions across Mindset, Action, and Nutrition. Your score and pillar breakdown appear on screen instantly. Drop your email to unlock the full protocol brief.</p>
+    <div class="pull-quote" style="margin-top:20px; max-width:540px;">
+      <div class="pull-quote-text">"The most effective compliance always begins with identity. People do what they believe people like them do."</div>
+      <div class="pull-quote-attr">Chase Hughes, The Ellipsis Manual</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="progress-wrap" id="progressWrap" style="display:none;">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">Question 1 of 9</div>
+    </div>
+    <div class="card-body">
+      <div class="screen active" id="screen-start">
+        <div class="anim start-inner">
+          <div class="start-h3">Ready when you are</div>
+          <div class="start-chips">
+            <div class="start-chip">90 seconds</div>
+            <div class="start-chip">No signup to score</div>
+            <div class="start-chip">Personalised brief</div>
+          </div>
+          <button class="btn-start" onclick="startQuiz()">Take the quiz</button>
+        </div>
+      </div>
+      <div class="screen" id="screen-quiz"><div id="questionContainer"></div></div>
+      <div class="screen" id="screen-score"><div id="scoreContainer"></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <a href="/man/">About the Protocol</a>
+  <a href="https://www.uremarkable.com">uremarkable.com</a>
+  <a href="https://www.uremarkable.com/help/">Help</a>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank">Book a call</a>
+</footer>
+</div><!-- /quiz-app -->
+
+<div id="brief-app" style="display:none;">
+  <div class="brief-page">
+    <div class="brief-top-bar">
+      <button class="brief-top-btn" onclick="returnToQuiz()">← Retake quiz</button>
+      <button class="brief-top-btn" onclick="printBrief()">Save PDF</button>
+    </div>
+    <div class="brief-card" id="briefCard">
+      <div class="brief-header-strip">
+        <span class="brief-header-brand">M.A.N</span>
+        <span class="brief-header-label">Identity Brief</span>
+      </div>
+      <div id="briefContent"></div>
+    </div>
+    <div class="brief-share-row" id="briefShareRow" style="display:none;">
+      <button class="brief-share-btn brief-share-primary" id="shareBtn" onclick="shareBrief()">Share my results</button>
+      <button class="brief-share-btn brief-share-secondary" onclick="printBrief()">Save as PDF</button>
+    </div>
+  </div>
+</div><!-- /brief-app -->
+
+<script>
+/* ── Data ──────────────────────────────────────────────── */
+var TIER_DATA = {
+  civilian: {
+    label: 'Civilian', cssClass: 'tier-civilian',
+    headline: 'Running on defaults across all three pillars',
+    sub: 'All three pillars have gaps and the system is running on willpower and reaction. The gains from closing even one mechanism are immediate and they compound fast. Start with the one in your brief.'
+  },
+  intent: {
+    label: "Half arse'ing it", cssClass: 'tier-intent',
+    headline: "You know what to do. You're just not doing it.",
+    sub: 'The awareness is there. The real friction is the gap between your declared identity and your believed one. You know what the right input is. The belief has not fully caught up yet. That is exactly what the protocol closes.'
+  },
+  dialed: {
+    label: 'Dialed', cssClass: 'tier-dialed',
+    headline: 'One pillar is creating drag across the whole system',
+    sub: 'Most things are working. But one pillar is the load-bearing gap. Fix that one and the compound accelerates across all three. Your brief shows you which one and the mechanism to close it.'
+  },
+  warrior: {
+    label: 'Warrior', cssClass: 'tier-warrior',
+    headline: 'Operating at identity level',
+    sub: 'The sequence is right. Be. Do. Have. Systems built, identity settled, compound underway. Your brief shows you where the next 1% is hiding and what the data layer looks like from here.'
+  }
+};
+
+var PILLAR_DATA = {
+  M: {
+    letter: 'M', name: 'Mindset',
+    diagnosis: 'Your biggest gap is in the Mindset pillar. Specifically: how you narrate setbacks, and what you feed your brain before the day gets momentum. When the attribution loop fires after a miss ("part of me knew I would let myself down"), a single data point becomes a verdict about your identity. And when the morning input environment is uncontrolled, the algorithm shapes your state before you do. These two patterns interact. Both are fixable with one mechanism.',
+    mechanismName: 'The Attribution Rewrite',
+    mechanism: "Every setback gets explained through three dimensions: permanent vs temporary, pervasive vs isolated, personal vs situational. Seligman's research on learned helplessness mapped the exact pattern that turns a miss into a verdict. MAN builds the opposite reflex. Not \"I always do this\" but \"not this time.\" Not \"I can't do anything right\" but \"this specific thing, today.\" Not \"I am this kind of person\" but \"the conditions were off.\" Two words that keep the loop open: not yet.",
+    todayAction: 'Write down the last thing that went wrong. Now rewrite the story using three constraints: temporary, isolated, contextual. That is the attribution rewrite. Run it once before you sleep tonight. That is the first rep. Then book a 15-min with me and we can talk about it.',
+    tgMsg: 'Caught myself in the permanence spiral again after missing my planned session this afternoon',
+    tgResult: "Based on your last 7 check-ins, this pattern fires most when sleep logged is under 6 hours the night before. Tonight is the lever, not tomorrow's session. Here is the attribution rewrite for today..."
+  },
+  A: {
+    letter: 'A', name: 'Action',
+    diagnosis: 'Your biggest gap is in the Action pillar. Specifically: the gap between planning and the rep, and waiting for motivation that only arrives after you have already moved. William James identified this in 1890. Action and feeling are coupled, not sequential. "I will do it when I feel like it" is a holding pattern. The nervous system measures frequency, not size. One small rep builds the identity vote. Planning sessions build nothing.',
+    mechanismName: 'The Minimum Viable Rep',
+    mechanism: 'The smallest action that still counts as the real thing. Not a warmup. Not research. Not planning to plan. The question is not "am I ready?" but "what is the smallest version of actually doing this?" That rep, done consistently, compounds across weeks and months. Willpower-based bursts do not. The nervous system tracks frequency, not size. This is the architecture, not the shortcut.',
+    todayAction: 'Name the one thing you have been preparing to do but have not done. Now ask: what is the five-minute version of actually doing it, not planning it, doing it. That is the rep. Before you sleep tonight. Not tomorrow.',
+    tgMsg: 'Did the planning thing again instead of just starting. Spent 45 minutes organising the system instead of actually running it.',
+    tgResult: 'Your planning-to-action ratio this week is 3:1. The pattern shows the friction fires at the transition from setup to go. Here is the minimum viable rep for your actual goal based on what you have logged this week...'
+  },
+  N: {
+    letter: 'N', name: 'Nutrition',
+    diagnosis: 'Your biggest gap is in the Nutrition pillar, the biochemical substrate everything else runs on. The afternoon fog, the inconsistent focus, the motivation you keep waiting for: these are often substrate problems being misread as willpower problems. 95% of serotonin is produced in the gut. The gut-brain axis runs bidirectionally: emotional state shifts gut chemistry and gut chemistry shifts emotional state right back. What you put in, food, media, environment, shapes the neurological baseline your mindset and action operate from.',
+    mechanismName: 'The Input Sequence',
+    mechanism: 'The first 60 to 90 minutes set your neurological and biochemical baseline for the day. Water before caffeine: adenosine needs 90 minutes to clear after waking before caffeine gives clean energy rather than a rebound crash. Protein before 9am: neurotransmitter precursors need to be available before the cognitive load begins. Phone-free first task: cortisol peaks at wake and needs to land before stimulus input starts. And across the whole day, what you consume mentally shapes your identity as much as anything physical. Get the sequence right and the motivation you are waiting for tends to show up on its own.',
+    todayAction: 'Tomorrow morning: water before coffee. Something with protein before 10am. Phone face-down for the first 30 minutes. Three inputs, one morning. Run it once and check what noon feels like. That is the experiment.',
+    tgMsg: 'Had the mid-morning crash again around 10am, completely lost focus for about an hour and could not figure out why',
+    tgResult: 'Cross-referencing your check-in with logged morning inputs: caffeine before the 90-minute window on 4 of the last 5 days. The 10am crash is adenosine rebound, not a motivation problem. Here is the adjustment for tomorrow...'
+  }
+};
+
+function getRampData(tier, pd) {
+  if (tier === 'civilian') return [
+    { month: 'This week', text: '<strong>One mechanism only.</strong> The one from your dominant pillar above. Run it for 7 days before adding anything. Consistency over intensity, always.' },
+    { month: 'Month 1', text: '<strong>21 reps builds the groove.</strong> The mechanism stops feeling forced and starts feeling like expression. Your check-ins show you where the resistance is still firing.' },
+    { month: 'Month 2', text: '<strong>Second pillar gets attention.</strong> With the dominant gap stabilised, the next highest-scoring pillar becomes the focus. Two pillars running, compounding.' },
+    { month: 'Month 3', text: '<strong>The system holds without willpower.</strong> That is the goal, and the sign that identity has shifted, not just behaviour. You are not the same person who took this quiz.' }
+  ];
+  if (tier === 'intent') return [
+    { month: 'This week', text: '<strong>The one action from your dominant pillar.</strong> Not three things. One. The awareness is there, now close the gap between knowing and doing.' },
+    { month: 'Month 1', text: '<strong>' + pd.name + ' mechanism running consistently.</strong> The belief starts catching up to the declaration. From performing the identity to expressing it.' },
+    { month: 'Month 2', text: '<strong>Cross-pillar awareness.</strong> Your check-ins build the pattern layer. You start seeing how the pillars interact, where one feeds or blocks another.' },
+    { month: 'Month 3', text: '<strong>Operating, not efforting.</strong> The system runs because the identity is settled. Discipline feels like expression. That is the protocol working.' }
+  ];
+  if (tier === 'dialed') return [
+    { month: 'This week', text: '<strong>Target the dominant gap specifically.</strong> One mechanism, placed precisely. You are close and one well-placed fix changes the feel of the whole system.' },
+    { month: 'Month 1', text: '<strong>Gap closed, compound accelerates.</strong> Removing the load-bearing constraint frees up the other two pillars. Most people feel this within two weeks.' },
+    { month: 'Month 2', text: '<strong>Optimise, do not add.</strong> The system is running well. Refinement beats addition at this stage.' },
+    { month: 'Month 3', text: '<strong>The context layer deepens.</strong> Every check-in makes the pattern clearer. The AI Coach gets more precise. Your coach gets more prescriptive.' }
+  ];
+  return [
+    { month: 'This week', text: '<strong>Find the next 1%.</strong> Your dominant pillar brief shows where the marginal gain is. It is small by design.' },
+    { month: 'Month 1', text: '<strong>The data layer compounds.</strong> At Warrior level, pattern precision is the edge. Every check-in adds resolution to what is working.' },
+    { month: 'Month 2', text: '<strong>Coach from this pillar.</strong> The gap you have closed becomes a superpower. You can see it in others because you have been there.' },
+    { month: 'Month 3', text: '<strong>The system refines itself.</strong> Your AI Coach gets sharper with every session. The compound is the product.' }
+  ];
+}
+
+/* ── URL state encoding ─────────────────────────────────── */
+var currentBriefState = null;
+
+function encodeBriefState(sc) {
+  var s = { t: sc.tier, p: sc.totalPts, d: sc.dominant, m: sc.pillarScores.M, a: sc.pillarScores.A, n: sc.pillarScores.N };
+  return btoa(JSON.stringify(s));
+}
+
+function decodeBriefState(encoded) {
+  try {
+    var s = JSON.parse(atob(encoded));
+    return { tier: s.t, totalPts: s.p, dominant: s.d, pillarScores: { M: s.m, A: s.a, N: s.n } };
+  } catch(e) { return null; }
+}
+
+/* ── Brief page rendering ───────────────────────────────── */
+function renderBriefHero(state) {
+  var td = TIER_DATA[state.tier] || TIER_DATA.intent;
+  var pillarNames = { M: 'Mindset', A: 'Action', N: 'Nutrition' };
+  var today = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+  var barsHTML = ['M','A','N'].map(function(p) {
+    var score = state.pillarScores[p];
+    var pct = Math.round((score / 12) * 100);
+    var isDom = p === state.dominant;
+    return '<div class="pillar-bar-row">' +
+      '<div class="pillar-bar-label">' + pillarNames[p] + (isDom ? ' <span style="font-size:9px;color:var(--gold);font-weight:800;margin-left:2px;">&#9650;</span>' : '') + '</div>' +
+      '<div class="pillar-bar-track"><div class="pillar-bar-fill' + (isDom ? ' dominant' : '') + '" id="bbar-' + p + '" style="width:0%" data-target="' + pct + '"></div></div>' +
+      '<div class="pillar-bar-score">' + score + '/12</div>' +
+    '</div>';
+  }).join('');
+  return '<div class="brief-hero">' +
+    '<div class="brief-hero-tier ' + td.cssClass + '">' + td.label + '</div>' +
+    '<div class="brief-hero-headline">' + td.headline + '</div>' +
+    '<div class="brief-hero-sub">' + td.sub + '</div>' +
+    '<div class="brief-score-row">' +
+      '<div class="brief-score-num">' + state.totalPts + '</div>' +
+      '<div class="brief-score-denom">&nbsp;/ 36</div>' +
+      '<div class="brief-score-label">identity score</div>' +
+    '</div>' +
+    '<div class="pillar-bars" id="briefBars" style="margin-bottom:4px;">' + barsHTML + '</div>' +
+    '<div class="brief-doc-date">Generated ' + today + '</div>' +
+  '</div>';
+}
+
+function renderBriefGate() {
+  return '<div class="brief-body">' +
+    '<div class="brief-gate-title">Unlock your protocol brief</div>' +
+    '<div class="brief-gate-sub">Your dominant gap diagnosis, the one mechanism to start today, what AI Coach check-ins look like for your situation, and your 30-day ramp.</div>' +
+    '<ul class="unlock-bullets" style="margin-bottom:18px;">' +
+      '<li>Which pillar is costing you most and why</li>' +
+      '<li>The specific mechanism from that pillar to implement today</li>' +
+      '<li>What daily check-ins look like via Telegram for your situation</li>' +
+      '<li>A 30-day ramp based on your tier and dominant gap</li>' +
+    '</ul>' +
+    '<div class="email-row"><input type="email" class="email-input" id="briefEmail" placeholder="your@email.com" />' +
+    '<button class="btn-unlock" id="btnBriefUnlock" onclick="submitBriefEmail()">Unlock the brief</button></div>' +
+    '<div class="unlock-privacy">Used to follow up, with your permission. Unsubscribe any time.</div>' +
+  '</div>';
+}
+
+function renderBriefContent(state) {
+  var pd = PILLAR_DATA[state.dominant];
+  var rampData = getRampData(state.tier, pd);
+  var tierLabel = (TIER_DATA[state.tier] || TIER_DATA.intent).label;
+  var futurePrompt = 'Here are my MAN Protocol results: ' + tierLabel + ' tier. Dominant gap in ' + pd.name + '. Score ' + state.totalPts + '/36. Tell me a story of a day in my life once these three gaps are closed. Then create me a daily schedule to follow that will allow me to achieve this life.';
+  var rampHTML = rampData.map(function(r) {
+    return '<div class="bp-ramp-item"><div class="bp-ramp-month">' + r.month + '</div><div class="bp-ramp-text">' + r.text + '</div></div>';
+  }).join('');
+  return '<div class="brief-body">' +
+    '<div class="bp-confirm"><span>&#10003;</span><span>Protocol brief unlocked</span></div>' +
+    '<div class="bp-section"><div class="bp-section-label">Your dominant gap</div><div class="bp-section-title">Where the system is leaking</div>' +
+    '<div class="bp-pillar-card"><div class="bp-pillar-letter">' + pd.letter + '</div><div class="bp-pillar-name">' + pd.name + '</div><div class="bp-pillar-diagnosis">' + pd.diagnosis + '</div></div></div>' +
+    '<div class="bp-section"><div class="bp-section-label">The mechanism</div><div class="bp-section-title">What to implement today</div>' +
+    '<div class="bp-mechanism"><div class="bp-mechanism-name">' + pd.mechanismName + '</div><div class="bp-mechanism-text">' + pd.mechanism + '</div>' +
+    '<div class="bp-today-label">Your action today</div><div class="bp-today-text">' + pd.todayAction + '</div></div></div>' +
+    '<div class="bp-section"><div class="bp-section-label">AI Coach in practice</div><div class="bp-section-title">What your daily check-in looks like</div>' +
+    '<div class="bp-tg-item"><div class="bp-tg-message"><span class="tg-you">YOU</span><span class="tg-msg-text">' + pd.tgMsg + '</span></div>' +
+    '<div class="tg-ai-label">AI Coach via Telegram</div><div class="bp-tg-result">' + pd.tgResult + '</div></div></div>' +
+    '<div class="bp-section"><div class="bp-section-label">Your ramp</div><div class="bp-section-title">A realistic sequence from where you are</div>' +
+    '<div class="bp-ramp-list">' + rampHTML + '</div></div>' +
+    '<div class="pos-strip" style="margin:28px -24px;">' +
+    '<div class="pos-strip-inner"><div class="pos-quote">You want to see your very own AI Coach live?</div>' +
+    '<div class="pos-sub">Not a dashboard. Not another tracker. A becoming protocol. MAN runs locally on your Mac. Available 24/7 on your phone via Telegram. Every day it checks in. Tracks patterns. Builds context from your real life, not isolated prompts. Your AI Coach sees the signals. I help interpret what they mean. Together, we identify: where you\'re stuck, what patterns keep repeating, what\'s actually getting in the way. Because most people don\'t need more information. They need reflection with memory. A daily practice. Grounded in where you are. Built for who you are becoming.</div>' +
+    '</div></div>' +
+    '<div class="pull-quote" style="margin:28px 0 24px;">' +
+    '<div class="pull-quote-text">"When you choose a belief rooted in possibility, you reclaim the power to shape what you see, and what becomes possible next."</div>' +
+    '<div class="pull-quote-attr">Nir Eyal</div></div>' +
+    '<div class="bp-cta"><div class="bp-cta-title">Ready to see it live?</div>' +
+    '<div class="bp-cta-sub" style="text-align:center;">One setup session. Your existing phone. Your AI Coach live by end of day.</div>' +
+    '<a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" class="bp-cta-btn">Book a 15-min call with Baz</a></div>' +
+    '<div class="bp-further">' +
+    '<div class="bp-further-label">Want to go further on your own first?</div>' +
+    '<div class="bp-further-title">Run the future self exercise with your results</div>' +
+    '<div class="bp-further-sub">Open Claude. Paste this prompt. Read the story slowly. Then use the schedule.</div>' +
+    '<div class="bp-prompt-box"><span id="futurePromptText">' + futurePrompt + '</span></div>' +
+    '<button class="bp-copy-btn" onclick="copyPrompt()">Copy prompt</button>' +
+    '</div>' +
+  '</div>';
+}
+
+function copyPrompt() {
+  var el = document.getElementById('futurePromptText');
+  if (!el) return;
+  var text = el.textContent;
+  var btn = document.querySelector('.bp-copy-btn');
+  var done = function() {
+    if (btn) { var orig = btn.textContent; btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = orig; }, 2000); }
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(done).catch(function() {
+      var ta = document.createElement('textarea'); ta.value = text;
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done();
+    });
+  } else {
+    var ta = document.createElement('textarea'); ta.value = text;
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done();
+  }
+}
+
+function renderBriefPage(state, isOpen) {
+  currentBriefState = state;
+  var heroHTML = renderBriefHero(state);
+  var bodyHTML = isOpen ? renderBriefContent(state) : renderBriefGate();
+  document.getElementById('briefContent').innerHTML = heroHTML + bodyHTML;
+  if (isOpen) {
+    document.getElementById('briefShareRow').style.display = 'flex';
+  }
+  requestAnimationFrame(function() {
+    setTimeout(function() {
+      document.querySelectorAll('#briefBars .pillar-bar-fill[data-target]').forEach(function(el) {
+        el.style.width = el.dataset.target + '%';
+      });
+    }, 120);
+  });
+}
+
+function submitBriefEmail() {
+  var email = document.getElementById('briefEmail').value.trim();
+  if (!email || !email.includes('@')) { document.getElementById('briefEmail').focus(); return; }
+  var btn = document.getElementById('btnBriefUnlock');
+  btn.disabled = true; btn.textContent = 'Loading brief...';
+  var state = currentBriefState;
+  var pillarNames = { M: 'Mindset', A: 'Action', N: 'Nutrition' };
+  fetch('https://formsubmit.co/ajax/uremarkable1@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ email: email, _subject: 'MAN Protocol Quiz: Brief Unlock', source: 'uremarkable.com/quiz/man', tier: (TIER_DATA[state.tier] || {}).label, dominant_pillar: pillarNames[state.dominant], total_score: state.totalPts + '/36', mindset_score: state.pillarScores.M + '/12', action_score: state.pillarScores.A + '/12', nutrition_score: state.pillarScores.N + '/12' })
+  }).catch(function() {});
+  setTimeout(function() {
+    var hash = window.location.hash;
+    var encoded = hash.slice(7).split('/')[0];
+    history.replaceState(null, '', window.location.pathname + window.location.search + '#brief/' + encoded + '/open');
+    renderBriefPage(state, true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 400);
+}
+
+/* ── Share / print / back ───────────────────────────────── */
+function shareBrief() {
+  var hash = window.location.hash;
+  var encoded = hash.slice(7).split('/')[0];
+  var openURL = window.location.href.split('#')[0] + '#brief/' + encoded + '/open';
+  var btn = document.getElementById('shareBtn');
+  if (navigator.share) {
+    navigator.share({ title: 'My MAN Identity Brief', text: 'I just took the MAN Protocol diagnostic. Here are my results:', url: openURL });
+  } else {
+    navigator.clipboard.writeText(openURL).then(function() {
+      var orig = btn.textContent;
+      btn.textContent = 'Link copied!';
+      setTimeout(function() { btn.textContent = orig; }, 2200);
+    });
+  }
+}
+
+function printBrief() { window.print(); }
+
+function returnToQuiz() {
+  history.pushState('', document.title, window.location.pathname + window.location.search);
+  document.getElementById('brief-app').style.display = 'none';
+  document.getElementById('quiz-app').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+/* ── Hash routing ───────────────────────────────────────── */
+function setupHashRouting() {
+  function checkHash() {
+    var hash = window.location.hash;
+    if (hash.startsWith('#brief/')) {
+      var parts = hash.slice(7).split('/');
+      var state = decodeBriefState(parts[0]);
+      var isOpen = parts[1] === 'open';
+      if (state) {
+        document.getElementById('quiz-app').style.display = 'none';
+        document.getElementById('brief-app').style.display = 'block';
+        renderBriefPage(state, isOpen);
+        window.scrollTo(0, 0);
+        return;
+      }
+    }
+    document.getElementById('quiz-app').style.display = 'block';
+    document.getElementById('brief-app').style.display = 'none';
+  }
+  window.addEventListener('hashchange', checkHash);
+  checkHash();
+}
+
+const questions = [
+  {
+    pillar: 'M', pillarName: 'Mindset',
+    text: 'When you fall short of something you committed to, what is the first story you tell yourself?',
+    answers: [
+      { label: 'It is one data point. Does not change who I am.', pts: 0 },
+      { label: 'I remind myself why it matters and I try again', pts: 2 },
+      { label: 'I feel like the streak is broken and it is hard to restart', pts: 3 },
+      { label: 'Part of me knew I would let myself down', pts: 4 }
+    ]
+  },
+  {
+    pillar: 'M', pillarName: 'Mindset',
+    text: 'What hits your brain in the first 15 minutes after you wake up?',
+    answers: [
+      { label: 'Intentional input only. I control what goes in first.', pts: 0 },
+      { label: 'Quick check of messages, then I try to be deliberate', pts: 2 },
+      { label: 'Straight into the feed, notifications, news, social', pts: 3 },
+      { label: 'Whatever is there. I do not think about it.', pts: 4 }
+    ]
+  },
+  {
+    pillar: 'M', pillarName: 'Mindset',
+    text: 'How often does an internal voice talk you out of something you already decided to do?',
+    answers: [
+      { label: 'Rarely. I have built past that pattern.', pts: 0 },
+      { label: 'Sometimes, usually when I am tired or under pressure', pts: 2 },
+      { label: 'More than I would like. I negotiate with myself a lot.', pts: 3 },
+      { label: 'It is basically a daily thing', pts: 4 }
+    ]
+  },
+  {
+    pillar: 'A', pillarName: 'Action',
+    text: 'If you are honest, where do most of your productive hours actually go?',
+    answers: [
+      { label: 'Doing the work. Output is the measure.', pts: 0 },
+      { label: 'Mix of doing and planning, roughly 60/40', pts: 2 },
+      { label: 'A lot of planning and prep before I actually start', pts: 3 },
+      { label: 'Always busy but struggle to point to what actually got done', pts: 4 }
+    ]
+  },
+  {
+    pillar: 'A', pillarName: 'Action',
+    text: 'When it comes to things where you might be judged, posting, pitching, speaking up, what is your default?',
+    answers: [
+      { label: 'I do it. Being seen is part of the compound.', pts: 0 },
+      { label: 'I do it, but I feel the hesitation first', pts: 2 },
+      { label: 'I pull back until I feel more ready', pts: 3 },
+      { label: 'I mostly avoid situations where I can be evaluated', pts: 4 }
+    ]
+  },
+  {
+    pillar: 'A', pillarName: 'Action',
+    text: 'When do you usually feel motivated to do something?',
+    answers: [
+      { label: 'After I start. Motivation follows the rep.', pts: 0 },
+      { label: 'Once I can see momentum building', pts: 2 },
+      { label: 'When I am in the right headspace, which varies', pts: 3 },
+      { label: 'I wait for it to show up. It often does not.', pts: 4 }
+    ]
+  },
+  {
+    pillar: 'N', pillarName: 'Nutrition',
+    text: 'How does your energy feel across the day, not just physically, but mentally?',
+    answers: [
+      { label: 'Stable. I have connected what I eat to how I think.', pts: 0 },
+      { label: 'Good in the morning, drops after lunch', pts: 2 },
+      { label: 'Inconsistent, some days sharp, some days foggy with no obvious cause', pts: 3 },
+      { label: 'I do not really link my food choices to my mental state', pts: 4 }
+    ]
+  },
+  {
+    pillar: 'N', pillarName: 'Nutrition',
+    text: 'What goes into your body in the first hour after you wake up?',
+    answers: [
+      { label: 'Water, then protein, then caffeine after 90 minutes, in that order', pts: 0 },
+      { label: 'Coffee when I am up, food when I get hungry', pts: 2 },
+      { label: 'Coffee immediately. Food is hit or miss.', pts: 3 },
+      { label: 'Coffee, nothing else for the first few hours', pts: 4 }
+    ]
+  },
+  {
+    pillar: 'N', pillarName: 'Nutrition',
+    text: 'How deliberate are you about what you let into your head across the day, media, conversations, environment?',
+    answers: [
+      { label: 'Very. I treat mental input like nutrition because it is.', pts: 0 },
+      { label: 'I try to be, but I drift more than I would like', pts: 2 },
+      { label: 'Not very. I consume whatever is available.', pts: 3 },
+      { label: 'I had not thought about it in those terms before', pts: 4 }
+    ]
+  }
+];
+
+let currentQ = 0;
+const answers = {};
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('screen-' + id).classList.add('active');
+}
+
+function startQuiz() {
+  currentQ = 0;
+  showScreen('quiz');
+  document.getElementById('progressWrap').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  var q = questions[currentQ];
+  var pct = Math.round((currentQ / questions.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = 'Question ' + (currentQ + 1) + ' of ' + questions.length;
+  var selected = answers[currentQ];
+  var isLast = currentQ === questions.length - 1;
+  var html = '<div class="anim">' +
+    '<div class="q-pillar">' + q.pillarName + '</div>' +
+    '<div class="q-text">' + q.text + '</div>' +
+    '<div class="answers">' +
+    q.answers.map(function(a, i) {
+      return '<button class="answer-btn' + (selected === i ? ' selected' : '') + '" onclick="selectAnswer(' + i + ')">' + a.label + '</button>';
+    }).join('') +
+    '</div>' +
+    '<div class="q-nav">' +
+    '<button class="btn-back" onclick="goBack()" ' + (currentQ === 0 ? 'style="visibility:hidden"' : '') + '>&larr; Back</button>' +
+    '<button class="btn-next" id="btnNext" onclick="goNext()" ' + (selected !== undefined ? '' : 'disabled') + '>' + (isLast ? 'See my results' : 'Next') + '</button>' +
+    '</div></div>';
+  document.getElementById('questionContainer').innerHTML = html;
+}
+
+function selectAnswer(idx) {
+  answers[currentQ] = idx;
+  document.querySelectorAll('.answer-btn').forEach(function(btn, i) { btn.classList.toggle('selected', i === idx); });
+  document.getElementById('btnNext').disabled = false;
+}
+
+function goNext() {
+  if (answers[currentQ] === undefined) return;
+  if (currentQ < questions.length - 1) { currentQ++; renderQuestion(); }
+  else { showResults(); }
+}
+
+function goBack() { if (currentQ > 0) { currentQ--; renderQuestion(); } }
+
+function calcScore() {
+  var pillarScores = { M: 0, A: 0, N: 0 };
+  questions.forEach(function(q, i) {
+    if (answers[i] !== undefined) { pillarScores[q.pillar] += q.answers[answers[i]].pts; }
+  });
+  var totalPts = pillarScores.M + pillarScores.A + pillarScores.N;
+  var dominant = 'M';
+  if (pillarScores.A >= pillarScores[dominant]) dominant = 'A';
+  if (pillarScores.N > pillarScores[dominant]) dominant = 'N';
+  var tier = totalPts >= 28 ? 'civilian' : totalPts >= 19 ? 'intent' : totalPts >= 10 ? 'dialed' : 'warrior';
+  return { totalPts: totalPts, pillarScores: pillarScores, dominant: dominant, tier: tier };
+}
+
+function showResults() {
+  var sc = calcScore();
+  window.location.hash = 'brief/' + encodeBriefState(sc);
+}
+
+setupHashRouting();
+
+/* ── ?go direct-quiz mode ───────────────────────────────── */
+(function() {
+  if (window.location.search.indexOf('go') === -1) return;
+  function initGoMode() {
+    ['.hero-section', '.section', '.pos-strip', '.quiz-header', '.site-footer'].forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(el) { el.style.display = 'none'; });
+    });
+    var qs = document.querySelector('.quiz-section');
+    if (qs) { qs.style.paddingTop = '32px'; qs.style.paddingBottom = '40px'; }
+    startQuiz();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGoMode);
+  } else {
+    initGoMode();
+  }
+})();
+</script>
+</body>
+</html>
