@@ -626,13 +626,30 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes. Ask it to create something and the file gets saved to your Obsidian vault automatically, in the right project folder. Examples:</p>
+        <p>Yes. Claude Cowork produces actual files with real formatting and formulas, not just text you have to copy out. Examples:</p>
         <ul>
           <li>Summarise this week's emails into a PDF</li>
-          <li>Build a one-page comparison of these quotes as a spreadsheet</li>
+          <li>Build a comparison of these quotes as an Excel spreadsheet with working formulas</li>
           <li>Create an HTML proposal for this client</li>
+          <li>Organise these 80 invoices into monthly folders, rename each to YYYY-MM-DD-client format</li>
         </ul>
-        <p>Files in your vault stay permanently. They do not disappear after a session ends.</p>
+        <p>Output files get saved to your Obsidian vault automatically, in the right project folder. They stay permanently and do not disappear after the session ends.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="better results done framework delegate task how to prompt best results quality output">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I get better results when delegating a task?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Before sending any task, answer three questions. Carl Vellotti (CC for Everyone) calls this the "Done" framework — it works:</p>
+        <ul>
+          <li><strong>What does done look like specifically?</strong> Not "organise my invoices" but "create a folder for each month, move each invoice into the right one, name them YYYY-MM-DD-client.pdf"</li>
+          <li><strong>What context does Claude need?</strong> Which folder, which client, which date range, which format</li>
+          <li><strong>What constraints apply?</strong> Don't delete originals. Only touch files in this folder. Don't send emails without my approval.</li>
+        </ul>
+        <p>The mindset shift: Cowork is less like a back-and-forth conversation and more like leaving a clear brief for a coworker. The more specific the brief, the better the output.</p>
       </div>
     </div>
 
@@ -867,6 +884,23 @@
       <div class="faq-a">
         <p>Only you. Claude Desktop is tied to your Anthropic account. CLAUDE.md lives on your Mac. Your Obsidian vault is a local folder on your machine. No one else has access unless you explicitly share files or credentials.</p>
         <p>Your setup provider configures the system during setup sessions but does not retain ongoing access to your machine or files.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="precautions bulk tasks file operations delete files safe folder backup">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Are there precautions I should take before running bulk file tasks?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. A few habits that prevent problems:</p>
+        <ul>
+          <li><strong>Use a dedicated working folder.</strong> Give Claude a specific folder to work in rather than pointing it at your entire desktop or Documents folder. Scope limits accidental impact.</li>
+          <li><strong>Back up before bulk operations.</strong> Any task that renames, moves, or reorganises files at scale should be run on a copy first if the files are important.</li>
+          <li><strong>Be explicit about deletion.</strong> If you do not want files deleted, say so: "do not delete anything, only copy or move." Claude will not delete unless you tell it to or the task clearly requires it, but stating it removes any ambiguity.</li>
+          <li><strong>Keep sensitive data out of scope.</strong> Do not include credential files, personal ID documents, or financial records in a working folder unless the task specifically needs them.</li>
+        </ul>
+        <p>These habits matter most for one-off bulk tasks (file organisation, batch renaming, folder restructures). Scheduled workflows are scoped during setup and do not need this level of care each time.</p>
       </div>
     </div>
 
