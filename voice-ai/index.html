@@ -305,16 +305,7 @@
       position: relative;
     }
 
-    .steps-grid::before {
-      content: '';
-      position: absolute;
-      top: 28px;
-      left: calc(33.33% + 8px);
-      right: calc(33.33% + 8px);
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent), var(--sky-deep));
-      opacity: 0.3;
-    }
+    .steps-grid::before { display: none; }
 
     .step-card {
       text-align: center;
