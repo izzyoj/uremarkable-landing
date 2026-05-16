@@ -558,22 +558,6 @@
     }
   </style>
 
-  <!-- Retell Web Call SDK -->
-  <!-- Retell Chat Widget — browser voice, no phone number needed -->
-  <script
-    id="retell-widget"
-    src="https://dashboard.retellai.com/retell-widget.js"
-    type="module"
-    data-public-key="public_key_eebbbfc0e04f2d8bb1b4b"
-    data-agent-id="agent_0b604f8b186beb691666b93e86"
-    data-title="Scale Reception Demo"
-    data-color="#2c8f87"
-    data-bot-name="Shazza"
-    data-popup-message="Give Shazza a ring — she's ready now 🤙"
-    data-show-ai-popup="true"
-    data-show-ai-popup-time="8"
-    data-auto-open="false"
-  ></script>
 </head>
 <body>
 
@@ -722,22 +706,55 @@
   </footer>
 
 
-  <script>
-    // Wire hero button to open the Retell Chat Widget
-    document.addEventListener('DOMContentLoaded', function() {
-      var heroBtn = document.getElementById('hero-demo-btn');
-      if (heroBtn) {
-        heroBtn.addEventListener('click', function() {
-          var widget = document.getElementById('retell-widget');
-          if (widget && typeof widget.open === 'function') {
-            widget.open();
-          } else if (widget && widget.shadowRoot) {
-            var inner = widget.shadowRoot.querySelector('button');
-            if (inner) inner.click();
-          } else if (widget) {
-            widget.click();
-          }
+  <script type="module">
+    import { RetellWebClient } from "https://esm.sh/retell-client-js-sdk";
+
+    const client = new RetellWebClient();
+    const btn = document.getElementById('hero-demo-btn');
+    let callActive = false;
+
+    client.on('call_started', () => {
+      callActive = true;
+      btn.innerHTML = '<span class="btn-icon">🔴</span> End call';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
+    });
+
+    client.on('call_ended', () => {
+      callActive = false;
+      btn.innerHTML = '<span class="btn-icon">📞</span> Speak with Shazza now';
+      btn.style.background = '';
+      btn.disabled = false;
+    });
+
+    client.on('error', (err) => {
+      console.error('Retell error:', err);
+      callActive = false;
+      btn.innerHTML = '<span class="btn-icon">📞</span> Speak with Shazza now';
+      btn.style.background = '';
+      btn.disabled = false;
+    });
+
+    btn.addEventListener('click', async () => {
+      if (callActive) {
+        client.stopCall();
+        return;
+      }
+
+      btn.innerHTML = '<span class="btn-icon">⏳</span> Connecting...';
+      btn.disabled = true;
+
+      try {
+        const resp = await fetch('https://shazza-token.izzyojardim.workers.dev', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
         });
+        const data = await resp.json();
+        await client.startCall({ accessToken: data.access_token });
+      } catch (e) {
+        console.error('Failed to start call:', e);
+        btn.innerHTML = '<span class="btn-icon">📞</span> Speak with Shazza now';
+        btn.disabled = false;
       }
     });
   </script>
