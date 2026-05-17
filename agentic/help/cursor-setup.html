@@ -40,12 +40,12 @@
 <body>
 <div class="container">
 
-  <a href="/agentic/help/" class="back-link">&#8592; Back to Help Centre</a>
+  <a href="/agentic/help/" class="back-link">← Back to Help Centre</a>
 
   <div class="header">
     <div class="badge">AI Business Operating System</div>
     <h1>Setting Up Cursor</h1>
-    <p class="subtitle">Cursor is a free AI-powered code editor that doubles as a troubleshooting tool. When something breaks with your Claude setup, Cursor can diagnose errors, explain what they mean, and tell you exactly what to run to fix them. This guide covers installing it and using it effectively.</p>
+    <p class="subtitle">Cursor is your free AI troubleshooting backup. When your assistant's usage window runs out, Cursor's built-in AI runs on its own quota independently. This guide covers installing it, opening the right folder, and getting AI help when something breaks.</p>
   </div>
 
   <!-- PART 1: Install -->
@@ -57,9 +57,9 @@
       <div class="step-body">
         <div class="step-title">Download Cursor</div>
         <div class="step-desc">
-          Go to <a href="https://cursor.com" target="_blank">cursor.com</a> and click the download button. It detects your OS automatically.
+          Go to <a href="https://cursor.com" target="_blank">cursor.com</a> and click the big download button. It will detect you're on a Mac automatically.
         </div>
-        <div class="tip-box"><strong>Free tier</strong> gives you 500 AI requests per month. That is more than enough for occasional troubleshooting.</div>
+        <div class="tip-box"><strong>Free tier</strong> gives you 500 AI requests per month. That's plenty for troubleshooting a few times a week.</div>
       </div>
     </div>
 
@@ -68,7 +68,7 @@
       <div class="step-body">
         <div class="step-title">Install it</div>
         <div class="step-desc">
-          Open the downloaded file (it will be in Downloads). Drag the Cursor icon into your Applications folder when prompted. Then open Cursor from Applications or Spotlight (Cmd+Space, type "Cursor").
+          Open the downloaded file (it'll be in Downloads). Drag the Cursor icon into your Applications folder when prompted. Then open Cursor from Applications or Spotlight (Cmd+Space, type "Cursor").
         </div>
       </div>
     </div>
@@ -85,20 +85,20 @@
 
   </div>
 
-  <!-- PART 2: Open a folder -->
+  <!-- PART 2: Open system folder -->
   <div class="section">
-    <div class="section-title">Part 2 — Open a Folder for Troubleshooting</div>
+    <div class="section-title">Part 2 — Open Your System Folder</div>
 
     <div class="step">
       <div class="step-num">4</div>
       <div class="step-body">
-        <div class="step-title">Open your project folder in Cursor</div>
+        <div class="step-title">Open your system folder in Cursor</div>
         <div class="step-desc">
           In Cursor, go to the top menu: <strong>File &gt; Open Folder</strong><br><br>
-          Navigate to the folder your setup provider configured for you. This is where your CLAUDE.md file and project files live. Click it once to select it, then click <strong>Open</strong>.
+          Navigate to your home folder (it usually opens there by default). You're looking for the folder your AI system runs from — it's called <strong>claudeclaw</strong>. Click it once to select it, then click <strong>Open</strong>.
         </div>
         <div class="tip-box">
-          <strong>Not sure which folder?</strong> Press <strong>Cmd+Shift+H</strong> in the folder picker to jump to your home folder. Your setup provider will have named the folder clearly during your setup session.
+          <strong>Can't find it?</strong> In the folder picker, press <strong>Cmd+Shift+H</strong> to jump to your home folder. The claudeclaw folder should be right there.
         </div>
       </div>
     </div>
@@ -106,11 +106,11 @@
     <div class="step">
       <div class="step-num">5</div>
       <div class="step-body">
-        <div class="step-title">Confirm you are in the right place</div>
+        <div class="step-title">Confirm you're in the right place</div>
         <div class="step-desc">
-          Once open, you will see a list of files on the left panel. You should see your <strong>CLAUDE.md</strong> file. If you see it, you are in the right folder.
+          Once open, you'll see a list of files and folders on the left side panel. Things like <strong>dist/</strong>, <strong>scripts/</strong>, <strong>.env</strong> — that means you're in the right folder.
         </div>
-        <div class="screenshot-note">If you see something completely different or a blank panel, close and try File &gt; Open Folder again.</div>
+        <div class="screenshot-note">If you see something completely different or just a blank screen, close and try File &gt; Open Folder again.</div>
       </div>
     </div>
 
@@ -126,21 +126,21 @@
         <div class="step-title">Open a terminal panel</div>
         <div class="step-desc">
           Go to the top menu: <strong>Terminal &gt; New Terminal</strong><br><br>
-          A terminal panel opens at the bottom of the screen, pointed at your project folder. You are ready to type commands.
+          A terminal panel will open at the bottom of the screen. It will automatically be pointed at your system folder. You're ready to type commands.
         </div>
-        <div class="cmd-block" style="font-size:12px; color: #a8c7fa;">Shortcut: Ctrl + ` (backtick key, above Tab)</div>
+        <div class="cmd-block" style="font-size:12px; color: #a8c7fa;">Shortcut: Ctrl + ` (backtick — the key above Tab)</div>
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">7</div>
       <div class="step-body">
-        <div class="step-title">Confirm you are in the right place</div>
+        <div class="step-title">Confirm you're in the right place</div>
         <div class="step-desc">
           In the terminal, type this and press Enter:
         </div>
         <div class="cmd-block">pwd<button class="copy-btn" onclick="navigator.clipboard.writeText('pwd');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button></div>
-        <div class="tip-box">It should show the path to your project folder. If it does, you are in the right place.</div>
+        <div class="tip-box">It should say <strong>/Users/[yourname]/claudeclaw</strong>. If it does, you're in the right place.</div>
       </div>
     </div>
 
@@ -155,7 +155,7 @@
       <div class="step-body">
         <div class="step-title">Open the AI chat</div>
         <div class="step-desc">
-          Press <strong>Cmd+L</strong> to open the Cursor AI chat panel on the right. This is where you describe what broke and get step-by-step help.
+          Press <strong>Cmd+L</strong> to open the Cursor AI chat panel on the right. This is where you ask for help when something breaks or you're not sure what to do.
         </div>
       </div>
     </div>
@@ -165,14 +165,14 @@
       <div class="step-body">
         <div class="step-title">What to say when something breaks</div>
         <div class="step-desc">
-          Describe the problem in plain English and paste any error text. Examples:
+          Just describe what happened in plain English. Examples that work well:
         </div>
         <div class="tip-box">
-          "Claude Desktop stopped responding after I restarted my Mac. How do I get it running again?"<br><br>
-          "I got this error when trying to use a connector: [paste the red text here]. What does it mean and how do I fix it?"<br><br>
-          "How do I check if my scheduled workflows are still running?"
+          "My assistant stopped responding on Telegram. I'm in the claudeclaw folder. How do I restart it?"<br><br>
+          "I got this error when I tried to restart: [paste the red text here]. What does it mean?"<br><br>
+          "How do I check if the bot is currently running?"
         </div>
-        <div class="screenshot-note">Cursor AI can read the files in your project folder. It will give you the exact commands to run, explained in plain English. Copy and paste them straight into the terminal panel below.</div>
+        <div class="screenshot-note">Cursor AI can see the files in your folder. It will give you the exact commands to run, with explanations. Copy and paste them straight into the terminal panel below.</div>
       </div>
     </div>
 
@@ -207,7 +207,7 @@
 
   <div class="section" style="background:#f0f9ff; border: 1px solid #c5e3ff;">
     <div class="step-title" style="font-size:15px; margin-bottom: 8px;">Still stuck?</div>
-    <div class="step-desc">If Cursor AI cannot fix it, send support a screenshot of the red error text. Most issues can be diagnosed and resolved remotely in a few minutes.</div>
+    <div class="step-desc">If Cursor AI can't fix it, send support a Telegram with a screenshot of the red error text. Most issues can be diagnosed and resolved remotely in a few minutes.</div>
   </div>
 
 </div>
