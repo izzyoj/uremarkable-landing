@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help — AI Business Operating System | uremarkable.com</title>
+<meta name="description" content="Common questions about your AI Business Operating System: setup, voice, memory, apps, security, and troubleshooting.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.uremarkable.com/agentic/help">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Uremarkable">
+<meta property="og:title" content="Help — AI Business Operating System FAQ">
+<meta property="og:description" content="Common questions about your AI assistant: setup, voice, memory, apps, security, and troubleshooting.">
+<meta property="og:url" content="https://www.uremarkable.com/help">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What exactly is the AI Business Operating System?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Your AI Business Operating System is a configured Claude Cowork setup built around your business. Claude Desktop runs on your Mac, connected to your tools and loaded with your business context via CLAUDE.md. It reads your files, handles your workflows, and operates like a team member available at any hour."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I need before my setup session?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Two things: a Mac running macOS and a Claude plan. Pro (A$30.91/month) is the recommended starting point. Max gives more headroom for heavy workflows. Your setup provider handles everything else including software installation, connecting your apps, and loading your business context."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Claude Cowork and what does Uremarkable configure?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Claude Cowork is Anthropic's platform for connecting Claude to your business tools via connectors, plugins, and scheduled workflows. Uremarkable configures Claude Desktop on your Mac, loads your business context into CLAUDE.md, connects your tools (Gmail, M365, HubSpot, Slack), and sets up your Obsidian vault as a permanent output layer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use it day-to-day?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Open Claude Desktop on your Mac and type or speak naturally. No wake word, no special format. On mobile, use Dispatch to send tasks and check results from your phone. Examples: Check my calendar for tomorrow, Draft a reply to the email from Sarah about the proposal, Create a summary of this document."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use voice input?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Yes. In Dispatch on your phone, hold the microphone button, record, and send. It transcribes automatically and executes your request. You can also ask for a voice reply back."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it produce and deliver files?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Yes. Ask it to create something and the file gets saved to your Obsidian vault automatically. Examples: Summarize this week's emails into a PDF, Build a one-page comparison of these quotes, Create an HTML proposal for this client."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does memory work?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Two layers. CLAUDE.md is the curated layer: your business context, rules, and key facts, loaded at the start of every session. It never decays. Anthropic's native memory is automatic: it synthesises conversations on a 24-hour cycle, surfacing relevant context. Your Obsidian vault is the permanent output layer: everything Claude produces gets saved there."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does memory last?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "CLAUDE.md context never decays — it loads fresh every session. Anthropic native memory runs on a 24-hour synthesis cycle and scores salience automatically. Your Obsidian vault is permanent and fully searchable — everything saved there stays indefinitely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can access my setup?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Only you. Claude Desktop is tied to your Anthropic account. CLAUDE.md lives on your Mac. Your Obsidian vault is a local folder on your machine. No one else has access unless you explicitly share files."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why isn't Claude responding?",
+      "acceptedAnswer": { "@type": "Answer",
+        "text": "Check: Is your Mac on and awake? Is Claude Desktop open? Did you miss any macOS permission dialogs on first run? Try closing and reopening Claude Desktop. If unresolved, contact support for a remote service check."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #ffffff;
+    --bg-2:       #f5f5f7;
+    --bg-3:       #e8e8ed;
+    --blue:       #0071e3;
+    --blue-soft:  rgba(0,113,227,0.08);
+    --text:       #1d1d1f;
+    --text-2:     #6e6e73;
+    --text-3:     #86868b;
+    --border:     rgba(0,0,0,0.08);
+    --shadow:     0 1px 3px rgba(0,0,0,0.08);
+    --r:          14px;
+  }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: var(--bg-2);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .ur-nav {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(210,210,215,0.6);
+    padding: 0 24px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .ur-nav-back {
+    font-size: 14px;
+    color: var(--text-2);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .ur-nav-back:hover { color: var(--text); }
+  .ur-nav-badge {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-3);
+    background: var(--bg-3);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .ur-nav-right { display: flex; align-items: center; gap: 12px; }
+  .ur-nav-hamburger {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; width: 32px; height: 32px;
+  }
+  .ur-nav-hamburger span { display: block; width: 20px; height: 2px; background: #1d1d1f; border-radius: 2px; }
+  .ur-mobile-nav {
+    display: none; flex-direction: column; position: fixed; top: 52px; left: 0; right: 0;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); z-index: 99;
+    border-bottom: 1px solid rgba(210,210,215,0.6); padding: 8px 0;
+  }
+  .ur-mobile-nav.open { display: flex; }
+  .ur-mobile-nav a {
+    padding: 13px 24px; font-size: 15px; font-weight: 500; color: var(--text);
+    text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .ur-mobile-nav a:last-child { border-bottom: none; }
+  @media (max-width: 640px) {
+    .ur-nav-badge { display: none; }
+    .ur-nav-back { display: none; }
+    .ur-nav-hamburger { display: flex; }
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--bg);
+    padding: 64px 24px 56px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--text-2);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-3);
+    font-size: 16px;
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--bg-2);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .search-input:focus {
+    border-color: var(--blue);
+    background: var(--bg);
+  }
+
+  /* CATEGORY TABS */
+  .tab-bar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-inner {
+    display: flex;
+    gap: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .tab-btn {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-2);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 14px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+  /* CONTENT */
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* SECTION */
+  .faq-section {
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ACCORDION */
+  .faq-item {
+    background: var(--bg);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+  }
+  .faq-item.open { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .faq-q-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-2);
+    transition: transform 0.2s, background 0.15s;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    background: var(--blue-soft);
+    color: var(--blue);
+  }
+  .faq-a {
+    display: none;
+    padding: 0 20px 20px;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-a p { margin-bottom: 10px; }
+  .faq-a p:last-child { margin-bottom: 0; }
+  .faq-a ul { padding-left: 18px; margin: 8px 0; }
+  .faq-a li { margin-bottom: 6px; }
+  .faq-a code {
+    font-family: 'SF Mono', Monaco, Consolas, monospace;
+    font-size: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--text);
+  }
+  .faq-a strong { color: var(--text); font-weight: 600; }
+  .faq-a .tip {
+    background: var(--blue-soft);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--blue);
+  }
+
+  /* NO RESULTS */
+  .no-results {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-2);
+    display: none;
+  }
+  .no-results.visible { display: block; }
+  .no-results h3 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
+  .no-results p { font-size: 14px; }
+
+  /* CONTACT CTA */
+  .contact-cta {
+    background: var(--text);
+    color: #fff;
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    margin-top: 56px;
+  }
+  .contact-cta h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .contact-cta p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 24px;
+    line-height: 1.55;
+  }
+  .contact-cta a {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 980px;
+    transition: opacity 0.15s;
+  }
+  .contact-cta a:hover { opacity: 0.88; }
+
+  /* OBSIDIAN FOLDER TREE */
+  .folder-tree {
+    background: #1a1a2e;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 12px 0 8px;
+    overflow-x: auto;
+  }
+  .folder-tree pre {
+    font-family: 'SF Mono','Fira Code','Menlo',monospace;
+    font-size: 12px;
+    line-height: 1.75;
+    color: #e8e8f0;
+    margin: 0;
+    white-space: pre;
+  }
+  .folder-tree .dir  { color: #a78bfa; font-weight: 700; }
+  .folder-tree .file { color: #86efac; }
+  .folder-tree .tb   { color: #6e6e8a; }
+  .folder-tree .cm   { color: #6e6e8a; font-style: italic; }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    .hero { padding: 44px 20px 40px; }
+    .content { padding: 28px 16px 60px; }
+    .faq-q { padding: 16px; }
+    .faq-a { padding: 0 16px 16px; padding-top: 14px; }
+    .tab-btn { padding: 12px 12px; font-size: 12px; }
+    .contact-cta { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="ur-nav">
+  <a href="/agentic" class="ur-nav-back">&#8592; uremarkable.com</a>
+  <div class="ur-nav-right">
+    <span class="ur-nav-badge">Help</span>
+    <button class="ur-nav-hamburger" id="help-hamburger" onclick="toggleHelpNav()" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="ur-mobile-nav" id="help-mobile-nav">
+  <a href="/agentic">&#8592; uremarkable.com/agentic</a>
+  <a href="/signals">The Signal Blog</a>
+  <a href="/playbooks">Playbooks</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">AI Business Operating System</div>
+  <h1>How can we help?</h1>
+  <p>Common questions about your AI assistant, from first setup to daily use.</p>
+  <div class="search-wrap">
+    <span class="search-icon">&#128269;</span>
+    <input class="search-input" type="text" id="faq-search" placeholder="Search questions..." autocomplete="off">
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="filterSection('all', this)">All</button>
+    <button class="tab-btn" onclick="filterSection('getting-started', this)">Getting started</button>
+    <button class="tab-btn" onclick="filterSection('day-to-day', this)">Day to day</button>
+    <button class="tab-btn" onclick="filterSection('memory', this)">Memory</button>
+    <button class="tab-btn" onclick="filterSection('apps', this)">Apps</button>
+    <button class="tab-btn" onclick="filterSection('automation', this)">Automation</button>
+    <button class="tab-btn" onclick="filterSection('security', this)">Security</button>
+    <button class="tab-btn" onclick="filterSection('troubleshooting', this)">Troubleshooting</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- GETTING STARTED -->
+  <div class="faq-section" data-section="getting-started">
+    <div class="section-label">Getting started</div>
+
+    <div class="faq-item" data-keywords="what is ai business operating system what is this how does it work overview cowork claude desktop">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What exactly is the AI Business Operating System?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Your AI Business Operating System is a configured Claude Cowork setup built around your business. Claude Desktop runs on your Mac, connected to your tools and loaded with your business context. It reads your files, handles your workflows, and operates like a team member available at any hour.</p>
+        <p>It is not a chatbot and not a cloud service you rent. The setup is configured to know your clients, your formats, your rules. That configuration persists and compounds over time.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="requirements what do i need before setup mac computer plan claude pro max">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What do I need before my setup session?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Two things:</p>
+        <ul>
+          <li><strong>A Mac</strong> running macOS</li>
+          <li><strong>A Claude plan</strong> — Pro (A$30.91/month) is the recommended starting point. Max gives more headroom for heavy workflows</li>
+        </ul>
+        <p>Your setup provider handles everything else: installing Claude Desktop, connecting your apps, and loading your business context so Claude knows your business from session one.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="setup time how long does setup take installation one day">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How long does setup take?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>One session. By the end of your setup call, Claude Desktop is configured, your business context is loaded, your first connectors are active, and at least one workflow is running. Same day.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="windows pc does it work windows computer">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Does it work on Windows?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Claude Desktop runs on Windows. macOS is the primary setup environment and gets the smoothest experience, but Windows is supported. Mention this during your discovery call so your setup is configured correctly.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="claude plan free pro max which plan cost pricing aud australia">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Which Claude plan do I need?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Pro (A$30.91/month billed monthly, or A$26/month annual) is the recommended starting point for most businesses. If you are running heavy workflows — large files, many daily tasks, complex automations — Max gives significantly more usage headroom:</p>
+        <ul>
+          <li><strong>Max 5x</strong> — A$154.54/month</li>
+          <li><strong>Max 20x</strong> — A$309.09/month</li>
+        </ul>
+        <p>You pay Anthropic directly. Your setup provider does not handle or mark up your Claude subscription.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="cowork what is cowork dispatch connector plugin workflow anthropic">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is Claude Cowork and what does Uremarkable configure?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Claude Cowork is Anthropic's platform for running Claude alongside your business tools. It has three components your setup draws on:</p>
+        <ul>
+          <li><strong>Connectors</strong> — live links to Gmail, M365, HubSpot, Slack, Google Drive, and more</li>
+          <li><strong>Plugins</strong> — domain packs covering Finance, Sales, Operations, Legal, and others</li>
+          <li><strong>Scheduled workflows</strong> — tasks that run automatically on a schedule you define</li>
+        </ul>
+        <p>Uremarkable configures all of this for your business: installs Claude Desktop, writes your CLAUDE.md business context file, connects your tools, and sets up your Obsidian vault as a permanent output layer.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="background service run automatically keeps running always on startup awake sleep mac keep awake toggle">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Does it keep running in the background?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Partly. Claude Desktop launches at login and your business context loads automatically at the start of every session. But there is one hard requirement: <strong>your Mac must be awake and Claude Desktop must be open</strong> for Claude to work on tasks. If your Mac sleeps or Claude closes, task execution stops.</p>
+        <p>During setup, Claude Desktop shows a toggle to <strong>Keep this computer awake</strong> — turn that on. It prevents your Mac from sleeping while Claude is working, which matters most for longer scheduled workflows and background tasks running while you are away from your desk.</p>
+        <p>If you leave your Mac on during the day with Claude Desktop open, everything runs automatically with no further action from you.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="faq-section" data-section="day-to-day">
+    <div class="section-label">Day to day</div>
+
+    <div class="faq-item" data-keywords="how to message send text how do i use it talk to it type">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I use it day-to-day?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Open Claude Desktop on your Mac and type naturally. No wake word, no special format. On mobile, use Dispatch to send tasks and check results from your phone, in one continuous conversation.</p>
+        <p>Examples of what you can ask:</p>
+        <ul>
+          <li>Check my calendar for tomorrow</li>
+          <li>Draft a reply to the email from Sarah about the proposal</li>
+          <li>Set a reminder to follow up with the Barangaroo lead on Friday</li>
+          <li>Create a summary of this document and save it to my vault</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="voice notes voice input can i speak talk voice note send voice dispatch mobile">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I use voice input?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. In Dispatch on your phone, hold the microphone button, record, and send. It transcribes automatically and executes your request. By default replies come back as text. To get a voice reply, say "respond with voice" or "voice reply" in your message.</p>
+        <p>On desktop, Claude Desktop supports dictation via macOS built-in dictation (Fn Fn) or any voice input tool you use.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="photos documents pdf files send file attachment analyze image">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I send photos, documents, and PDFs?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Drop files directly into Claude Desktop or attach them in Dispatch. Claude reads PDFs, Word docs, images, spreadsheets, and more. It will analyse, summarise, extract data, or take action based on what you send.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="can it produce files create file pdf send back to me file output obsidian vault">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it produce and deliver files?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Claude Cowork produces actual files with real formatting and formulas, not just text you have to copy out. Examples:</p>
+        <ul>
+          <li>Summarise this week's emails into a PDF</li>
+          <li>Build a comparison of these quotes as an Excel spreadsheet with working formulas</li>
+          <li>Create an HTML proposal for this client</li>
+          <li>Organise these 80 invoices into monthly folders, rename each to YYYY-MM-DD-client format</li>
+        </ul>
+        <p>Output files get saved to your Obsidian vault automatically, in the right project folder. They stay permanently and do not disappear after the session ends.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="better results done framework delegate task how to prompt best results quality output">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I get better results when delegating a task?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Before sending any task, answer three questions. Carl Vellotti (CC for Everyone) calls this the "Done" framework — it works:</p>
+        <ul>
+          <li><strong>What does done look like specifically?</strong> Not "organise my invoices" but "create a folder for each month, move each invoice into the right one, name them YYYY-MM-DD-client.pdf"</li>
+          <li><strong>What context does Claude need?</strong> Which folder, which client, which date range, which format</li>
+          <li><strong>What constraints apply?</strong> Don't delete originals. Only touch files in this folder. Don't send emails without my approval.</li>
+        </ul>
+        <p>The mindset shift: Cowork is less like a back-and-forth conversation and more like leaving a clear brief for a coworker. The more specific the brief, the better the output.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="fresh start reset conversation new session context window full long conversation">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I start fresh when a conversation gets too long?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Say "checkpoint" before starting a new conversation. This saves a tight summary of the current session to your Obsidian vault so nothing important is lost. Then start a new Claude session — your business context (CLAUDE.md) loads automatically and the checkpoint is retrievable.</p>
+        <p>If you are mid-task and notice responses getting slower or less accurate, that is usually a sign the session context is getting heavy. Checkpoint and reset.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="faq-section" data-section="memory">
+    <div class="section-label">Memory</div>
+
+    <div class="faq-item" data-keywords="memory remember things context between sessions persistent obsidian claude.md two layers">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How does memory work?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Two layers work together:</p>
+        <ul>
+          <li><strong>CLAUDE.md</strong> — the curated layer. Your business context, key clients, rules, pricing logic, and decisions. Written and maintained by your setup provider. Loads at the start of every session. Never decays.</li>
+          <li><strong>Anthropic native memory</strong> — automatic. Synthesises your conversations on a 24-hour cycle, surfacing relevant context when needed. Managed by Anthropic.</li>
+        </ul>
+        <p>Your Obsidian vault is the output layer: everything Claude produces gets saved there. It is not memory — it is your permanent record. Decisions, documents, research, tools built for your business. All searchable, all yours.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="obsidian second brain what is obsidian permanent memory vault notes folder">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is Obsidian and why do I need it?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Obsidian is a free note-taking app that works on local files — your vault is a folder on your Mac that Claude writes to automatically. It is the permanent output layer of your system.</p>
+        <p>Every document Claude produces, every summary, every decision gets saved to the right project folder in your vault. Over time it becomes a searchable record of everything your business has done, built, and decided. Not a chat window you scroll back through — a structured second brain.</p>
+        <p>Obsidian is free to download at obsidian.md.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="obsidian setup install configure do i need to manage vault set up">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do I need to manage Obsidian myself?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>No. Your setup provider configures the vault folder structure during setup and Claude writes to it automatically. You can open Obsidian to browse and search your notes, but you never have to touch the folder structure or maintain it.</p>
+        <p>Think of Obsidian as a filing cabinet Claude fills for you. You just open the drawer when you need something.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="how long memory lasts decay forget how long does it remember claude.md permanent">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How long does memory last?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Depends on the layer:</p>
+        <ul>
+          <li><strong>CLAUDE.md</strong> — never decays. Loads fresh every session. Key facts stay until you or your setup provider explicitly remove them.</li>
+          <li><strong>Anthropic native memory</strong> — runs on a 24-hour synthesis cycle. Salience scoring determines what surfaces. High-importance context (clients, decisions, ongoing projects) tends to persist.</li>
+          <li><strong>Obsidian vault</strong> — permanent. Nothing decays. Files stay until you delete them.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="see memories what does it remember view memory list claude.md check">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I see what it knows about my business?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Two ways:</p>
+        <ul>
+          <li>Ask Claude directly: "What do you know about my business?" or "What context do you have loaded?" It will summarise what is in CLAUDE.md and any retrieved memory.</li>
+          <li>Open your CLAUDE.md file directly — it is a plain text file in your project folder and contains everything your setup provider has encoded about your business.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="forget delete memory clear remove something from memory update claude.md">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I update or remove something from memory?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Tell Claude directly: "Remove [X] from your context" or "Update your understanding of [Y] to [Z]." It will edit CLAUDE.md on the spot.</p>
+        <p>You can also open CLAUDE.md in any text editor and edit it yourself. It is a plain text file. Changes take effect from the next session.</p>
+        <p>For anything that needs a bigger update — a rebrand, a new service offering, a change in client approach — contact your setup provider. Updating CLAUDE.md properly is part of the monthly retainer.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="compaction context compression forgot session memory long conversation context window reset">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is compaction and why does it matter?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Claude has a context window — the amount it can hold in working memory at once. For very long sessions, it compresses earlier parts of the conversation to make room. This is called compaction.</p>
+        <p>After compaction, Claude can still use tools and build things, but it may not remember specific details from earlier in the session. The fix: use versioned filenames (e.g. v2-report-16-May-26.html) so Claude can always check which version exists on disk, regardless of what it remembers from the conversation.</p>
+        <p>If you notice it losing track, say "checkpoint" and start a fresh session.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="checkpoint save session context new session reset start fresh preserve remember">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I save a session before starting fresh?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Say "checkpoint" before ending or resetting a session. Claude saves a tight summary of the key decisions, files created, and context from the current session to your Obsidian vault. That record is retrievable in any future session.</p>
+        <p>Use checkpoint any time the session has produced something important — a decision, a built tool, a new client brief. It is your session insurance.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="faq-section" data-section="apps">
+    <div class="section-label">Apps and connectors</div>
+
+    <div class="faq-item" data-keywords="gmail email read send check email inbox reply connector">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it read and reply to my emails?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Gmail connects via the Cowork connector during setup. Claude can list your inbox, read threads, draft replies in your voice, send emails, and flag what needs your attention. Examples:</p>
+        <ul>
+          <li>What emails came in today that need a reply?</li>
+          <li>Draft a reply to James's email about the proposal — keep it brief and confirm Friday</li>
+          <li>Find all emails from Barangaroo Realty in the last two weeks</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="calendar schedule meeting google calendar appointments availability create event">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it manage my calendar?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Google Calendar connects via the Cowork connector. Claude can check your availability, create events, send invites with Meet links, and reschedule meetings. Examples:</p>
+        <ul>
+          <li>What does my Tuesday look like?</li>
+          <li>Book a 30-minute call with Sarah on Friday morning and send her an invite</li>
+          <li>Block two hours on Thursday afternoon for deep work</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="slack can it use slack connect slack read reply message channel">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it read and respond in Slack?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Slack connects via the Cowork connector. Claude can read channels, surface messages that need your attention, draft replies, and post updates. Setup configures which channels and workspaces are in scope.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="google drive m365 microsoft hubspot canva figma notion other apps connectors">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What other tools can it connect to?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>The Cowork connector library includes: Gmail, Google Calendar, Google Drive, Microsoft 365, HubSpot, Slack, Canva, Figma, Notion, Atlassian Rovo, Ironclad, NetDocuments, and more.</p>
+        <p>For accounting tools, Xero connects via Xero CLI and MYOB connects via MYOB API — these are configured during your setup session or added as part of a retainer scope.</p>
+        <p>If a tool you use is not listed, ask during your discovery call. Custom connectors and CLI integrations are often possible.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="give claude access files folder obsidian vault file access toggle setup permission local files">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I give Claude access to my files?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>During Claude Desktop setup, you will see a toggle to <strong>Give Claude access to your files</strong> — turn it on. When prompted to select a folder, choose your <strong>Obsidian vault folder</strong>. That is the folder Claude reads from and writes to for all output.</p>
+        <p>Your vault is a regular folder on your Mac, typically inside Documents:</p>
+        <div class="folder-tree"><pre><span class="dir">~/Documents/</span>
+  <span class="dir">YourVaultName/</span>      <span class="cm">&lt;-- select this folder</span>
+    <span class="tb">├─</span> <span class="dir">inbox/</span>
+    <span class="tb">├─</span> <span class="dir">projects/</span>
+    <span class="tb">├─</span> <span class="dir">content/</span>
+    <span class="tb">├─</span> <span class="dir">daily/</span>
+    <span class="tb">├─</span> <span class="dir">tools/</span>
+    <span class="tb">└─</span> <span class="file">memory.md</span></pre></div>
+        <p>Not sure which folder is your vault? Open Obsidian and check the vault name in the bottom-left corner. The folder with that name in your Documents is what to select.</p>
+        <p>Your setup provider configures this during the setup session, so you will not need to figure this out alone on your first day.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="faq-section" data-section="automation">
+    <div class="section-label">Automation and scheduling</div>
+
+    <div class="faq-item" data-keywords="scheduled tasks cron automate automatically schedule run every day morning briefing">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can it run tasks on a schedule?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Scheduled workflows run automatically on whatever cadence you set. Common examples:</p>
+        <ul>
+          <li>Morning briefing at 8am — calendar, unread emails, top priorities</li>
+          <li>End-of-week report every Friday — project status, pending follow-ups</li>
+          <li>Monthly reconciliation trigger — pulls transactions, flags mismatches, saves report</li>
+        </ul>
+        <p>Schedules are set during your session or retainer calls. You do not need Claude Desktop open for them to run.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="manage tasks pause delete list scheduled tasks change schedule">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How do I manage my scheduled workflows?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Tell Claude what you need: "Pause the Friday report for the next two weeks", "Change the morning briefing to 7:30am", "Add a Wednesday check-in at noon." It handles the schedule update directly.</p>
+        <p>For bigger workflow changes — new automations, new tools to connect, rewriting a workflow — that is retainer scope work done in a monthly session.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="agents multiple agents specialist research comms content ops team">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I have multiple assistants for different jobs?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Specialist agents can be added: a Comms agent for email and calendar, a Research agent for deep lookups, a Content agent for drafting and publishing. Each has its own context window, CLAUDE.md configuration, and scheduled tasks.</p>
+        <p>Most businesses start with one main assistant and add specialists as their workflows grow. Ask your setup provider about multi-agent configuration.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="faq-section" data-section="security">
+    <div class="section-label">Security and privacy</div>
+
+    <div class="faq-item" data-keywords="who can access secure other people access privacy lock my account">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Who can access my setup?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Only you. Claude Desktop is tied to your Anthropic account. CLAUDE.md lives on your Mac. Your Obsidian vault is a local folder on your machine. No one else has access unless you explicitly share files or credentials.</p>
+        <p>Your setup provider configures the system during setup sessions but does not retain ongoing access to your machine or files.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="precautions bulk tasks file operations delete files safe folder backup">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Are there precautions I should take before running bulk file tasks?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. A few habits that prevent problems:</p>
+        <ul>
+          <li><strong>Use a dedicated working folder.</strong> Give Claude a specific folder to work in rather than pointing it at your entire desktop or Documents folder. Scope limits accidental impact.</li>
+          <li><strong>Back up before bulk operations.</strong> Any task that renames, moves, or reorganises files at scale should be run on a copy first if the files are important.</li>
+          <li><strong>Be explicit about deletion.</strong> If you do not want files deleted, say so: "do not delete anything, only copy or move." Claude will not delete unless you tell it to or the task clearly requires it, but stating it removes any ambiguity.</li>
+          <li><strong>Keep sensitive data out of scope.</strong> Do not include credential files, personal ID documents, or financial records in a working folder unless the task specifically needs them.</li>
+        </ul>
+        <p>These habits matter most for one-off bulk tasks (file organisation, batch renaming, folder restructures). Scheduled workflows are scoped during setup and do not need this level of care each time.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="data where does data go privacy obsidian local cloud anthropic cowork">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Where does my data go?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>When you connect tools via Cowork connectors (Gmail, Slack, HubSpot, etc.), that data routes through Anthropic's cloud as part of Claude processing your requests. Anthropic's Enterprise and Team plans do not use your data to train models by default.</p>
+        <p>Everything Claude produces — summaries, documents, reports, proposals — gets saved to your Obsidian vault, which is a local folder on your Mac. That copy is yours permanently and does not require any cloud service to access.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="slack data security encryption workspace messages">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What about Slack data security?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Slack access is scoped during setup to only the channels and workspaces you specify. Message content is processed by Anthropic in the same way as any other connector. Claude does not store Slack message history — it reads what is needed for the current task and nothing more.</p>
+        <p>If your business has specific data handling requirements, raise these during your discovery call.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="anthropic terms of service compliance legal allowed permitted claude cli">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is this within Anthropic's terms of service?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Uremarkable uses Anthropic's official Claude Desktop application and Cowork platform, both of which are designed and supported by Anthropic for exactly this kind of business use. There is no third-party wrapper, no unofficial API access, and no terms violation.</p>
+        <p>You subscribe to Claude directly through Anthropic. Uremarkable provides the implementation and configuration service on top of it.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="faq-section" data-section="troubleshooting">
+    <div class="section-label">Troubleshooting</div>
+
+    <div class="faq-item" data-keywords="claude not responding what to check not working offline mac">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Claude is not responding — what do I check?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Start here:</p>
+        <ol>
+          <li>Is your Mac on and connected to the internet?</li>
+          <li>Is Claude Desktop open? Check the menu bar icon.</li>
+          <li>Did you miss a macOS permission dialog on first run? Check System Settings, Privacy and Security.</li>
+          <li>Try closing and reopening Claude Desktop.</li>
+        </ol>
+        <p>If none of these fix it, screenshot any error you see and contact support. Most issues are diagnosed and resolved remotely in a few minutes.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="does not restart after reboot mac restart auto start login item background">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Claude did not restart after my Mac rebooted</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Claude Desktop should reopen automatically after a reboot via your Mac login items. If it does not:</p>
+        <ol>
+          <li>Open Claude Desktop manually from your Applications folder</li>
+          <li>Go to System Settings, General, Login Items, and check that Claude is listed</li>
+          <li>If it is not listed, add it</li>
+        </ol>
+        <p>Scheduled workflows use a separate background process. If those are not running after a reboot, contact support — the background launcher may need reconfiguring.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="claude confused strange responses wrong context off losing track">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Claude is giving strange or confused responses</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>This usually means the session context has gotten too long or something has been compacted. Try:</p>
+        <ol>
+          <li>Say "checkpoint" to save the session, then start a new conversation</li>
+          <li>In the new session, Claude loads your CLAUDE.md context fresh and should be back on track</li>
+        </ol>
+        <p>If the confusion is about your business specifically — wrong client name, outdated information — that is a CLAUDE.md update. Tell Claude to correct it or contact your setup provider.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="voice notes not working voice input dispatch microphone transcription">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Voice input is not working</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>For voice in Dispatch: check that your phone has microphone permission enabled for the Dispatch app (Settings, Dispatch, Microphone). Hold the microphone button until it turns red, then release to send.</p>
+        <p>For desktop dictation on Mac: use Fn Fn to activate macOS dictation in any text field. If neither works, contact support.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="context window full 0k tokens response slow long session exhausted">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Claude says my context window is full or responses mention 0k tokens</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>The session has hit Claude's context limit. This is normal in long working sessions. The fix:</p>
+        <ol>
+          <li>Say "checkpoint" — Claude saves a summary to your vault</li>
+          <li>Start a new conversation — CLAUDE.md and the checkpoint are both available in the fresh session</li>
+          <li>Continue where you left off</li>
+        </ol>
+        <p>This is not a subscription issue. It is a session length issue and is expected for heavy working days.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="login claude auth expire authentication token re-authenticate">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Claude keeps asking me to log in again</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>The authentication token connecting Claude Desktop to your Anthropic account has expired. To fix it:</p>
+        <ol>
+          <li>Open Terminal</li>
+          <li>Type <code>claude auth login</code> and press Enter</li>
+          <li>Sign in when the browser opens</li>
+          <li>Restart Claude Desktop</li>
+        </ol>
+        <p>This is a one-time token refresh, not a subscription problem. It happens occasionally and takes under two minutes.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="error what does this error mean how to get help ai help debug">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">I see an error — how do I get help understanding it?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Screenshot the error and paste it into an AI tool to get a plain-English explanation:</p>
+        <ol>
+          <li><strong>Claude.ai</strong> in your browser — paste the screenshot and ask "What does this error mean and what should I do?"</li>
+        </ol>
+        <p>If the AI explanation does not resolve it, forward the screenshot to your setup provider. Most issues are diagnosed remotely in a few minutes.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" data-keywords="same file twice duplicate file send compaction version versioning">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Claude keeps delivering the same file twice</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>This is a compaction side effect. After context compaction, Claude has no memory of delivering a file earlier in the session. The fix is versioned filenames — files like <code>v2-report-16-May-26.html</code> let Claude check what version already exists on disk before sending again.</p>
+        <p>If this keeps happening, contact your setup provider to add the versioning protocol to your configuration.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="no-results" id="no-results">
+    <h3>Nothing matched that search</h3>
+    <p>Try a different word, or reach out to support directly.</p>
+  </div>
+
+  <!-- CONTACT CTA -->
+  <div class="contact-cta">
+    <h3>Still have a question?</h3>
+    <p>Your setup provider knows your system. Reach out directly.</p>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank">Book a session</a>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+  function toggleFaq(qEl) {
+    const item = qEl.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  const searchInput = document.getElementById('faq-search');
+  const noResults = document.getElementById('no-results');
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const text = (item.querySelector('.faq-q-text').textContent + ' ' +
+                    (item.dataset.keywords || '') + ' ' +
+                    item.querySelector('.faq-a').textContent).toLowerCase();
+      const match = !q || text.includes(q);
+      item.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+
+    document.querySelectorAll('.faq-section').forEach(section => {
+      const visible = [...section.querySelectorAll('.faq-item')]
+        .some(item => item.style.display !== 'none');
+      section.style.display = visible ? '' : 'none';
+    });
+
+    noResults.classList.toggle('visible', visibleCount === 0);
+  });
+
+  function filterSection(section, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    searchInput.value = '';
+
+    document.querySelectorAll('.faq-item').forEach(item => item.style.display = '');
+    document.querySelectorAll('.faq-section').forEach(sec => {
+      if (section === 'all') {
+        sec.style.display = '';
+      } else {
+        sec.style.display = sec.dataset.section === section ? '' : 'none';
+      }
+    });
+    noResults.classList.remove('visible');
+  }
+</script>
+
+</body>
+</html>

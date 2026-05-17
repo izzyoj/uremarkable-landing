@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uremarkable: Not a chatbot. A back-office hire.</title>
+<meta name="description" content="Uremarkable sets up Claude Cowork as your AI business operating system. Finance, sales, client comms running in 48 hours. Australian-built, Australian-priced.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.uremarkable.com/agentic">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Uremarkable">
+<meta property="og:title" content="Uremarkable: Not a chatbot. A back-office hire.">
+<meta property="og:description" content="AI business operating system for Australian founders and operators. Claude Cowork setup in 48 hours. From $1,500.">
+<meta property="og:url" content="https://www.uremarkable.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Uremarkable: Not a chatbot. A back-office hire.">
+<meta name="twitter:description" content="AI business operating system for Australian founders. 48-hour setup from $1,500.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Uremarkable",
+  "url": "https://www.uremarkable.com",
+  "description": "AI business operating system implementation service for Australian small business owners and founders. Claude Cowork setup, CLAUDE.md build, Obsidian integration.",
+  "areaServed": "AU",
+  "knowsAbout": ["AI automation", "Claude Cowork", "business operations", "small business", "workflow automation"]
+}
+</script>
+
+<style>
+:root {
+  --blue: #0071e3;
+  --blue-dark: #0051a8;
+  --blue-soft: rgba(0,113,227,0.08);
+  --text: #1d1d1f;
+  --text-2: #6e6e73;
+  --text-3: #86868b;
+  --bg: #ffffff;
+  --bg-alt: #f5f5f7;
+  --border: #d2d2d7;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --green: #34c759;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== NAV ===== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(210,210,215,0.5);
+  padding: 0 24px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-logo { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); flex-shrink: 0; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--text-2); transition: color 0.15s; }
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 20px; margin-left: auto; }
+.nav-cta {
+  background: var(--blue);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 20px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.nav-cta:hover { background: var(--blue-dark); }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.nav-hamburger span { display: block; width: 20px; height: 2px; background: var(--text); border-radius: 2px; }
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 52px;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(210,210,215,0.6);
+  padding: 8px 24px 16px;
+  z-index: 999;
+  flex-direction: column;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-nav a:last-child { border-bottom: none; }
+
+/* ===== SECTION SHELL ===== */
+.section { padding: 88px 24px; }
+.section-inner { max-width: 800px; margin: 0 auto; }
+.section-inner-wide { max-width: 1040px; margin: 0 auto; }
+.section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.section-heading {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  text-align: center;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  text-align: center;
+  line-height: 1.55;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(180deg, #eef5ff 0%, #ffffff 70%);
+  padding: 100px 24px 84px;
+  text-align: center;
+}
+.hero-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 18px;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px 6px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+.hero-pill-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f0f7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+.hero-h1 {
+  font-size: 60px;
+  font-weight: 800;
+  letter-spacing: -2.5px;
+  line-height: 1.02;
+  color: var(--text);
+  margin-bottom: 22px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-sub {
+  font-size: 19px;
+  color: var(--text-2);
+  line-height: 1.5;
+  max-width: 440px;
+  margin: 0 auto 48px;
+}
+.hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.hero-scroll:hover { color: var(--text-2); }
+
+/* ===== THE GAP ===== */
+.gap-section { background: var(--bg-alt); }
+.gap-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+.gap-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.gap-card-name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+.gap-card-hook {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.gap-card-detail {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.gap-best-line {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.gap-bridge {
+  text-align: center;
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.gap-bridge strong { color: var(--text); }
+
+/* ===== ROLE CARDS ===== */
+.role-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 48px;
+}
+.role-card {
+  background: var(--bg-alt);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  border: 1px solid var(--border);
+}
+.role-card-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.role-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.role-card-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+.role-card-pains {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.role-card-pain {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.role-pain-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-3);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.role-card-punch {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  line-height: 1.4;
+}
+
+/* ===== USE CASES ===== */
+.use-cases-section { background: var(--bg-alt); }
+.uc-tiles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-top: 48px;
+}
+.uc-tile {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.uc-tile-icon { font-size: 24px; margin-bottom: 14px; display: block; }
+.uc-tile-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+.uc-tile-desc {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+/* ===== THE SHIFT ===== */
+.shift-table {
+  margin-top: 48px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.shift-header {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  background: var(--bg-alt);
+  border-bottom: 2px solid var(--border);
+}
+.shift-header-cell {
+  padding: 14px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.shift-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.shift-row:last-child { border-bottom: none; }
+.shift-row-label {
+  padding: 24px 20px;
+  background: var(--bg-alt);
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+.shift-row-label-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.shift-cell {
+  padding: 24px 20px;
+  border-right: 1px solid var(--border);
+}
+.shift-cell:last-child { border-right: none; }
+.shift-cell-before { background: white; }
+.shift-cell-after { background: #f0f7ff; }
+.shift-cell-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.shift-cell-after .shift-cell-text {
+  font-weight: 500;
+  color: #0051a8;
+}
+
+/* ===== PRICING ===== */
+.build-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 36px 40px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+.build-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 16px;
+}
+.build-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+.build-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.build-price-block { text-align: right; flex-shrink: 0; }
+.build-price { font-size: 44px; font-weight: 700; letter-spacing: -1.5px; line-height: 1; }
+.build-price-note { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+.card-divider { height: 1px; background: var(--bg-alt); margin-bottom: 24px; }
+.card-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-bottom: 32px;
+}
+.card-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+}
+.card-item-tick {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #edfdf3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-size: 10px;
+  color: #1a7a3c;
+  font-weight: 700;
+}
+.card-cta {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: opacity 0.15s;
+  background: var(--blue);
+  color: white;
+  text-decoration: none;
+}
+.card-cta:hover { opacity: 0.85; }
+.anxiety-strip {
+  text-align: center;
+  padding: 16px 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.anxiety-line { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.anxiety-line strong { color: var(--text); }
+.retainer-band {
+  background: #1d1d1f;
+  border-radius: 20px;
+  padding: 44px 48px;
+  color: white;
+}
+.retainer-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 12px;
+}
+.retainer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.retainer-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  color: white;
+}
+.retainer-title span {
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+  display: block;
+  font-size: 16px;
+  letter-spacing: 0;
+  margin-top: 6px;
+}
+.retainer-price { text-align: right; flex-shrink: 0; }
+.retainer-from {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 4px;
+}
+.retainer-amount {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: white;
+  line-height: 1;
+}
+.retainer-period { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+.retainer-divider { height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 24px; }
+.retainer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.retainer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.8);
+}
+.retainer-tick {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 700;
+}
+.retainer-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 28px;
+  padding-top: 4px;
+}
+.retainer-body {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.retainer-body-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 12px;
+}
+.retainer-body-heading {
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+.retainer-body-copy {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+}
+.retainer-punch {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  margin-bottom: 24px;
+}
+.retainer-cta {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  font-family: inherit;
+  background: transparent;
+  color: white;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+.retainer-cta:hover { background: rgba(255,255,255,0.08); }
+
+/* ===== HOW IT WORKS ===== */
+.hiw-section { background: var(--bg-alt); }
+.hiw-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 48px;
+  position: relative;
+}
+.hiw-connector {
+  position: absolute;
+  top: 27px;
+  left: 23%;
+  right: 23%;
+  height: 1px;
+  background: var(--border);
+  z-index: 0;
+}
+.hiw-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+  position: relative;
+}
+.hiw-step-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-sm);
+}
+.hiw-step-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+.hiw-step-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+  line-height: 1.25;
+}
+.hiw-step-desc {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+.hiw-tagline {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 52px;
+  letter-spacing: -0.2px;
+}
+
+/* ===== SIGNALS ===== */
+.signals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.signal-card {
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+}
+.signal-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--blue-soft);
+  border-radius: 6px;
+  padding: 3px 8px;
+  margin-bottom: 14px;
+}
+.signal-headline {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 12px;
+  letter-spacing: -0.2px;
+}
+.signal-what {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+.signal-take-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+.signal-take {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.55;
+  border-left: 2px solid var(--blue);
+  padding-left: 12px;
+}
+.signals-more {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 14px;
+}
+.signals-more a { color: var(--blue); font-weight: 500; }
+.signals-more a:hover { text-decoration: underline; }
+
+/* ===== FAQ TEASER ===== */
+.faq-section { background: var(--bg-alt); }
+.faq-list {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+}
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  gap: 16px;
+}
+.faq-q-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+.faq-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--text-2);
+  flex-shrink: 0;
+  transition: transform 0.2s, background 0.15s;
+  font-weight: 300;
+}
+.faq-item.open .faq-toggle { transform: rotate(45deg); background: var(--blue-soft); color: var(--blue); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.faq-answer-inner {
+  padding: 0 24px 24px;
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.65;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+.faq-item.open .faq-answer { max-height: 500px; }
+.faq-more {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+}
+.faq-more a { color: var(--blue); font-weight: 500; }
+.faq-more a:hover { text-decoration: underline; }
+
+/* ===== CTA / IMPLEMENTER ===== */
+.cta-section {
+  background: white;
+  border-top: 1px solid var(--border);
+}
+.cta-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 24px;
+}
+.cta-name {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.cta-linkedin {
+  font-size: 14px;
+  color: var(--blue);
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 22px;
+}
+.cta-linkedin:hover { text-decoration: underline; }
+.cta-cred {
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin-bottom: 32px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-manifesto {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 40px;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--blue);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 15px 36px;
+  border-radius: 30px;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+.cta-btn:hover { background: var(--blue-dark); }
+.cta-secondary {
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+.cta-secondary a { color: var(--blue); font-weight: 500; }
+.cta-secondary a:hover { text-decoration: underline; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+}
+.footer-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-logo { font-size: 15px; font-weight: 700; color: var(--text); }
+.footer-links { display: flex; gap: 20px; list-style: none; }
+.footer-links a { font-size: 13px; color: var(--text-2); transition: color 0.15s; }
+.footer-links a:hover { color: var(--text); }
+.footer-copy { font-size: 12px; color: var(--text-3); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .uc-tiles { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero-h1 { font-size: 38px; letter-spacing: -1.2px; }
+  .hero-sub { font-size: 17px; }
+  .section { padding: 64px 20px; }
+  .section-heading { font-size: 28px; letter-spacing: -0.8px; }
+  .gap-cards { grid-template-columns: 1fr; }
+  .role-cards { grid-template-columns: 1fr; }
+  .uc-tiles { grid-template-columns: repeat(2, 1fr); }
+  .uc-tiles .uc-tile:last-child { grid-column: 1 / -1; }
+  .shift-header { grid-template-columns: 100px 1fr 1fr; }
+  .shift-row { grid-template-columns: 100px 1fr 1fr; }
+  .shift-row-label { padding: 16px 12px; }
+  .shift-cell { padding: 16px 12px; }
+  .shift-header-cell { padding: 12px; font-size: 10px; }
+  .hiw-connector { display: none; }
+  .hiw-timeline { grid-template-columns: 1fr; gap: 36px; }
+  .signals-grid { grid-template-columns: 1fr; }
+  .build-card { padding: 28px 24px; }
+  .build-top { flex-direction: column; }
+  .build-price-block { text-align: left; }
+  .retainer-band { padding: 32px 24px; }
+  .retainer-top { flex-direction: column; }
+  .retainer-price { text-align: left; }
+  .retainer-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">uremarkable</a>
+  <ul class="nav-links">
+    <li><a href="/signals">Signals</a></li>
+    <li><a href="/learn">Learn</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="nav-cta" target="_blank" rel="noopener">Book a call</a>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="/signals">Signals</a>
+  <a href="/learn">Learn</a>
+  <a href="#pricing">Pricing</a>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" rel="noopener">Book a call</a>
+</div>
+
+<!-- SECTION 1: HERO -->
+<section class="hero">
+  <div class="hero-label">AI Business Operating System</div>
+  <div class="hero-pill">
+    <span class="hero-pill-dot">⚡</span>
+    Powered By Claude Cowork
+  </div>
+  <h1 class="hero-h1">Not a chatbot.<br>A back-office hire.</h1>
+  <p class="hero-sub">Leads. Follow-ups. Reporting.<br>All demanding your attention.</p>
+  <div class="hero-scroll">See how it works ↓</div>
+</section>
+
+<!-- SECTION 2: THE GAP -->
+<section class="section gap-section">
+  <div class="section-inner">
+    <div class="section-label">The gap</div>
+    <h2 class="section-heading">You're paying for AI tools<br>that don't know you.</h2>
+    <div class="gap-cards">
+      <div class="gap-card">
+        <div class="gap-card-name">ChatGPT</div>
+        <div class="gap-card-hook">Great at brainstorming. Forgets your clients every session.</div>
+        <div class="gap-card-detail">No memory of your tone, your rules, or what you were working on last Tuesday.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-name">Zapier</div>
+        <div class="gap-card-hook">Connects your tools. Can't understand your business.</div>
+        <div class="gap-card-detail">Automates the trigger but not the judgment. The exception still lands on your desk.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-name">Notion AI</div>
+        <div class="gap-card-hook">Writes in your notes. Stops at the edge of the page.</div>
+        <div class="gap-card-detail">Stays inside the document. Doesn't run your operations or touch your real workflow.</div>
+      </div>
+    </div>
+    <p class="gap-best-line">None of them remember you.</p>
+    <p class="gap-bridge">Uremarkable builds a business brain that does. <strong>It doesn't just brainstorm. It ships.</strong></p>
+  </div>
+</section>
+
+<!-- SECTION 3: ROLE CARDS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">Who it's for</div>
+    <h2 class="section-heading">Built for the business<br>doing it all.</h2>
+    <div class="role-cards">
+      <div class="role-card">
+        <div class="role-card-eyebrow">The Business Owner</div>
+        <div class="role-card-title">5 to 15 people. Ops volume that never stops.</div>
+        <div class="role-card-desc">Finance admin, client comms, team coordination, sales follow-ups. All of it lands on you. Every day.</div>
+        <ul class="role-card-pains">
+          <li class="role-card-pain"><span class="role-pain-dot"></span>$400 a month to the accountant for work AI can draft in minutes</li>
+          <li class="role-card-pain"><span class="role-pain-dot"></span>Leads going cold because nobody followed up</li>
+          <li class="role-card-pain"><span class="role-pain-dot"></span>Reporting that takes a day when it should take an hour</li>
+        </ul>
+        <div class="role-card-punch">You need an extra head. You can't hire one. This is the next best thing.</div>
+      </div>
+      <div class="role-card">
+        <div class="role-card-eyebrow">The Founder</div>
+        <div class="role-card-title">Solo or small team. You are the operations.</div>
+        <div class="role-card-desc">Strategy, sales, delivery, admin. You're running the whole thing. Your thinking moves faster than your output can keep up.</div>
+        <ul class="role-card-pains">
+          <li class="role-card-pain"><span class="role-pain-dot"></span>Ideas that never get written up because there's no time</li>
+          <li class="role-card-pain"><span class="role-pain-dot"></span>Proposals, recaps, emails written from scratch every time</li>
+          <li class="role-card-pain"><span class="role-pain-dot"></span>No system, so everything depends on you showing up</li>
+        </ul>
+        <div class="role-card-punch">Your ideas move faster than your output. That gap costs you every week.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: USE CASES -->
+<section class="section use-cases-section">
+  <div class="section-inner-wide">
+    <div class="section-label">What it handles</div>
+    <h2 class="section-heading">The work that never stops.</h2>
+    <div class="uc-tiles">
+      <div class="uc-tile">
+        <span class="uc-tile-icon">📊</span>
+        <div class="uc-tile-title">Finance Admin</div>
+        <div class="uc-tile-desc">BAS prep, reconciliation drafts, expense summaries. Work your accountant charges $400/month for.</div>
+      </div>
+      <div class="uc-tile">
+        <span class="uc-tile-icon">📬</span>
+        <div class="uc-tile-title">Sales and Follow-ups</div>
+        <div class="uc-tile-desc">Leads tracked. Follow-up messages drafted and sent. No CRM required.</div>
+      </div>
+      <div class="uc-tile">
+        <span class="uc-tile-icon">✏️</span>
+        <div class="uc-tile-title">Content and Marketing</div>
+        <div class="uc-tile-desc">Posts, case studies, proposals. All drafted in your voice, not a generic AI voice.</div>
+      </div>
+      <div class="uc-tile">
+        <span class="uc-tile-icon">💬</span>
+        <div class="uc-tile-title">Client Comms</div>
+        <div class="uc-tile-desc">Replies, updates, check-ins. On time and on brand, without you writing every word.</div>
+      </div>
+      <div class="uc-tile">
+        <span class="uc-tile-icon">📋</span>
+        <div class="uc-tile-title">Reporting</div>
+        <div class="uc-tile-desc">Weekly summaries, scope docs, board updates. Done and formatted before you ask.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: THE SHIFT -->
+<section class="section">
+  <div class="section-inner-wide">
+    <div class="section-label">The shift</div>
+    <h2 class="section-heading">From doing to deciding.</h2>
+    <div class="shift-table">
+      <div class="shift-header">
+        <div class="shift-header-cell"></div>
+        <div class="shift-header-cell">Before</div>
+        <div class="shift-header-cell">After</div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-row-label"><div class="shift-row-label-text">Day 1</div></div>
+        <div class="shift-cell shift-cell-before"><div class="shift-cell-text">2 hours sorting the week's admin before you can even start real work.</div></div>
+        <div class="shift-cell shift-cell-after"><div class="shift-cell-text">30-minute brief. Done.</div></div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-row-label"><div class="shift-row-label-text">Six weeks in</div></div>
+        <div class="shift-cell shift-cell-before"><div class="shift-cell-text">Same problems, same manual workarounds, same amount of time lost.</div></div>
+        <div class="shift-cell shift-cell-after"><div class="shift-cell-text">Workflows built around how you actually work. The pattern work is gone.</div></div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-row-label"><div class="shift-row-label-text">Your output</div></div>
+        <div class="shift-cell shift-cell-before"><div class="shift-cell-text">Notes and docs scattered across apps. Nothing searchable, nothing shared.</div></div>
+        <div class="shift-cell shift-cell-after"><div class="shift-cell-text">Every output saves to your laptop. Searchable, shareable, yours forever.</div></div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-row-label"><div class="shift-row-label-text">From your phone</div></div>
+        <div class="shift-cell shift-cell-before"><div class="shift-cell-text">Stuck at your desk to get anything done. In-between time goes to waste.</div></div>
+        <div class="shift-cell shift-cell-after"><div class="shift-cell-text">Running tasks between meetings, from anywhere. The desk is optional.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: PRICING -->
+<section class="section" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">What it costs</div>
+    <h2 class="section-heading">Simple pricing.<br>No surprises.</h2>
+    <p class="section-sub" style="margin-bottom:48px;">One session to get you running. A retainer to keep you growing.</p>
+
+    <!-- Build card -->
+    <div class="build-card">
+      <div class="build-top">
+        <div>
+          <div class="build-label">Setup</div>
+          <div class="build-title">Your business brain, built and running.</div>
+        </div>
+        <div class="build-price-block">
+          <div class="build-price">$1,500</div>
+          <div class="build-price-note">once off</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <ul class="card-items">
+        <li class="card-item">
+          <span class="card-item-tick">✓</span>
+          60-minute guided setup over Zoom
+        </li>
+        <li class="card-item">
+          <span class="card-item-tick">✓</span>
+          Your business rules, clients, and workflows permanently installed
+        </li>
+        <li class="card-item">
+          <span class="card-item-tick">✓</span>
+          Every output saves to your laptop, searchable, shareable, yours
+        </li>
+        <li class="card-item">
+          <span class="card-item-tick">✓</span>
+          Works from your phone between meetings, not just at your desk
+        </li>
+        <li class="card-item">
+          <span class="card-item-tick">✓</span>
+          First real workflow running before the session ends
+        </li>
+      </ul>
+      <a href="https://calendar.notion.so/meet/uremarkable/baz" class="card-cta" target="_blank" rel="noopener">Book the setup call</a>
+    </div>
+
+    <!-- Anxiety strip -->
+    <div class="anxiety-strip">
+      <div class="anxiety-line">Runs on your existing Mac. <strong>No extra hardware.</strong></div>
+      <div class="anxiety-line">Requires Claude Pro ($30/mo AUD) or Max ($150/mo AUD for heavier use).</div>
+      <div class="anxiety-line"><strong>Everything it builds is yours.</strong> Cancel anytime. Keep everything.</div>
+    </div>
+
+    <!-- Retainer band -->
+    <div class="retainer-band">
+      <div class="retainer-eyebrow">Monthly retainer</div>
+      <div class="retainer-top">
+        <div>
+          <div class="retainer-title">
+            The business operating system that keeps on giving.
+            <span>Regular catchups with Baz compound over time.</span>
+          </div>
+        </div>
+        <div class="retainer-price">
+          <div class="retainer-from">from</div>
+          <div class="retainer-amount">$300</div>
+          <div class="retainer-period">per month</div>
+        </div>
+      </div>
+      <div class="retainer-divider"></div>
+      <div class="retainer-grid">
+        <div class="retainer-item"><span class="retainer-tick">✓</span>Skills tuning</div>
+        <div class="retainer-item"><span class="retainer-tick">✓</span>Priority support</div>
+        <div class="retainer-item"><span class="retainer-tick">✓</span>System audits</div>
+        <div class="retainer-item"><span class="retainer-tick">✓</span>Monthly check-in</div>
+      </div>
+      <div class="retainer-note">New capabilities scoped and quoted separately.</div>
+      <div class="retainer-body">
+        <div class="retainer-body-label">Why it compounds</div>
+        <div class="retainer-body-heading">The setup gets you running. The retainer is where the real value builds.</div>
+        <div class="retainer-body-copy">
+          Each month we scope what's costing you the most in your workflows, identify the highest-leverage automations, and prioritise the build roadmap. New capabilities get scoped and quoted separately. You don't pay to maintain a static tool. You pay to keep the system evolving with your business.
+        </div>
+      </div>
+      <div class="retainer-punch">Most clients see their third month cover the entire year's cost.</div>
+      <a href="mailto:uremarkable1@gmail.com?subject=Retainer enquiry" class="retainer-cta">Ask about the retainer</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: HOW IT WORKS -->
+<section class="section hiw-section">
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <h2 class="section-heading">Three steps.<br>Your system, live.</h2>
+    <div class="hiw-timeline">
+      <div class="hiw-connector"></div>
+      <div class="hiw-step">
+        <div class="hiw-step-num">1</div>
+        <div class="hiw-step-label">Discovery call</div>
+        <div class="hiw-step-title">Map your highest-cost workflows</div>
+        <div class="hiw-step-desc">30 to 45 minutes on Zoom. We identify what's costing you the most time and where the first automations belong.</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-step-num">2</div>
+        <div class="hiw-step-label">Async build</div>
+        <div class="hiw-step-title">Baz installs your business brain</div>
+        <div class="hiw-step-desc">Your rules, clients, workflows, and context get built in. You don't need to be there. Typically done within 48 hours.</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-step-num">3</div>
+        <div class="hiw-step-label">Setup session</div>
+        <div class="hiw-step-title">First workflow running, together</div>
+        <div class="hiw-step-desc">60-minute Zoom. We run your first workflow live. You leave knowing how to use it and confident it's working.</div>
+      </div>
+    </div>
+    <p class="hiw-tagline">From discovery call to first workflow running: 48 hours.</p>
+  </div>
+</section>
+
+<!-- SECTION 9: SIGNALS -->
+<section class="section">
+  <div class="section-inner-wide">
+    <div class="section-label">Signals</div>
+    <h2 class="section-heading">What's changing in AI for<br>small business. Baz's take.</h2>
+    <div class="signals-grid">
+      <div class="signal-card">
+        <span class="signal-tag">Tools</span>
+        <div class="signal-headline">Claude Cowork is the first AI product built for how businesses actually work</div>
+        <div class="signal-what">Anthropic launched Claude Cowork, a desktop product that maintains context across sessions, integrates with local files, and runs workflows without resetting every time you close a browser tab.</div>
+        <div class="signal-take-label">Baz's take</div>
+        <div class="signal-take">"Every other AI tool resets when you close the tab. This one doesn't. That's the change worth building on."</div>
+      </div>
+      <div class="signal-card">
+        <span class="signal-tag">Adoption</span>
+        <div class="signal-headline">Most Australian SMBs are exploring AI. Almost none have shipped a real workflow.</div>
+        <div class="signal-what">Research across the sector shows over 70% of small businesses report interest in AI tools, but under 15% have deployed any real automation into their operations.</div>
+        <div class="signal-take-label">Baz's take</div>
+        <div class="signal-take">"The access is there. The gap is knowing what to automate first, and having someone who's done it before sitting next to you."</div>
+      </div>
+      <div class="signal-card">
+        <span class="signal-tag">Cost</span>
+        <div class="signal-headline">The cost to run a business AI just hit $30 a month.</div>
+        <div class="signal-what">Claude Pro is now $30 AUD per month. Max, covering heavier usage, is $150 AUD. That's the full running cost of your AI operating system, before setup.</div>
+        <div class="signal-take-label">Baz's take</div>
+        <div class="signal-take">"One accountant invoice you didn't need to pay for. That's your annual break-even, done in the first month."</div>
+      </div>
+    </div>
+    <p class="signals-more"><a href="/signals">More on /signals →</a></p>
+  </div>
+</section>
+
+<!-- SECTION 10: FAQ TEASER -->
+<section class="section faq-section">
+  <div class="section-inner">
+    <div class="section-label">Common questions</div>
+    <h2 class="section-heading">What people ask<br>before booking.</h2>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span class="faq-q-text">What is Claude Cowork and how is it different from Claude.ai?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Claude.ai is the browser interface. You chat with it, it answers, and it forgets you next session. Claude Cowork is Anthropic's desktop product built for real ongoing work. It stays connected to your context, integrates with your local files, and Uremarkable builds a complete operating system on top of it, with your clients, your workflows, and your rules loaded from day one.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span class="faq-q-text">What's a CLAUDE.md and why does it matter?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            CLAUDE.md is the file that tells your AI who you are. Your clients, your tone, your common workflows, your business rules, written once and loaded into every session. Instead of re-explaining yourself every time you open the app, it already knows. The difference between a tool and a hire is memory. CLAUDE.md is the memory.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span class="faq-q-text">Do I need a developer or any technical skills?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            No. Baz handles the technical build async before your setup session. You don't need to be present while it's being built. You show up to a 60-minute Zoom and leave with your first workflow running. Day to day, it's just talking to it.
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="faq-more"><a href="/learn">More answers at /learn →</a></p>
+  </div>
+</section>
+
+<!-- SECTION 11: CTA / IMPLEMENTER -->
+<section class="section cta-section">
+  <div class="cta-inner">
+    <div class="cta-label">Your implementer</div>
+    <div class="cta-name">Baz Ozturk</div>
+    <a href="https://www.linkedin.com/in/baz-ozturk/" class="cta-linkedin" target="_blank" rel="noopener">LinkedIn →</a>
+    <p class="cta-cred">15 years in ops and CX across Gumtree, Rockend Real Estate, startups and GovTech.</p>
+    <p class="cta-manifesto">Most businesses rent the infrastructure.<br>Uremarkable builds it. You own it.</p>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="cta-btn" target="_blank" rel="noopener">Book a discovery call</a>
+    <p class="cta-secondary">Not ready? <a href="/learn">Read the FAQ →</a> &nbsp;·&nbsp; <a href="mailto:uremarkable1@gmail.com">Message Baz</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">uremarkable</div>
+    <ul class="footer-links">
+      <li><a href="/signals">Signals</a></li>
+      <li><a href="/learn">Learn</a></li>
+      <li><a href="mailto:uremarkable1@gmail.com">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Uremarkable</div>
+  </div>
+</footer>
+
+<script>
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+function toggleFaq(el) {
+  const wasOpen = el.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    item.classList.remove('open');
+  });
+  // Toggle clicked
+  if (!wasOpen) el.classList.add('open');
+}
+</script>
+
+</body>
+</html>
