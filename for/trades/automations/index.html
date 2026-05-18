@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trades Automations | Uremarkable</title>
 <style>
-  :root { --orange: #D97757; }
+  :root { --orange: #D97757; --orange-lt: rgba(217,119,87,0.10); --orange-border: rgba(217,119,87,0.25); }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
@@ -32,84 +32,164 @@
   .nav-crumb:hover { color: white; }
   .nav-title { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; }
 
+  /* HERO */
   .hero {
     background: #1C1A18;
     color: white;
-    padding: 56px 24px 48px;
+    padding: 60px 24px 52px;
     text-align: center;
     border-bottom: 1px solid rgba(255,255,255,0.07);
   }
-  .plugin-badge {
-    display: inline-flex;
+  .hero h1 {
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 em { color: var(--orange); font-style: normal; }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange); color: white;
+    padding: 13px 28px; border-radius: 10px;
+    font-size: 15px; font-weight: 600;
+    text-decoration: none; transition: background .15s;
+  }
+  .btn-primary:hover { background: #c4654a; }
+
+  /* TRUST STRIP */
+  .trust-strip {
+    background: rgba(255,255,255,0.04);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 5vw, 48px);
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    display: flex;
     align-items: center;
     gap: 7px;
-    background: rgba(255,107,53,0.18);
-    border: 1px solid rgba(255,107,53,0.35);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--orange);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
   }
-  .plugin-badge-dot {
-    width: 6px; height: 6px;
-    background: var(--orange);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  .hero h1 { font-size: clamp(26px, 5vw, 38px); font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
-  .hero p { font-size: 17px; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; line-height: 1.5; }
+  .trust-item::before { content: ''; width: 5px; height: 5px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
 
+  /* MAIN */
   .main { max-width: 760px; margin: 0 auto; padding: 48px 20px 80px; }
   .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; }
 
-  .card-grid { display: grid; gap: 16px; }
+  /* CARDS */
+  .card-grid { display: grid; gap: 20px; }
   .auto-card {
     background: white;
     border-radius: 16px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
     padding: 28px;
-    display: flex; gap: 20px; align-items: flex-start;
     text-decoration: none; color: inherit;
     transition: box-shadow .2s, transform .2s;
+    display: block;
   }
-  .auto-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 0 0 1px rgba(217,119,87,0.25); transform: translateY(-1px); }
-  .auto-icon { width: 48px; height: 48px; background: rgba(217,119,87,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-  .auto-body { flex: 1; }
-  .auto-tag {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2);
-    border-radius: 12px; padding: 3px 10px; font-size: 11px; font-weight: 700;
-    color: var(--orange); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px;
-  }
-  .auto-tag-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-  .auto-title { font-size: 18px; font-weight: 700; color: #1d1d1f; margin-bottom: 6px; }
-  .auto-desc { font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 12px; }
-  .auto-meta { display: flex; gap: 16px; flex-wrap: wrap; }
-  .auto-meta-item { font-size: 12px; color: #888; }
-  .auto-arrow { font-size: 20px; color: #ccc; align-self: center; flex-shrink: 0; }
+  .auto-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 0 0 1px var(--orange-border); transform: translateY(-1px); }
+  .auto-card-header { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 16px; }
+  .auto-icon { width: 48px; height: 48px; background: var(--orange-lt); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .auto-header-text { flex: 1; }
+  .auto-title { font-size: 18px; font-weight: 700; color: #1d1d1f; margin-bottom: 4px; }
+  .auto-tagline { font-size: 14px; color: #555; line-height: 1.45; }
 
-  .coming-soon-card {
+  .auto-steps { list-style: none; padding: 0; margin: 16px 0; border-top: 1px solid #f0ede8; border-bottom: 1px solid #f0ede8; padding: 16px 0; }
+  .auto-steps li {
+    font-size: 13px; color: #444; line-height: 1.5;
+    padding: 5px 0 5px 22px; position: relative;
+  }
+  .auto-steps li::before {
+    content: attr(data-n);
+    position: absolute; left: 0;
+    font-size: 11px; font-weight: 700; color: var(--orange);
+    width: 16px; height: 16px; background: var(--orange-lt);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    top: 7px; line-height: 1;
+    text-align: center;
+  }
+  .auto-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .auto-bestfor { font-size: 12px; color: #888; font-style: italic; }
+  .auto-bestfor strong { color: #555; font-style: normal; }
+  .auto-cta { font-size: 13px; font-weight: 700; color: var(--orange); white-space: nowrap; }
+
+  /* COMING SOON CARD */
+  .auto-card.coming-soon { opacity: 0.7; }
+  .soon-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    background: #f0f0f5; color: #999; border-radius: 6px; padding: 2px 8px;
+    margin-bottom: 4px;
+  }
+
+  /* HOW IT WORKS */
+  .how-section {
     background: white; border-radius: 16px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.04);
-    padding: 24px 28px; display: flex; gap: 16px; align-items: center; opacity: 0.45;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+    padding: 32px; margin-top: 32px;
   }
-  .coming-soon-icon { width: 40px; height: 40px; background: #f5f5f7; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-  .coming-soon-label { font-size: 11px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
-  .coming-soon-title { font-size: 15px; font-weight: 600; color: #888; }
+  .how-title { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
+  .how-steps { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .how-step { display: flex; gap: 14px; align-items: flex-start; }
+  .how-num {
+    width: 26px; height: 26px; background: var(--orange-lt); border: 1px solid var(--orange-border);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--orange); flex-shrink: 0; margin-top: 1px;
+  }
+  .how-text { font-size: 14px; color: #444; line-height: 1.5; padding-top: 2px; }
 
-  .cta-block { background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04); padding: 36px 32px; text-align: center; margin-top: 48px; }
+  /* TRUST BLOCK */
+  .trust-block {
+    background: #1C1A18; border-radius: 14px;
+    padding: 24px 28px; margin-top: 20px;
+  }
+  .trust-block ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .trust-block li {
+    font-size: 14px; color: rgba(255,255,255,0.7);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .trust-block li::before { content: ''; width: 5px; height: 5px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+
+  /* FINAL CTA */
+  .cta-block {
+    background: white; border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+    padding: 36px 32px; text-align: center; margin-top: 32px;
+  }
   .cta-block h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-  .cta-block p { font-size: 15px; color: #555; margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: white; padding: 12px 24px; border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; transition: background .15s; }
-  .btn-primary:hover { background: #c4654a; }
+  .cta-block p { font-size: 15px; color: #555; margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.5; }
 
-  footer { text-align: center; padding: 32px 24px; font-size: 13px; color: #888; border-top: 1px solid rgba(0,0,0,0.06); background: white; margin-top: 40px; }
+  .powered-line {
+    text-align: center; margin-top: 28px;
+    font-size: 12px; color: #aaa;
+  }
+
+  footer {
+    text-align: center; padding: 32px 24px;
+    font-size: 13px; color: #888;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    background: white; margin-top: 40px;
+  }
   footer a { color: var(--orange); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 40px; }
+    .trust-strip { gap: 12px; }
+    .auto-footer { flex-direction: column; align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
@@ -123,59 +203,120 @@
 </nav>
 
 <div class="hero">
-  <div class="plugin-badge"><div class="plugin-badge-dot"></div>Claude Cowork Plugin</div>
-  <h1>Trades automations</h1>
-  <p>Each plugin connects your existing tools. One session to set up. Runs from that point on.</p>
+  <h1>Automations for the admin jobs<br>that <em>follow you home.</em></h1>
+  <p class="hero-sub">Pick one. We set it up with your tools. You approve what sends.</p>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book a setup session</a>
+</div>
+
+<div class="trust-strip">
+  <div class="trust-item">No new app to learn</div>
+  <div class="trust-item">No AI sending without your approval</div>
+  <div class="trust-item">One setup session</div>
 </div>
 
 <div class="main">
 
-  <div class="section-label">Live demos</div>
+  <div class="section-label">Choose your first automation</div>
 
   <div class="card-grid">
 
+    <!-- QUOTE BUILDER -->
     <a href="/for/trades/automations/quote-builder/" class="auto-card">
-      <div class="auto-icon">🎙</div>
-      <div class="auto-body">
-        <div class="auto-tag"><div class="auto-tag-dot"></div> Claude Cowork Plugin</div>
-        <div class="auto-title">Quote Builder</div>
-        <div class="auto-desc">Voice note on-site. Cowork extracts job details, applies your rate card, builds the quote, and sends from your email. Review in Dispatch, reply SEND. Follow-up runs automatically at day 5 and 10.</div>
-        <div class="auto-meta">
-          <span class="auto-meta-item">Gmail or Outlook</span>
-          <span class="auto-meta-item">HubSpot, Pipedrive, Google Sheets</span>
-          <span class="auto-meta-item">ServiceM8, Tradify via Zapier</span>
+      <div class="auto-card-header">
+        <div class="auto-icon">🎙</div>
+        <div class="auto-header-text">
+          <div class="auto-title">Quote Builder</div>
+          <div class="auto-tagline">Turn site notes into a quote before the next job.</div>
         </div>
       </div>
-      <div class="auto-arrow">›</div>
+      <ol class="auto-steps">
+        <li data-n="1">You send a voice note after the site visit</li>
+        <li data-n="2">It pulls out the job details</li>
+        <li data-n="3">It uses your rate card</li>
+        <li data-n="4">It drafts the quote</li>
+        <li data-n="5">You approve</li>
+        <li data-n="6">It sends from your email</li>
+      </ol>
+      <div class="auto-footer">
+        <div class="auto-bestfor"><strong>Best for:</strong> tradies losing jobs because quotes go out too late</div>
+        <div class="auto-cta">Set up Quote Builder →</div>
+      </div>
     </a>
 
+    <!-- INVOICE FOLLOW-UP -->
     <a href="/for/trades/automations/invoice-followup/" class="auto-card">
-      <div class="auto-icon">📄</div>
-      <div class="auto-body">
-        <div class="auto-tag"><div class="auto-tag-dot"></div> Claude Cowork Plugin</div>
-        <div class="auto-title">Invoice Follow-Up</div>
-        <div class="auto-desc">Xero marks the invoice overdue. Cowork sends a 3-message escalating sequence across two weeks from your business number and email. Stops automatically when paid.</div>
-        <div class="auto-meta">
-          <span class="auto-meta-item">Xero</span>
-          <span class="auto-meta-item">Gmail or Outlook</span>
-          <span class="auto-meta-item">SMS via Twilio</span>
+      <div class="auto-card-header">
+        <div class="auto-icon">📄</div>
+        <div class="auto-header-text">
+          <div class="auto-title">Invoice Follow-Up</div>
+          <div class="auto-tagline">Stop remembering who owes you money.</div>
         </div>
       </div>
-      <div class="auto-arrow">›</div>
+      <ol class="auto-steps">
+        <li data-n="1">Xero marks the invoice overdue</li>
+        <li data-n="2">Follow-up starts automatically</li>
+        <li data-n="3">Message 1. Message 2. Message 3.</li>
+        <li data-n="4">It stops when paid</li>
+      </ol>
+      <div class="auto-footer">
+        <div class="auto-bestfor"><strong>Best for:</strong> tradies sick of awkward payment chasing</div>
+        <div class="auto-cta">Set up Invoice Follow-Up →</div>
+      </div>
     </a>
 
-    <div class="coming-soon-card">
-      <div class="coming-soon-icon">📅</div>
-      <div><div class="coming-soon-label">Coming soon</div><div class="coming-soon-title">Booking Confirmation</div></div>
+    <!-- BOOKING CONFIRMATION -->
+    <div class="auto-card coming-soon">
+      <div class="auto-card-header">
+        <div class="auto-icon">📅</div>
+        <div class="auto-header-text">
+          <div class="soon-badge">Coming soon</div>
+          <div class="auto-title">Booking Confirmation</div>
+          <div class="auto-tagline">Stop double-handling bookings.</div>
+        </div>
+      </div>
+      <ol class="auto-steps">
+        <li data-n="1">Quote accepted</li>
+        <li data-n="2">Job goes to your calendar</li>
+        <li data-n="3">Customer gets a confirmation</li>
+        <li data-n="4">Reminder goes out before the job</li>
+      </ol>
+      <div class="auto-footer">
+        <div class="auto-bestfor"><strong>Best for:</strong> busy weeks, missed texts, "what time were you coming?" messages</div>
+        <div class="auto-cta">Join the waitlist →</div>
+      </div>
     </div>
 
   </div>
 
-  <div class="cta-block">
-    <h3>Want one of these for your trade business?</h3>
-    <p>One setup session. Your tools, your rate card, your pipeline. No custom code.</p>
-    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book a setup session</a>
+  <!-- HOW IT WORKS -->
+  <div class="how-section">
+    <div class="how-title">How it works</div>
+    <ol class="how-steps">
+      <li class="how-step"><div class="how-num">1</div><div class="how-text">You show us your current admin flow</div></li>
+      <li class="how-step"><div class="how-num">2</div><div class="how-text">We connect the tools you already use</div></li>
+      <li class="how-step"><div class="how-num">3</div><div class="how-text">We test it with one real job</div></li>
+      <li class="how-step"><div class="how-num">4</div><div class="how-text">You approve before anything sends</div></li>
+      <li class="how-step"><div class="how-num">5</div><div class="how-text">It runs from then on</div></li>
+    </ol>
   </div>
+
+  <!-- TRUST BLOCK -->
+  <div class="trust-block">
+    <ul>
+      <li>No new app to learn</li>
+      <li>No custom software project</li>
+      <li>No AI sending anything without your approval</li>
+    </ul>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="cta-block">
+    <h3>Book a 30-minute setup call</h3>
+    <p>Bring one admin job you hate. We'll tell you if it can be automated.</p>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book the setup session</a>
+  </div>
+
+  <div class="powered-line">Powered by Claude Cowork. Built around your tools.</div>
 
 </div>
 
