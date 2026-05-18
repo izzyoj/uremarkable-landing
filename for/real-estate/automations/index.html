@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Follow-Up Automation | uremarkable</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #f5f5f7;
+      --bg-white:   #ffffff;
+      --orange:     #D97757;
+      --orange-lt:  #F2E8E2;
+      --warm-border:#E8E3DC;
+      --text:       #1d1d1f;
+      --text-2:     #6e6e73;
+      --text-3:     #86868b;
+      --border:     #d2d2d7;
+      --hero-bg:    #1C1A18;
+      --blue:       #0071e3;
+      --green:      #34C759;
+      --card-shadow:0 2px 16px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand { font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; }
+    .nav-sep   { color: #ccc; font-size: 13px; }
+    .nav-crumb { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .nav-crumb:last-child { color: var(--text-3); }
+
+    /* HERO */
+    .hero {
+      background: var(--hero-bg);
+      color: white;
+      padding: 60px 24px 56px;
+      text-align: center;
+    }
+    .plugin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(217,119,87,0.18);
+      border: 1px solid rgba(217,119,87,0.35);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .plugin-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(27px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      color: white;
+      max-width: 600px;
+      margin: 0 auto 18px;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.5;
+    }
+    .hero-pills {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+    .hero-pill span { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+    /* SECTIONS */
+    .section { padding: 52px 24px; max-width: 760px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
+    /* FLOW DIAGRAM */
+    .flow-wrap {
+      background: var(--bg-white);
+      border-radius: 16px;
+      border: 1px solid var(--warm-border);
+      padding: 32px 24px 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 12px;
+    }
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 80px;
+    }
+    .flow-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border: 1px solid var(--warm-border);
+      background: var(--bg);
+    }
+    .flow-icon.orange { background: var(--orange-lt); border-color: rgba(217,119,87,0.25); }
+    .flow-icon.plugin { background: var(--hero-bg); border-color: #333; font-size: 18px; }
+    .flow-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-2);
+      text-align: center;
+      line-height: 1.3;
+      max-width: 72px;
+    }
+    .flow-arrow {
+      font-size: 16px;
+      color: var(--border);
+      margin: 0 6px;
+      padding-bottom: 20px;
+    }
+    .flow-outputs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-left: 6px;
+    }
+    .flow-output-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .flow-output-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--bg);
+      border: 1px solid var(--warm-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+    }
+    .flow-output-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .flow-output-sub {
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .flow-connector {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-3);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .flow-divider {
+      height: 1px;
+      background: var(--warm-border);
+      margin: 24px 0;
+    }
+    .flow-note {
+      font-size: 12px;
+      color: var(--text-3);
+      text-align: center;
+    }
+    .flow-note a { color: var(--orange); text-decoration: none; }
+
+    /* COMPARISON */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 540px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card {
+      border-radius: 14px;
+      padding: 22px 20px;
+      border: 1px solid var(--warm-border);
+    }
+    .compare-card.them { background: var(--bg); }
+    .compare-card.us   { background: var(--orange-lt); border-color: rgba(217,119,87,0.3); }
+    .compare-from {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .compare-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+    }
+    .compare-avatar.grey  { background: #8e8e93; }
+    .compare-avatar.orange{ background: var(--orange); }
+    .compare-from-text { font-size: 12px; color: var(--text-2); }
+    .compare-from-name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .compare-bubble {
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .compare-card.them .compare-bubble { background: white; border: 1px solid var(--border); }
+    .compare-card.us   .compare-bubble { background: white; border: 1px solid rgba(217,119,87,0.2); }
+    .compare-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 8px;
+    }
+    .compare-card.them .compare-tag { background: #f2f2f7; color: var(--text-3); }
+    .compare-card.us   .compare-tag { background: rgba(217,119,87,0.15); color: var(--orange); }
+
+    /* DEMO FORM */
+    .demo-card {
+      background: var(--bg-white);
+      border-radius: 18px;
+      border: 1px solid var(--warm-border);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .demo-form-wrap {
+      padding: 28px 24px 24px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    @media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-2);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    input, select {
+      padding: 10px 13px;
+      border: 1px solid var(--warm-border);
+      border-radius: 9px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+    input:focus, select:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(217,119,87,0.12);
+      background: white;
+    }
+    .generate-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 8px;
+    }
+    .generate-btn:hover { background: #c4654a; }
+    .generate-btn:active { transform: scale(0.99); }
+
+    /* OUTPUT SECTION */
+    .output-section {
+      display: none;
+      padding: 0 24px 24px;
+    }
+    .output-section.visible { display: block; }
+    .output-divider {
+      height: 1px;
+      background: var(--warm-border);
+      margin: 4px 0 24px;
+    }
+    .output-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .output-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--warm-border);
+    }
+    .output-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* SMS CARD */
+    .sms-card {
+      background: var(--bg);
+      border-radius: 14px;
+      border: 1px solid var(--warm-border);
+      overflow: hidden;
+    }
+    .sms-header {
+      background: white;
+      border-bottom: 1px solid var(--warm-border);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sms-avatar {
+      width: 32px; height: 32px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+    }
+    .sms-from-name { font-size: 13px; font-weight: 600; }
+    .sms-from-sub  { font-size: 11px; color: var(--text-3); }
+    .sms-type-badge {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      background: var(--orange-lt);
+      color: var(--orange);
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .sms-body {
+      padding: 14px 14px 12px;
+    }
+    .sms-bubble {
+      display: inline-block;
+      max-width: 85%;
+      background: #4CAF50;
+      color: white;
+      border-radius: 16px 16px 16px 4px;
+      padding: 11px 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .sms-meta {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 10px;
+      padding: 10px 0 2px;
+      border-top: 1px solid var(--warm-border);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .char-count {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      background: var(--bg-white);
+      border: 1px solid var(--warm-border);
+      padding: 2px 7px;
+      border-radius: 6px;
+      color: var(--text-2);
+    }
+    .char-count.good { color: #34C759; }
+    .char-count.warn { color: #FF9500; }
+
+    /* EMAIL CARD */
+    .email-card {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--warm-border);
+      overflow: hidden;
+    }
+    .email-header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--warm-border);
+      padding: 12px 14px;
+    }
+    .email-field {
+      font-size: 12px;
+      color: var(--text-2);
+      display: flex;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+    .email-field:last-child { margin-bottom: 0; }
+    .email-field-key { font-weight: 600; min-width: 28px; }
+    .email-field-val { color: var(--text); }
+    .email-body {
+      padding: 16px 14px;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    /* CRM CARD */
+    .crm-card {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--warm-border);
+      overflow: hidden;
+    }
+    .crm-header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--warm-border);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .crm-icon {
+      width: 24px; height: 24px;
+      background: #34A853;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .crm-title { font-size: 13px; font-weight: 600; }
+    .crm-subtitle { font-size: 11px; color: var(--text-3); margin-left: auto; }
+    .crm-row-wrap {
+      overflow-x: auto;
+      padding: 14px;
+    }
+    .crm-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      min-width: 480px;
+    }
+    .crm-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 0 8px 8px;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .crm-table td {
+      padding: 10px 8px;
+      color: var(--text);
+      vertical-align: top;
+    }
+    .crm-table tr.new-row { background: rgba(217,119,87,0.05); }
+    .crm-new-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      background: var(--orange-lt);
+      color: var(--orange);
+      border-radius: 4px;
+      margin-left: 4px;
+      letter-spacing: 0.05em;
+    }
+    .crm-tick { color: #34C759; font-size: 14px; }
+
+    /* SETUP SECTION */
+    .setup-wrap {
+      background: var(--bg-white);
+      border-radius: 16px;
+      border: 1px solid var(--warm-border);
+      padding: 28px 24px;
+      box-shadow: var(--card-shadow);
+    }
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .step-item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .step-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--orange-lt);
+      border: 1px solid rgba(217,119,87,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-content {}
+    .step-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .step-desc  { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .step-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--bg);
+      border: 1px solid var(--warm-border);
+      color: var(--text-3);
+    }
+    .step-tag.orange { background: var(--orange-lt); border-color: rgba(217,119,87,0.25); color: var(--orange); }
+
+    /* SPEED MODES */
+    .modes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 520px) { .modes-grid { grid-template-columns: 1fr; } }
+    .mode-card {
+      border-radius: 14px;
+      padding: 22px 20px;
+      border: 1px solid var(--warm-border);
+    }
+    .mode-card.automated { background: white; }
+    .mode-card.dispatch  { background: var(--hero-bg); color: white; border-color: #333; }
+    .mode-icon { font-size: 28px; margin-bottom: 12px; }
+    .mode-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .mode-card.dispatch .mode-title { color: white; }
+    .mode-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-2);
+    }
+    .mode-card.dispatch .mode-desc { color: rgba(255,255,255,0.6); }
+    .mode-example {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .mode-card.automated .mode-example {
+      background: var(--bg);
+      border: 1px solid var(--warm-border);
+      color: var(--text-2);
+    }
+    .mode-card.dispatch .mode-example {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+    }
+    .mode-cadence {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    .mode-card.automated .mode-cadence {
+      background: #e8f5e9;
+      color: #34C759;
+    }
+    .mode-card.dispatch .mode-cadence {
+      background: rgba(217,119,87,0.2);
+      color: var(--orange);
+    }
+    .dispatch-notif {
+      margin-top: 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .dispatch-notif-icon {
+      width: 32px; height: 32px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .dispatch-notif-text { font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.45; }
+    .dispatch-notif-app  { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.4); margin-bottom: 3px; }
+
+    /* LIMITATIONS */
+    .limit-card {
+      background: var(--bg-white);
+      border-radius: 14px;
+      border: 1px solid var(--warm-border);
+      padding: 20px 22px;
+    }
+    .limit-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .limit-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .limit-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .limit-text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .limit-text strong { color: var(--text); font-weight: 600; }
+    .limit-source {
+      font-size: 10px;
+      color: var(--orange);
+      font-weight: 600;
+      display: block;
+      margin-top: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--hero-bg);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+    }
+    .cta-section p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      max-width: 420px;
+      margin: 0 auto 32px;
+      line-height: 1.55;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--orange);
+      color: white;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .cta-btn:hover { background: #c4654a; }
+    .cta-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* CRM COMPAT */
+    .crm-compat {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 8px;
+    }
+    .crm-compat-intro {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .crm-compat-intro strong { color: var(--text-1); }
+    .crm-compat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .crm-compat-row:last-child { margin-bottom: 0; }
+    .crm-tier-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    .crm-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 20px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+    .crm-chip.native {
+      background: rgba(217,119,87,0.08);
+      border-color: rgba(217,119,87,0.3);
+      color: var(--orange);
+    }
+    .crm-chip.ecosystem {
+      background: rgba(0,0,0,0.03);
+      border-color: rgba(0,0,0,0.1);
+      color: var(--text-2);
+    }
+    .crm-chip.more {
+      background: transparent;
+      border-color: rgba(0,0,0,0.12);
+      color: var(--text-3);
+      font-style: italic;
+    }
+
+    /* GUIDE FOOTER */
+    .guide-footer {
+      background: #f5f0eb;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #6e6e73;
+      line-height: 1.6;
+    }
+    .guide-footer a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .guide-footer a:hover { text-decoration: underline; }
+
+    /* ANIMATIONS */
+    .fade-in {
+      animation: fadeInUp 0.4s ease forwards;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in:nth-child(1) { animation-delay: 0s; }
+    .fade-in:nth-child(2) { animation-delay: 0.08s; }
+    .fade-in:nth-child(3) { animation-delay: 0.16s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">uremarkable</a>
+  <span class="nav-sep">/</span>
+  <a href="/for/real-estate" class="nav-crumb">Real Estate</a>
+  <span class="nav-sep">/</span>
+  <a href="/for/real-estate/automations" class="nav-crumb">Automations</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-crumb">Lead Follow-Up</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="plugin-badge">
+    <div class="plugin-badge-dot"></div>
+    Claude Cowork Plugin
+  </div>
+  <h1>Follow up on every enquiry. <span>Before your competition reads theirs.</span></h1>
+  <p class="hero-sub">One plugin install. Connects to REA and Domain via Gmail. Sends personalised SMS and email from your agency's number. Logs everything to your CRM.</p>
+  <div class="hero-pills">
+    <div class="hero-pill">Available on <span>Pro &amp; Max plans</span></div>
+    <div class="hero-pill">Built on <span>Claude Cowork</span></div>
+    <div class="hero-pill">No custom code required</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section" style="padding-top:52px;">
+  <div class="section-label">How the automation works</div>
+  <h2 class="section-title">From enquiry notification to personalised message in one flow</h2>
+  <p class="section-sub">The plugin connects your existing tools. Nothing custom, no technical setup beyond installing connectors in Cowork.</p>
+
+  <div class="flow-wrap">
+    <div class="flow-row">
+
+      <!-- Sources -->
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div class="flow-node">
+          <div class="flow-icon">🏠</div>
+          <div class="flow-label">REA / Domain</div>
+          <div class="flow-connector">enquiry</div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">→</div>
+
+      <!-- Gmail -->
+      <div class="flow-node">
+        <div class="flow-icon">✉️</div>
+        <div class="flow-label">Gmail MCP Connector</div>
+        <div class="flow-connector">reads alert</div>
+      </div>
+
+      <div class="flow-arrow">→</div>
+
+      <!-- Plugin -->
+      <div class="flow-node">
+        <div class="flow-icon plugin">✦</div>
+        <div class="flow-label" style="color:#D97757; font-weight:700;">Cowork Plugin</div>
+        <div class="flow-connector">processes</div>
+      </div>
+
+      <div class="flow-arrow">→</div>
+
+      <!-- Outputs -->
+      <div class="flow-outputs">
+        <div class="flow-output-row">
+          <div class="flow-output-icon">💬</div>
+          <div>
+            <div class="flow-output-text">SMS via Twilio</div>
+            <div class="flow-output-sub">Agency business number</div>
+          </div>
+        </div>
+        <div class="flow-output-row">
+          <div class="flow-output-icon">📧</div>
+          <div>
+            <div class="flow-output-text">Email via Gmail</div>
+            <div class="flow-output-sub">Agent's address</div>
+          </div>
+        </div>
+        <div class="flow-output-row">
+          <div class="flow-output-icon">📊</div>
+          <div>
+            <div class="flow-output-text">Google Sheets row</div>
+            <div class="flow-output-sub">CRM auto-logged</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flow-divider"></div>
+    <p class="flow-note">Connectors route through Anthropic's cloud infrastructure. Your MCP server must be reachable over the public internet. <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude-cowork" target="_blank">Learn more about Cowork plugins</a></p>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Why it matters</div>
+  <h2 class="section-title">REA's message vs yours</h2>
+  <p class="section-sub">REA sends a platform acknowledgement from their system. You send a personalised message from your agency. The buyer hears from two numbers. Only one feels like a real person reached out.</p>
+
+  <div class="compare-grid">
+    <div class="compare-card them">
+      <div class="compare-from">
+        <div class="compare-avatar grey">R</div>
+        <div>
+          <div class="compare-from-name">REA Property Alerts</div>
+          <div class="compare-from-text">Sent immediately</div>
+        </div>
+      </div>
+      <div class="compare-bubble">
+        Thanks for your enquiry on 14 Harbour St, Mosman. The agent has been notified and will be in touch soon.
+      </div>
+      <span class="compare-tag">Generic platform response</span>
+    </div>
+
+    <div class="compare-card us">
+      <div class="compare-from">
+        <div class="compare-avatar orange">S</div>
+        <div>
+          <div class="compare-from-name">Sarah from Coastal Real Estate</div>
+          <div class="compare-from-text">Via agency mobile</div>
+        </div>
+      </div>
+      <div class="compare-bubble" id="compare-sms-preview">
+        Hi [Name], thanks for your enquiry on 14 Harbour St. I'd love to chat about what you're looking for in Mosman. Are you free for a quick call today? &mdash; Sarah, Coastal Real Estate
+      </div>
+      <span class="compare-tag">Personalised. From your number. Starts a real conversation.</span>
+    </div>
+  </div>
+</div>
+
+<!-- DEMO -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Try it now</div>
+  <h2 class="section-title">See what your follow-up looks like</h2>
+  <p class="section-sub">Enter the enquiry details below. The plugin generates a personalised SMS, email, and CRM entry exactly as it would during a live run.</p>
+
+  <div class="demo-card">
+    <div class="demo-form-wrap">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="buyer-name">Buyer name</label>
+          <input type="text" id="buyer-name" placeholder="e.g. James Chen" value="">
+        </div>
+        <div class="form-group">
+          <label for="agent-name">Your name</label>
+          <input type="text" id="agent-name" placeholder="e.g. Sarah" value="">
+        </div>
+        <div class="form-group">
+          <label for="property">Property address</label>
+          <input type="text" id="property" placeholder="e.g. 14 Harbour St, Mosman" value="">
+        </div>
+        <div class="form-group">
+          <label for="enquiry-type">Enquiry type</label>
+          <select id="enquiry-type">
+            <option value="inspection">Inspection request</option>
+            <option value="price">Price / value questions</option>
+            <option value="general">General enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="source">How they found it</label>
+          <select id="source">
+            <option value="REA">realestate.com.au</option>
+            <option value="Domain">domain.com.au</option>
+            <option value="Social">Insta / Social Media</option>
+            <option value="Agency website">Agency website</option>
+            <option value="Walk in / Signboard">Walk in / Signboard</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="agency-name">Agency name</label>
+          <input type="text" id="agency-name" placeholder="e.g. Coastal Real Estate" value="">
+        </div>
+      </div>
+      <button class="generate-btn" onclick="generateOutput()">Generate follow-up</button>
+    </div>
+
+    <div class="output-section" id="output-section">
+      <div class="output-divider"></div>
+      <div style="padding: 0 0 16px;">
+        <div class="output-label">Claude's output</div>
+        <div class="output-cards">
+
+          <!-- SMS -->
+          <div class="sms-card fade-in">
+            <div class="sms-header">
+              <div class="sms-avatar" id="agent-avatar">S</div>
+              <div>
+                <div class="sms-from-name" id="sms-from-name">Sarah</div>
+                <div class="sms-from-sub">+61 4XX XXX XXX &bull; Agency business number via Twilio</div>
+              </div>
+              <div class="sms-type-badge">SMS</div>
+            </div>
+            <div class="sms-body">
+              <div class="sms-bubble" id="sms-text">Generating...</div>
+              <div class="sms-meta">
+                <span>📱 Sent from your dedicated agency number. Buyer sees your brand, not a platform.</span>
+                <span class="char-count" id="char-count">0 chars</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EMAIL -->
+          <div class="email-card fade-in">
+            <div class="email-header">
+              <div class="email-field">
+                <span class="email-field-key">From</span>
+                <span class="email-field-val" id="email-from">sarah@coastalrealestate.com.au</span>
+              </div>
+              <div class="email-field">
+                <span class="email-field-key">To</span>
+                <span class="email-field-val" id="email-to">james.chen@email.com</span>
+              </div>
+              <div class="email-field">
+                <span class="email-field-key">Sub</span>
+                <span class="email-field-val" id="email-subject">Your enquiry on 14 Harbour St, Mosman</span>
+              </div>
+            </div>
+            <div class="email-body" id="email-body">Generating...</div>
+          </div>
+
+          <!-- CRM ROW -->
+          <div class="crm-card fade-in">
+            <div class="crm-header">
+              <div class="crm-icon">📊</div>
+              <div class="crm-title">CRM &mdash; Lead Log</div>
+              <div class="crm-subtitle">Google Sheets via MCP</div>
+            </div>
+            <div class="crm-row-wrap">
+              <table class="crm-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Property</th>
+                    <th>Type</th>
+                    <th>Source</th>
+                    <th>Time</th>
+                    <th>SMS</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="new-row">
+                    <td id="crm-name">James Chen <span class="crm-new-badge">NEW</span></td>
+                    <td id="crm-property">14 Harbour St</td>
+                    <td id="crm-type">2BR apt</td>
+                    <td id="crm-source">REA</td>
+                    <td id="crm-time">Just now</td>
+                    <td class="crm-tick">&#10003;</td>
+                    <td class="crm-tick">&#10003;</td>
+                    <td><span style="font-size:11px; font-weight:600; color:#D97757;">New</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CRM INTEGRATIONS -->
+<div class="section" style="padding-top:0; padding-bottom:0;">
+  <div class="crm-compat">
+    <p class="crm-compat-intro">Google Sheets is the demo default — easy to see, zero setup. <strong>In production, the same plugin writes directly to your existing CRM.</strong> No manual copy, no export, no middle step.</p>
+
+    <div class="crm-compat-row">
+      <div class="crm-tier-label">Native integrations</div>
+      <span class="crm-chip native">HubSpot</span>
+      <span class="crm-chip native">Salesforce</span>
+      <span class="crm-chip native">Pipedrive</span>
+    </div>
+
+    <div class="crm-compat-row">
+      <div class="crm-tier-label">Via Zapier MCP &mdash; 8,000+ apps</div>
+      <span class="crm-chip ecosystem">Rex</span>
+      <span class="crm-chip ecosystem">PropertyMe</span>
+      <span class="crm-chip ecosystem">Agentbox</span>
+      <span class="crm-chip ecosystem">GoHighLevel</span>
+      <span class="crm-chip ecosystem">Zoho CRM</span>
+      <span class="crm-chip more">+ any CRM with a Zapier connector</span>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT'S BUILT -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Setup walkthrough</div>
+  <h2 class="section-title">How it's built in Cowork</h2>
+  <p class="section-sub">Seven steps from nothing to live. The Cowork project is the container — everything else runs inside it.</p>
+
+  <div class="setup-wrap">
+    <div class="steps-list">
+
+      <div class="step-item">
+        <div class="step-num">0</div>
+        <div class="step-content">
+          <div class="step-title">Create your Cowork project</div>
+          <div class="step-desc">Before any connectors or tasks, create a dedicated Cowork project for your agency. Each project has its own instructions, scheduled tasks, and memory — scoped to you, not shared across clients or setups. Open Cowork, click <strong>New project</strong>, name it (e.g. "Ray White North Shore — Lead Follow-Up"), and set the context: point it at your local listings folder. This is the container. Everything below runs inside it.</div>
+          <span class="step-tag orange">New project &bull; scoped memory &bull; your agency only</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Install the plugin</div>
+          <div class="step-desc">Open Cowork, click Customize in the left sidebar, then Browse plugins. Upload the Lead Follow-Up plugin file. One click install, everything bundled: skills, connectors, scheduled tasks, CRM schema.</div>
+          <span class="step-tag orange">Cowork Plugin file &bull; one upload</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Set global instructions</div>
+          <div class="step-desc">Go to Settings &gt; Cowork &gt; Global Instructions. Tell Claude your agency name, your preferred communication style, and the number your SMS will send from. These instructions apply to every follow-up it writes.</div>
+          <span class="step-tag">Settings &rarr; Cowork &rarr; Global Instructions</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Connect Gmail MCP</div>
+          <div class="step-desc">The plugin reads your Gmail for new enquiry notifications from REA and Domain. Authorise the Gmail connector in Cowork. Claude watches for the subject line patterns that indicate a new lead has arrived.</div>
+          <span class="step-tag">Claude Settings &rarr; Connectors &rarr; Gmail</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Connect Twilio MCP</div>
+          <div class="step-desc">SMS sends from a Twilio-provisioned business number, not your personal mobile. Set up a Twilio account, provision a number for your agency, then add the Twilio MCP credentials in Cowork. The buyer sees your agency's number every time.</div>
+          <span class="step-tag">Twilio &rarr; provision number &rarr; add MCP</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Connect Google Sheets MCP</div>
+          <div class="step-desc">Every lead gets logged automatically. Create a Google Sheet with the lead tracking template included in the plugin, then authorise the Google Sheets connector. Name, property, enquiry type, source, timestamp, SMS sent, email sent, status.</div>
+          <span class="step-tag">Google Sheets &rarr; template &rarr; connect MCP</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-title">Schedule and activate Dispatch</div>
+          <div class="step-desc">In any Cowork task, type /schedule to set up the hourly automated check. Then open the Dispatch tab to link your mobile app. From that point, Claude runs automatically every hour and pushes notifications to your phone when action is needed.</div>
+          <span class="step-tag orange">/schedule &bull; Dispatch &bull; mobile linked</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SPEED MODES -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Two ways to respond</div>
+  <h2 class="section-title">Automated coverage meets on-demand speed</h2>
+  <p class="section-sub">The automation runs on two modes. Both happen through the same plugin. Which you lean on depends on how your day is running.</p>
+
+  <div class="modes-grid">
+
+    <div class="mode-card automated">
+      <div class="mode-icon">⏱</div>
+      <div class="mode-title">Automated hourly</div>
+      <div class="mode-desc">Claude checks for new enquiries every hour while your Desktop is open. Every lead that came in since the last check gets a follow-up automatically, no input needed.</div>
+      <div class="mode-example">
+        Best for: morning batches, overnight enquiries, open home follow-ups. You come back to a completed run.
+      </div>
+      <div class="mode-cadence">&#10003; Hourly minimum cadence (Anthropic's scheduling limit)</div>
+    </div>
+
+    <div class="mode-card dispatch">
+      <div class="mode-icon">📲</div>
+      <div class="mode-title">On-demand via Dispatch</div>
+      <div class="mode-desc">A new enquiry just came in while you're at an inspection. Open the Claude mobile app, type: "Send follow-up for the Mosman lead." It runs on your desktop. Result lands in the thread.</div>
+      <div class="dispatch-notif">
+        <div class="dispatch-notif-icon">✦</div>
+        <div>
+          <div class="dispatch-notif-app">CLAUDE &bull; DISPATCH</div>
+          <div class="dispatch-notif-text">New lead: James Chen, 2BR Mosman. SMS and email ready. Tap to review and send, or reply "go" to approve.</div>
+        </div>
+      </div>
+      <div class="mode-cadence">&#9889; Trigger from anywhere, Pro &amp; Max plans</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- HONEST LIMITATIONS -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">What to know before you set up</div>
+  <h2 class="section-title">Honest limitations</h2>
+  <p class="section-sub">This is real infrastructure, not a demo. Here's exactly what it requires and where the edges are.</p>
+
+  <div class="limit-card">
+    <div class="limit-row">
+      <div class="limit-icon">💻</div>
+      <div class="limit-text">
+        <strong>Desktop must stay open.</strong> Scheduled tasks only run while your computer is awake and the Claude Desktop app is active. If your machine sleeps, Cowork skips the run and catches up when it wakes.
+        <span class="limit-source">Source: Anthropic &mdash; Schedule recurring tasks in Claude Cowork</span>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">⏱</div>
+      <div class="limit-text">
+        <strong>Automated minimum cadence is one hour.</strong> Cowork's scheduler runs no faster than hourly. For faster response when you're active, use Dispatch to trigger on-demand from your mobile.
+        <span class="limit-source">Source: Anthropic &mdash; Schedule recurring tasks in Claude Cowork</span>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">🌐</div>
+      <div class="limit-text">
+        <strong>MCP connectors need a public internet endpoint.</strong> Connectors route through Anthropic's cloud. If your agency's systems are behind a private network, they'll need to be exposed to a public URL first.
+        <span class="limit-source">Source: Anthropic &mdash; Use plugins in Claude Cowork</span>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">📱</div>
+      <div class="limit-text">
+        <strong>Dispatch requires both the Desktop and mobile apps.</strong> The mobile app sends the task. The desktop runs it. Both need to be installed and the desktop must be active. Available on Pro and Max plans.
+        <span class="limit-source">Source: Anthropic &mdash; Assign tasks from anywhere in Claude Cowork</span>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">💳</div>
+      <div class="limit-text">
+        <strong>Cowork uses more of your usage allocation than regular chat.</strong> Complex multi-step tasks consume more tokens. If you're on the edge of your plan's limit, run simpler tasks in standard chat and reserve Cowork for automation work.
+        <span class="limit-source">Source: Anthropic &mdash; Get started with Claude Cowork</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>The setup is what we do together.</h2>
+  <p>One session. Your Gmail, Twilio, and Sheets connected. Plugin customised to your agency's voice and workflows. Live before we hang up.</p>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="cta-btn" target="_blank">Book a setup session</a>
+  <p class="cta-note">Pro or Max plan required &bull; macOS or Windows &bull; ~60 minutes</p>
+</div>
+
+<!-- GUIDE FOOTER -->
+<div class="guide-footer">
+  This demo is part of the <a href="https://uremarkable.com/for/real-estate/automations">3 automations every real estate agency should be running</a> guide.&nbsp;&nbsp;Want this for your agency? <a href="https://uremarkable.com">Get started with Uremarkable &rarr;</a>
+</div>
+
+<script>
+  function generateOutput() {
+    const buyer   = document.getElementById('buyer-name').value.trim()   || 'James Chen';
+    const agent   = document.getElementById('agent-name').value.trim()   || 'Sarah';
+    const prop    = document.getElementById('property').value.trim()     || '14 Harbour St, Mosman';
+    const type    = document.getElementById('enquiry-type').value;
+    const src     = document.getElementById('source').value;
+    const agency  = document.getElementById('agency-name').value.trim()  || 'Coastal Real Estate';
+
+    const firstName = buyer.split(' ')[0];
+    const agentFirst = agent.split(' ')[0];
+    const propShort = prop.split(',')[0].trim();
+
+    // --- SMS ---
+    const smsBlurb = {
+      inspection: `Happy to lock in an inspection time that suits you`,
+      price:      `Happy to walk you through pricing and comparable sales in the area`,
+      general:    `Happy to answer any questions and make sure I'm actually useful to you`
+    }[type] || `Happy to help`;
+    const smsText = `Hi ${firstName}, thanks for your enquiry on ${propShort}. ${smsBlurb} — are you free for a quick call today? ${agentFirst}, ${agency}`;
+    document.getElementById('sms-text').textContent = smsText;
+    document.getElementById('sms-from-name').textContent = agentFirst;
+    document.getElementById('agent-avatar').textContent = agentFirst[0].toUpperCase();
+
+    const chars = smsText.length;
+    const cc = document.getElementById('char-count');
+    cc.textContent = `${chars} chars`;
+    cc.className = 'char-count ' + (chars <= 160 ? 'good' : 'warn');
+
+    // --- Email ---
+    const agencyDomain = agency.toLowerCase().replace(/\s+/g, '') + '.com.au';
+    document.getElementById('email-from').textContent = `${agentFirst.toLowerCase()}@${agencyDomain}`;
+    document.getElementById('email-to').textContent   = `${buyer.toLowerCase().replace(/\s+/g, '.')}@email.com`;
+    document.getElementById('email-subject').textContent = `Your enquiry on ${propShort}`;
+
+    const emailBody = `Hi ${firstName},
+
+Thanks for your enquiry on ${prop}. ${{inspection: 'I saw you put in an inspection request and wanted to reach out personally.', price: 'I saw you had some questions about pricing and wanted to reach out personally.', general: 'I saw your enquiry come through and wanted to follow up personally.'}[type] || 'I wanted to reach out personally.'}
+
+I know how much choice there is out there right now, so I want to make sure I'm actually useful to you, not just another follow-up email.
+
+A few things that might help:
+
+  - I have a couple of similar properties coming to market in the next few weeks that haven't been listed publicly yet.
+  - If ${propShort} is a strong contender, it's worth having a conversation before the next inspection so you're positioned well.
+
+Are you free for a 10-minute call this week? Happy to work around your schedule.
+
+${agentFirst}
+${agency}`;
+
+    document.getElementById('email-body').textContent = emailBody;
+
+    // --- CRM row ---
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-AU', {hour:'2-digit', minute:'2-digit'});
+    document.getElementById('crm-name').innerHTML = `${buyer} <span class="crm-new-badge">NEW</span>`;
+    document.getElementById('crm-property').textContent = propShort;
+    document.getElementById('crm-type').textContent = {inspection:'Inspection', price:'Price Q', general:'General'}[type] || type;
+    document.getElementById('crm-source').textContent = src;
+    document.getElementById('crm-time').textContent = timeStr;
+
+    // --- Show output ---
+    const section = document.getElementById('output-section');
+    section.classList.add('visible');
+
+    // Re-trigger animations
+    document.querySelectorAll('.output-cards .fade-in').forEach((el, i) => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = `fadeInUp 0.4s ease ${i * 0.09}s forwards`;
+    });
+
+    // Scroll to output
+    setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+</script>
+
+</body>
+</html>

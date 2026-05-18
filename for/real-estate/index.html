@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI for Real Estate Agents — Uremarkable</title>
+  <meta name="description" content="The AI back-office for Sydney real estate agents. Lead follow-up in 5 minutes, post-inspection sequences, self-writing market reports. One setup session, live by end of day.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --hero-bg:    #1C1A18;
+      --orange:     #D97757;
+      --orange-lt:  rgba(217,119,87,0.12);
+      --warm-border:#E8E3DC;
+      --card-bg:    #ffffff;
+      --page-bg:    #f5f0eb;
+      --text-1:     #1d1d1f;
+      --text-2:     #4a4a4d;
+      --text-3:     #8e8e93;
+      --green:      #34C759;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: var(--page-bg);
+      color: var(--text-1);
+      line-height: 1.5;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--hero-bg);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-brand { font-size: 15px; font-weight: 700; color: white; text-decoration: none; letter-spacing: -0.2px; }
+    .nav-brand span { color: var(--orange); }
+    .nav-link {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-link:hover { color: white; }
+
+    /* HERO */
+    .hero {
+      background: var(--hero-bg);
+      padding: 72px 24px 80px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(217,119,87,0.15);
+      border: 1px solid rgba(217,119,87,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 28px;
+    }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      max-width: 720px;
+      margin: 0 auto 20px;
+    }
+    .hero h1 em { color: var(--orange); font-style: normal; }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 17px);
+      color: rgba(255,255,255,0.6);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 26px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #c4654a; }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 13px 26px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.13); color: white; }
+
+    /* STAT BAR */
+    .stat-bar {
+      background: rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: center;
+      gap: clamp(24px, 6vw, 72px);
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 700; color: white; letter-spacing: -0.3px; }
+    .stat-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* SECTIONS */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      max-width: 560px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    /* PROBLEM CARDS */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .problem-card {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .problem-icon { font-size: 28px; margin-bottom: 14px; }
+    .problem-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .problem-body { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+    .problem-stat {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--orange);
+      background: var(--orange-lt);
+      border-radius: 6px;
+      padding: 3px 9px;
+    }
+
+    /* AUTOMATION CARDS */
+    .auto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .auto-card {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      position: relative;
+    }
+    .auto-num {
+      width: 32px;
+      height: 32px;
+      background: var(--orange-lt);
+      border: 1px solid rgba(217,119,87,0.25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+    .auto-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+    .auto-body { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
+    .auto-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.08);
+      color: var(--text-3);
+    }
+
+    /* DEMO CALLOUT */
+    .demo-callout {
+      background: var(--hero-bg);
+      border-radius: 18px;
+      padding: 40px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .demo-callout-text h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.2px;
+      margin-bottom: 8px;
+    }
+    .demo-callout-text p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      max-width: 420px;
+    }
+    .demo-preview {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      min-width: 200px;
+      flex-shrink: 0;
+    }
+    .demo-preview-label { font-weight: 600; color: var(--orange); font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .demo-preview-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+    .demo-preview-val { color: rgba(255,255,255,0.75); font-weight: 500; }
+    .demo-sms-mock {
+      margin-top: 12px;
+      background: rgba(217,119,87,0.15);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    /* CRM COMPAT */
+    .crm-compat {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+    }
+    .crm-compat-intro {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .crm-compat-intro strong { color: var(--text-1); }
+    .crm-compat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .crm-compat-row:last-child { margin-bottom: 0; }
+    .crm-tier-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    .crm-chip {
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 20px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+    .crm-chip.native { background: var(--orange-lt); border-color: rgba(217,119,87,0.3); color: var(--orange); }
+    .crm-chip.ecosystem { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.1); color: var(--text-2); }
+    .crm-chip.more { background: transparent; border-color: rgba(0,0,0,0.12); color: var(--text-3); font-style: italic; }
+
+    /* SETUP STRIP */
+    .setup-strip {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .setup-strip-icon {
+      font-size: 36px;
+      flex-shrink: 0;
+    }
+    .setup-strip-content { flex: 1; min-width: 200px; }
+    .setup-strip h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .setup-strip p { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+    .setup-strip-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+    .setup-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.08);
+      color: var(--text-2);
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: var(--hero-bg);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+    }
+    .cta-section p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 32px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .cta-note {
+      margin-top: 18px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* GUIDE FOOTER */
+    .guide-footer {
+      background: #f5f0eb;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #6e6e73;
+      line-height: 1.6;
+    }
+    .guide-footer a { color: var(--orange); text-decoration: none; font-weight: 500; }
+    .guide-footer a:hover { text-decoration: underline; }
+
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--warm-border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .demo-callout { flex-direction: column; }
+      .setup-strip { flex-direction: column; text-align: center; }
+      .setup-strip-tags { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://uremarkable.com" class="nav-brand">u<span>remarkable</span></a>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="nav-link">Book a chat</a>
+</nav>
+
+<!-- HERO -->
+<div style="background: var(--hero-bg);">
+  <div class="hero">
+    <div class="hero-tag">For real estate agents</div>
+    <h1>Two types of agencies are forming.<br><em>Which side are you on?</em></h1>
+    <p class="hero-sub">One follows up enquiries in 4 hours. The other responds in 5 minutes while the agent is at an inspection. The gap is not hustle. It's infrastructure.</p>
+    <div class="hero-ctas">
+      <a href="#automations" class="btn-primary">See the 3 automations</a>
+      <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-secondary">Book a chat with Baz</a>
+    </div>
+  </div>
+
+  <!-- STAT BAR -->
+  <div class="stat-bar">
+    <div class="stat-item">
+      <div class="stat-num">80%</div>
+      <div class="stat-label">Lead conversion drops after 5 min</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4 hrs</div>
+      <div class="stat-label">Average agent follow-up time</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1 session</div>
+      <div class="stat-label">Live by end of your first session</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<div class="section">
+  <div class="section-label">The gap</div>
+  <h2 class="section-title">The deals you're losing aren't visible</h2>
+  <p class="section-sub">Three places where leads go cold before you even know they arrived.</p>
+
+  <div class="problem-grid">
+
+    <div class="problem-card">
+      <div class="problem-icon">⏱</div>
+      <div class="problem-title">Speed to lead</div>
+      <div class="problem-body">A buyer enquires on REA at 7:43pm. You're at dinner. By the time you see it, they've already spoken to two other agents who had automated follow-ups running.</div>
+      <span class="problem-stat">80% conversion drop after 5 minutes</span>
+    </div>
+
+    <div class="problem-card">
+      <div class="problem-icon">🏠</div>
+      <div class="problem-title">Post-inspection follow-up</div>
+      <div class="problem-body">You've just run 6 inspection groups. You have notes in your head and a follow-up list you'll get to tonight. By tonight, three of those buyers have moved on.</div>
+      <span class="problem-stat">Personal follow-up that runs itself</span>
+    </div>
+
+    <div class="problem-card">
+      <div class="problem-icon">📊</div>
+      <div class="problem-title">The Monday market report</div>
+      <div class="problem-body">You know it should go out every week. It almost never does. Because pulling the data, writing the commentary, and formatting it takes 90 minutes you don't have.</div>
+      <span class="problem-stat">Writes itself from your sales data</span>
+    </div>
+
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- AUTOMATIONS -->
+<div class="section" id="automations">
+  <div class="section-label">The solution</div>
+  <h2 class="section-title">3 automations every agency should be running</h2>
+  <p class="section-sub">These three cover the biggest time drains for residential agents. All run inside Claude Cowork. One setup session, then they run in the background.</p>
+
+  <div class="auto-grid">
+
+    <div class="auto-card">
+      <div class="auto-num">01</div>
+      <div class="auto-title">The 5-Minute Follow-Up</div>
+      <div class="auto-body">Every REA and Domain enquiry gets a personalised response within 5 minutes. Knows the property, references their specific question, offers an inspection time. Sent while you're at dinner. Every time.</div>
+      <span class="auto-tag">Gmail MCP + Twilio</span>
+    </div>
+
+    <div class="auto-card">
+      <div class="auto-num">02</div>
+      <div class="auto-title">The Post-Inspection Sequence</div>
+      <div class="auto-body">Timed follow-up messages based on what each group said at the inspection. Feels like you remembered every conversation. Because the system did. Runs automatically after each inspection day.</div>
+      <span class="auto-tag">Google Sheets + Gmail</span>
+    </div>
+
+    <div class="auto-card">
+      <div class="auto-num">03</div>
+      <div class="auto-title">The Self-Writing Market Report</div>
+      <div class="auto-body">Every Monday. Pulls your recent sales data, writes the commentary, formats it in your brand, sends it to your list. Before your competition opens their laptop. No 90-minute Sunday session required.</div>
+      <span class="auto-tag">Sheets MCP + Gmail</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- DEMO CALLOUT -->
+<div class="section" style="padding-top: 0;">
+  <div class="demo-callout">
+    <div class="demo-callout-text">
+      <h3>See the 5-minute follow-up live</h3>
+      <p>Enter a real enquiry. Watch the personalised SMS, email, and CRM entry generate exactly as it would during a live run. Takes 30 seconds.</p>
+      <a href="./automations" class="btn-primary" style="margin-top: 18px; display: inline-block;">Open the live demo</a>
+    </div>
+    <div class="demo-preview">
+      <div class="demo-preview-label">Sample output</div>
+      <div class="demo-preview-row">
+        <span>Lead</span>
+        <span class="demo-preview-val">James Chen</span>
+      </div>
+      <div class="demo-preview-row">
+        <span>Property</span>
+        <span class="demo-preview-val">14 Harbour St</span>
+      </div>
+      <div class="demo-preview-row">
+        <span>Response time</span>
+        <span class="demo-preview-val" style="color: var(--green);">4 min 38 sec</span>
+      </div>
+      <div class="demo-sms-mock">
+        "Hi James, thanks for your enquiry on 14 Harbour St. Happy to lock in an inspection time that suits you..."
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- CRM COMPAT -->
+<div class="section">
+  <div class="section-label">Works with your stack</div>
+  <h2 class="section-title">Logs to whatever CRM you already use</h2>
+  <p class="section-sub">No manual copy. No export. The plugin writes directly to your CRM as the lead comes in.</p>
+  <div class="crm-compat">
+    <p class="crm-compat-intro">Google Sheets is the default starting point. <strong>In production, every lead logs directly to your existing CRM</strong> — no middle step, no copy-paste.</p>
+    <div class="crm-compat-row">
+      <div class="crm-tier-label">Native integrations</div>
+      <span class="crm-chip native">HubSpot</span>
+      <span class="crm-chip native">Salesforce</span>
+      <span class="crm-chip native">Pipedrive</span>
+    </div>
+    <div class="crm-compat-row">
+      <div class="crm-tier-label">Via Zapier MCP &mdash; 8,000+ apps</div>
+      <span class="crm-chip ecosystem">Rex</span>
+      <span class="crm-chip ecosystem">PropertyMe</span>
+      <span class="crm-chip ecosystem">Agentbox</span>
+      <span class="crm-chip ecosystem">GoHighLevel</span>
+      <span class="crm-chip ecosystem">Zoho CRM</span>
+      <span class="crm-chip more">+ any CRM with a Zapier connector</span>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- SETUP -->
+<div class="section">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">One session. Live before we hang up.</h2>
+  <p class="section-sub">You bring the Gmail access and a Twilio account. We wire everything in one session and you leave with a running system.</p>
+  <div class="setup-strip">
+    <div class="setup-strip-icon">⚙️</div>
+    <div class="setup-strip-content">
+      <h3>What happens in the setup session</h3>
+      <p>We create your Cowork project, install the plugin, connect Gmail, Twilio, and Google Sheets, set your global instructions (your name, agency, tone), and schedule the automation. You watch it run before the session ends.</p>
+      <div class="setup-strip-tags">
+        <span class="setup-tag">Claude Desktop — Pro or Max</span>
+        <span class="setup-tag">macOS or Windows</span>
+        <span class="setup-tag">~60 minutes</span>
+        <span class="setup-tag">Twilio account (10 min to set up)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>The setup is what we do together.</h2>
+  <p>One session. Your automations live. No tech team, no ongoing maintenance — just a system that runs while you work.</p>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book your setup session</a>
+  <p class="cta-note">$2,500 one-off &bull; from $300/month retainer &bull; live by end of session</p>
+</div>
+
+<!-- GUIDE FOOTER -->
+<div class="guide-footer">
+  This page is part of the <a href="./automations">3 automations every real estate agency should be running</a> guide.&nbsp;&nbsp;Want to see the full Uremarkable platform? <a href="https://uremarkable.com">Visit uremarkable.com &rarr;</a>
+</div>
+
+</body>
+</html>
