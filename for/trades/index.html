@@ -259,10 +259,71 @@
     }
     .guide-strip a { color: var(--orange); text-decoration: none; font-weight: 500; }
 
+
+    /* ── BEFORE / AFTER ── */
+    .before-after {
+      display: flex; align-items: stretch; gap: 0;
+      background: var(--hero-bg); border-radius: 20px;
+      overflow: hidden; margin-top: 40px;
+    }
+    .ba-col { flex: 1; padding: 36px 32px; }
+    .ba-before { background: rgba(255,255,255,0.04); }
+    .ba-after { background: rgba(217,119,87,0.12); }
+    .ba-divider {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 12px; color: var(--orange); font-size: 22px; font-weight: 700;
+      background: rgba(255,255,255,0.02);
+    }
+    .ba-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 20px;
+    }
+    .ba-after .ba-label { color: var(--orange); }
+    .ba-item {
+      font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.5;
+      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .ba-after .ba-item { color: white; border-bottom-color: rgba(217,119,87,0.2); }
+    .ba-item:last-child { border-bottom: none; }
+    .btn-demo {
+      display: inline-block; padding: 11px 24px;
+      background: transparent; border: 1.5px solid var(--orange);
+      color: var(--orange); border-radius: 10px; font-size: 14px;
+      font-weight: 600; text-decoration: none; transition: all .2s;
+    }
+    .btn-demo:hover { background: var(--orange); color: white; }
+
+    /* ── NOT FOR EVERYONE ── */
+    .nfe-section { background: var(--card-bg); border-top: 1px solid var(--warm-border); border-bottom: 1px solid var(--warm-border); padding: 64px 24px; }
+    .nfe-inner { max-width: 680px; margin: 0 auto; }
+    .nfe-title { font-size: clamp(20px, 3vw, 26px); font-weight: 700; letter-spacing: -0.3px; margin-bottom: 36px; text-align: center; }
+    .nfe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .nfe-col { border-radius: 14px; padding: 24px 28px; }
+    .nfe-no-col { background: #fff5f3; border: 1px solid #ffd5cc; }
+    .nfe-yes-col { background: #f0faf4; border: 1px solid #c6e8d1; }
+    .nfe-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+    .nfe-no-col .nfe-label { color: #c0392b; }
+    .nfe-yes-col .nfe-label { color: #27ae60; }
+    .nfe-list { list-style: none; padding: 0; margin: 0; }
+    .nfe-list li { font-size: 14px; color: var(--text-2); line-height: 1.5; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .nfe-list li:last-child { border-bottom: none; }
+    .nfe-no-col li::before { content: '✕  '; color: #c0392b; font-weight: 700; font-size: 11px; }
+    .nfe-yes-col li::before { content: '✓  '; color: #27ae60; font-weight: 700; font-size: 11px; }
+    @media (max-width: 600px) { .nfe-grid { grid-template-columns: 1fr; } }
+
+    /* ── ENHANCED PRICE BLOCK ── */
+    .price-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 540px; margin: 32px auto; text-align: left; }
+    .price-col { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px 28px; }
+    .price-col-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 8px; }
+    .price-includes { list-style: none; padding: 0; margin: 16px 0 0; }
+    .price-includes li { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .price-includes li:last-child { border-bottom: none; }
+    .price-includes li::before { content: '· '; color: var(--orange); }
+    @media (max-width: 600px) { .price-two-col { grid-template-columns: 1fr; } .before-after { flex-direction: column; } .ba-divider { padding: 12px; transform: rotate(90deg); } }
+
     @media (max-width: 600px) {
       .hero { padding: 56px 20px 64px; }
       .section { padding: 48px 20px; }
-      .demo-callout { padding: 36px 24px; }
       .setup-strip { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -279,7 +340,7 @@
   <div class="hero">
     <div class="hero-tag">AI for Trade Businesses</div>
     <h1>The work's done by 4pm.<br>The admin doesn't have to <em>follow you home.</em></h1>
-    <p class="hero-sub">Every quote sent, invoice chased, booking confirmed. All handled. You drive home.</p>
+    <p class="hero-sub">Speak the job notes. Approve the quote. Chase invoices without chasing people.</p>
     <div class="hero-ctas">
       <a href="/for/trades/automations/" class="btn-primary">See the automations</a>
       <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-secondary">Book a setup session</a>
@@ -333,9 +394,9 @@
 
 <!-- AUTOMATIONS -->
 <div class="section" style="padding-top: 0;">
-  <div class="section-label">What Cowork handles</div>
+  <div class="section-label">Three jobs. One session.</div>
   <h2 class="section-title">Three automations. One setup session.</h2>
-  <p class="section-sub">Each plugin installs in a single Cowork session. Your tools, your email, your existing workflow. No custom code.</p>
+  <p class="section-sub">We set it up with you in one session. Your tools, your email, your existing workflow.</p>
 
   <div class="auto-grid">
 
@@ -346,7 +407,7 @@
       </div>
       <div class="auto-card-icon">🎙</div>
       <div class="auto-card-title">Quote Builder</div>
-      <div class="auto-card-body">Voice note on-site. Cowork extracts job details, applies your rate card, builds the quote, and sends it from your email. You review in Dispatch and reply SEND.</div>
+      <div class="auto-card-body">Talk into your phone after the site visit. The quote gets drafted. You check it. You hit send.</div>
       <div class="auto-card-arrow">See the demo ›</div>
     </a>
 
@@ -357,7 +418,7 @@
       </div>
       <div class="auto-card-icon">📄</div>
       <div class="auto-card-title">Invoice Follow-Up</div>
-      <div class="auto-card-body">Unpaid invoices get a follow-up sequence at day 3, day 7, and day 14. Drafted by Cowork, approved by you in Dispatch before anything sends.</div>
+      <div class="auto-card-body">Unpaid invoices get chased at day 3, day 7, and day 14. You approve before anything sends.</div>
       <div class="auto-card-arrow">See the demo ›</div>
     </a>
 
@@ -365,16 +426,29 @@
       <div class="soon-badge">Coming soon</div>
       <div class="auto-card-icon">📅</div>
       <div class="auto-card-title">Booking Confirmation</div>
-      <div class="auto-card-body">When a quote is accepted, Cowork sends a confirmation, logs the job to your calendar, and sends a reminder to the client the day before.</div>
+      <div class="auto-card-body">Accepted quote becomes a calendar job. Client gets a confirmation. Client gets a reminder the day before.</div>
     </div>
 
   </div>
 
-  <!-- DEMO CALLOUT -->
-  <div class="demo-callout">
-    <h2>Two live demos. One setup session.</h2>
-    <p>Quote Builder: voice note to sent quote in under 3 minutes. Invoice Follow-Up: overdue invoices chased automatically at day 3, 7, and 14. Both running from your existing tools.</p>
-    <a href="/for/trades/automations/" class="btn-primary">See all automations</a>
+  <!-- BEFORE / AFTER -->
+  <div class="before-after">
+    <div class="ba-col ba-before">
+      <div class="ba-label">Before</div>
+      <div class="ba-item">Quote written at 10pm.</div>
+      <div class="ba-item">Invoice chased by memory.</div>
+      <div class="ba-item">Bookings copied by hand.</div>
+    </div>
+    <div class="ba-divider">→</div>
+    <div class="ba-col ba-after">
+      <div class="ba-label">After</div>
+      <div class="ba-item">Quote sent before you leave the driveway.</div>
+      <div class="ba-item">Invoice follow-up runs on time, every time.</div>
+      <div class="ba-item">Booking confirmed without another text.</div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top: 32px;">
+    <a href="/for/trades/automations/" class="btn-demo">See the live demos</a>
   </div>
 </div>
 
@@ -385,14 +459,14 @@
     <div class="compat-chips">
       <span class="compat-chip highlight">Gmail</span>
       <span class="compat-chip highlight">Outlook</span>
-      <span class="compat-chip highlight">Xero (native MCP)</span>
+      <span class="compat-chip highlight">Xero</span>
       <span class="compat-chip">HubSpot</span>
       <span class="compat-chip">Pipedrive</span>
       <span class="compat-chip">Salesforce</span>
       <span class="compat-chip">Google Sheets</span>
-      <span class="compat-chip">ServiceM8 (via Zapier)</span>
-      <span class="compat-chip">Tradify (via Zapier)</span>
-      <span class="compat-chip">MYOB (custom setup)</span>
+      <span class="compat-chip">ServiceM8</span>
+      <span class="compat-chip">Tradify</span>
+      <span class="compat-chip">MYOB</span>
     </div>
   </div>
 
@@ -406,15 +480,58 @@
 
 </div>
 
+<!-- NOT FOR EVERYONE -->
+<div class="nfe-section">
+  <div class="nfe-inner">
+    <h2 class="nfe-title">Honest about the fit</h2>
+    <div class="nfe-grid">
+      <div class="nfe-col nfe-no-col">
+        <div class="nfe-label">Not for you if</div>
+        <ul class="nfe-list">
+          <li>You want a fully custom app built from scratch</li>
+          <li>You want to change every tool you use</li>
+          <li>You want AI sending things without your approval</li>
+        </ul>
+      </div>
+      <div class="nfe-col nfe-yes-col">
+        <div class="nfe-label">Good fit if</div>
+        <ul class="nfe-list">
+          <li>You use email</li>
+          <li>You quote jobs</li>
+          <li>You chase invoices</li>
+          <li>You're sick of doing admin at night</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- CTA -->
 <div class="cta-section">
-  <h2>Ready to stop working at 10pm?</h2>
-  <p>One setup session. Quotes, invoices, bookings. All handled.</p>
-  <div class="price-block">
-    <div class="price-main">$2,500 setup</div>
-    <div class="price-sub">+ from $300/month to keep it running</div>
+  <h2>Your back office. One day to set up.</h2>
+  <p>Quote faster. Get paid faster. Stop booking chaos.</p>
+  <div class="price-two-col">
+    <div class="price-col">
+      <div class="price-col-label">Setup</div>
+      <div class="price-main">$2,500 once</div>
+      <ul class="price-includes">
+        <li>Connect your tools</li>
+        <li>Build your quote flow</li>
+        <li>Set your follow-up rules</li>
+        <li>Test it with you on the day</li>
+      </ul>
+    </div>
+    <div class="price-col">
+      <div class="price-col-label">Running</div>
+      <div class="price-main">From $300/month</div>
+      <ul class="price-includes">
+        <li>Keep automations running</li>
+        <li>Small fixes included</li>
+        <li>Support when tools change</li>
+      </ul>
+    </div>
   </div>
-  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book a setup session</a>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book the setup session</a>
 </div>
 
 <footer>
