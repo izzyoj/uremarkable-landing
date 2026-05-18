@@ -3,21 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Real Estate Automations | Uremarkable</title>
+<title>Real Estate Follow-Up Automations | Uremarkable</title>
+<meta name="description" content="Three follow-up systems for residential agents. Lead reply, inspection follow-up, market report. One setup session. Runs from that point on.">
 <style>
-  :root { --orange: #D97757; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange:      #D97757;
+    --orange-lt:   rgba(217,119,87,0.12);
+    --hero-bg:     #1C1A18;
+    --page-bg:     #f5f0eb;
+    --card-bg:     #ffffff;
+    --warm-border: #E8E3DC;
+    --text-1:      #1d1d1f;
+    --text-2:      #4a4a4d;
+    --text-3:      #8e8e93;
+    --green:       #34C759;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
-    background: #f5f0eb;
-    color: #1d1d1f;
+    background: var(--page-bg);
+    color: var(--text-1);
     font-size: 16px;
     line-height: 1.6;
   }
 
   /* NAV */
   .nav {
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.88);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(0,0,0,0.08);
     padding: 14px 24px;
@@ -28,57 +40,138 @@
     align-items: center;
     gap: 12px;
   }
-  .nav-brand { font-size: 15px; font-weight: 600; color: #1d1d1f; text-decoration: none; }
+  .nav-brand { font-size: 15px; font-weight: 700; color: var(--text-1); text-decoration: none; letter-spacing: -0.2px; }
+  .nav-brand span { color: var(--orange); }
   .nav-sep { color: #ccc; font-size: 13px; }
   .nav-crumb { font-size: 13px; color: #666; text-decoration: none; }
-  .nav-crumb:hover { color: #D97757; }
-  .nav-title { font-size: 13px; color: #1d1d1f; font-weight: 500; }
+  .nav-crumb:hover { color: var(--orange); }
+  .nav-title { font-size: 13px; color: var(--text-1); font-weight: 500; }
 
   /* HERO */
+  .hero-wrap { background: var(--hero-bg); }
   .hero {
-    background: #1C1A18;
-    color: white;
-    padding: 56px 24px 48px;
+    padding: 64px 24px 52px;
     text-align: center;
-  }
-  .plugin-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: rgba(217,119,87,0.18);
-    border: 1px solid rgba(217,119,87,0.35);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--orange);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .plugin-badge-dot {
-    width: 6px; height: 6px;
-    background: white;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
+    max-width: 700px;
+    margin: 0 auto;
   }
   .hero h1 {
-    font-size: clamp(26px, 5vw, 38px);
+    font-size: clamp(26px, 5vw, 42px);
     font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    color: white;
+    line-height: 1.15;
+    letter-spacing: -0.4px;
+    margin-bottom: 18px;
   }
-  .hero p {
-    font-size: 17px;
-    opacity: 0.85;
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.5;
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 17px);
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+  .hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .hero-chip {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 4px 13px;
+  }
+  .hero-no-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .hero-no-item {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hero-no-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--orange);
+    border-radius: 50%;
+    opacity: 0.6;
+    flex-shrink: 0;
   }
 
-  /* MAIN */
-  .main { max-width: 760px; margin: 0 auto; padding: 48px 20px 80px; }
+  /* QUOTE BAR */
+  .quote-bar {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 18px 24px;
+    text-align: center;
+  }
+  .quote-bar p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.38);
+    font-style: italic;
+  }
+  .quote-bar strong {
+    color: rgba(255,255,255,0.6);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    background: var(--orange);
+    color: white;
+    padding: 13px 26px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: #c4654a; }
+  .btn-card {
+    display: inline-flex;
+    align-items: center;
+    background: var(--orange);
+    color: white;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+    margin-top: 20px;
+  }
+  .btn-card:hover { background: #c4654a; }
+  .btn-card-ghost {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: var(--text-2);
+    padding: 9px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--warm-border);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.15s;
+    margin-top: 20px;
+  }
+  .btn-card-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* MAIN WRAPPER */
+  .main { max-width: 780px; margin: 0 auto; padding: 52px 20px 80px; }
 
   .section-label {
     font-size: 11px;
@@ -86,47 +179,52 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--orange);
-    margin-bottom: 20px;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    line-height: 1.25;
+    margin-bottom: 28px;
   }
 
   /* AUTOMATION CARDS */
-  .card-grid {
-    display: grid;
-    gap: 16px;
-  }
+  .card-grid { display: grid; gap: 20px; }
+
   .auto-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 16px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
     padding: 28px;
+  }
+  .auto-card.coming-soon { opacity: 0.52; }
+
+  .card-top {
     display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.2s, transform 0.2s;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
   }
-  .auto-card:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 0 0 1px rgba(217,119,87,0.3);
-    transform: translateY(-1px);
-  }
-  .auto-icon {
-    width: 48px;
-    height: 48px;
-    background: #F2E8E2;
-    border-radius: 12px;
+  .auto-num {
+    width: 28px;
+    height: 28px;
+    background: var(--orange-lt);
+    border: 1px solid rgba(217,119,87,0.25);
+    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--orange);
     flex-shrink: 0;
   }
-  .auto-body { flex: 1; }
-  .auto-tag {
+  .live-tag {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: rgba(217,119,87,0.1);
+    background: var(--orange-lt);
     border: 1px solid rgba(217,119,87,0.2);
     border-radius: 12px;
     padding: 3px 10px;
@@ -135,197 +233,416 @@
     color: var(--orange);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-bottom: 8px;
   }
-  .auto-tag-dot {
+  .soon-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: #f0f0f5;
+    color: #999;
+    border-radius: 6px;
+    padding: 3px 8px;
+  }
+  .live-dot {
     width: 5px; height: 5px;
     background: var(--orange);
     border-radius: 50%;
     animation: pulse 2s infinite;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.4; }
-  }
-  .auto-title {
-    font-size: 18px;
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .auto-tagline {
+    font-size: 17px;
     font-weight: 700;
-    color: #1d1d1f;
-    margin-bottom: 6px;
+    color: var(--text-1);
+    line-height: 1.3;
+    margin-bottom: 16px;
   }
-  .auto-desc {
-    font-size: 14px;
-    color: #555;
+  .auto-steps {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .auto-steps li {
+    font-size: 13px;
+    color: var(--text-2);
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
     line-height: 1.5;
-    margin-bottom: 12px;
   }
-  .auto-meta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .auto-meta-item {
-    font-size: 12px;
-    color: #888;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .auto-arrow {
-    font-size: 20px;
-    color: #ccc;
-    align-self: center;
+  .auto-steps li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--orange);
+    border-radius: 50%;
+    margin-top: 6px;
     flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .best-for-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+  .best-for-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .best-for-chip {
+    font-size: 12px;
+    color: var(--text-2);
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-weight: 500;
   }
 
-  /* COMING SOON */
-  .coming-soon-card {
-    background: white;
+  /* BEFORE / AFTER */
+  .proof-block {
+    background: var(--card-bg);
     border-radius: 16px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.04);
-    padding: 24px 28px;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    opacity: 0.5;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+    overflow: hidden;
+    margin-top: 32px;
   }
-  .coming-soon-icon {
-    width: 40px; height: 40px;
-    background: #f5f0eb;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
+  .proof-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--warm-border);
   }
-  .coming-soon-label {
+  .proof-header-label {
     font-size: 11px;
-    font-weight: 600;
-    color: #aaa;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
+    color: var(--orange);
     margin-bottom: 3px;
   }
-  .coming-soon-title { font-size: 15px; font-weight: 600; color: #888; }
+  .proof-header p { font-size: 13px; color: var(--text-2); }
+  .proof-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .proof-col { padding: 22px 24px; }
+  .proof-col + .proof-col { border-left: 1px solid var(--warm-border); }
+  .proof-col-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 12px;
+  }
+  .proof-col-label.before { color: #b55050; }
+  .proof-col-label.after { color: var(--green); }
+  .proof-item {
+    font-size: 13px;
+    color: var(--text-2);
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .proof-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .proof-dot.before { background: rgba(181,80,80,0.25); border: 1px solid #b55050; }
+  .proof-dot.after { background: rgba(52,199,89,0.25); border: 1px solid var(--green); }
+
+  @media (max-width: 480px) {
+    .proof-cols { grid-template-columns: 1fr; }
+    .proof-col + .proof-col { border-left: none; border-top: 1px solid var(--warm-border); }
+  }
+
+  /* TOOLS STRIP */
+  .tools-strip {
+    background: var(--card-bg);
+    border-radius: 14px;
+    border: 1px solid var(--warm-border);
+    padding: 24px 28px;
+    margin-top: 28px;
+  }
+  .tools-strip h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .tools-name-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .tool-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 6px;
+    padding: 3px 9px;
+  }
+  .tools-strip p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+  /* SAFETY */
+  .safety-block {
+    background: var(--hero-bg);
+    border-radius: 14px;
+    padding: 30px 28px;
+    margin-top: 28px;
+    text-align: center;
+  }
+  .safety-block h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: -0.1px;
+  }
+  .safety-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    justify-content: center;
+  }
+  .safety-list li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .safety-list li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--orange);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
 
   /* CTA */
   .cta-block {
-    background: white;
+    background: var(--hero-bg);
     border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
-    padding: 36px 32px;
+    padding: 42px 32px;
     text-align: center;
-    margin-top: 48px;
+    margin-top: 28px;
   }
-  .cta-block h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-  .cta-block p { font-size: 15px; color: #555; margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; }
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #D97757;
+  .cta-block h3 {
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700;
     color: white;
-    padding: 12px 24px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.15s;
+    letter-spacing: -0.2px;
+    margin-bottom: 10px;
   }
-  .btn-primary:hover { background: #b8613f; }
+  .cta-block p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.48);
+    margin-bottom: 26px;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.65;
+  }
+  .cta-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.22);
+  }
 
   /* FOOTER */
   .footer {
     text-align: center;
-    padding: 32px 24px;
+    padding: 28px 24px;
     font-size: 13px;
     color: #888;
     border-top: 1px solid rgba(0,0,0,0.06);
     background: white;
     margin-top: 40px;
   }
-  .footer a { color: #D97757; text-decoration: none; }
+  .footer a { color: var(--orange); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="nav">
-  <a href="/" class="nav-brand">u<span style="color:#D97757;">remarkable</span></a>
+  <a href="/" class="nav-brand">u<span>remarkable</span></a>
   <span class="nav-sep">/</span>
   <a href="/for/real-estate/" class="nav-crumb">Real Estate</a>
   <span class="nav-sep">/</span>
-  <span class="nav-title">Automations</span>
+  <span class="nav-title">Follow-up systems</span>
 </nav>
 
-<div class="hero">
-  <div class="plugin-badge"><div class="plugin-badge-dot"></div>Claude Cowork Plugin</div>
-  <h1>Real estate automations</h1>
-  <p>Each plugin connects your existing tools. One session to set up. Runs from that point on.</p>
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <h1>Stop letting warm leads go cold.</h1>
+    <p class="hero-sub">Pick one follow-up job.<br>We connect your tools.<br>You leave with it running.</p>
+    <div class="hero-chips">
+      <span class="hero-chip">REA enquiry</span>
+      <span class="hero-chip">Inspection follow-up</span>
+      <span class="hero-chip">Market report</span>
+    </div>
+    <div class="hero-no-list">
+      <span class="hero-no-item">No new app</span>
+      <span class="hero-no-item">No custom build</span>
+      <span class="hero-no-item">No messy handover</span>
+    </div>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Build my first follow-up system</a>
+  </div>
+  <div class="quote-bar">
+    <p>Real estate is not lost in the CRM. <strong>It is lost in the follow-up gap.</strong></p>
+  </div>
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
-  <div class="section-label">Live demos</div>
+  <div class="section-label">Choose your first automation</div>
+  <div class="section-title">Three follow-up systems.<br>Pick the one that costs you most.</div>
 
   <div class="card-grid">
 
-    <a href="/for/real-estate/automations/lead-follow-up/" class="auto-card">
-      <div class="auto-icon">📨</div>
-      <div class="auto-body">
-        <div class="auto-tag">
-          <div class="auto-tag-dot"></div>
-          Claude Cowork Plugin
-        </div>
-        <div class="auto-title">Lead Follow-Up</div>
-        <div class="auto-desc">Connects to REA and Domain via your agency email. Sends a personalised response to every enquiry within minutes. Logs to your CRM. Follow-up sequence runs automatically.</div>
-        <div class="auto-meta">
-          <span class="auto-meta-item">Gmail or Outlook</span>
-          <span class="auto-meta-item">HubSpot, Salesforce, Rex, Pipedrive</span>
-          <span class="auto-meta-item">SMS via Twilio</span>
-        </div>
+    <!-- CARD 1: LEAD FOLLOW-UP -->
+    <div class="auto-card">
+      <div class="card-top">
+        <div class="auto-num">01</div>
+        <span class="live-tag"><span class="live-dot"></span> Live demo</span>
       </div>
-      <div class="auto-arrow">›</div>
-    </a>
+      <div class="auto-tagline">Reply before the next agent checks their phone.</div>
+      <ul class="auto-steps">
+        <li>REA or Domain enquiry comes in</li>
+        <li>System writes the reply</li>
+        <li>Sends email and SMS</li>
+        <li>Logs to CRM and starts the follow-up sequence</li>
+      </ul>
+      <div class="best-for-label">Best for</div>
+      <div class="best-for-chips">
+        <span class="best-for-chip">Hot buyer leads</span>
+        <span class="best-for-chip">After-hours enquiries</span>
+        <span class="best-for-chip">Agents stuck at inspections</span>
+      </div>
+      <a href="/for/real-estate/automations/lead-follow-up/" class="btn-card">Set up lead follow-up &rarr;</a>
+    </div>
 
-    <a href="/for/real-estate/automations/post-inspection-sequence/" class="auto-card">
-      <div class="auto-icon">🏠</div>
-      <div class="auto-body">
-        <div class="auto-tag">
-          <div class="auto-tag-dot"></div>
-          Claude Cowork Plugin
-        </div>
-        <div class="auto-title">Post-Inspection Sequence</div>
-        <div class="auto-desc">Log a quick note per buyer after each open home. Cowork writes the follow-up sequence, times it, and sends from your agency email while you decompress.</div>
-        <div class="auto-meta">
-          <span class="auto-meta-item">Gmail or Outlook</span>
-          <span class="auto-meta-item">SMS via Twilio</span>
-          <span class="auto-meta-item">Google Sheets</span>
-        </div>
+    <!-- CARD 2: INSPECTION FOLLOW-UP -->
+    <div class="auto-card">
+      <div class="card-top">
+        <div class="auto-num">02</div>
+        <span class="live-tag"><span class="live-dot"></span> Live demo</span>
       </div>
-      <div class="auto-arrow">›</div>
-    </a>
+      <div class="auto-tagline">Saturday opens should not become Monday memory.</div>
+      <ul class="auto-steps">
+        <li>You add a quick buyer note after each open</li>
+        <li>System writes the follow-up</li>
+        <li>Sends from your email</li>
+        <li>Times the next message and tracks who needs action</li>
+      </ul>
+      <div class="best-for-label">Best for</div>
+      <div class="best-for-chips">
+        <span class="best-for-chip">Busy opens</span>
+        <span class="best-for-chip">Buyer follow-up</span>
+        <span class="best-for-chip">Agents who hate admin after Saturday</span>
+      </div>
+      <a href="/for/real-estate/automations/post-inspection-sequence/" class="btn-card">Set up inspection follow-up &rarr;</a>
+    </div>
 
-    <div class="coming-soon-card">
-      <div class="coming-soon-icon">📊</div>
-      <div>
-        <div class="coming-soon-label">Coming soon</div>
-        <div class="coming-soon-title">The Self-Writing Market Report</div>
+    <!-- CARD 3: MARKET REPORT (COMING SOON) -->
+    <div class="auto-card coming-soon">
+      <div class="card-top">
+        <span class="soon-badge">Coming soon</span>
       </div>
+      <div class="auto-tagline">Your market update should not eat Sunday night.</div>
+      <ul class="auto-steps">
+        <li>System pulls recent sales, new listings, suburb movement</li>
+        <li>Drafts the report in your tone</li>
+        <li>You approve</li>
+        <li>It sends</li>
+      </ul>
+      <div class="best-for-label">Best for</div>
+      <div class="best-for-chips">
+        <span class="best-for-chip">Vendor nurturing</span>
+        <span class="best-for-chip">Appraisal leads</span>
+        <span class="best-for-chip">Staying visible weekly</span>
+      </div>
+      <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-card-ghost">Join market report waitlist &rarr;</a>
     </div>
 
   </div>
 
+  <!-- BEFORE / AFTER -->
+  <div class="proof-block">
+    <div class="proof-header">
+      <div class="proof-header-label">The gap</div>
+      <p>Lead arrives at 7:43pm. Here is what happens each way.</p>
+    </div>
+    <div class="proof-cols">
+      <div class="proof-col">
+        <div class="proof-col-label before">Without it</div>
+        <div class="proof-item"><span class="proof-dot before"></span>Lead arrives at 7:43pm</div>
+        <div class="proof-item"><span class="proof-dot before"></span>You reply next morning</div>
+        <div class="proof-item"><span class="proof-dot before"></span>Buyer has already booked elsewhere</div>
+      </div>
+      <div class="proof-col">
+        <div class="proof-col-label after">With it</div>
+        <div class="proof-item"><span class="proof-dot after"></span>Lead arrives at 7:43pm</div>
+        <div class="proof-item"><span class="proof-dot after"></span>Reply goes out in minutes</div>
+        <div class="proof-item"><span class="proof-dot after"></span>CRM updated</div>
+        <div class="proof-item"><span class="proof-dot after"></span>Follow-up running</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLS STRIP -->
+  <div class="tools-strip">
+    <h3>We set it up with the tools you already use.</h3>
+    <div class="tools-name-row">
+      <span class="tool-name">Email</span>
+      <span class="tool-name">CRM</span>
+      <span class="tool-name">SMS</span>
+      <span class="tool-name">Sheets</span>
+    </div>
+    <p>You approve the rules once. Then the boring follow-up runs.</p>
+  </div>
+
+  <!-- SAFETY -->
+  <div class="safety-block">
+    <h3>Nothing goes rogue.</h3>
+    <ul class="safety-list">
+      <li>You choose the tone</li>
+      <li>You choose the rules</li>
+      <li>Start draft-only if you want</li>
+      <li>You can approve before send</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
   <div class="cta-block">
-    <h3>Want one of these for your agency?</h3>
-    <p>One setup session. Your tools, your email, your CRM. No custom code.</p>
-    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">
-      Book a setup session
-    </a>
+    <h3>Build my first follow-up system</h3>
+    <p>Bring one live enquiry or inspection flow. We'll map it in 30 minutes.</p>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book a setup session</a>
+    <p class="cta-note">$2,500 one-off &bull; from $300/month retainer &bull; live by end of session</p>
   </div>
 
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
   <p>Part of the <a href="/for/real-estate/">Real Estate</a> hub. More automations coming. <a href="https://www.uremarkable.com">uremarkable.com</a></p>
 </div>
