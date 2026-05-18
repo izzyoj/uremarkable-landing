@@ -619,7 +619,7 @@
   <p class="hero-sub">After each inspection, log a quick note per buyer. Cowork writes the follow-up sequence, times it, and sends it while you decompress.</p>
   <div class="hero-pills">
     <div class="hero-pill">Available on <span>Pro &amp; Max plans</span></div>
-    <div class="hero-pill">Google Sheets + <span>Gmail</span></div>
+    <div class="hero-pill">Google Sheets + <span>Gmail / Outlook</span></div>
     <div class="hero-pill">Runs after each open home</div>
   </div>
 </div>
@@ -805,7 +805,7 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-title">Install the plugin</div>
-          <div class="step-desc">Open Cowork, click Customize in the left sidebar, then Browse plugins. Upload the Post-Inspection Sequence plugin file. One upload installs everything: the note schema, message templates, Sheets connector, Gmail connector, and Dispatch integration.</div>
+          <div class="step-desc">Open Cowork, click Customize in the left sidebar, then Browse plugins. Upload the Post-Inspection Sequence plugin file. One upload installs everything: the note schema, message templates, Sheets connector, Gmail or Outlook connector, and Dispatch integration.</div>
           <span class="step-tag orange">Cowork Plugins &bull; one upload</span>
         </div>
       </div>
@@ -831,9 +831,9 @@
       <div class="step-item">
         <div class="step-num">4</div>
         <div class="step-content">
-          <div class="step-title">Connect Gmail and Twilio</div>
-          <div class="step-desc">The Day 1 message sends as SMS from your agency's Twilio number. Day 2 and Day 7 messages send from your Gmail. Authorise both connectors in Cowork. From that point, the plugin can send without you touching your phone.</div>
-          <span class="step-tag">Gmail MCP &bull; Twilio MCP &bull; both in one session</span>
+          <div class="step-title">Connect your agency email and Twilio</div>
+          <div class="step-desc">The Day 1 message sends as SMS from your agency's Twilio number. Day 2 and Day 7 messages send from your agency email (Gmail or Outlook / M365 both work). Authorise both connectors in Cowork. From that point, the plugin can send without you touching your phone.</div>
+          <span class="step-tag">Gmail or Outlook MCP &bull; Twilio MCP &bull; both in one session</span>
         </div>
       </div>
 
@@ -891,7 +891,7 @@
 <!-- CTA -->
 <div class="cta-section">
   <h2>The setup is what we do together.</h2>
-  <p>One session. Sheets, Gmail, and Twilio connected. Plugin customised to your agency's voice. Sequence live before we hang up.</p>
+  <p>One session. Sheets, Gmail or Outlook, and Twilio connected. Plugin customised to your agency's voice. Sequence live before we hang up.</p>
   <a href="https://calendar.notion.so/meet/uremarkable/baz" class="cta-btn" target="_blank">Book a setup session</a>
   <p class="cta-note">Pro or Max plan required &bull; macOS or Windows &bull; ~60 minutes</p>
 </div>
@@ -1060,7 +1060,7 @@ ${agentFirst}`
           <div class="msg-card">
             <div class="msg-header email-hdr">
               <span class="msg-icon">&#128231;</span>
-              <span class="msg-type">Email &bull; from your Gmail</span>
+              <span class="msg-type">Email &bull; from your agency email</span>
               <span class="msg-timing t1">48 hours</span>
             </div>
             <div class="msg-body">${emailMap[b.interest]}</div>
