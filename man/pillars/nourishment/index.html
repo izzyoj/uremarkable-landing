@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nourishment | MAN Protocol</title>
+  <meta name="description" content="The N in MAN. Not just food. Everything you take in: food, sleep, media, attention, and environment. The biochemical layer that either supports or undermines everything else.">
+  <meta property="og:title" content="Nourishment | MAN Protocol">
+  <meta property="og:description" content="The N pillar. Five inputs. All of them shaping your nervous system. Most people are only managing one.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:         #1d1d1f;
+      --ink-soft:    #6e6e73;
+      --bg:          #ffffff;
+      --bg-soft:     #f5f5f7;
+      --bg-warm:     #faf8f4;
+      --border:      #e5e5ea;
+      --gold:        #b8860b;
+      --gold-light:  #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nav-wrap {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 680px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-size: 15px; font-weight: 700; text-decoration: none; color: var(--ink); letter-spacing: -0.01em; }
+    .nav-brand span { color: var(--gold); }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-link { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
+    .nav-link:hover { color: var(--ink); }
+    .nav-cta { font-size: 13px; font-weight: 600; background: var(--gold); color: #fff; padding: 7px 16px; border-radius: 20px; text-decoration: none; }
+
+    section { max-width: 680px; margin: 0 auto; padding: 72px 24px; }
+
+    .label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+    h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+    h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .body-text { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 16px; }
+
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--ink-soft); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb-sep { color: var(--border); }
+    .breadcrumb-current { color: var(--gold); font-weight: 600; }
+
+    .hero-bg { background: var(--bg); }
+    .pillar-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-light); border: 1px solid var(--gold-border); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--gold); margin-bottom: 24px; }
+    .pillar-badge .badge-letter { font-size: 18px; font-weight: 800; line-height: 1; }
+    .hero-sub { font-size: 20px; color: var(--ink-soft); line-height: 1.5; margin-top: 16px; }
+    .pillar-nav { display: flex; gap: 8px; margin-top: 40px; flex-wrap: wrap; }
+    .pillar-chip { font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 20px; text-decoration: none; border: 1.5px solid var(--border); color: var(--ink-soft); }
+    .pillar-chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .pillar-chip:hover:not(.active) { border-color: var(--ink-soft); color: var(--ink); }
+
+    .definition-bg { background: var(--bg-soft); }
+    .definition-card { background: var(--gold-light); border: 1px solid var(--gold-border); border-radius: 16px; padding: 32px; margin-top: 32px; }
+    .definition-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .definition-text { font-size: 20px; font-weight: 600; line-height: 1.5; color: var(--ink); }
+
+    /* FIVE INPUTS */
+    .inputs-bg { background: var(--bg); }
+    .inputs-grid { display: flex; flex-direction: column; gap: 0; margin-top: 36px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .input-row { display: flex; align-items: flex-start; gap: 20px; padding: 24px; }
+    .input-row + .input-row { border-top: 1px solid var(--border); }
+    .input-icon { font-size: 24px; flex-shrink: 0; width: 40px; text-align: center; margin-top: 2px; }
+    .input-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .input-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+    .input-signal { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 600; color: var(--gold); background: var(--gold-light); padding: 3px 10px; border-radius: 20px; }
+
+    .mechanism-bg { background: var(--ink); color: #fff; }
+    .mechanism-bg .label { color: #b8860b; }
+    .mechanism-bg h2 { color: #fff; }
+    .mechanism-bg .body-text { color: rgba(255,255,255,0.7); }
+
+    .lever-grid { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+    .lever { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 28px; }
+    .lever-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .lever h3 { color: #fff; font-size: 18px; margin-bottom: 8px; }
+    .lever p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .lever .lever-signal { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; color: rgba(255,255,255,0.45); font-style: italic; }
+
+    .practice-bg { background: var(--bg-warm); }
+    .practice-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-top: 32px; }
+    .practice-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-light); border: 1px solid var(--gold-border); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+    .audit-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    .audit-row { padding: 16px 20px; background: var(--bg-soft); border-radius: 12px; }
+    .audit-input { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .audit-q { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+    .practice-note { margin-top: 24px; padding: 16px 20px; background: var(--bg-soft); border-radius: 10px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+    .practice-note strong { color: var(--ink); }
+
+    .quote-bg { background: var(--bg-soft); }
+    .quote-stack { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+    .quote-block { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; }
+    .quote-text { font-size: 18px; line-height: 1.55; font-style: italic; color: var(--ink); margin-bottom: 12px; }
+    .quote-attr { font-size: 13px; color: var(--gold); font-weight: 600; }
+
+    .thinkers-bg { background: var(--bg-warm); }
+    .thinker-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .thinker-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+    .thinker-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .thinker-work { font-size: 12px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+    .thinker-note { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+
+    .cta-section { background: var(--ink); color: #fff; border-radius: 20px; padding: 64px 32px; margin: 72px 24px; max-width: 632px; margin-left: auto; margin-right: auto; text-align: center; }
+    .cta-section .label { color: var(--gold); }
+    .cta-section h2 { color: #fff; margin-bottom: 16px; }
+    .cta-section p { color: rgba(255,255,255,0.65); font-size: 17px; margin-bottom: 32px; }
+    .cta-btn { display: inline-block; background: var(--gold); color: #fff; font-size: 16px; font-weight: 700; padding: 16px 36px; border-radius: 50px; text-decoration: none; margin-bottom: 14px; }
+    .cta-sub { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 13px; color: var(--ink-soft); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+    .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/man/" class="nav-brand">M·A·<span>N</span></a>
+    <div class="nav-links">
+      <a href="/man/" class="nav-link">Protocol</a>
+      <a href="/quiz/man/" class="nav-cta">Find my gap</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-bg">
+  <section>
+    <div class="breadcrumb">
+      <a href="/man/">MAN Protocol</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Pillars</span>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Nourishment</span>
+    </div>
+    <div class="pillar-badge">
+      <span class="badge-letter">N</span>
+      Pillar 03
+    </div>
+    <h1>Nourishment</h1>
+    <p class="hero-sub">Not just food. Everything you take in shapes your biochemistry, which shapes your mind, which shapes what you do. Most people are only managing one of the five inputs.</p>
+    <div class="pillar-nav">
+      <a href="/man/pillars/mindset/" class="pillar-chip">M · Mindset</a>
+      <a href="/man/pillars/action/" class="pillar-chip">A · Action</a>
+      <a href="/man/pillars/nourishment/" class="pillar-chip active">N · Nourishment</a>
+    </div>
+  </section>
+</div>
+
+<!-- WHAT IT IS -->
+<div class="definition-bg">
+  <section>
+    <div class="label">What Nourishment actually means</div>
+    <h2>You are what you take in. All of it.</h2>
+    <p class="body-text">When people hear Nourishment, they think food. Macros. Meal prep. That's one input out of five, and often not the most damaging one.</p>
+    <p class="body-text">In the MAN protocol, Nourishment covers everything that enters your system: what you eat, yes, but also what you watch, what you scroll, how long you sleep, what you give your attention to, and what your environment is silently feeding your nervous system all day.</p>
+    <p class="body-text">All five inputs manipulate your biochemistry. Your biochemistry determines your mental state. Your mental state determines what's possible for you on any given day. The N pillar is about becoming conscious of all five, not just the obvious one.</p>
+    <div class="definition-card">
+      <div class="definition-label">The MAN definition</div>
+      <div class="definition-text">Nourishment is the conscious management of every input that reaches your system. Food, sleep, media, attention, and environment. Each one either builds or depletes the nervous system that runs everything else.</div>
+    </div>
+  </section>
+</div>
+
+<!-- FIVE INPUTS -->
+<div class="inputs-bg">
+  <section>
+    <div class="label">The five inputs</div>
+    <h2>One lens. Five channels.</h2>
+    <p class="body-text">Most self-improvement frameworks manage one input. MAN manages the system. These are the five channels the N pillar operates across.</p>
+    <div class="inputs-grid">
+      <div class="input-row">
+        <div class="input-icon">🍳</div>
+        <div>
+          <div class="input-name">Food</div>
+          <div class="input-desc">The biochemical foundation. What you eat becomes the substrate your brain and body run on. Not about restriction or perfection. About consistency in the inputs that stabilise energy, focus, and recovery.</div>
+          <span class="input-signal">Fuel quality</span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-icon">🌙</div>
+        <div>
+          <div class="input-name">Sleep</div>
+          <div class="input-desc">The most under-managed input of all five. Sleep governs hormonal balance, emotional regulation, memory consolidation, and physical recovery. Nothing else can compensate for chronic sleep debt. Not caffeine. Not willpower.</div>
+          <span class="input-signal">Recovery architecture</span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-icon">📱</div>
+        <div>
+          <div class="input-name">Media</div>
+          <div class="input-desc">What you consume shapes how you see the world, what feels normal, and what your nervous system is in a constant low-grade reaction to. The feed is designed to dysregulate. Conscious media intake is a deliberate act.</div>
+          <span class="input-signal">Consumption audit</span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-icon">🎯</div>
+        <div>
+          <div class="input-name">Attention</div>
+          <div class="input-desc">Where your attention goes, your energy follows. Fragmented attention across 40 browser tabs is a different biochemical state to single-focused deep work. Attention isn't a moral virtue. It's a resource that gets spent whether you direct it or not.</div>
+          <span class="input-signal">Focus architecture</span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-icon">🏠</div>
+        <div>
+          <div class="input-name">Environment</div>
+          <div class="input-desc">Your space sends inputs to your nervous system constantly. Light, sound, clutter, temperature, the people around you. You don't need to feel stressed for your environment to be stressing you. It runs in the background, always.</div>
+          <span class="input-signal">Ambient inputs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- THREE LEVERS (dark) -->
+<div class="mechanism-bg">
+  <section>
+    <div class="label">The three levers</div>
+    <h2>How the N pillar actually operates.</h2>
+    <p class="body-text">You can't optimise all five inputs at once. The N pillar works through three distinct operating principles that let you make meaningful changes without rebuilding your entire life at once.</p>
+    <div class="lever-grid">
+      <div class="lever">
+        <div class="lever-num">Lever 01</div>
+        <h3>Observation before optimisation</h3>
+        <p>You can't change what you haven't named. The first job of the N pillar is simple awareness: what are you actually taking in? Not what you think you are. What the log reveals. One week of honest tracking across all five inputs shows patterns you didn't know existed.</p>
+        <div class="lever-signal">The observation that emerges without prompting is always the most useful one. Don't skip the logging phase.</div>
+      </div>
+      <div class="lever">
+        <div class="lever-num">Lever 02</div>
+        <h3>Light management</h3>
+        <p>Morning light is the most powerful free input available. First light exposure calibrates your circadian rhythm, governs cortisol timing, and sets the sequence for every hormone that follows through the day. It costs nothing. Most people skip it because it requires going outside before checking their phone.</p>
+        <div class="lever-signal">Get outside within 30 minutes of waking. No sunglasses. Even on cloudy days, the light signal is sufficient.</div>
+      </div>
+      <div class="lever">
+        <div class="lever-num">Lever 03</div>
+        <h3>Input boundary setting</h3>
+        <p>Not all inputs can be optimised. Some need limits. Media, notifications, news, and social feeds are engineered to capture and hold attention. The boundary isn't about restriction for its own sake. It's about reclaiming the cognitive real estate that compounding attention spend quietly steals.</p>
+        <div class="lever-signal">One boundary at a time. Pick the input depleting the most. Set one rule. Run it for two weeks. Then the next.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PRACTICE -->
+<div class="practice-bg">
+  <section>
+    <div class="label">A practice to start this week</div>
+    <h2>The nourishment audit.</h2>
+    <p class="body-text">Not a diet plan. Not a detox. A ten-minute inventory of what's actually entering your system across all five channels, and one honest observation from each.</p>
+    <div class="practice-card">
+      <div class="practice-tag">✦ N pillar practice</div>
+      <p style="font-size: 15px; color: var(--ink-soft); margin-bottom: 0;">Time: 10 minutes. End of day. No judgement, no prescription. Just observation.</p>
+      <div class="audit-grid">
+        <div class="audit-row">
+          <div class="audit-input">Food</div>
+          <div class="audit-q">What did I actually eat today? Does the pattern support how I want to feel tomorrow?</div>
+        </div>
+        <div class="audit-row">
+          <div class="audit-input">Sleep</div>
+          <div class="audit-q">What time did I sleep last night? What do I know about why, if it wasn't enough?</div>
+        </div>
+        <div class="audit-row">
+          <div class="audit-input">Media</div>
+          <div class="audit-q">What content did I consume today? Did it leave me more or less regulated?</div>
+        </div>
+        <div class="audit-row">
+          <div class="audit-input">Attention</div>
+          <div class="audit-q">What did I actually give my focus to today? Was it chosen, or just where I drifted?</div>
+        </div>
+        <div class="audit-row">
+          <div class="audit-input">Environment</div>
+          <div class="audit-q">What was my physical space like today? What was it silently asking of my nervous system?</div>
+        </div>
+      </div>
+      <div class="practice-note">
+        <strong>One observation per channel.</strong> Not a grade. Not a plan. Just the thing you noticed that you otherwise wouldn't have. The pattern across five days tells you where to start.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- QUOTES -->
+<div class="quote-bg">
+  <section>
+    <div class="label">The thinking behind this pillar</div>
+    <h2>The shoulders this is built on.</h2>
+    <div class="quote-stack">
+      <div class="quote-block">
+        <div class="quote-text">"The foods you eat, the light you get, the people you spend time with, and the thoughts you think all profoundly impact your mental health, physical health, and performance."</div>
+        <div class="quote-attr">Andrew Huberman · Huberman Lab</div>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">"You can't control your attention if your environment is designed to capture it. The first step is recognising the design."</div>
+        <div class="quote-attr">Nir Eyal · Indistractable</div>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">"Life is never made unbearable by circumstances, but only by lack of meaning and purpose."</div>
+        <div class="quote-attr">Viktor Frankl · Man's Search for Meaning</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- THINKERS -->
+<div class="thinkers-bg">
+  <section>
+    <div class="label">Who shaped this pillar</div>
+    <h2>Three thinkers. One thread.</h2>
+    <div class="thinker-grid">
+      <div class="thinker-card">
+        <div class="thinker-name">Andrew Huberman</div>
+        <div class="thinker-work">Huberman Lab</div>
+        <div class="thinker-note">The neuroscience of inputs. Morning light, sleep architecture, food timing, and social connection all operate through measurable biological mechanisms. The N pillar's scientific foundation: inputs are not preferences, they're protocols.</div>
+      </div>
+      <div class="thinker-card">
+        <div class="thinker-name">Nir Eyal</div>
+        <div class="thinker-work">Hooked · Indistractable</div>
+        <div class="thinker-note">Attention as architecture. The systems that capture focus are engineered. Reclaiming attention is a design problem, not a willpower problem. Behavioural triggers, hooks, and the environment you build either serve your protocol or someone else's agenda.</div>
+      </div>
+      <div class="thinker-card">
+        <div class="thinker-name">Viktor Frankl</div>
+        <div class="thinker-work">Man's Search for Meaning</div>
+        <div class="thinker-note">Meaning as the meta-input. When meaning is present, the other inputs become manageable. When it's absent, no amount of optimisation compensates. Nourishment at the deepest level is about feeding the sense of purpose that makes the rest worth doing.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="label">Where is your gap?</div>
+  <h2>The quiz finds it in four minutes.</h2>
+  <p>Seven questions. One result. The MAN protocol shows you which pillar is limiting everything else right now, and what to do about it.</p>
+  <a href="/quiz/man/" class="cta-btn">Take the MAN quiz</a>
+  <div class="cta-sub">Free. No account. Your result is yours.</div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/man/">MAN Protocol</a>
+    <a href="/man/pillars/mindset/">Mindset</a>
+    <a href="/man/pillars/action/">Action</a>
+    <a href="/man/pillars/nourishment/">Nourishment</a>
+    <a href="/quiz/man/">Take the quiz</a>
+  </div>
+  <div>M·A·N Protocol · uremarkable.com</div>
+</footer>
+
+</body>
+</html>

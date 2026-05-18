@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Action | MAN Protocol</title>
+  <meta name="description" content="The A in MAN. Not hustle. Not grind. Doing over overthinking — using movement to shift state, cast identity votes, and break the analysis paralysis loop.">
+  <meta property="og:title" content="Action | MAN Protocol">
+  <meta property="og:description" content="The A pillar. What it is, how it works, and one practice you can start today.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:         #1d1d1f;
+      --ink-soft:    #6e6e73;
+      --bg:          #ffffff;
+      --bg-soft:     #f5f5f7;
+      --bg-warm:     #faf8f4;
+      --border:      #e5e5ea;
+      --gold:        #b8860b;
+      --gold-light:  #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nav-wrap {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 680px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-size: 15px; font-weight: 700; text-decoration: none; color: var(--ink); letter-spacing: -0.01em; }
+    .nav-brand span { color: var(--gold); }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-link { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
+    .nav-link:hover { color: var(--ink); }
+    .nav-cta {
+      font-size: 13px; font-weight: 600;
+      background: var(--gold); color: #fff;
+      padding: 7px 16px; border-radius: 20px;
+      text-decoration: none;
+    }
+
+    section { max-width: 680px; margin: 0 auto; padding: 72px 24px; }
+
+    .label {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+    h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+    h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+
+    .body-text { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 16px; }
+
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--ink-soft); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb-sep { color: var(--border); }
+    .breadcrumb-current { color: var(--gold); font-weight: 600; }
+
+    .hero-bg { background: var(--bg); }
+    .pillar-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      padding: 6px 14px; border-radius: 20px;
+      font-size: 13px; font-weight: 600; color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .pillar-badge .badge-letter { font-size: 18px; font-weight: 800; line-height: 1; }
+    .hero-sub { font-size: 20px; color: var(--ink-soft); line-height: 1.5; margin-top: 16px; }
+    .pillar-nav { display: flex; gap: 8px; margin-top: 40px; flex-wrap: wrap; }
+    .pillar-chip {
+      font-size: 13px; font-weight: 600;
+      padding: 8px 16px; border-radius: 20px;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      color: var(--ink-soft);
+    }
+    .pillar-chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .pillar-chip:hover:not(.active) { border-color: var(--ink-soft); color: var(--ink); }
+
+    .definition-bg { background: var(--bg-soft); }
+    .definition-card {
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      border-radius: 16px; padding: 32px; margin-top: 32px;
+    }
+    .definition-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .definition-text { font-size: 20px; font-weight: 600; line-height: 1.5; color: var(--ink); }
+
+    .mechanism-bg { background: var(--ink); color: #fff; }
+    .mechanism-bg .label { color: #b8860b; }
+    .mechanism-bg h2 { color: #fff; }
+    .mechanism-bg .body-text { color: rgba(255,255,255,0.7); }
+
+    .lever-grid { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+    .lever {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 28px;
+    }
+    .lever-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .lever h3 { color: #fff; font-size: 18px; margin-bottom: 8px; }
+    .lever p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .lever .lever-signal { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; color: rgba(255,255,255,0.45); font-style: italic; }
+
+    .practice-bg { background: var(--bg-warm); }
+    .practice-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px; margin-top: 32px;
+    }
+    .practice-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 16px;
+    }
+    .practice-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .practice-step { display: flex; align-items: flex-start; gap: 16px; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--gold); color: #fff;
+      font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .step-content h4 { margin-bottom: 4px; }
+    .step-content p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+    .practice-note {
+      margin-top: 24px; padding: 16px 20px;
+      background: var(--bg-soft); border-radius: 10px;
+      font-size: 14px; color: var(--ink-soft); line-height: 1.55;
+    }
+    .practice-note strong { color: var(--ink); }
+
+    /* THE VOTES VISUAL */
+    .votes-bg { background: var(--bg); }
+    .votes-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+    .vote-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 20px;
+      background: var(--bg-soft); border-radius: 12px;
+      font-size: 15px;
+    }
+    .vote-row.gold-row { background: var(--gold-light); border: 1px solid var(--gold-border); }
+    .vote-action { font-weight: 600; color: var(--ink); flex: 1; }
+    .vote-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); white-space: nowrap; }
+
+    .quote-bg { background: var(--bg-soft); }
+    .quote-stack { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+    .quote-block { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; }
+    .quote-text { font-size: 18px; line-height: 1.55; font-style: italic; color: var(--ink); margin-bottom: 12px; }
+    .quote-attr { font-size: 13px; color: var(--gold); font-weight: 600; }
+
+    .thinkers-bg { background: var(--bg-warm); }
+    .thinker-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .thinker-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+    .thinker-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .thinker-work { font-size: 12px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+    .thinker-note { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+
+    .cta-section {
+      background: var(--ink); color: #fff;
+      border-radius: 20px; padding: 64px 32px;
+      margin: 72px 24px;
+      max-width: 632px; margin-left: auto; margin-right: auto;
+      text-align: center;
+    }
+    .cta-section .label { color: var(--gold); }
+    .cta-section h2 { color: #fff; margin-bottom: 16px; }
+    .cta-section p { color: rgba(255,255,255,0.65); font-size: 17px; margin-bottom: 32px; }
+    .cta-btn { display: inline-block; background: var(--gold); color: #fff; font-size: 16px; font-weight: 700; padding: 16px 36px; border-radius: 50px; text-decoration: none; margin-bottom: 14px; }
+    .cta-sub { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 13px; color: var(--ink-soft); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+    .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/man/" class="nav-brand">M·A·<span>N</span></a>
+    <div class="nav-links">
+      <a href="/man/" class="nav-link">Protocol</a>
+      <a href="/quiz/man/" class="nav-cta">Find my gap</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-bg">
+  <section>
+    <div class="breadcrumb">
+      <a href="/man/">MAN Protocol</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Pillars</span>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Action</span>
+    </div>
+    <div class="pillar-badge">
+      <span class="badge-letter">A</span>
+      Pillar 02
+    </div>
+    <h1>Action</h1>
+    <p class="hero-sub">Not hustle. Not grind. Getting out of your head through movement, and building identity through the smallest consistent acts.</p>
+    <div class="pillar-nav">
+      <a href="/man/pillars/mindset/" class="pillar-chip">M · Mindset</a>
+      <a href="/man/pillars/action/" class="pillar-chip active">A · Action</a>
+      <a href="/man/pillars/nourishment/" class="pillar-chip">N · Nourishment</a>
+    </div>
+  </section>
+</div>
+
+<!-- WHAT IT IS -->
+<div class="definition-bg">
+  <section>
+    <div class="label">What Action actually means</div>
+    <h2>You can't think your way into a new identity.</h2>
+    <p class="body-text">Most people treat action as the thing that comes after they feel ready. Once the motivation arrives, once the conditions are right, once the fear goes away. That's waiting. And the wait is permanent.</p>
+    <p class="body-text">In the MAN protocol, Action is the body moving before the mind is convinced. It's the physical layer that shifts state, casts votes for the identity you're building, and breaks the loops that thinking alone never can. The body goes first. The mind follows.</p>
+    <p class="body-text">The A pillar isn't about volume, intensity, or hitting numbers. It's about the deliberate, consistent acts that tell your nervous system: this is who I am now. Small, repeated, and honest.</p>
+    <div class="definition-card">
+      <div class="definition-label">The MAN definition</div>
+      <div class="definition-text">Action is deliberate physical movement used as a state-shifting tool and an identity-building mechanism. Every rep is a vote. Every walk is a reset. The body is where the becoming actually happens.</div>
+    </div>
+  </section>
+</div>
+
+<!-- VOTES SECTION -->
+<div class="votes-bg">
+  <section>
+    <div class="label">Votes, not results</div>
+    <h2>Every action is a vote cast for who you're becoming.</h2>
+    <p class="body-text">The mistake most people make: they measure action against the result it produces. Did the workout change my body? Did the walk fix the problem? When the answer is no, the action feels pointless and stops.</p>
+    <p class="body-text">The MAN protocol measures differently. Every action is a vote cast for the identity you're building. The 10-minute walk on a difficult day is a vote. The rep you do when you don't want to is a vote. The streak doesn't matter. The election does.</p>
+    <div class="votes-grid">
+      <div class="vote-row">
+        <div class="vote-action">10-minute walk before anything else</div>
+        <div class="vote-label">1 vote</div>
+      </div>
+      <div class="vote-row">
+        <div class="vote-action">One set when you were going to skip the session</div>
+        <div class="vote-label">1 vote</div>
+      </div>
+      <div class="vote-row">
+        <div class="vote-action">Introduced yourself to one stranger</div>
+        <div class="vote-label">1 vote</div>
+      </div>
+      <div class="vote-row">
+        <div class="vote-action">Closed the laptop and moved for 20 minutes</div>
+        <div class="vote-label">1 vote</div>
+      </div>
+      <div class="vote-row gold-row">
+        <div class="vote-action">Enough votes, repeated over time</div>
+        <div class="vote-label">New identity</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- THREE LEVERS (dark) -->
+<div class="mechanism-bg">
+  <section>
+    <div class="label">The three levers</div>
+    <h2>How the A pillar actually operates.</h2>
+    <p class="body-text">The A pillar has three distinct functions. Each one addresses a different failure mode in how people try to take action and why it doesn't stick.</p>
+    <div class="lever-grid">
+      <div class="lever">
+        <div class="lever-num">Lever 01</div>
+        <h3>State reset through movement</h3>
+        <p>When the day goes sideways, thinking harder makes it worse. The nervous system is stuck. Movement is the interrupt. A walk, a set, a physical act with no agenda shifts chemistry before the mind can interfere. The call after the walk is always a different call.</p>
+        <div class="lever-signal">When things spiral: move first, think after. The sequence matters.</div>
+      </div>
+      <div class="lever">
+        <div class="lever-num">Lever 02</div>
+        <h3>Micro-action stacking</h3>
+        <p>Grand gestures don't build identity. Consistent small actions do. The power isn't in any single session. It's in the pattern that session is part of. You don't need to do more. You need to keep doing the small thing long enough for your nervous system to believe it.</p>
+        <div class="lever-signal">One thing. Repeatable. Every day the conditions are different. The action stays the same.</div>
+      </div>
+      <div class="lever">
+        <div class="lever-num">Lever 03</div>
+        <h3>Deliberate practice as identity work</h3>
+        <p>Martial arts. Kickboxing. Capoeira. Strength work. These aren't hobbies that happen alongside the protocol. They are the protocol in action. Showing up to something difficult on schedule, learning to be comfortable in discomfort, and doing it again tomorrow. Sweet pain is information.</p>
+        <div class="lever-signal">The discipline built in training transfers. It always does.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PRACTICE -->
+<div class="practice-bg">
+  <section>
+    <div class="label">A practice for any day</div>
+    <h2>The walk reset.</h2>
+    <p class="body-text">When a session is going sideways, calls going nowhere, energy tanking, the spiral starting. The move isn't more prep. More planning. More trying to think through it. It's this.</p>
+    <div class="practice-card">
+      <div class="practice-tag">✦ A pillar practice</div>
+      <p style="font-size: 15px; color: var(--ink-soft); margin-bottom: 0;">Time: 10 minutes. No phone. No agenda. No outcome required.</p>
+      <div class="practice-steps">
+        <div class="practice-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Walk outside</h4>
+            <p>Not a treadmill. Outside. Fresh air, no screen. Your only job is to move your body in a different physical environment from the one you were just in.</p>
+          </div>
+        </div>
+        <div class="practice-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Introduce yourself to one person</h4>
+            <p>Anyone. No agenda. No networking goal. Just a real conversation with a stranger. Low stakes. The introduction itself is the rep. You're training your nervous system that this is safe and you're someone who does this.</p>
+          </div>
+        </div>
+        <div class="practice-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Come back</h4>
+            <p>The session after the walk is always different. Not because the problems changed. Because you did, for ten minutes, and your nervous system remembers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="practice-note">
+        <strong>The result is irrelevant by design.</strong> The stranger you talk to might become a connection. Might not. Doesn't matter. Low stakes plus real action equals full reset. That's the mechanism.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- QUOTES -->
+<div class="quote-bg">
+  <section>
+    <div class="label">The thinking behind this pillar</div>
+    <h2>The shoulders this is built on.</h2>
+    <div class="quote-stack">
+      <div class="quote-block">
+        <div class="quote-text">"Every action you take is a vote for the type of person you wish to become."</div>
+        <div class="quote-attr">James Clear · Atomic Habits</div>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">"My day was going like this, and then I had one fresh conversation while also walking and breathing fresh air, not looking at a screen, that completely potentially possibly changed the trajectory of my entire life."</div>
+        <div class="quote-attr">Ryan Serhant</div>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">"You can't think your way into a new way of living. You have to live your way into a new way of thinking."</div>
+        <div class="quote-attr">Peter Crone · The World According to You</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- THINKERS -->
+<div class="thinkers-bg">
+  <section>
+    <div class="label">Who shaped this pillar</div>
+    <h2>Three thinkers. One thread.</h2>
+    <div class="thinker-grid">
+      <div class="thinker-card">
+        <div class="thinker-name">James Clear</div>
+        <div class="thinker-work">Atomic Habits</div>
+        <div class="thinker-note">Identity-based habits. 1% better every day. Votes, not results. The system that makes the behaviour automatic rather than effortful. The foundational logic of the micro-action stack.</div>
+      </div>
+      <div class="thinker-card">
+        <div class="thinker-name">Ryan Serhant</div>
+        <div class="thinker-work">Sell It Like Serhant</div>
+        <div class="thinker-note">The walk reset in practice. Movement before thinking. Nervous system training through low-stakes social contact. Introducing yourself to strangers as a daily rep for the identity you're building.</div>
+      </div>
+      <div class="thinker-card">
+        <div class="thinker-name">Peter Crone</div>
+        <div class="thinker-work">The World According to You</div>
+        <div class="thinker-note">Being precedes doing. You don't act your way to a new state of mind. You move your body, and the mind follows. Action as identity expression, not just effort.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="label">Where is your gap?</div>
+  <h2>The quiz finds it in four minutes.</h2>
+  <p>Seven questions. One result. The MAN protocol shows you which pillar is holding everything else back right now, and what to do about it.</p>
+  <a href="/quiz/man/" class="cta-btn">Take the MAN quiz</a>
+  <div class="cta-sub">Free. No account. Your result is yours.</div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/man/">MAN Protocol</a>
+    <a href="/man/pillars/mindset/">Mindset</a>
+    <a href="/man/pillars/action/">Action</a>
+    <a href="/man/pillars/nourishment/">Nourishment</a>
+    <a href="/quiz/man/">Take the quiz</a>
+  </div>
+  <div>M·A·N Protocol · uremarkable.com</div>
+</footer>
+
+</body>
+</html>

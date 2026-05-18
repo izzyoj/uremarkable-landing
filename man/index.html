@@ -520,6 +520,28 @@
     .influence-work { font-size: 12px; color: var(--gold); font-weight: 500; margin-bottom: 6px; }
     .influence-note { font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
 
+    /* ── PILLARS NAV ── */
+    .pillars-nav-section { background: var(--bg-soft); }
+    .pillar-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+    .pillar-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.15s;
+    }
+    .pillar-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .pillar-letter {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 800; color: var(--gold);
+      flex-shrink: 0;
+    }
+    .pillar-card-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .pillar-card-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+    .pillar-card-cta { font-size: 13px; font-weight: 600; color: var(--gold); margin-top: 10px; }
+
     /* ── FINAL CTA ── */
     .final-cta {
       text-align: center;
@@ -1299,6 +1321,41 @@
     <div class="founding-callout">
       <div class="founding-badge">Founding cohort</div>
       <p>Small by design. The first group gets direct access, founder setup, and input on where the protocol goes next.</p>
+    </div>
+  </section>
+</div>
+
+<!-- PILLARS NAV -->
+<div class="pillars-nav-section">
+  <section>
+    <div class="label">Go deeper</div>
+    <h2>Three pillars. One protocol.</h2>
+    <p class="body-text">Each pillar has its own guide — the definition, the levers, a practice you can start today, and the thinkers who shaped it.</p>
+    <div class="pillar-cards">
+      <a href="/man/pillars/mindset/" class="pillar-card">
+        <div class="pillar-letter">M</div>
+        <div>
+          <div class="pillar-card-title">Mindset</div>
+          <div class="pillar-card-desc">Identity architecture. Closing the gap between who you say you are and who you act like. The belief infrastructure that makes the right actions follow naturally.</div>
+          <div class="pillar-card-cta">Read the Mindset guide →</div>
+        </div>
+      </a>
+      <a href="/man/pillars/action/" class="pillar-card">
+        <div class="pillar-letter">A</div>
+        <div>
+          <div class="pillar-card-title">Action</div>
+          <div class="pillar-card-desc">Doing over overthinking. Using movement to shift state, cast identity votes, and break the loops that thinking alone never can. The body goes first.</div>
+          <div class="pillar-card-cta">Read the Action guide →</div>
+        </div>
+      </a>
+      <a href="/man/pillars/nourishment/" class="pillar-card">
+        <div class="pillar-letter">N</div>
+        <div>
+          <div class="pillar-card-title">Nourishment</div>
+          <div class="pillar-card-desc">Everything you take in shapes your biochemistry. Food, sleep, media, attention, environment. Five inputs. Most people are only managing one.</div>
+          <div class="pillar-card-cta">Read the Nourishment guide →</div>
+        </div>
+      </a>
     </div>
   </section>
 </div>
