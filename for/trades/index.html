@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI for Trade Businesses | Uremarkable</title>
+  <meta name="description" content="The AI back-office for tradies. Voice note to quote in 3 minutes. Automatic follow-up on every job. Consistent rate card, every time. One setup session, live by end of day.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --hero-bg:    #1C1A18;
+      --orange:     #D97757;
+      --orange-lt:  rgba(217,119,87,0.12);
+      --warm-border:#E8E3DC;
+      --card-bg:    #ffffff;
+      --page-bg:    #f5f0eb;
+      --text-1:     #1d1d1f;
+      --text-2:     #4a4a4d;
+      --text-3:     #8e8e93;
+      --green:      #34C759;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: var(--page-bg);
+      color: var(--text-1);
+      line-height: 1.5;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--hero-bg);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-brand { font-size: 15px; font-weight: 700; color: white; text-decoration: none; letter-spacing: -0.2px; }
+    .nav-brand span { color: var(--orange); }
+    .nav-link { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+    .nav-link:hover { color: white; }
+
+    /* HERO */
+    .hero {
+      background: var(--hero-bg);
+      padding: 72px 24px 80px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(217,119,87,0.15);
+      border: 1px solid rgba(217,119,87,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 28px;
+    }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      max-width: 720px;
+      margin: 0 auto 20px;
+    }
+    .hero h1 em { color: var(--orange); font-style: normal; }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 17px);
+      color: rgba(255,255,255,0.6);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 26px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #c4654a; }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 13px 26px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.13); color: white; }
+
+    /* STAT BAR */
+    .stat-bar {
+      background: rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: center;
+      gap: clamp(24px, 6vw, 72px);
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 700; color: white; letter-spacing: -0.3px; }
+    .stat-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* SECTIONS */
+    .section { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+    .section-label {
+      font-size: 11px; font-weight: 700; color: var(--orange);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;
+    }
+    .section-title { font-size: clamp(22px, 3.5vw, 30px); font-weight: 700; letter-spacing: -0.3px; margin-bottom: 10px; }
+    .section-sub { font-size: 15px; color: var(--text-2); max-width: 560px; line-height: 1.65; margin-bottom: 40px; }
+
+    /* PROBLEM CARDS */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .problem-card { background: var(--card-bg); border: 1px solid var(--warm-border); border-radius: 14px; padding: 24px; }
+    .problem-icon { font-size: 28px; margin-bottom: 14px; }
+    .problem-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .problem-body { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+    .problem-stat {
+      display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 600;
+      color: var(--orange); background: var(--orange-lt); border-radius: 6px; padding: 3px 9px;
+    }
+
+    /* AUTOMATION CARDS */
+    .auto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .auto-card {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 16px;
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow .2s, transform .2s;
+      position: relative;
+    }
+    .auto-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.10); transform: translateY(-2px); }
+    .auto-card.coming-soon { opacity: 0.45; pointer-events: none; }
+    .auto-card-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--orange-lt); border: 1px solid rgba(217,119,87,0.25);
+      border-radius: 12px; padding: 3px 10px; font-size: 11px; font-weight: 700;
+      color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px;
+    }
+    .auto-card-tag-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .auto-card-icon { font-size: 32px; margin-bottom: 14px; }
+    .auto-card-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .auto-card-body { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 16px; }
+    .auto-card-arrow { font-size: 18px; color: var(--orange); font-weight: 700; }
+    .soon-badge {
+      position: absolute; top: 20px; right: 20px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      background: #f0f0f5; color: #999; border-radius: 8px; padding: 3px 8px;
+    }
+
+    /* DEMO CALLOUT */
+    .demo-callout {
+      background: var(--hero-bg);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 64px;
+    }
+    .demo-callout h2 { font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: white; margin-bottom: 12px; letter-spacing: -0.3px; }
+    .demo-callout p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto 28px; line-height: 1.6; }
+
+    /* CRM COMPAT */
+    .compat-strip {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-top: 48px;
+    }
+    .compat-title { font-size: 13px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 16px; }
+    .compat-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .compat-chip {
+      background: #f5f5f7;
+      border: 1px solid #e0e0e5;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-2);
+    }
+    .compat-chip.highlight { background: var(--orange-lt); border-color: rgba(217,119,87,0.3); color: var(--orange); font-weight: 600; }
+
+    /* SETUP STRIP */
+    .setup-strip {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .setup-strip-text h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .setup-strip-text p { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--hero-bg);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .cta-section h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 700; color: white; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .cta-section p { font-size: 16px; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+    .price-block { margin-bottom: 32px; }
+    .price-main { font-size: 28px; font-weight: 800; color: white; }
+    .price-sub { font-size: 15px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--hero-bg);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    footer a:hover { color: white; }
+
+    .guide-strip {
+      border-top: 1px solid var(--warm-border);
+      padding: 20px 0 0;
+      margin-top: 48px;
+      font-size: 13px;
+      color: var(--text-3);
+    }
+    .guide-strip a { color: var(--orange); text-decoration: none; font-weight: 500; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 56px 20px 64px; }
+      .section { padding: 48px 20px; }
+      .demo-callout { padding: 36px 24px; }
+      .setup-strip { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">u<span>remarkable</span></a>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="nav-link">Book a session</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">AI for Trade Businesses</div>
+  <h1>Your best jobs get quoted <em>Thursday.</em><br>Theirs got sent Tuesday.</h1>
+  <p class="hero-sub">Most tradies quote from memory at the end of the day. The job that books is the one that quotes first. Cowork closes that gap.</p>
+  <div class="hero-ctas">
+    <a href="/for/trades/automations/quote-builder/" class="btn-primary">See the quote builder demo</a>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-secondary">Book a setup session</a>
+  </div>
+  <div class="stat-bar">
+    <div class="stat-item">
+      <div class="stat-num">3 min</div>
+      <div class="stat-label">Voice note to quote sent</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1 session</div>
+      <div class="stat-label">Setup time with Uremarkable</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Word docs at 11pm</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMS -->
+<div class="section">
+  <div class="section-label">The real cost</div>
+  <h2 class="section-title">The work that kills the evening</h2>
+  <p class="section-sub">The job is done at 4pm. The quote isn't sent until Thursday night. By then the client has already said yes to someone else.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-icon">📝</div>
+      <div class="problem-title">Quoting from memory, at night</div>
+      <div class="problem-body">Details from the site visit are still in your head. The Word doc gets opened at 10pm. Numbers get typed from notes. Terms get copied from the last quote. It takes an hour you don't have.</div>
+      <span class="problem-stat">Every quote, every time</span>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📭</div>
+      <div class="problem-title">Quotes sent, then forgotten</div>
+      <div class="problem-body">The quote goes out and then nothing. No follow-up at day 5. No nudge at day 10. The client goes quiet and the job disappears. A competitor followed up twice and got it.</div>
+      <span class="problem-stat">Most lost jobs had no follow-up</span>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">⚖️</div>
+      <div class="problem-title">No consistent rate card</div>
+      <div class="problem-body">Different jobs get quoted differently depending on how tired you are, how busy the week was, and how closely you checked the last job's margin. There is no single source of truth.</div>
+      <span class="problem-stat">Margin leaks every time</span>
+    </div>
+  </div>
+</div>
+
+<!-- AUTOMATIONS -->
+<div class="section" style="padding-top: 0;">
+  <div class="section-label">What Cowork handles</div>
+  <h2 class="section-title">Three automations. One setup session.</h2>
+  <p class="section-sub">Each plugin installs in a single Cowork session. Your tools, your email, your rate card. No custom code.</p>
+
+  <div class="auto-grid">
+
+    <a href="/for/trades/automations/quote-builder/" class="auto-card">
+      <div class="auto-card-tag">
+        <div class="auto-card-tag-dot"></div>
+        Live demo
+      </div>
+      <div class="auto-card-icon">🎙</div>
+      <div class="auto-card-title">Quote Builder</div>
+      <div class="auto-card-body">Voice note on-site. Cowork extracts job details, applies your rate card, builds the quote, and sends it from your email. You review in Dispatch and reply SEND.</div>
+      <div class="auto-card-arrow">See the demo ›</div>
+    </a>
+
+    <div class="auto-card coming-soon">
+      <div class="soon-badge">Coming soon</div>
+      <div class="auto-card-icon">📄</div>
+      <div class="auto-card-title">Invoice Follow-Up</div>
+      <div class="auto-card-body">Unpaid invoices get a follow-up sequence at day 7 and day 14. Drafted by Cowork, approved by you in Dispatch before anything sends.</div>
+    </div>
+
+    <div class="auto-card coming-soon">
+      <div class="soon-badge">Coming soon</div>
+      <div class="auto-card-icon">📅</div>
+      <div class="auto-card-title">Booking Confirmation</div>
+      <div class="auto-card-body">When a quote is accepted, Cowork sends a confirmation, logs the job to your calendar, and sends a reminder to the client the day before.</div>
+    </div>
+
+  </div>
+
+  <!-- DEMO CALLOUT -->
+  <div class="demo-callout">
+    <h2>Watch the Quote Builder in action</h2>
+    <p>Voice note to professional quote in under 3 minutes. Rate card applied. Sent from your Gmail or Outlook. Follow-up scheduled automatically.</p>
+    <a href="/for/trades/automations/quote-builder/" class="btn-primary">See the full demo</a>
+  </div>
+</div>
+
+<!-- CRM COMPAT -->
+<div class="section" style="padding-top: 0;">
+  <div class="compat-strip">
+    <div class="compat-title">Works with your existing tools</div>
+    <div class="compat-chips">
+      <span class="compat-chip highlight">Gmail</span>
+      <span class="compat-chip highlight">Outlook</span>
+      <span class="compat-chip">HubSpot</span>
+      <span class="compat-chip">Pipedrive</span>
+      <span class="compat-chip">Salesforce</span>
+      <span class="compat-chip">Google Sheets</span>
+      <span class="compat-chip">ServiceM8 (via Zapier)</span>
+      <span class="compat-chip">Xero (via Zapier)</span>
+      <span class="compat-chip">Tradify (via Zapier)</span>
+    </div>
+  </div>
+
+  <div class="setup-strip">
+    <div class="setup-strip-text">
+      <h3>One session. Live by end of day.</h3>
+      <p>Rate card loaded. Email connected. Pipeline linked. Follow-up schedule set. Your setup specialist runs the session with you. You leave with a working quoting system, not a half-configured tool.</p>
+    </div>
+    <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary" style="white-space:nowrap;">Book a session</a>
+  </div>
+
+  <div class="guide-strip">
+    Looking for the how-to first? Read the <a href="/guides/trades/how-to-write-a-quote-for-a-job">How to write a professional quote for a job</a> guide.
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to stop quoting at night?</h2>
+  <p>One setup session. Your tools, your rate card, your pipeline.</p>
+  <div class="price-block">
+    <div class="price-main">$2,500 setup</div>
+    <div class="price-sub">+ from $300/month to keep it running</div>
+  </div>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book a setup session</a>
+</div>
+
+<footer>
+  <p><a href="/">uremarkable.com</a> &nbsp;·&nbsp; <a href="/for/trades/automations/">All trades automations</a> &nbsp;·&nbsp; <a href="/for/real-estate/">Real Estate</a></p>
+</footer>
+
+</body>
+</html>
