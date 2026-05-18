@@ -395,44 +395,30 @@
       color: rgba(255,255,255,0.3);
     }
 
-    /* TRUST BLOCK */
-    .trust-block-section {
-      background: var(--hero-bg);
-      padding: 52px 24px;
-      text-align: center;
-    }
-    .trust-block-inner {
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    .trust-block-headline {
-      font-size: clamp(20px, 3vw, 26px);
-      font-weight: 700;
-      color: white;
-      margin-bottom: 24px;
-      letter-spacing: -0.2px;
-    }
-    .trust-block-list {
+    /* CTA TRUST LIST */
+    .cta-trust-list {
       list-style: none;
       padding: 0;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      justify-content: center;
+      margin-bottom: 32px;
     }
-    .trust-block-list li {
-      font-size: 15px;
-      color: rgba(255,255,255,0.65);
+    .cta-trust-list li {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      gap: 7px;
     }
-    .trust-block-list li::before {
+    .cta-trust-list li::before {
       content: '';
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
       background: var(--orange);
       border-radius: 50%;
+      opacity: 0.7;
       flex-shrink: 0;
     }
 
@@ -647,21 +633,14 @@
   </div>
 </div>
 
-<!-- TRUST BLOCK -->
-<div class="trust-block-section">
-  <div class="trust-block-inner">
-    <div class="trust-block-headline">Nothing sends wild.</div>
-    <ul class="trust-block-list">
-      <li>Every message follows your tone</li>
-      <li>Every lead logs to your CRM</li>
-      <li>You can start with draft-only</li>
-      <li>You can approve before send</li>
-    </ul>
-  </div>
-</div>
-
 <!-- CTA -->
 <div class="cta-section">
+  <ul class="cta-trust-list">
+    <li>Nothing sends wild</li>
+    <li>You approve the rules once</li>
+    <li>Start draft-only if you want</li>
+    <li>Works with the tools you already use</li>
+  </ul>
   <h2>Stop letting warm leads cool down.</h2>
   <p>Bring one live enquiry flow. We'll show you what can be automated.</p>
   <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book your 5-minute follow-up setup</a>
