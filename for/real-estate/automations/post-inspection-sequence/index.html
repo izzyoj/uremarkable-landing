@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post-Inspection Sequence | uremarkable</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #f5f5f7;
+      --bg-white:   #ffffff;
+      --orange:     #D97757;
+      --orange-lt:  #F2E8E2;
+      --warm-border:#E8E3DC;
+      --text:       #1d1d1f;
+      --text-2:     #6e6e73;
+      --text-3:     #86868b;
+      --border:     #d2d2d7;
+      --hero-bg:    #1C1A18;
+      --green:      #34C759;
+      --card-shadow:0 2px 16px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand { font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; }
+    .nav-sep   { color: #ccc; font-size: 13px; }
+    .nav-crumb { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .nav-crumb:last-child { color: var(--text-3); }
+
+    /* HERO */
+    .hero {
+      background: var(--hero-bg);
+      color: white;
+      padding: 60px 24px 56px;
+      text-align: center;
+    }
+    .plugin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(217,119,87,0.18);
+      border: 1px solid rgba(217,119,87,0.35);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .plugin-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(27px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      color: white;
+      max-width: 620px;
+      margin: 0 auto 18px;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.5;
+    }
+    .hero-pills {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+    .hero-pill span { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+    /* SECTIONS */
+    .section { padding: 52px 24px; max-width: 760px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
+    /* FLOW */
+    .flow-wrap {
+      background: var(--bg-white);
+      border-radius: 16px;
+      border: 1px solid var(--warm-border);
+      padding: 32px 24px 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 12px;
+    }
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 80px;
+    }
+    .flow-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border: 1px solid var(--warm-border);
+      background: var(--bg);
+    }
+    .flow-icon.orange { background: var(--orange-lt); border-color: rgba(217,119,87,0.25); }
+    .flow-icon.plugin { background: var(--hero-bg); border-color: #333; font-size: 18px; }
+    .flow-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-2);
+      text-align: center;
+      line-height: 1.3;
+      max-width: 72px;
+    }
+    .flow-arrow {
+      font-size: 16px;
+      color: var(--border);
+      margin: 0 6px;
+      padding-bottom: 20px;
+    }
+    .flow-outputs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-left: 6px;
+    }
+    .flow-output-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .flow-output-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--bg);
+      border: 1px solid var(--warm-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+    }
+    .flow-output-text { font-size: 12px; font-weight: 600; color: var(--text); }
+    .flow-output-sub  { font-size: 11px; color: var(--text-3); }
+    .flow-divider { height: 1px; background: var(--warm-border); margin: 24px 0; }
+    .flow-note { font-size: 12px; color: var(--text-3); text-align: center; }
+    .flow-note a { color: var(--orange); text-decoration: none; }
+
+    /* DEMO CARD */
+    .demo-card {
+      background: var(--bg-white);
+      border-radius: 18px;
+      border: 1px solid var(--warm-border);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .demo-form-wrap { padding: 28px 24px 24px; }
+
+    /* AGENT ROW */
+    .agent-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 480px) { .agent-row { grid-template-columns: 1fr; } }
+
+    /* BUYER CARDS */
+    .buyers-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .buyers-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+    .add-buyer-btn {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--orange);
+      background: var(--orange-lt);
+      border: 1px solid rgba(217,119,87,0.25);
+      border-radius: 8px;
+      padding: 5px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .add-buyer-btn:hover { background: rgba(217,119,87,0.2); }
+
+    .buyer-card-input {
+      background: var(--bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .buyer-card-input:last-of-type { margin-bottom: 0; }
+    .buyer-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .buyer-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 520px) { .buyer-fields { grid-template-columns: 1fr; } }
+    .buyer-fields-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (max-width: 520px) { .buyer-fields-3 { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group.span2 { grid-column: 1 / -1; }
+    label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-2);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    input, select, textarea {
+      padding: 9px 12px;
+      border: 1px solid var(--warm-border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text);
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+    textarea { resize: vertical; min-height: 54px; line-height: 1.45; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(217,119,87,0.12);
+    }
+    .remove-buyer {
+      position: absolute;
+      top: 12px; right: 14px;
+      font-size: 18px;
+      line-height: 1;
+      color: var(--text-3);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      padding: 0;
+    }
+    .remove-buyer:hover { color: #c00; }
+
+    .generate-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 20px;
+    }
+    .generate-btn:hover { background: #c4654a; }
+    .generate-btn:active { transform: scale(0.99); }
+
+    /* OUTPUT */
+    .output-section { display: none; padding: 0 24px 28px; }
+    .output-section.visible { display: block; }
+    .output-divider { height: 1px; background: var(--warm-border); margin: 4px 0 24px; }
+    .output-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .output-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--warm-border);
+    }
+
+    /* BUYER OUTPUT BLOCK */
+    .buyer-output {
+      margin-bottom: 28px;
+    }
+    .buyer-output:last-child { margin-bottom: 0; }
+    .buyer-output-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .buyer-avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .buyer-output-name { font-size: 15px; font-weight: 700; }
+    .buyer-output-sub  { font-size: 12px; color: var(--text-2); }
+    .interest-chip {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .interest-chip.hot  { background: rgba(255,59,48,0.1);  color: #ff3b30; }
+    .interest-chip.warm { background: rgba(255,149,0,0.12); color: #ff9500; }
+    .interest-chip.cool { background: rgba(0,0,0,0.05);     color: var(--text-3); }
+
+    .message-stack { display: flex; flex-direction: column; gap: 10px; }
+
+    /* MESSAGE CARDS */
+    .msg-card {
+      border-radius: 12px;
+      border: 1px solid var(--warm-border);
+      overflow: hidden;
+    }
+    .msg-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .msg-header.sms-hdr   { background: #f0fff4; }
+    .msg-header.email-hdr { background: var(--bg); }
+    .msg-header.pulse-hdr { background: #f0f0ff; }
+
+    .msg-icon { font-size: 16px; }
+    .msg-type {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .msg-timing {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .msg-timing.t0 { background: rgba(52,199,89,0.12);  color: #34C759; }
+    .msg-timing.t1 { background: rgba(0,113,227,0.1);   color: #0071e3; }
+    .msg-timing.t2 { background: rgba(0,0,0,0.05);       color: var(--text-3); }
+
+    .msg-body {
+      padding: 13px 14px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+    .msg-body.sms-body {
+      background: #f0fff4;
+    }
+    .sms-bubble {
+      display: inline-block;
+      max-width: 88%;
+      background: #4CAF50;
+      color: white;
+      border-radius: 16px 16px 16px 4px;
+      padding: 10px 13px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .char-count {
+      display: block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-3);
+    }
+    .char-count.good { color: #34C759; }
+    .char-count.warn { color: #ff9500; }
+
+    /* SETUP */
+    .setup-wrap {
+      background: var(--bg-white);
+      border-radius: 16px;
+      border: 1px solid var(--warm-border);
+      padding: 28px 24px;
+      box-shadow: var(--card-shadow);
+    }
+    .steps-list { display: flex; flex-direction: column; gap: 0; }
+    .step-item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .step-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--orange-lt);
+      border: 1px solid rgba(217,119,87,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .step-desc  { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .step-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--bg);
+      border: 1px solid var(--warm-border);
+      color: var(--text-3);
+    }
+    .step-tag.orange { background: var(--orange-lt); border-color: rgba(217,119,87,0.25); color: var(--orange); }
+
+    /* LIMITATIONS */
+    .limit-card {
+      background: var(--bg-white);
+      border-radius: 14px;
+      border: 1px solid var(--warm-border);
+      padding: 20px 22px;
+    }
+    .limit-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .limit-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .limit-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .limit-text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .limit-text strong { color: var(--text); font-weight: 600; }
+    .limit-source { font-size: 10px; color: var(--orange); font-weight: 600; display: block; margin-top: 3px; letter-spacing: 0.04em; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--hero-bg);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+    }
+    .cta-section p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      max-width: 420px;
+      margin: 0 auto 32px;
+      line-height: 1.55;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--orange);
+      color: white;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .cta-btn:hover { background: #c4654a; }
+    .cta-note { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.35); }
+
+    /* GUIDE FOOTER */
+    .guide-footer {
+      background: #f5f0eb;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #6e6e73;
+      line-height: 1.6;
+    }
+    .guide-footer a { color: var(--orange); text-decoration: none; font-weight: 500; }
+    .guide-footer a:hover { text-decoration: underline; }
+
+    /* ANIMATIONS */
+    .fade-in { animation: fadeInUp 0.4s ease forwards; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">uremarkable</a>
+  <span class="nav-sep">/</span>
+  <a href="/for/real-estate" class="nav-crumb">Real Estate</a>
+  <span class="nav-sep">/</span>
+  <a href="/for/real-estate/automations" class="nav-crumb">Automations</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-crumb">Post-Inspection Sequence</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="plugin-badge">
+    <div class="plugin-badge-dot"></div>
+    Claude Cowork Plugin
+  </div>
+  <h1>Six groups. <span>Six personal follow-ups.</span> Zero typing.</h1>
+  <p class="hero-sub">After each inspection, log a quick note per buyer. Cowork writes the follow-up sequence, times it, and sends it while you decompress.</p>
+  <div class="hero-pills">
+    <div class="hero-pill">Available on <span>Pro &amp; Max plans</span></div>
+    <div class="hero-pill">Google Sheets + <span>Gmail</span></div>
+    <div class="hero-pill">Runs after each open home</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section" style="padding-top:52px;">
+  <div class="section-label">How the automation works</div>
+  <h2 class="section-title">One voice note. Three timed messages per buyer.</h2>
+  <p class="section-sub">After the inspection you log a quick note for each group. The plugin reads it, writes three personalised follow-ups timed across seven days, and sends them without you touching your phone again.</p>
+
+  <div class="flow-wrap">
+    <div class="flow-row">
+
+      <div class="flow-node">
+        <div class="flow-icon">📋</div>
+        <div class="flow-label">Inspection notes</div>
+      </div>
+
+      <div class="flow-arrow">&#8594;</div>
+
+      <div class="flow-node">
+        <div class="flow-icon">📊</div>
+        <div class="flow-label">Google Sheets log</div>
+      </div>
+
+      <div class="flow-arrow">&#8594;</div>
+
+      <div class="flow-node">
+        <div class="flow-icon plugin">&#10022;</div>
+        <div class="flow-label" style="color:#D97757; font-weight:700;">Cowork Plugin</div>
+      </div>
+
+      <div class="flow-arrow">&#8594;</div>
+
+      <div class="flow-outputs">
+        <div class="flow-output-row">
+          <div class="flow-output-icon">&#128172;</div>
+          <div>
+            <div class="flow-output-text">Day 1 SMS</div>
+            <div class="flow-output-sub">Personal, warm, references inspection</div>
+          </div>
+        </div>
+        <div class="flow-output-row">
+          <div class="flow-output-icon">&#128231;</div>
+          <div>
+            <div class="flow-output-text">Day 2 Email</div>
+            <div class="flow-output-sub">Addresses their specific concern</div>
+          </div>
+        </div>
+        <div class="flow-output-row">
+          <div class="flow-output-icon">&#128337;</div>
+          <div>
+            <div class="flow-output-text">Day 7 Pulse</div>
+            <div class="flow-output-sub">Brief check-in, no pressure</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flow-divider"></div>
+    <p class="flow-note">The plugin remembers what each buyer said so every message feels personal, not templated. <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude-cowork" target="_blank">Learn more about Cowork plugins</a></p>
+  </div>
+</div>
+
+<!-- DEMO -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Try it now</div>
+  <h2 class="section-title">See your sequence before you leave the driveway</h2>
+  <p class="section-sub">Fill in a few notes from today's groups. The plugin generates three timed messages per buyer, personalised to what they said and what they need to hear.</p>
+
+  <div class="demo-card">
+    <div class="demo-form-wrap">
+
+      <div class="agent-row">
+        <div class="form-group">
+          <label for="agent-name">Your name</label>
+          <input type="text" id="agent-name" placeholder="e.g. Sarah" value="">
+        </div>
+        <div class="form-group">
+          <label for="property">Property address</label>
+          <input type="text" id="property" placeholder="e.g. 14 Harbour St, Mosman" value="">
+        </div>
+      </div>
+
+      <div class="buyers-header">
+        <span class="buyers-title">Buyers from today's inspection</span>
+        <button class="add-buyer-btn" onclick="addBuyer()">+ Add buyer</button>
+      </div>
+
+      <div id="buyers-container">
+
+        <div class="buyer-card-input" data-index="0">
+          <div class="buyer-num">Buyer 1</div>
+          <button class="remove-buyer" onclick="removeBuyer(this)" title="Remove">&times;</button>
+          <div class="buyer-fields">
+            <div class="form-group">
+              <label>Buyer name</label>
+              <input type="text" class="b-name" placeholder="e.g. Sarah &amp; Tom" value="">
+            </div>
+            <div class="form-group">
+              <label>Interest level</label>
+              <select class="b-interest">
+                <option value="hot">Hot</option>
+                <option value="warm" selected>Warm</option>
+                <option value="cool">Cool</option>
+              </select>
+            </div>
+          </div>
+          <div class="buyer-fields">
+            <div class="form-group">
+              <label>What they liked</label>
+              <input type="text" class="b-liked" placeholder="e.g. loved the garden and light">
+            </div>
+            <div class="form-group">
+              <label>Their concern</label>
+              <input type="text" class="b-concern" placeholder="e.g. asking price feels high">
+            </div>
+          </div>
+        </div>
+
+        <div class="buyer-card-input" data-index="1">
+          <div class="buyer-num">Buyer 2</div>
+          <button class="remove-buyer" onclick="removeBuyer(this)" title="Remove">&times;</button>
+          <div class="buyer-fields">
+            <div class="form-group">
+              <label>Buyer name</label>
+              <input type="text" class="b-name" placeholder="e.g. Marcus" value="">
+            </div>
+            <div class="form-group">
+              <label>Interest level</label>
+              <select class="b-interest">
+                <option value="hot">Hot</option>
+                <option value="warm" selected>Warm</option>
+                <option value="cool">Cool</option>
+              </select>
+            </div>
+          </div>
+          <div class="buyer-fields">
+            <div class="form-group">
+              <label>What they liked</label>
+              <input type="text" class="b-liked" placeholder="e.g. location, close to station">
+            </div>
+            <div class="form-group">
+              <label>Their concern</label>
+              <input type="text" class="b-concern" placeholder="e.g. asked about council rates">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="generate-btn" onclick="generateSequences()">Generate follow-up sequences</button>
+    </div>
+
+    <div class="output-section" id="output-section">
+      <div class="output-divider"></div>
+      <div class="output-label">Cowork output</div>
+      <div id="output-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SETUP WALKTHROUGH -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Setup walkthrough</div>
+  <h2 class="section-title">How it's built in Cowork</h2>
+  <p class="section-sub">Six steps from nothing to live. You leave the setup session with a running system, not a configuration checklist.</p>
+
+  <div class="setup-wrap">
+    <div class="steps-list">
+
+      <div class="step-item">
+        <div class="step-num">0</div>
+        <div class="step-content">
+          <div class="step-title">Create your Cowork project</div>
+          <div class="step-desc">Create a dedicated Cowork project for your agency's inspection workflow. Name it clearly (e.g. "Ray White Mosman: Post-Inspection"). Each project keeps its own memory and instructions, separate from any other automation you're running.</div>
+          <span class="step-tag orange">New project &bull; scoped to your agency</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Install the plugin</div>
+          <div class="step-desc">Open Cowork, click Customize in the left sidebar, then Browse plugins. Upload the Post-Inspection Sequence plugin file. One upload installs everything: the note schema, message templates, Sheets connector, Gmail connector, and Dispatch integration.</div>
+          <span class="step-tag orange">Cowork Plugins &bull; one upload</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Set your agency instructions</div>
+          <div class="step-desc">Go to Settings &gt; Cowork &gt; Global Instructions. Tell Claude your name, your agency, your communication style, and the property address format you use. This shapes every message it writes so they sound like you, not a template.</div>
+          <span class="step-tag">Settings &rarr; Cowork &rarr; Global Instructions</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Connect Google Sheets</div>
+          <div class="step-desc">Create your inspection log using the template included in the plugin. One row per buyer: name, phone, email, property, inspection date, what they liked, their concern, interest level. Authorise the Sheets connector. The plugin reads from and writes to this sheet automatically.</div>
+          <span class="step-tag">Google Sheets &rarr; template &rarr; connect MCP</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Connect Gmail and Twilio</div>
+          <div class="step-desc">The Day 1 message sends as SMS from your agency's Twilio number. Day 2 and Day 7 messages send from your Gmail. Authorise both connectors in Cowork. From that point, the plugin can send without you touching your phone.</div>
+          <span class="step-tag">Gmail MCP &bull; Twilio MCP &bull; both in one session</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Set the trigger and activate Dispatch</div>
+          <div class="step-desc">The plugin fires when a new inspection row is added to your Sheet. Set that trigger in Cowork using /schedule or the trigger config inside the plugin. Then link Dispatch so you get a mobile notification before each message sends. You review, approve with one tap, or let it run fully automated.</div>
+          <span class="step-tag orange">Trigger on new row &bull; Dispatch linked &bull; live</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- HONEST LIMITATIONS -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">What to know before you set up</div>
+  <h2 class="section-title">Honest limitations</h2>
+  <p class="section-sub">This is real infrastructure. Here's exactly what it requires and where the edges are.</p>
+
+  <div class="limit-card">
+    <div class="limit-row">
+      <div class="limit-icon">&#128187;</div>
+      <div class="limit-text">
+        <strong>Desktop must stay open.</strong> Scheduled tasks only run while your machine is awake and Claude Desktop is active. If your computer sleeps mid-sequence, the next message runs when it wakes. For same-day follow-ups, keep the machine on when you get home from inspections.
+        <span class="limit-source">Source: Anthropic: Schedule recurring tasks in Claude Cowork</span>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">&#9197;</div>
+      <div class="limit-text">
+        <strong>Notes need to be in the Sheet before the sequence runs.</strong> The plugin reads from your inspection log. If you haven't entered the buyer notes yet, the sequence won't have the context it needs. Add notes before you leave the property or batch them on the drive home.
+        <span class="limit-source">How it works: Google Sheets trigger</span>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">&#128241;</div>
+      <div class="limit-text">
+        <strong>Dispatch requires both Desktop and mobile apps.</strong> The approval notification goes to your mobile. The actual send happens on your desktop. Both need to be installed. Available on Pro and Max plans only.
+        <span class="limit-source">Source: Anthropic: Assign tasks from anywhere in Claude Cowork</span>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">&#128172;</div>
+      <div class="limit-text">
+        <strong>SMS sends from a Twilio number, not your mobile.</strong> Buyers receive the Day 1 message from your agency's dedicated business number. That's by design, not a limitation. But it does mean setting up a Twilio account before you go live (about 10 minutes).
+        <span class="limit-source">Twilio setup: one-off, included in the setup session</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>The setup is what we do together.</h2>
+  <p>One session. Sheets, Gmail, and Twilio connected. Plugin customised to your agency's voice. Sequence live before we hang up.</p>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="cta-btn" target="_blank">Book a setup session</a>
+  <p class="cta-note">Pro or Max plan required &bull; macOS or Windows &bull; ~60 minutes</p>
+</div>
+
+<!-- GUIDE FOOTER -->
+<div class="guide-footer">
+  This demo is part of the <a href="https://uremarkable.com/for/real-estate/automations">3 automations every real estate agency should be running</a> guide.&nbsp;&nbsp;Want this for your agency? <a href="https://uremarkable.com">Get started with Uremarkable &rarr;</a>
+</div>
+
+<script>
+  let buyerCount = 2;
+
+  function addBuyer() {
+    buyerCount++;
+    const container = document.getElementById('buyers-container');
+    const div = document.createElement('div');
+    div.className = 'buyer-card-input';
+    div.dataset.index = buyerCount - 1;
+    div.innerHTML = `
+      <div class="buyer-num">Buyer ${buyerCount}</div>
+      <button class="remove-buyer" onclick="removeBuyer(this)" title="Remove">&times;</button>
+      <div class="buyer-fields">
+        <div class="form-group">
+          <label>Buyer name</label>
+          <input type="text" class="b-name" placeholder="e.g. The Johnson family">
+        </div>
+        <div class="form-group">
+          <label>Interest level</label>
+          <select class="b-interest">
+            <option value="hot">Hot</option>
+            <option value="warm" selected>Warm</option>
+            <option value="cool">Cool</option>
+          </select>
+        </div>
+      </div>
+      <div class="buyer-fields">
+        <div class="form-group">
+          <label>What they liked</label>
+          <input type="text" class="b-liked" placeholder="e.g. open plan living">
+        </div>
+        <div class="form-group">
+          <label>Their concern</label>
+          <input type="text" class="b-concern" placeholder="e.g. timeline, settling in 60 days">
+        </div>
+      </div>`;
+    container.appendChild(div);
+    renumberBuyers();
+  }
+
+  function removeBuyer(btn) {
+    const cards = document.querySelectorAll('.buyer-card-input');
+    if (cards.length <= 1) return;
+    btn.closest('.buyer-card-input').remove();
+    renumberBuyers();
+  }
+
+  function renumberBuyers() {
+    document.querySelectorAll('.buyer-card-input').forEach((c, i) => {
+      c.querySelector('.buyer-num').textContent = 'Buyer ' + (i + 1);
+    });
+  }
+
+  function generateSequences() {
+    const agent   = document.getElementById('agent-name').value.trim() || 'Sarah';
+    const prop    = document.getElementById('property').value.trim()   || '14 Harbour St, Mosman';
+    const propShort = prop.split(',')[0].trim();
+    const agentFirst = agent.split(' ')[0];
+
+    const cards = document.querySelectorAll('.buyer-card-input');
+    const buyers = [];
+    cards.forEach(card => {
+      buyers.push({
+        name:    card.querySelector('.b-name').value.trim()    || 'Your buyer',
+        interest:card.querySelector('.b-interest').value,
+        liked:   card.querySelector('.b-liked').value.trim()   || 'the property',
+        concern: card.querySelector('.b-concern').value.trim() || 'the price'
+      });
+    });
+
+    const output = document.getElementById('output-container');
+    output.innerHTML = '';
+
+    buyers.forEach((b, i) => {
+      const firstName = b.name.split(/\s+|&/)[0].trim();
+      const interestLabel = { hot: 'Hot', warm: 'Warm', cool: 'Cool' }[b.interest];
+      const interestClass = b.interest;
+
+      // Day 1 SMS
+      const smsMap = {
+        hot:  `Hi ${firstName}, really great meeting you today at ${propShort}. Could tell you loved ${b.liked}. Happy to have a frank conversation about where things might land if that's useful. Worth a quick call this week?`,
+        warm: `Hi ${firstName}, good to meet you today at ${propShort}. Glad you got a good look around. Happy to answer any questions and give you a clearer picture on ${b.concern}. Give me a call when you get a chance.`,
+        cool: `Hi ${firstName}, thanks for coming through ${propShort} today. Happy to send through any extra info that helps you with your search. Just let me know.`
+      };
+      const smsText = smsMap[b.interest];
+
+      // Day 2 Email
+      const emailMap = {
+        hot:
+`Hi ${firstName},
+
+Following up from ${propShort} yesterday. I wanted to give you a bit more context on ${b.concern}.
+
+The guide price reflects the level of demand we've had since launch. That said, I always prefer to have a frank conversation with buyers who are genuinely interested, rather than let the process run longer than it needs to.
+
+If you'd like to talk through where things stand and what your options look like, I'm available for a call any time this week.
+
+${agentFirst}`,
+        warm:
+`Hi ${firstName},
+
+Just following up from ${propShort} yesterday.
+
+You had a question about ${b.concern} -- I've put together a quick summary that should help with your numbers. Happy to walk you through it on a call if easier.
+
+Let me know if there's anything else I can pull together before you make a decision.
+
+${agentFirst}`,
+        cool:
+`Hi ${firstName},
+
+Thanks again for coming through ${propShort}. I know there's a lot to weigh up at the moment.
+
+If ${propShort} doesn't end up being the right one, I have a couple of similar properties coming to market in the next few weeks that aren't listed yet. Happy to keep you in the loop if that's useful.
+
+No pressure either way, just wanted to stay in touch.
+
+${agentFirst}`
+      };
+
+      // Day 7 Pulse
+      const pulseMap = {
+        hot:  `Hi ${firstName}, just checking in on ${propShort}. If things have moved on your end or you have questions before the next step, happy to chat. ${agentFirst}`,
+        warm: `Hi ${firstName}, just a quick check-in. Still thinking about ${propShort}? Happy to answer anything before you make a call. ${agentFirst}`,
+        cool: `Hi ${firstName}, just staying in touch. If ${propShort} stayed on your mind or something else has come up in your search, feel free to reach out. ${agentFirst}`
+      };
+
+      const charCount = smsText.length;
+      const ccClass = charCount <= 160 ? 'good' : 'warn';
+
+      const block = document.createElement('div');
+      block.className = 'buyer-output fade-in';
+      block.style.animationDelay = (i * 0.08) + 's';
+      block.innerHTML = `
+        <div class="buyer-output-header">
+          <div class="buyer-avatar">${firstName[0].toUpperCase()}</div>
+          <div>
+            <div class="buyer-output-name">${b.name}</div>
+            <div class="buyer-output-sub">${propShort} &bull; ${b.liked}</div>
+          </div>
+          <span class="interest-chip ${interestClass}">${interestLabel}</span>
+        </div>
+        <div class="message-stack">
+
+          <div class="msg-card">
+            <div class="msg-header sms-hdr">
+              <span class="msg-icon">&#128172;</span>
+              <span class="msg-type">SMS &bull; from your agency number</span>
+              <span class="msg-timing t0">Send today</span>
+            </div>
+            <div class="msg-body sms-body">
+              <div class="sms-bubble">${smsText}</div>
+              <span class="char-count ${ccClass}">${charCount} chars &bull; ${charCount <= 160 ? '1 SMS segment' : 'splits across 2 segments'}</span>
+            </div>
+          </div>
+
+          <div class="msg-card">
+            <div class="msg-header email-hdr">
+              <span class="msg-icon">&#128231;</span>
+              <span class="msg-type">Email &bull; from your Gmail</span>
+              <span class="msg-timing t1">48 hours</span>
+            </div>
+            <div class="msg-body">${emailMap[b.interest]}</div>
+          </div>
+
+          <div class="msg-card">
+            <div class="msg-header pulse-hdr">
+              <span class="msg-icon">&#128337;</span>
+              <span class="msg-type">7-day pulse &bull; SMS</span>
+              <span class="msg-timing t2">Day 7</span>
+            </div>
+            <div class="msg-body sms-body">
+              <div class="sms-bubble">${pulseMap[b.interest]}</div>
+            </div>
+          </div>
+
+        </div>`;
+      output.appendChild(block);
+    });
+
+    const section = document.getElementById('output-section');
+    section.classList.add('visible');
+    setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+</script>
+
+</body>
+</html>
