@@ -201,7 +201,13 @@
       border-radius: 16px;
       padding: 28px 24px;
       position: relative;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow .2s, transform .2s;
     }
+    .auto-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.10); transform: translateY(-2px); }
+    .auto-card.coming-soon { opacity: 0.45; pointer-events: none; }
     .auto-num {
       width: 32px;
       height: 32px;
@@ -229,6 +235,15 @@
       background: rgba(0,0,0,0.04);
       border: 1px solid rgba(0,0,0,0.08);
       color: var(--text-3);
+    }
+    .auto-tag.live { background: var(--orange-lt); border-color: rgba(217,119,87,0.25); color: var(--orange); }
+    .auto-tag-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .auto-arrow { font-size: 14px; color: var(--orange); font-weight: 700; margin-top: 16px; display: block; }
+    .soon-badge {
+      position: absolute; top: 20px; right: 20px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      background: #f0f0f5; color: #999; border-radius: 8px; padding: 3px 8px;
     }
 
     /* DEMO CALLOUT */
@@ -424,7 +439,7 @@
     <p class="hero-sub">One follows up enquiries in 4 hours. The other responds in 5 minutes while the agent is at an inspection. The gap is not hustle. It's infrastructure.</p>
     <div class="hero-ctas">
       <a href="#automations" class="btn-primary">See the 3 automations</a>
-      <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-secondary">Book a chat with Baz</a>
+      <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-secondary">Book a chat</a>
     </div>
   </div>
 
@@ -487,21 +502,24 @@
 
   <div class="auto-grid">
 
-    <div class="auto-card">
+    <a href="/for/real-estate/automations/lead-follow-up/" class="auto-card">
       <div class="auto-num">01</div>
       <div class="auto-title">The 5-Minute Follow-Up</div>
       <div class="auto-body">Every REA and Domain enquiry gets a personalised response within 5 minutes. Knows the property, references their specific question, offers an inspection time. Sent while you're at dinner. Every time.</div>
-      <span class="auto-tag">Gmail MCP + Twilio</span>
-    </div>
+      <span class="auto-tag live"><span class="auto-tag-dot"></span> Live demo</span>
+      <span class="auto-arrow">See the demo ›</span>
+    </a>
 
-    <div class="auto-card">
+    <a href="/for/real-estate/automations/post-inspection-sequence/" class="auto-card">
       <div class="auto-num">02</div>
       <div class="auto-title">The Post-Inspection Sequence</div>
       <div class="auto-body">Timed follow-up messages based on what each group said at the inspection. Feels like you remembered every conversation. Because the system did. Runs automatically after each inspection day.</div>
-      <span class="auto-tag">Google Sheets + Gmail</span>
-    </div>
+      <span class="auto-tag live"><span class="auto-tag-dot"></span> Live demo</span>
+      <span class="auto-arrow">See the demo ›</span>
+    </a>
 
-    <div class="auto-card">
+    <div class="auto-card coming-soon">
+      <div class="soon-badge">Coming soon</div>
       <div class="auto-num">03</div>
       <div class="auto-title">The Self-Writing Market Report</div>
       <div class="auto-body">Every Monday. Pulls your recent sales data, writes the commentary, formats it in your brand, sends it to your list. Before your competition opens their laptop. No 90-minute Sunday session required.</div>
