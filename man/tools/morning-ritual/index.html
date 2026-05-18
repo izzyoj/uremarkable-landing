@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Ritual Builder | MAN Protocol</title>
+  <meta name="description" content="Build your morning frame. Identity anchor, one action per pillar, the one thing. Takes two minutes. Opens every morning.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:         #1d1d1f;
+      --ink-soft:    #6e6e73;
+      --bg:          #ffffff;
+      --bg-soft:     #f5f5f7;
+      --bg-warm:     #faf8f4;
+      --border:      #e5e5ea;
+      --gold:        #b8860b;
+      --gold-light:  #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg-soft);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .nav-wrap {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 680px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-size: 15px; font-weight: 700; text-decoration: none; color: var(--ink); }
+    .nav-brand span { color: var(--gold); }
+    .nav-right { display: flex; gap: 16px; align-items: center; }
+    .nav-link { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
+    .nav-link:hover { color: var(--ink); }
+
+    .page-wrap { max-width: 640px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* VIEWS */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* BUILD VIEW */
+    .build-header { text-align: center; margin-bottom: 36px; }
+    .tool-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .build-header h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .build-header p { font-size: 17px; color: var(--ink-soft); line-height: 1.55; }
+
+    .section-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      margin-bottom: 16px;
+    }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .section-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .section-title { font-size: 17px; font-weight: 700; }
+    .section-hint { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+
+    .field-label { font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; display: block; }
+    input[type="text"], textarea {
+      width: 100%;
+      background: var(--bg-soft);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 15px; font-family: inherit;
+      color: var(--ink);
+      transition: border-color 0.15s;
+      line-height: 1.5;
+    }
+    input[type="text"]:focus, textarea:focus {
+      outline: none; border-color: var(--gold);
+    }
+    input::placeholder, textarea::placeholder { color: #aeaeb2; }
+    textarea { resize: none; }
+
+    .field-group { margin-bottom: 14px; }
+    .field-group:last-child { margin-bottom: 0; }
+
+    .build-btn {
+      width: 100%; margin-top: 24px;
+      background: var(--gold); color: #fff;
+      border: none; border-radius: 50px;
+      padding: 16px; font-size: 16px; font-weight: 700;
+      cursor: pointer; font-family: inherit;
+      transition: opacity 0.15s;
+    }
+    .build-btn:hover { opacity: 0.85; }
+
+    /* RITUAL CARD VIEW */
+    #ritual-card {
+      background: var(--ink); color: #fff;
+      border-radius: 24px; padding: 36px 32px;
+      margin-bottom: 20px;
+    }
+
+    .card-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .card-brand { font-size: 14px; font-weight: 800; letter-spacing: 0.02em; color: rgba(255,255,255,0.4); }
+    .card-brand span { color: var(--gold); }
+    .card-day-info { text-align: right; }
+    .card-date { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .card-streak {
+      font-size: 12px; color: var(--gold); font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .card-identity {
+      margin-bottom: 28px;
+      padding: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(184,134,11,0.25);
+      border-radius: 14px;
+    }
+    .card-identity-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .card-identity-text { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.35; }
+
+    .card-pillars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .card-pillar {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+    }
+    .cp-letter {
+      font-size: 13px; font-weight: 800; color: var(--gold);
+      background: rgba(184,134,11,0.12);
+      width: 28px; height: 28px;
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .cp-name { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 4px; }
+    .cp-action { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.4; }
+
+    .card-one-thing {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .card-ot-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .card-ot-text { font-size: 17px; font-weight: 600; color: #fff; line-height: 1.4; }
+
+    .card-footer {
+      margin-top: 24px; padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.25);
+    }
+
+    .action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .action-btn {
+      flex: 1; min-width: 120px;
+      padding: 13px 18px; border-radius: 50px;
+      font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.15s;
+    }
+    .action-btn:hover { opacity: 0.85; }
+    .action-save { background: var(--gold); color: #fff; }
+    .action-edit { background: #fff; color: var(--ink); border: 1.5px solid var(--border); }
+    .action-quiz { background: var(--bg-soft); color: var(--ink); border: 1.5px solid var(--border); }
+
+    .streak-note {
+      text-align: center; font-size: 13px; color: var(--ink-soft);
+      padding: 12px; background: var(--gold-light);
+      border: 1px solid var(--gold-border); border-radius: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .page-wrap { padding: 24px 16px 60px; }
+      .section-card { padding: 22px 18px; }
+      #ritual-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/man/" class="nav-brand">M·A·<span>N</span></a>
+    <div class="nav-right">
+      <a href="/man/tools/identity-map/" class="nav-link">Identity Map</a>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- BUILD VIEW -->
+  <div class="view active" id="view-build">
+    <div class="build-header">
+      <div class="tool-badge">✦ Daily ritual</div>
+      <h1>Morning Ritual Builder</h1>
+      <p>Set your frame before the day sets it for you. Two minutes. Opens every morning.</p>
+    </div>
+
+    <!-- IDENTITY ANCHOR -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">✦</div>
+        <div>
+          <div class="section-title">Identity anchor</div>
+          <div class="section-hint">Who are you being today? Before anything else.</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Today I am being</label>
+        <input type="text" id="f-identity" placeholder="a man who shows up fully and holds the frame" maxlength="120" />
+      </div>
+    </div>
+
+    <!-- M PILLAR -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon" style="font-size:15px;font-weight:800;color:var(--gold);">M</div>
+        <div>
+          <div class="section-title">Mindset</div>
+          <div class="section-hint">One mental act: intentional consumption or inner work.</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Today's M micro-action</label>
+        <input type="text" id="f-mindset" placeholder="10 minutes of reading before any screen" maxlength="120" />
+      </div>
+    </div>
+
+    <!-- A PILLAR -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon" style="font-size:15px;font-weight:800;color:var(--gold);">A</div>
+        <div>
+          <div class="section-title">Action</div>
+          <div class="section-hint">One physical act: movement, a walk, a session.</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Today's A micro-action</label>
+        <input type="text" id="f-action" placeholder="30-minute strength session at 7am" maxlength="120" />
+      </div>
+    </div>
+
+    <!-- N PILLAR -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon" style="font-size:15px;font-weight:800;color:var(--gold);">N</div>
+        <div>
+          <div class="section-title">Nourishment</div>
+          <div class="section-hint">One input intention: food, sleep quality, media boundary.</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Today's N intention</label>
+        <input type="text" id="f-nourishment" placeholder="eat before noon, no caffeine after 12" maxlength="120" />
+      </div>
+    </div>
+
+    <!-- THE ONE THING -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <div>
+          <div class="section-title">The one thing</div>
+          <div class="section-hint">If today ends and only one thing got done, what was it?</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Today's most important thing</label>
+        <input type="text" id="f-one-thing" placeholder="finish the proposal and send it" maxlength="160" />
+      </div>
+    </div>
+
+    <button class="build-btn" onclick="buildRitual()">Build my morning frame →</button>
+  </div>
+
+  <!-- RITUAL CARD VIEW -->
+  <div class="view" id="view-card">
+
+    <div id="ritual-card">
+      <div class="card-top">
+        <div class="card-brand">M·A·<span>N</span> Protocol</div>
+        <div class="card-day-info">
+          <div class="card-date" id="card-date"></div>
+          <div class="card-streak" id="card-streak"></div>
+        </div>
+      </div>
+
+      <div class="card-identity">
+        <div class="card-identity-label">✦ Today I am being</div>
+        <div class="card-identity-text" id="card-identity-text"></div>
+      </div>
+
+      <div class="card-pillars">
+        <div class="card-pillar">
+          <div class="cp-letter">M</div>
+          <div>
+            <div class="cp-name">Mindset</div>
+            <div class="cp-action" id="card-mindset"></div>
+          </div>
+        </div>
+        <div class="card-pillar">
+          <div class="cp-letter">A</div>
+          <div>
+            <div class="cp-name">Action</div>
+            <div class="cp-action" id="card-action"></div>
+          </div>
+        </div>
+        <div class="card-pillar">
+          <div class="cp-letter">N</div>
+          <div>
+            <div class="cp-name">Nourishment</div>
+            <div class="cp-action" id="card-nourishment"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-one-thing">
+        <div class="card-ot-label">The one thing</div>
+        <div class="card-ot-text" id="card-one-thing"></div>
+      </div>
+
+      <div class="card-footer">M·A·N Protocol · uremarkable.com</div>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn action-save" onclick="saveRitual()">Save for tomorrow</button>
+      <button class="action-btn action-edit" onclick="showBuild()">Edit frame</button>
+      <button class="action-btn action-quiz" onclick="window.location='/quiz/man/'">Take the quiz</button>
+    </div>
+    <div class="streak-note" id="streak-note" style="display:none;"></div>
+
+  </div>
+
+</div>
+
+<script>
+  const STORAGE_KEY = 'man_morning_ritual';
+
+  function val(id) {
+    return (document.getElementById(id).value || '').trim();
+  }
+
+  function buildRitual() {
+    const data = {
+      identity:    val('f-identity')    || 'Present and fully showing up',
+      mindset:     val('f-mindset')     || 'Intentional mental input',
+      action:      val('f-action')      || 'Physical movement',
+      nourishment: val('f-nourishment') || 'Conscious input',
+      oneThing:    val('f-one-thing')   || 'The most important thing',
+      date:        new Date().toISOString(),
+    };
+
+    // save
+    let history = [];
+    try { history = JSON.parse(localStorage.getItem(STORAGE_KEY + '_history') || '[]'); } catch(e) {}
+    const todayStr = new Date().toDateString();
+    history = history.filter(d => new Date(d.date).toDateString() !== todayStr);
+    history.push(data);
+    if (history.length > 30) history = history.slice(-30);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(STORAGE_KEY + '_history', JSON.stringify(history));
+
+    renderCard(data, history);
+    document.getElementById('view-build').classList.remove('active');
+    document.getElementById('view-card').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderCard(data, history) {
+    const today = new Date();
+    document.getElementById('card-date').textContent = today.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
+
+    // streak
+    const streak = calcStreak(history);
+    const streakEl = document.getElementById('card-streak');
+    if (streak > 1) {
+      streakEl.textContent = streak + ' day streak';
+    }
+
+    document.getElementById('card-identity-text').textContent = data.identity;
+    document.getElementById('card-mindset').textContent = data.mindset;
+    document.getElementById('card-action').textContent = data.action;
+    document.getElementById('card-nourishment').textContent = data.nourishment;
+    document.getElementById('card-one-thing').textContent = data.oneThing;
+  }
+
+  function calcStreak(history) {
+    if (!history || history.length === 0) return 1;
+    const dates = history.map(d => new Date(d.date).toDateString());
+    let streak = 1;
+    const today = new Date();
+    for (let i = 1; i <= 30; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      if (dates.includes(d.toDateString())) { streak++; }
+      else { break; }
+    }
+    return streak;
+  }
+
+  function saveRitual() {
+    const noteEl = document.getElementById('streak-note');
+    let history = [];
+    try { history = JSON.parse(localStorage.getItem(STORAGE_KEY + '_history') || '[]'); } catch(e) {}
+    const streak = calcStreak(history);
+    noteEl.textContent = streak > 1
+      ? 'Saved. ' + streak + '-day streak. Come back tomorrow morning.'
+      : 'Saved. Come back tomorrow morning.';
+    noteEl.style.display = 'block';
+  }
+
+  function showBuild() {
+    document.getElementById('view-card').classList.remove('active');
+    document.getElementById('view-build').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // load saved on open
+  window.addEventListener('load', () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const d = JSON.parse(saved);
+        // if saved today, go straight to card
+        const savedDate = new Date(d.date).toDateString();
+        const todayStr = new Date().toDateString();
+        if (savedDate === todayStr) {
+          let history = [];
+          try { history = JSON.parse(localStorage.getItem(STORAGE_KEY + '_history') || '[]'); } catch(e) {}
+          renderCard(d, history);
+          document.getElementById('view-build').classList.remove('active');
+          document.getElementById('view-card').classList.add('active');
+        } else {
+          // pre-fill fields from yesterday
+          document.getElementById('f-identity').value = d.identity || '';
+          document.getElementById('f-mindset').value = d.mindset || '';
+          document.getElementById('f-action').value = d.action || '';
+          document.getElementById('f-nourishment').value = d.nourishment || '';
+          // one thing clears each day (it's today-specific)
+        }
+      } catch(e) {}
+    }
+  });
+</script>
+
+</body>
+</html>

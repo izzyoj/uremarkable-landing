@@ -542,6 +542,26 @@
     .pillar-card-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
     .pillar-card-cta { font-size: 13px; font-weight: 600; color: var(--gold); margin-top: 10px; }
 
+    /* ── TOOLS ── */
+    .tool-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+    .tool-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.15s;
+    }
+    .tool-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .tool-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .tool-card-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .tool-card-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+    .tool-card-cta { font-size: 13px; font-weight: 600; color: var(--gold); margin-top: 10px; }
+
     /* ── FINAL CTA ── */
     .final-cta {
       text-align: center;
@@ -1354,6 +1374,31 @@
           <div class="pillar-card-title">Nourishment</div>
           <div class="pillar-card-desc">Everything you take in shapes your biochemistry. Food, sleep, media, attention, environment. Five inputs. Most people are only managing one.</div>
           <div class="pillar-card-cta">Read the Nourishment guide →</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section style="background: var(--bg-soft);">
+    <div class="label">Start using the protocol</div>
+    <h2>Free tools. Built for this.</h2>
+    <p class="body-text">Two interactive tools you can use right now. No account. No app. Just the framework applied directly to you.</p>
+    <div class="tool-cards">
+      <a href="/man/tools/identity-map/" class="tool-card">
+        <div class="tool-icon">🗺️</div>
+        <div>
+          <div class="tool-card-title">Identity Map</div>
+          <div class="tool-card-desc">A 3-step exercise that makes the gap between your declared identity and your actual behaviour visible. Takes 10 minutes. Shows you exactly where to start.</div>
+          <div class="tool-card-cta">Map your identity gap →</div>
+        </div>
+      </a>
+      <a href="/man/tools/morning-ritual/" class="tool-card">
+        <div class="tool-icon">🌅</div>
+        <div>
+          <div class="tool-card-title">Morning Ritual Builder</div>
+          <div class="tool-card-desc">Build your daily M/A/N ritual: one identity anchor, three micro-actions, one thing. Saves your ritual. Shows your streak. Takes two minutes to set up.</div>
+          <div class="tool-card-cta">Build your ritual →</div>
         </div>
       </a>
     </div>

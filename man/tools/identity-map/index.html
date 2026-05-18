@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Identity Map | MAN Protocol</title>
+  <meta name="description" content="Map your identity gap. Three steps: who you say you are, what your behaviour reveals, and the votes you'll cast to close the distance.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:         #1d1d1f;
+      --ink-soft:    #6e6e73;
+      --bg:          #ffffff;
+      --bg-soft:     #f5f5f7;
+      --bg-warm:     #faf8f4;
+      --border:      #e5e5ea;
+      --gold:        #b8860b;
+      --gold-light:  #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg-soft);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .nav-wrap {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 680px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-size: 15px; font-weight: 700; text-decoration: none; color: var(--ink); }
+    .nav-brand span { color: var(--gold); }
+    .nav-link { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
+    .nav-link:hover { color: var(--ink); }
+
+    .page-wrap { max-width: 640px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    .tool-header { text-align: center; margin-bottom: 40px; }
+    .tool-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .tool-header h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .tool-header p { font-size: 17px; color: var(--ink-soft); line-height: 1.55; max-width: 480px; margin: 0 auto; }
+
+    /* PROGRESS */
+    .progress-bar {
+      display: flex; gap: 6px; margin-bottom: 32px;
+    }
+    .progress-step {
+      flex: 1; height: 4px; border-radius: 2px;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+    .progress-step.done { background: var(--gold); }
+    .progress-step.active { background: var(--gold); opacity: 0.5; }
+
+    /* CARDS */
+    .card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px;
+      margin-bottom: 20px;
+    }
+    .step-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .card h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .card p { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.55; }
+
+    .input-group { margin-bottom: 16px; }
+    .input-group label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+    .input-group textarea, .input-group input {
+      width: 100%;
+      background: var(--bg-soft);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 15px; font-family: inherit;
+      color: var(--ink);
+      resize: none;
+      transition: border-color 0.15s;
+      line-height: 1.5;
+    }
+    .input-group textarea:focus, .input-group input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .input-group textarea::placeholder, .input-group input::placeholder { color: #aeaeb2; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      font-size: 15px; font-weight: 700;
+      padding: 14px 28px; border-radius: 50px;
+      border: none; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--ink); }
+    .btn-full { width: 100%; }
+
+    .btn-row { display: flex; gap: 10px; margin-top: 24px; }
+
+    /* HIDDEN STEPS */
+    .step { display: none; }
+    .step.active { display: block; }
+
+    /* GAP VISUAL */
+    .gap-visual {
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; margin: 20px 0;
+    }
+    .gap-row { padding: 16px 20px; }
+    .gap-row + .gap-row { border-top: 1px solid var(--border); }
+    .gap-row.gap-middle {
+      background: var(--bg-soft);
+      text-align: center; font-size: 13px;
+      color: var(--ink-soft); padding: 10px;
+    }
+    .gap-row-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+    .gap-row-value { font-size: 16px; font-weight: 600; color: var(--ink); }
+    .gap-row-value.gold { color: var(--gold); }
+    #gap-declared-display, #gap-behaviour-display { font-style: italic; }
+
+    /* RESULT CARD */
+    #result-card {
+      background: var(--ink); color: #fff;
+      border-radius: 20px; padding: 36px 32px;
+      margin-bottom: 20px;
+    }
+    .result-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .result-brand { font-size: 15px; font-weight: 800; letter-spacing: 0.02em; color: rgba(255,255,255,0.5); }
+    .result-brand span { color: var(--gold); }
+    .result-date { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+    .result-section { margin-bottom: 24px; }
+    .result-section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .result-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 8px; font-size: 15px; color: rgba(255,255,255,0.85);
+      line-height: 1.45;
+    }
+    .result-item:last-child { margin-bottom: 0; }
+    .result-bullet { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+
+    .result-gap-block {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 20px;
+      margin-bottom: 24px;
+    }
+    .result-gap-declared { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .result-gap-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 12px 0; }
+    .result-gap-behaviour { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .result-gap-work {
+      font-size: 16px; font-weight: 600; color: #fff;
+      margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid rgba(184,134,11,0.3);
+    }
+    .result-gap-work span { color: var(--gold); }
+
+    .result-footer {
+      text-align: center; margin-top: 24px;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px; color: rgba(255,255,255,0.3);
+    }
+
+    .action-row {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .action-btn {
+      flex: 1; min-width: 120px;
+      padding: 12px 20px; border-radius: 50px;
+      font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .action-btn:hover { opacity: 0.85; }
+    .action-save { background: var(--gold); color: #fff; }
+    .action-redo { background: var(--bg-soft); color: var(--ink); border: 1.5px solid var(--border); }
+    .action-quiz { background: #fff; color: var(--ink); }
+
+    .saved-notice {
+      display: none;
+      text-align: center; padding: 12px;
+      background: var(--gold-light); border: 1px solid var(--gold-border);
+      border-radius: 10px; font-size: 14px; color: var(--gold);
+      font-weight: 600; margin-top: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .page-wrap { padding: 24px 16px 60px; }
+      .card { padding: 24px 20px; }
+      #result-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/man/" class="nav-brand">M·A·<span>N</span></a>
+    <a href="/man/pillars/mindset/" class="nav-link">Mindset pillar</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <div class="tool-header">
+    <div class="tool-badge">✦ M pillar tool</div>
+    <h1>Identity Map</h1>
+    <p>Three steps. Ten minutes. The gap between who you say you are and who you're actually being. Made visible.</p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-step active" id="prog-1"></div>
+    <div class="progress-step" id="prog-2"></div>
+    <div class="progress-step" id="prog-3"></div>
+    <div class="progress-step" id="prog-4"></div>
+  </div>
+
+  <!-- STEP 1: Declared identity -->
+  <div class="step active" id="step-1">
+    <div class="card">
+      <div class="step-label">Step 1 of 3</div>
+      <h2>Who do you say you are?</h2>
+      <p>Write three statements about the kind of person you are. No filter. The identity you declare. To yourself, to others.</p>
+
+      <div class="input-group">
+        <label>Statement 1</label>
+        <input type="text" id="declared-1" placeholder="I am the kind of person who..." />
+      </div>
+      <div class="input-group">
+        <label>Statement 2</label>
+        <input type="text" id="declared-2" placeholder="I am the kind of person who..." />
+      </div>
+      <div class="input-group">
+        <label>Statement 3</label>
+        <input type="text" id="declared-3" placeholder="I am the kind of person who..." />
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-gold btn-full" onclick="goStep(2)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: Behaviour check -->
+  <div class="step" id="step-2">
+    <div class="card">
+      <div class="step-label">Step 2 of 3</div>
+      <h2>What does your behaviour actually show?</h2>
+      <p>Honest. Not what you intended. What you did. Look at the last two weeks. What patterns does someone watching you actually see?</p>
+
+      <div class="input-group">
+        <label>Pattern 1</label>
+        <input type="text" id="behaviour-1" placeholder="My behaviour shows I..." />
+      </div>
+      <div class="input-group">
+        <label>Pattern 2</label>
+        <input type="text" id="behaviour-2" placeholder="My behaviour shows I..." />
+      </div>
+      <div class="input-group">
+        <label>Pattern 3</label>
+        <input type="text" id="behaviour-3" placeholder="My behaviour shows I..." />
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="goStep(1)">← Back</button>
+        <button class="btn btn-gold" style="flex:1" onclick="goStep(3)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: Votes -->
+  <div class="step" id="step-3">
+    <div class="card">
+      <div class="step-label">Step 3 of 3</div>
+      <h2>What votes will you cast today?</h2>
+      <p>Three specific actions: small, doable today. Actions the person you declared yourself to be would take. Not goals. Votes.</p>
+
+      <div class="input-group">
+        <label>Vote 1</label>
+        <input type="text" id="vote-1" placeholder="Today I will..." />
+      </div>
+      <div class="input-group">
+        <label>Vote 2</label>
+        <input type="text" id="vote-2" placeholder="Today I will..." />
+      </div>
+      <div class="input-group">
+        <label>Vote 3</label>
+        <input type="text" id="vote-3" placeholder="Today I will..." />
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="goStep(2)">← Back</button>
+        <button class="btn btn-gold" style="flex:1" onclick="buildResult()">Build my map →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: RESULT -->
+  <div class="step" id="step-4">
+
+    <div id="result-card">
+      <div class="result-header">
+        <div class="result-brand">M·A·<span>N</span> Protocol</div>
+        <div class="result-date" id="result-date"></div>
+      </div>
+
+      <div class="result-section">
+        <div class="result-section-label">✦ Declared identity</div>
+        <div id="result-declared"></div>
+      </div>
+
+      <div class="result-gap-block">
+        <div class="result-gap-declared">What I say I am</div>
+        <div id="gap-declared-summary" style="font-size:15px;color:rgba(255,255,255,0.7);font-style:italic;"></div>
+        <hr class="result-gap-divider">
+        <div class="result-gap-behaviour">What my behaviour reveals</div>
+        <div id="gap-behaviour-summary" style="font-size:15px;color:rgba(255,255,255,0.7);font-style:italic;"></div>
+        <div class="result-gap-work">The work: <span>close this gap with every vote you cast.</span></div>
+      </div>
+
+      <div class="result-section">
+        <div class="result-section-label">Votes for today</div>
+        <div id="result-votes"></div>
+      </div>
+
+      <div class="result-footer">M·A·N Protocol · uremarkable.com</div>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn action-save" onclick="saveToLocal()">Save this map</button>
+      <button class="action-btn action-redo" onclick="reset()">Start again</button>
+      <button class="action-btn action-quiz" onclick="window.location='/quiz/man/'">Take the quiz</button>
+    </div>
+    <div class="saved-notice" id="saved-notice">Saved. Open this page tomorrow to see your last map.</div>
+
+  </div>
+
+</div>
+
+<script>
+  let currentStep = 1;
+
+  function goStep(n) {
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    document.getElementById('step-' + n).classList.add('active');
+
+    // update progress
+    for (let i = 1; i <= 4; i++) {
+      const p = document.getElementById('prog-' + i);
+      if (i < n) { p.classList.add('done'); p.classList.remove('active'); }
+      else if (i === n) { p.classList.add('active'); p.classList.remove('done'); }
+      else { p.classList.remove('done', 'active'); }
+    }
+
+    currentStep = n;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function val(id) {
+    return (document.getElementById(id).value || '').trim();
+  }
+
+  function buildResult() {
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    document.getElementById('result-date').textContent = dateStr;
+
+    const declared = [val('declared-1'), val('declared-2'), val('declared-3')].filter(Boolean);
+    const behaviours = [val('behaviour-1'), val('behaviour-2'), val('behaviour-3')].filter(Boolean);
+    const votes = [val('vote-1'), val('vote-2'), val('vote-3')].filter(Boolean);
+
+    // Declared list
+    const declaredEl = document.getElementById('result-declared');
+    declaredEl.innerHTML = declared.map(d =>
+      `<div class="result-item"><span class="result-bullet">✦</span><span>${d}</span></div>`
+    ).join('');
+
+    // Gap summary (first item of each)
+    document.getElementById('gap-declared-summary').textContent = declared[0] || '';
+    document.getElementById('gap-behaviour-summary').textContent = behaviours[0] || '';
+
+    // Votes
+    const votesEl = document.getElementById('result-votes');
+    votesEl.innerHTML = votes.map((v, i) =>
+      `<div class="result-item"><span class="result-bullet">${i + 1}.</span><span>${v}</span></div>`
+    ).join('');
+
+    // save to localStorage
+    const data = { declared, behaviours, votes, date: today.toISOString() };
+    localStorage.setItem('man_identity_map', JSON.stringify(data));
+
+    goStep(4);
+  }
+
+  function saveToLocal() {
+    document.getElementById('saved-notice').style.display = 'block';
+  }
+
+  function reset() {
+    ['declared-1','declared-2','declared-3','behaviour-1','behaviour-2','behaviour-3','vote-1','vote-2','vote-3']
+      .forEach(id => { document.getElementById(id).value = ''; });
+    goStep(1);
+  }
+
+  // Load previous if exists
+  window.addEventListener('load', () => {
+    const saved = localStorage.getItem('man_identity_map');
+    if (saved) {
+      try {
+        const d = JSON.parse(saved);
+        if (d.declared) d.declared.forEach((v, i) => { const el = document.getElementById('declared-' + (i+1)); if (el) el.value = v; });
+        if (d.behaviours) d.behaviours.forEach((v, i) => { const el = document.getElementById('behaviour-' + (i+1)); if (el) el.value = v; });
+        if (d.votes) d.votes.forEach((v, i) => { const el = document.getElementById('vote-' + (i+1)); if (el) el.value = v; });
+      } catch(e) {}
+    }
+  });
+</script>
+
+</body>
+</html>
