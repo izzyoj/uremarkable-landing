@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Real Estate Automations — Uremarkable</title>
+<title>Real Estate Automations | Uremarkable</title>
 <style>
   :root { --orange: #D97757; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
-    background: #f5f5f7;
+    background: #f5f0eb;
     color: #1d1d1f;
     font-size: 16px;
     line-height: 1.6;
@@ -36,7 +36,7 @@
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, #D97757 0%, #a85535 100%);
+    background: #1C1A18;
     color: white;
     padding: 56px 24px 48px;
     text-align: center;
@@ -45,13 +45,13 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(217,119,87,0.18);
+    border: 1px solid rgba(217,119,87,0.35);
     border-radius: 20px;
     padding: 5px 14px;
     font-size: 11px;
     font-weight: 700;
-    color: white;
+    color: var(--orange);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -107,7 +107,7 @@
     transition: box-shadow 0.2s, transform 0.2s;
   }
   .auto-card:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,113,227,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 0 0 1px rgba(217,119,87,0.3);
     transform: translateY(-1px);
   }
   .auto-icon {
@@ -126,8 +126,8 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: rgba(255,107,53,0.1);
-    border: 1px solid rgba(255,107,53,0.2);
+    background: rgba(217,119,87,0.1);
+    border: 1px solid rgba(217,119,87,0.2);
     border-radius: 12px;
     padding: 3px 10px;
     font-size: 11px;
@@ -191,7 +191,7 @@
   }
   .coming-soon-icon {
     width: 40px; height: 40px;
-    background: #f5f5f7;
+    background: #f5f0eb;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -233,7 +233,7 @@
     text-decoration: none;
     transition: background 0.15s;
   }
-  .btn-primary:hover { background: #0062c0; }
+  .btn-primary:hover { background: #b8613f; }
 
   /* FOOTER */
   .footer {
@@ -288,19 +288,29 @@
       <div class="auto-arrow">›</div>
     </a>
 
-    <div class="coming-soon-card">
-      <div class="coming-soon-icon">📋</div>
-      <div>
-        <div class="coming-soon-label">Coming soon</div>
-        <div class="coming-soon-title">Vendor Reporting</div>
+    <a href="/for/real-estate/automations/post-inspection-sequence/" class="auto-card">
+      <div class="auto-icon">🏠</div>
+      <div class="auto-body">
+        <div class="auto-tag">
+          <div class="auto-tag-dot"></div>
+          Claude Cowork Plugin
+        </div>
+        <div class="auto-title">Post-Inspection Sequence</div>
+        <div class="auto-desc">Log a quick note per buyer after each open home. Cowork writes the follow-up sequence, times it, and sends from your agency email while you decompress.</div>
+        <div class="auto-meta">
+          <span class="auto-meta-item">Gmail or Outlook</span>
+          <span class="auto-meta-item">SMS via Twilio</span>
+          <span class="auto-meta-item">Google Sheets</span>
+        </div>
       </div>
-    </div>
+      <div class="auto-arrow">›</div>
+    </a>
 
     <div class="coming-soon-card">
-      <div class="coming-soon-icon">📣</div>
+      <div class="coming-soon-icon">📊</div>
       <div>
         <div class="coming-soon-label">Coming soon</div>
-        <div class="coming-soon-title">Listing Prep</div>
+        <div class="coming-soon-title">The Self-Writing Market Report</div>
       </div>
     </div>
 
