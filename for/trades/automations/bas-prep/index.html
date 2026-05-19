@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BAS Prep Brief | Trades | uremarkable</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #f5f0eb;
+      --bg-white:   #ffffff;
+      --orange:     #ff6b35;
+      --orange-lt:  #fff3ee;
+      --warm-border:#E8E3DC;
+      --text:       #1d1d1f;
+      --text-2:     #6e6e73;
+      --text-3:     #86868b;
+      --border:     #d2d2d7;
+      --hero-bg:    #1C1A18;
+      --green:      #34C759;
+      --red:        #FF3B30;
+      --card-shadow:0 2px 16px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand { font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; }
+    .nav-sep   { color: #ccc; font-size: 13px; }
+    .nav-crumb { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .nav-crumb:last-child { color: var(--text-3); }
+
+    /* HERO */
+    .hero {
+      background: var(--hero-bg);
+      color: white;
+      padding: 60px 24px 56px;
+      text-align: center;
+    }
+    .plugin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,107,53,0.18);
+      border: 1px solid rgba(255,107,53,0.35);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .plugin-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(27px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      color: white;
+      max-width: 600px;
+      margin: 0 auto 18px;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .hero-pills {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+    .hero-pill span { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+    /* SECTIONS */
+    .section { padding: 52px 24px; max-width: 760px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
+    /* FLOW DIAGRAM */
+    .flow-wrap {
+      background: var(--bg-white);
+      border-radius: 16px;
+      border: 1px solid var(--warm-border);
+      padding: 32px 24px 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 12px;
+    }
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 80px;
+    }
+    .flow-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border: 1px solid var(--warm-border);
+      background: var(--bg);
+    }
+    .flow-icon.orange { background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.25); }
+    .flow-icon.plugin { background: var(--hero-bg); border-color: #333; font-size: 18px; }
+    .flow-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-2);
+      text-align: center;
+      line-height: 1.3;
+      max-width: 72px;
+    }
+    .flow-label.brand { color: var(--orange); font-weight: 700; }
+    .flow-arrow {
+      font-size: 16px;
+      color: var(--border);
+      margin: 0 6px;
+      padding-bottom: 20px;
+    }
+    .flow-outputs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-left: 6px;
+    }
+    .flow-output-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .flow-output-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--bg);
+      border: 1px solid var(--warm-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .flow-output-text { font-size: 12px; font-weight: 600; color: var(--text); }
+    .flow-output-sub  { font-size: 11px; color: var(--text-3); }
+    .flow-divider { height: 1px; background: var(--warm-border); margin: 24px 0; }
+    .flow-note { font-size: 12px; color: var(--text-3); text-align: center; }
+
+    /* ATO CODES */
+    .codes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .code-card {
+      background: var(--bg-white);
+      border-radius: 14px;
+      border: 1px solid var(--warm-border);
+      padding: 18px 16px;
+      box-shadow: var(--card-shadow);
+    }
+    .code-tag {
+      display: inline-block;
+      background: rgba(255,107,53,0.12);
+      color: var(--orange);
+      border-radius: 7px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .code-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .code-desc {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .code-rate {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* DEMO CARD */
+    .demo-card {
+      background: var(--bg-white);
+      border-radius: 18px;
+      border: 1px solid var(--warm-border);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+
+    /* STEP PROGRESS */
+    .step-progress {
+      display: flex;
+      align-items: center;
+      padding: 24px 28px 0;
+      gap: 0;
+      border-bottom: 1px solid var(--warm-border);
+      padding-bottom: 20px;
+      overflow-x: auto;
+    }
+    .step-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      cursor: default;
+    }
+    .step-dot-circle {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-3);
+      transition: all 0.2s;
+    }
+    .step-dot.active .step-dot-circle {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: white;
+    }
+    .step-dot.completed .step-dot-circle {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+      font-size: 13px;
+    }
+    .step-dot-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .step-dot.active .step-dot-label { color: var(--orange); }
+    .step-dot.completed .step-dot-label { color: var(--green); }
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      min-width: 20px;
+      margin: 0 4px;
+      margin-bottom: 22px;
+      transition: background 0.2s;
+    }
+    .step-line.completed { background: var(--green); }
+
+    /* STEP PANELS */
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+    .step-inner { padding: 28px 28px 24px; }
+    .step-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .step-sub {
+      font-size: 14px;
+      color: var(--text-2);
+      margin-bottom: 24px;
+    }
+
+    /* FORM ELEMENTS */
+    .form-group { margin-bottom: 20px; }
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-2);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    input[type="number"], select {
+      padding: 10px 13px;
+      border: 1px solid var(--warm-border);
+      border-radius: 9px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+      width: 100%;
+    }
+    input[type="number"]:focus, select:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255,107,53,0.12);
+      background: white;
+    }
+
+    /* PILL BUTTONS */
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--warm-border);
+      background: var(--bg);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .pill-btn:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-lt); }
+    .pill-btn.active { background: var(--orange); border-color: var(--orange); color: white; font-weight: 600; }
+
+    /* DOLLAR INPUT */
+    .dollar-input {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .dollar-sign {
+      position: absolute;
+      left: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-2);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .dollar-input input {
+      padding-left: 26px;
+    }
+    .dollar-input.sm {
+      width: 120px;
+      flex-shrink: 0;
+    }
+    .dollar-input.sm input { padding: 8px 10px 8px 26px; font-size: 13px; }
+
+    /* EXPENSE ROWS */
+    .expense-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      padding: 16px 0 8px;
+      border-top: 1px solid var(--warm-border);
+      margin-top: 8px;
+    }
+    .expense-group-label:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+    .expense-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .expense-row:last-child { border-bottom: none; }
+    .expense-row.flag-row { background: rgba(255,107,53,0.03); border-radius: 8px; padding: 10px 8px; }
+    .expense-info { flex: 1; min-width: 0; }
+    .expense-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .expense-note { font-size: 11.5px; color: var(--text-3); margin-top: 2px; }
+    .flag-chip {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      background: rgba(255,107,53,0.12);
+      color: var(--orange);
+      border-radius: 5px;
+      letter-spacing: 0.03em;
+    }
+
+    /* NAVIGATION BUTTONS */
+    .step-nav {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--warm-border);
+    }
+    .back-btn {
+      padding: 11px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--warm-border);
+      background: white;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .back-btn:hover { border-color: var(--border); color: var(--text); }
+    .next-btn {
+      padding: 11px 22px;
+      border-radius: 10px;
+      border: none;
+      background: var(--orange);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      font-family: inherit;
+    }
+    .next-btn:hover { background: #d4511c; }
+    .next-btn:active { transform: scale(0.98); }
+    .generate-btn {
+      padding: 11px 22px;
+      border-radius: 10px;
+      border: none;
+      background: var(--orange);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      font-family: inherit;
+    }
+    .generate-btn:hover { background: #d4511c; }
+    .generate-btn:active { transform: scale(0.98); }
+
+    /* PAYROLL FIELDS */
+    #payroll-fields {
+      border-left: 3px solid var(--orange-lt);
+      border-radius: 0 10px 10px 0;
+      padding-left: 16px;
+      margin-top: 16px;
+    }
+
+    /* OUTPUT SECTION */
+    .flags-section {
+      background: rgba(255,107,53,0.05);
+      border: 1px solid rgba(255,107,53,0.2);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+    }
+    .flags-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+    .flag-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,107,53,0.1);
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .flag-item:last-child { border-bottom: none; }
+    .flag-icon { flex-shrink: 0; font-size: 14px; }
+    .flag-text { flex: 1; }
+
+    .prompt-output-card {
+      background: #1a1a1a;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #2a2a2a;
+    }
+    .prompt-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .prompt-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .copy-btn {
+      padding: 5px 14px;
+      background: rgba(255,107,53,0.15);
+      border: 1px solid rgba(255,107,53,0.3);
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--orange);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .copy-btn:hover { background: rgba(255,107,53,0.25); }
+    .copy-btn.copied { background: rgba(52,199,89,0.2); border-color: rgba(52,199,89,0.4); color: var(--green); }
+    #generated-prompt {
+      width: 100%;
+      min-height: 320px;
+      background: transparent;
+      border: none;
+      padding: 18px 18px 20px;
+      font-size: 12.5px;
+      font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      resize: vertical;
+      outline: none;
+    }
+
+    .output-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .book-btn {
+      padding: 11px 22px;
+      border-radius: 10px;
+      background: var(--orange);
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .book-btn:hover { background: #d4511c; }
+    .output-note {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* SETUP WALKTHROUGH */
+    .setup-card {
+      background: var(--bg-white);
+      border-radius: 16px;
+      border: 1px solid var(--warm-border);
+      padding: 32px 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .steps-list { margin-top: 28px; display: flex; flex-direction: column; gap: 0; }
+    .step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .step-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+    .step-content { flex: 1; }
+    .step-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .step-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; margin-bottom: 8px; }
+    .step-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 7px;
+      background: var(--bg);
+      color: var(--text-3);
+      letter-spacing: 0.02em;
+    }
+    .step-tag.orange { background: rgba(255,107,53,0.1); color: var(--orange); }
+
+    /* HONEST LIMITATIONS */
+    .limits-list {
+      background: var(--bg-white);
+      border-radius: 16px;
+      border: 1px solid var(--warm-border);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .limit-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .limit-row:last-child { border-bottom: none; }
+    .limit-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .limit-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .limit-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: var(--hero-bg);
+      color: white;
+      text-align: center;
+      padding: 60px 24px;
+    }
+    .cta-section h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: white;
+      max-width: 540px;
+      margin: 0 auto 12px;
+    }
+    .cta-section p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      max-width: 420px;
+      margin: 0 auto 28px;
+      line-height: 1.5;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--orange);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .cta-btn:hover { background: #d4511c; transform: translateY(-1px); }
+    .cta-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 16px;
+      margin-bottom: 0;
+    }
+
+    /* GUIDE FOOTER */
+    .guide-footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--text-3);
+      border-top: 1px solid var(--warm-border);
+    }
+    .guide-footer a { color: var(--orange); text-decoration: none; }
+    .guide-footer a:hover { text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .step-inner { padding: 20px 18px 18px; }
+      .step-progress { padding: 18px 16px 16px; }
+      .step-dot-label { font-size: 9px; }
+      .codes-grid { grid-template-columns: 1fr 1fr; }
+      .flow-row { flex-direction: column; gap: 12px; }
+      .flow-arrow { transform: rotate(90deg); padding-bottom: 0; }
+      .flow-outputs { margin-left: 0; }
+      .expense-row { flex-wrap: wrap; }
+      .dollar-input.sm { width: 100%; }
+      .output-actions { flex-direction: column; align-items: stretch; }
+      .book-btn { text-align: center; }
+    }
+    @media (max-width: 400px) {
+      .codes-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">uremarkable</a>
+  <span class="nav-sep">/</span>
+  <a href="/for/trades/" class="nav-crumb">Trades</a>
+  <span class="nav-sep">/</span>
+  <a href="/for/trades/automations/" class="nav-crumb">Automations</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-crumb">BAS Prep Brief</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="plugin-badge">
+    <div class="plugin-badge-dot"></div>
+    AI for Trade Businesses
+  </div>
+  <h1>Your BAS brief. <span>Ready before Friday.</span></h1>
+  <p class="hero-sub">Answer five questions about your quarter. Get a complete prompt you can paste straight into Cowork.</p>
+  <div class="hero-pills">
+    <div class="hero-pill"><span>Available</span> on Pro &amp; Max plans</div>
+    <div class="hero-pill"><span>ATO-aligned</span> G1, G10, G11, 1A, 1B</div>
+    <div class="hero-pill"><span>Works with</span> Xero + spreadsheets</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Five questions. One complete brief.</h2>
+  <p class="section-sub">You answer what came through this quarter. The tool builds the structured prompt Cowork needs to sort it properly.</p>
+
+  <div class="flow-wrap">
+    <div class="flow-row">
+      <div class="flow-node">
+        <div class="flow-icon orange">🧾</div>
+        <div class="flow-label">Your transactions</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-node">
+        <div class="flow-icon orange">📋</div>
+        <div class="flow-label">BAS Brief tool</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-node">
+        <div class="flow-icon plugin">🤖</div>
+        <div class="flow-label brand">Cowork</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-outputs">
+        <div class="flow-output-row">
+          <div class="flow-output-icon">📊</div>
+          <div>
+            <div class="flow-output-text">Categorised brief</div>
+            <div class="flow-output-sub">G1, G10, G11, 1A, 1B sorted</div>
+          </div>
+        </div>
+        <div class="flow-output-row">
+          <div class="flow-output-icon">⚠️</div>
+          <div>
+            <div class="flow-output-text">Smart flags</div>
+            <div class="flow-output-sub">FBT, ABN, capital items</div>
+          </div>
+        </div>
+        <div class="flow-output-row">
+          <div class="flow-output-icon">📧</div>
+          <div>
+            <div class="flow-output-text">Accountant summary</div>
+            <div class="flow-output-sub">Ready to send or forward</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-divider"></div>
+    <div class="flow-note">No Xero connection required. You paste the brief into Cowork and work through it in conversation.</div>
+  </div>
+</div>
+
+<!-- ATO CODES EXPLAINER -->
+<div class="section" style="padding-top: 0;">
+  <div class="section-label">ATO Reference</div>
+  <h2 class="section-title">What the codes actually mean</h2>
+  <p class="section-sub">You don't need to memorise these. Cowork applies them. But it helps to know what's being sorted.</p>
+
+  <div class="codes-grid">
+    <div class="code-card">
+      <div class="code-tag">G1</div>
+      <div class="code-title">Total Sales</div>
+      <div class="code-desc">All GST-taxable income. The invoices you sent with GST on them. 10% of this becomes 1A.</div>
+      <div class="code-rate">GST collected: 10%</div>
+    </div>
+    <div class="code-card">
+      <div class="code-tag">G10</div>
+      <div class="code-title">Capital Purchases</div>
+      <div class="code-desc">Equipment, computers, tools over $300. These are assets, not just expenses. May need a depreciation schedule.</div>
+      <div class="code-rate">GST claimable: 10%</div>
+    </div>
+    <div class="code-card">
+      <div class="code-tag">G11</div>
+      <div class="code-title">Operating Expenses</div>
+      <div class="code-desc">Software, rent, contractor fees, professional services. Everything that keeps the business running day to day.</div>
+      <div class="code-rate">GST claimable: 10%</div>
+    </div>
+    <div class="code-card">
+      <div class="code-tag">1A</div>
+      <div class="code-title">GST Collected</div>
+      <div class="code-desc">What you owe the ATO. Automatically 10% of your G1 sales. Your accountant calculates this from what you report.</div>
+      <div class="code-rate">Auto-calculated</div>
+    </div>
+    <div class="code-card">
+      <div class="code-tag">1B</div>
+      <div class="code-title">GST Credits</div>
+      <div class="code-desc">What you can claim back. 10% of G10 and G11, but only when the supplier has an Australian ABN on their invoice.</div>
+      <div class="code-rate">Auto-calculated</div>
+    </div>
+  </div>
+</div>
+
+<!-- INTERACTIVE TOOL -->
+<div class="section" style="padding-top: 0;">
+  <div class="section-label">Try it now</div>
+  <h2 class="section-title">Build your BAS brief</h2>
+  <p class="section-sub">Fill in what you know. Skip what you don't. The prompt works either way.</p>
+
+  <div class="demo-card">
+
+    <!-- STEP PROGRESS -->
+    <div class="step-progress" id="step-progress">
+      <div class="step-dot active" data-step="1">
+        <div class="step-dot-circle">1</div>
+        <div class="step-dot-label">Business</div>
+      </div>
+      <div class="step-line" id="line-1"></div>
+      <div class="step-dot" data-step="2">
+        <div class="step-dot-circle">2</div>
+        <div class="step-dot-label">Income</div>
+      </div>
+      <div class="step-line" id="line-2"></div>
+      <div class="step-dot" data-step="3">
+        <div class="step-dot-circle">3</div>
+        <div class="step-dot-label">Expenses</div>
+      </div>
+      <div class="step-line" id="line-3"></div>
+      <div class="step-dot" data-step="4">
+        <div class="step-dot-circle">4</div>
+        <div class="step-dot-label">Payroll</div>
+      </div>
+      <div class="step-line" id="line-4"></div>
+      <div class="step-dot" data-step="5">
+        <div class="step-dot-circle">5</div>
+        <div class="step-dot-label">Your brief</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: BUSINESS BASICS -->
+    <div class="step-panel active" id="step-1">
+      <div class="step-inner">
+        <div class="step-heading">Business basics</div>
+        <div class="step-sub">Who are we doing this for?</div>
+
+        <div class="form-group">
+          <label>Business structure</label>
+          <div class="pill-group">
+            <button class="pill-btn active" data-group="biztype" data-val="Sole trader">Sole trader</button>
+            <button class="pill-btn" data-group="biztype" data-val="Company">Company</button>
+            <button class="pill-btn" data-group="biztype" data-val="Partnership">Partnership</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>GST registered?</label>
+          <div class="pill-group">
+            <button class="pill-btn active" data-group="gst" data-val="yes">Yes</button>
+            <button class="pill-btn" data-group="gst" data-val="no">No / not sure</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>BAS frequency</label>
+          <div class="pill-group">
+            <button class="pill-btn active" data-group="freq" data-val="Quarterly">Quarterly</button>
+            <button class="pill-btn" data-group="freq" data-val="Monthly">Monthly</button>
+          </div>
+        </div>
+
+        <div class="form-group" id="quarter-group">
+          <label>Quarter you're preparing</label>
+          <select id="quarter-select">
+            <option value="Q3 Jul-Sep 2025">Q3 Jul-Sep 2025</option>
+            <option value="Q4 Oct-Dec 2025">Q4 Oct-Dec 2025</option>
+            <option value="Q1 Jan-Mar 2026">Q1 Jan-Mar 2026</option>
+            <option value="Q2 Apr-Jun 2026" selected>Q2 Apr-Jun 2026</option>
+          </select>
+        </div>
+
+        <div class="step-nav">
+          <button class="next-btn" onclick="goToStep(2)">Next: Income ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: INCOME -->
+    <div class="step-panel" id="step-2">
+      <div class="step-inner">
+        <div class="step-heading">Income this quarter</div>
+        <div class="step-sub">What came in. Ballpark is fine.</div>
+
+        <div class="form-group">
+          <label>Total income received (inc. GST if applicable)</label>
+          <div class="dollar-input">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="total-income" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Did you invoice overseas clients or export any services?</label>
+          <div class="pill-group">
+            <button class="pill-btn" data-group="overseas-income" data-val="yes">Yes</button>
+            <button class="pill-btn active" data-group="overseas-income" data-val="no">No</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Any income received without charging GST?</label>
+          <div class="pill-group">
+            <button class="pill-btn" data-group="gstfree-income" data-val="yes">Yes</button>
+            <button class="pill-btn active" data-group="gstfree-income" data-val="no">No</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Unpaid invoices still outstanding at quarter end?</label>
+          <div class="pill-group">
+            <button class="pill-btn" data-group="outstanding" data-val="yes">Yes</button>
+            <button class="pill-btn active" data-group="outstanding" data-val="no">No</button>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button class="back-btn" onclick="goToStep(1)">Back</button>
+          <button class="next-btn" onclick="goToStep(3)">Next: Expenses ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: EXPENSES -->
+    <div class="step-panel" id="step-3">
+      <div class="step-inner">
+        <div class="step-heading">Expenses this quarter</div>
+        <div class="step-sub">Enter amounts for what applies. Leave blank or enter 0 for categories that don't.</div>
+
+        <div class="expense-group-label">Software and subscriptions</div>
+
+        <div class="expense-row">
+          <div class="expense-info">
+            <div class="expense-name">Australian vendors (GST on invoice)</div>
+            <div class="expense-note">Xero, MYOB, Google Workspace, Adobe, Slack, Atlassian, Canva</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-au-software" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-row flag-row">
+          <div class="expense-info">
+            <div class="expense-name">Overseas vendors (no AU ABN) <span class="flag-chip">GST-Free</span></div>
+            <div class="expense-note">OpenAI, Notion, GitHub, Figma, Zapier, Mailchimp, Loom</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-os-software" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-group-label">Contractors and professional services</div>
+
+        <div class="expense-row">
+          <div class="expense-info">
+            <div class="expense-name">Contractors with ABN and tax invoice</div>
+            <div class="expense-note">Subcontractors, freelancers, consultants with valid ABN</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-contractor-abn" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-row flag-row">
+          <div class="expense-info">
+            <div class="expense-name">Contractors WITHOUT ABN <span class="flag-chip">⚠️ Flag</span></div>
+            <div class="expense-note">Withholding tax (47%) required by law. Must flag for accountant.</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-contractor-noabn" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-row">
+          <div class="expense-info">
+            <div class="expense-name">Accountant, legal, professional fees</div>
+            <div class="expense-note">Requires valid tax invoice showing ABN and GST amount</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-professional" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-group-label">Operations and overheads</div>
+
+        <div class="expense-row flag-row">
+          <div class="expense-info">
+            <div class="expense-name">Meals and entertainment <span class="flag-chip">⚠️ 50% rule</span></div>
+            <div class="expense-note">Client lunches, team meals, coffees with clients. FBT applies.</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-meals" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-row">
+          <div class="expense-info">
+            <div class="expense-name">Travel and transport</div>
+            <div class="expense-note">Flights, rideshare, parking, fuel. Business portion only.</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-travel" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-row flag-row">
+          <div class="expense-info">
+            <div class="expense-name">Equipment and technology ($300+) <span class="flag-chip">⚠️ Capital</span></div>
+            <div class="expense-note">Laptops, phones, tools, monitors. May need depreciation schedule.</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-equipment" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-row">
+          <div class="expense-info">
+            <div class="expense-name">Home office expenses (business portion)</div>
+            <div class="expense-note">Internet, utilities, rent at your confirmed business percentage</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-homeoffice" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="expense-row">
+          <div class="expense-info">
+            <div class="expense-name">Bank and merchant fees</div>
+            <div class="expense-note">Bank charges, Stripe, PayPal. Input-taxed: no GST credit claimable.</div>
+          </div>
+          <div class="dollar-input sm">
+            <span class="dollar-sign">$</span>
+            <input type="number" id="exp-bank" placeholder="0" min="0">
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button class="back-btn" onclick="goToStep(2)">Back</button>
+          <button class="next-btn" onclick="goToStep(4)">Next: Payroll ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: PAYROLL -->
+    <div class="step-panel" id="step-4">
+      <div class="step-inner">
+        <div class="step-heading">Payroll this quarter</div>
+        <div class="step-sub">Wages and super are BAS Excluded. They don't affect your GST position but your accountant needs them in the full picture.</div>
+
+        <div class="form-group">
+          <label>Did you pay wages this quarter?</label>
+          <div class="pill-group">
+            <button class="pill-btn" data-group="has-payroll" data-val="yes">Yes</button>
+            <button class="pill-btn active" data-group="has-payroll" data-val="no">No</button>
+          </div>
+        </div>
+
+        <div id="payroll-fields" style="display: none;">
+          <div class="form-group">
+            <label>Total wages paid this quarter</label>
+            <div class="dollar-input">
+              <span class="dollar-sign">$</span>
+              <input type="number" id="exp-wages" placeholder="0" min="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Total super contributions paid this quarter</label>
+            <div class="dollar-input">
+              <span class="dollar-sign">$</span>
+              <input type="number" id="exp-super" placeholder="0" min="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>STP (Single Touch Payroll) lodged each payday?</label>
+            <div class="pill-group">
+              <button class="pill-btn" data-group="stp" data-val="yes">Yes, all good</button>
+              <button class="pill-btn" data-group="stp" data-val="unsure">Not sure</button>
+              <button class="pill-btn" data-group="stp" data-val="late">Running behind</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button class="back-btn" onclick="goToStep(3)">Back</button>
+          <button class="generate-btn" onclick="generateBrief()">Generate my BAS brief ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: OUTPUT -->
+    <div class="step-panel" id="step-5">
+      <div class="step-inner">
+        <div class="step-heading">Your BAS brief is ready</div>
+        <div class="step-sub">Paste this straight into Cowork. It knows what to do with it.</div>
+
+        <div id="flags-section" class="flags-section" style="display: none;">
+          <div class="flags-label">Items flagged for your attention</div>
+          <div id="flags-list"></div>
+        </div>
+
+        <div class="prompt-output-card">
+          <div class="prompt-header">
+            <div class="prompt-label">Cowork-ready prompt</div>
+            <button class="copy-btn" onclick="copyPrompt()">Copy</button>
+          </div>
+          <textarea id="generated-prompt" readonly></textarea>
+        </div>
+
+        <div class="output-actions">
+          <button class="back-btn" onclick="goToStep(4)">Edit answers</button>
+          <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" class="book-btn">Book a setup session ›</a>
+        </div>
+
+        <p class="output-note">This tool is for demonstration and planning purposes only. It does not constitute financial, tax, or BAS advice. Categories and codes shown are based on general ATO guidelines and may not reflect your specific circumstances. Always work with a registered tax agent or qualified accountant before lodging. <a href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/in-detail/your-industry/financial-services-and-insurance/gst-and-financial-supplies/reporting-financial-supplies-on-your-bas" target="_blank" style="color: var(--orange);">ATO guidance on reporting financial supplies on your BAS &rarr;</a></p>
+      </div>
+    </div>
+
+  </div><!-- end demo-card -->
+</div>
+
+<!-- SETUP WALKTHROUGH -->
+<div class="section" style="padding-top: 0;">
+  <div class="setup-card">
+    <div class="section-label">Setup</div>
+    <h2 class="section-title" style="margin-top: 10px;">How to get this running for your business</h2>
+    <p class="section-sub">One 60-minute session. BAS prep becomes a 45-minute check-in, not a 4-hour night shift.</p>
+
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">0</div>
+        <div class="step-content">
+          <div class="step-title">Create your Cowork project</div>
+          <div class="step-desc">Open Claude Desktop and create a new project. This keeps your business context, financials, and chat history separate from everything else you use Claude for.</div>
+          <span class="step-tag orange">New project, scoped to your business</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Set your financial context once</div>
+          <div class="step-desc">Tell Cowork your entity name, GST status, BAS frequency, accounting software, and your accountant's contact. It never asks again. Every session starts informed.</div>
+          <span class="step-tag">Business context, set once</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Run the BAS Prep Brief at quarter end</div>
+          <div class="step-desc">Fill in this tool, paste the output into Cowork alongside your bank statement or Xero export. It categorises everything, flags the edge cases, and asks the questions your accountant would.</div>
+          <span class="step-tag orange">The tool above, once a quarter</span>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Forward the summary to your accountant</div>
+          <div class="step-desc">Cowork generates a clean accountant-ready summary. You review and forward. The $300 call becomes a 10-minute check of what Cowork already sorted.</div>
+          <span class="step-tag">Accountant-ready output, every quarter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HONEST LIMITATIONS -->
+<div class="section" style="padding-top: 0;">
+  <div class="section-label">Honest limitations</div>
+  <h2 class="section-title">What this doesn't do</h2>
+  <p class="section-sub">No spin. This is a prompt-building tool, not an accounting system.</p>
+
+  <div class="limits-list">
+    <div class="limit-row">
+      <div class="limit-icon">⚠️</div>
+      <div class="limit-content">
+        <div class="limit-title">Not financial or tax advice</div>
+        <div class="limit-desc">This tool is for demonstration and planning purposes only. It does not constitute financial, tax, or BAS advice. All categorisations are based on general ATO guidelines and may not apply to your specific circumstances. Always consult a registered tax agent or qualified accountant before lodging. <a href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/in-detail/your-industry/financial-services-and-insurance/gst-and-financial-supplies/reporting-financial-supplies-on-your-bas" target="_blank" style="color: var(--orange);">ATO guidance on reporting financial supplies &rarr;</a></div>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">🔗</div>
+      <div class="limit-content">
+        <div class="limit-title">Doesn't connect to Xero directly</div>
+        <div class="limit-desc">You paste the prompt into Cowork, then share your transaction list alongside it. Cowork reasons through the data in conversation. It's not an automated Xero integration.</div>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">💻</div>
+      <div class="limit-content">
+        <div class="limit-title">Claude Desktop needs to be open</div>
+        <div class="limit-desc">Cowork runs inside Claude Desktop on macOS or Windows. Your machine needs to be active when you run the BAS session. Not a background process.</div>
+      </div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-icon">📋</div>
+      <div class="limit-content">
+        <div class="limit-title">Works best with a transaction list alongside it</div>
+        <div class="limit-desc">The brief gives Cowork the structure. A Xero export or bank statement gives it the detail. Both together means one session covers what used to take a night.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Stop losing BAS nights. Book a setup session.</h2>
+  <p>60 minutes to get your BAS workflow running. You run the next one in under an hour, not overnight.</p>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="cta-btn" target="_blank">Book a setup session</a>
+  <p class="cta-note">Pro or Max plan required &bull; macOS or Windows &bull; ~60 minutes</p>
+</div>
+
+<!-- GUIDE FOOTER -->
+<div class="guide-footer">
+  This tool is part of the <a href="https://uremarkable.com/for/trades/automations">automations every trade business should be running</a> guide.&nbsp;&nbsp;Want this set up for your business? <a href="https://uremarkable.com">Get started with Uremarkable &rarr;</a>
+</div>
+
+<script>
+  // ---- STEP NAVIGATION ----
+
+  function goToStep(step) {
+    // Hide all panels
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+
+    // Update progress dots
+    document.querySelectorAll('.step-dot').forEach(d => {
+      const s = parseInt(d.dataset.step);
+      const circle = d.querySelector('.step-dot-circle');
+      d.classList.remove('active', 'completed');
+      if (s < step) {
+        d.classList.add('completed');
+        circle.textContent = '✓';
+      } else if (s === step) {
+        d.classList.add('active');
+        circle.textContent = s;
+      } else {
+        circle.textContent = s;
+      }
+    });
+
+    // Update connector lines
+    for (let i = 1; i <= 4; i++) {
+      const line = document.getElementById('line-' + i);
+      if (line) {
+        line.classList.toggle('completed', i < step);
+      }
+    }
+
+    // Show target panel
+    document.getElementById('step-' + step).classList.add('active');
+
+    // Scroll into view
+    const card = document.querySelector('.demo-card');
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < 60 || rect.top > window.innerHeight * 0.4) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
+  // ---- PILL BUTTON LOGIC ----
+
+  document.querySelectorAll('.pill-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const group = this.dataset.group;
+      document.querySelectorAll('.pill-btn[data-group="' + group + '"]')
+        .forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      // Payroll fields toggle
+      if (group === 'has-payroll') {
+        document.getElementById('payroll-fields').style.display =
+          this.dataset.val === 'yes' ? 'block' : 'none';
+      }
+    });
+  });
+
+  // ---- HELPERS ----
+
+  function getPill(group) {
+    const active = document.querySelector('.pill-btn[data-group="' + group + '"].active');
+    return active ? active.dataset.val : '';
+  }
+
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function fmt(n) {
+    if (!n || n === 0) return null;
+    return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  }
+
+  // ---- GENERATE BRIEF ----
+
+  function generateBrief() {
+    // Collect Step 1
+    const biztype      = getPill('biztype') || 'Sole trader';
+    const gst          = getPill('gst');
+    const freq         = getPill('freq') || 'Quarterly';
+    const quarter      = document.getElementById('quarter-select').value;
+
+    // Collect Step 2
+    const totalIncome   = getNum('total-income');
+    const overseasInc   = getPill('overseas-income');
+    const gstfreeInc    = getPill('gstfree-income');
+    const outstanding   = getPill('outstanding');
+
+    // Collect Step 3
+    const auSoftware      = getNum('exp-au-software');
+    const osSoftware      = getNum('exp-os-software');
+    const contractorAbn   = getNum('exp-contractor-abn');
+    const contractorNoAbn = getNum('exp-contractor-noabn');
+    const professional    = getNum('exp-professional');
+    const meals           = getNum('exp-meals');
+    const travel          = getNum('exp-travel');
+    const equipment       = getNum('exp-equipment');
+    const homeoffice      = getNum('exp-homeoffice');
+    const bank            = getNum('exp-bank');
+
+    // Collect Step 4
+    const hasPayroll  = getPill('has-payroll');
+    const wages       = getNum('exp-wages');
+    const superAmt    = getNum('exp-super');
+    const stp         = getPill('stp');
+
+    // ---- BUILD FLAGS ----
+    const flags = [];
+
+    if (osSoftware > 0)
+      flags.push({ icon: '⚠️', text: 'Overseas software coded as GST-Free (no AU ABN found on invoice) -- no GST credit claimable on these subscriptions' });
+    if (contractorNoAbn > 0)
+      flags.push({ icon: '🚨', text: 'Contractor without ABN: 47% withholding tax required by law -- flag for accountant before any payment is made' });
+    if (meals > 0)
+      flags.push({ icon: '⚠️', text: 'Meals and entertainment: FBT 50% rule applies -- only 50% of this amount is claimable as a business expense' });
+    if (equipment > 0)
+      flags.push({ icon: '⚠️', text: 'Capital items $300+: may require a depreciation schedule (G10) rather than immediate deduction -- confirm with accountant' });
+    if (homeoffice > 0)
+      flags.push({ icon: '⚠️', text: 'Home office: business percentage only -- confirm your confirmed business % with accountant before claiming' });
+    if (overseasInc === 'yes')
+      flags.push({ icon: '⚠️', text: 'Overseas income reported: likely G2 Export Sales (GST-Free) -- confirm correct categorisation with accountant' });
+    if (hasPayroll === 'yes' && stp && stp !== 'yes')
+      flags.push({ icon: '⚠️', text: 'STP status: Single Touch Payroll must be lodged each payday, not just at BAS time -- check with accountant if behind' });
+    flags.push({ icon: '📋', text: 'Receipts: valid tax invoice required for every expense over $82.50 to claim the GST credit' });
+
+    // ---- BUILD PROMPT ----
+    let p = '';
+
+    p += 'Help me prepare for BAS. Here\'s what came through this quarter:\n\n';
+
+    p += 'BUSINESS\n';
+    p += 'Structure: ' + biztype + '\n';
+    p += 'GST registered: ' + (gst === 'yes' ? 'Yes' : 'No / not confirmed') + '\n';
+    p += 'BAS period: ' + quarter + '\n';
+    p += 'Frequency: ' + freq + '\n\n';
+
+    p += 'INCOME\n';
+    p += 'Total received this quarter: ' + (totalIncome > 0 ? fmt(totalIncome) : 'not entered') + '\n';
+    if (overseasInc === 'yes') p += 'Overseas / export income: yes -- flag for G2 GST-Free treatment\n';
+    if (gstfreeInc === 'yes')  p += 'GST-free domestic income: yes -- flag for G3 treatment\n';
+    if (outstanding === 'yes') p += 'Outstanding invoices at quarter end: yes -- note for debtors ledger\n';
+    p += '\n';
+
+    p += 'EXPENSES\n';
+
+    // Software
+    const noSoftware = auSoftware === 0 && osSoftware === 0;
+    if (!noSoftware) {
+      if (auSoftware > 0) p += 'AU software and subscriptions (G11, GST claimable): ' + fmt(auSoftware) + '\n';
+      if (osSoftware > 0) p += 'Overseas software / no AU ABN (G11, GST-Free, no credit): ' + fmt(osSoftware) + '\n';
+    }
+
+    // Contractors and professional
+    if (contractorAbn > 0)   p += 'Contractors with ABN and tax invoice (G11, GST): ' + fmt(contractorAbn) + '\n';
+    if (contractorNoAbn > 0) p += 'Contractors WITHOUT ABN (flag -- withholding tax required): ' + fmt(contractorNoAbn) + '\n';
+    if (professional > 0)    p += 'Professional services -- accountant, legal (G11, GST): ' + fmt(professional) + '\n';
+
+    // Operations
+    if (meals > 0)      p += 'Meals and entertainment (G11, GST, 50% FBT rule): ' + fmt(meals) + '\n';
+    if (travel > 0)     p += 'Travel and transport (G11, GST): ' + fmt(travel) + '\n';
+    if (equipment > 0)  p += 'Equipment and technology $300+ (G10, GST, capital): ' + fmt(equipment) + '\n';
+    if (homeoffice > 0) p += 'Home office expenses, business portion (G11, GST): ' + fmt(homeoffice) + '\n';
+    if (bank > 0)       p += 'Bank and merchant fees (No GST, input-taxed): ' + fmt(bank) + '\n';
+
+    const hasAnyExpense = auSoftware + osSoftware + contractorAbn + contractorNoAbn +
+                          professional + meals + travel + equipment + homeoffice + bank;
+    if (hasAnyExpense === 0) p += 'No expenses entered\n';
+    p += '\n';
+
+    // Payroll
+    if (hasPayroll === 'yes') {
+      p += 'PAYROLL (BAS Excluded -- not part of GST calculation)\n';
+      if (wages > 0)    p += 'Wages paid: ' + fmt(wages) + ' (BAS Excluded)\n';
+      if (superAmt > 0) p += 'Super contributions: ' + fmt(superAmt) + ' (BAS Excluded)\n';
+      if (stp === 'yes')    p += 'STP: confirmed lodged each payday\n';
+      else if (stp === 'late')   p += 'STP: running behind -- needs attention separately from BAS\n';
+      else if (stp === 'unsure') p += 'STP: not confirmed -- check with accountant\n';
+      p += '\n';
+    }
+
+    // Flags
+    p += 'FLAGS TO CHECK\n';
+    flags.forEach(f => { p += f.icon + ' ' + f.text + '\n'; });
+    p += '\n';
+
+    p += 'Please:\n';
+    p += '1. Categorise all income and expenses correctly for BAS using G1, G10, G11, 1A and 1B where relevant\n';
+    p += '2. Flag anything that looks personal, anything that needs supporting documentation, or any edge case to raise with my accountant\n';
+    p += '3. Give me a clean summary my accountant needs to review and lodge\n';
+    p += '4. Note any deadlines or compliance items I should have on my radar this quarter';
+
+    // ---- RENDER FLAGS ----
+    const flagsSection = document.getElementById('flags-section');
+    const flagsList    = document.getElementById('flags-list');
+    if (flags.length > 0) {
+      flagsSection.style.display = 'block';
+      flagsList.innerHTML = flags.map(f =>
+        '<div class="flag-item"><span class="flag-icon">' + f.icon + '</span><span class="flag-text">' + f.text + '</span></div>'
+      ).join('');
+    } else {
+      flagsSection.style.display = 'none';
+    }
+
+    // ---- RENDER PROMPT ----
+    document.getElementById('generated-prompt').value = p;
+
+    // ---- GO TO OUTPUT ----
+    goToStep(5);
+  }
+
+  // ---- COPY PROMPT ----
+
+  function copyPrompt() {
+    const ta  = document.getElementById('generated-prompt');
+    const btn = document.querySelector('.copy-btn');
+
+    const succeed = function() {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2500);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ta.value).then(succeed).catch(function() {
+        ta.select();
+        document.execCommand('copy');
+        succeed();
+      });
+    } else {
+      ta.select();
+      document.execCommand('copy');
+      succeed();
+    }
+  }
+</script>
+
+</body>
+</html>

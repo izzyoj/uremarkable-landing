@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trades Automations | Uremarkable</title>
 <style>
-  :root { --orange: #D97757; --orange-lt: rgba(217,119,87,0.10); --orange-border: rgba(217,119,87,0.25); }
+  :root { --orange: #ff6b35; --orange-lt: rgba(255,107,53,0.10); --orange-border: rgba(255,107,53,0.25); }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
@@ -31,6 +31,30 @@
   .nav-crumb { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; }
   .nav-crumb:hover { color: white; }
   .nav-title { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; }
+
+  /* PLUGIN BADGE */
+  .plugin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,107,53,0.18);
+    border: 1px solid rgba(255,107,53,0.35);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .plugin-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
   /* HERO */
   .hero {
@@ -64,7 +88,7 @@
     font-size: 15px; font-weight: 600;
     text-decoration: none; transition: background .15s;
   }
-  .btn-primary:hover { background: #c4654a; }
+  .btn-primary:hover { background: #d4511c; }
 
   /* TRUST STRIP */
   .trust-strip {
@@ -204,6 +228,10 @@
 
 <div style="background: #1C1A18;">
   <div class="hero">
+    <div class="plugin-badge">
+      <div class="plugin-badge-dot"></div>
+      AI for Trade Businesses
+    </div>
     <h1>Automations for the admin jobs<br>that <em>follow you home.</em></h1>
     <p class="hero-sub">Pick one. We set it up with your tools. You approve what sends.</p>
     <a href="https://calendar.notion.so/meet/uremarkable/baz" class="btn-primary">Book a setup session</a>
@@ -263,6 +291,28 @@
       <div class="auto-footer">
         <div class="auto-bestfor"><strong>Best for:</strong> tradies sick of awkward payment chasing</div>
         <div class="auto-cta">Set up Invoice Follow-Up →</div>
+      </div>
+    </a>
+
+    <!-- BAS PREP BRIEF -->
+    <a href="/for/trades/automations/bas-prep/" class="auto-card">
+      <div class="auto-card-header">
+        <div class="auto-icon">🧾</div>
+        <div class="auto-header-text">
+          <div class="auto-title">BAS Prep Brief</div>
+          <div class="auto-tagline">Stop losing BAS nights to guesswork.</div>
+        </div>
+      </div>
+      <ol class="auto-steps">
+        <li data-n="1">Answer five questions about your quarter</li>
+        <li data-n="2">Tool builds your ATO-aligned brief</li>
+        <li data-n="3">Paste it into Cowork with your bank export</li>
+        <li data-n="4">Cowork categorises, flags, and summarises</li>
+        <li data-n="5">Forward the summary to your accountant</li>
+      </ol>
+      <div class="auto-footer">
+        <div class="auto-bestfor"><strong>Best for:</strong> sole traders who dread BAS quarter and want to stop paying $300 just for the sorting conversation</div>
+        <div class="auto-cta">Try BAS Prep Brief →</div>
       </div>
     </a>
 
