@@ -9,7 +9,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
-    background: #f5f0eb;
+    background: #f5f5f7;
     color: #1d1d1f;
     font-size: 16px;
     line-height: 1.6;
@@ -60,26 +60,27 @@
     0%, 100% { opacity: 1; }
     50%       { opacity: 0.4; }
   }
+  /* INFO PILLS — static metadata, intentionally dim */
   .hero-pills {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 24px;
     margin-bottom: 28px;
   }
   .hero-pill {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
     border-radius: 20px;
-    padding: 5px 13px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.7);
+    padding: 4px 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.38);
+    letter-spacing: 0.01em;
   }
-  .hero-pill span { color: rgba(255,255,255,0.95); font-weight: 600; }
+  .hero-pill span { color: rgba(255,255,255,0.38); font-weight: 400; }
 
   /* HERO */
   .hero {
@@ -102,25 +103,46 @@
     margin: 0 auto;
     line-height: 1.5;
   }
+  /* STEP NAV — sits at top of main content, light background */
+  .step-nav {
+    margin-bottom: 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .step-pills-label {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
   .step-pills {
     display: flex;
-    justify-content: center;
-    gap: 8px;
+    justify-content: flex-start;
+    gap: 7px;
     flex-wrap: wrap;
-    margin-top: 32px;
   }
   .step-pill {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,107,53,0.08);
+    border: 1px solid rgba(255,107,53,0.25);
     border-radius: 20px;
     padding: 6px 14px;
     font-size: 13px;
-    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    color: #ff6b35;
     cursor: pointer;
     transition: all 0.2s;
   }
-  .step-pill:hover { background: rgba(255,255,255,0.25); }
-  .step-pill.active { background: white; color: #ff6b35; font-weight: 600; }
+  .step-pill:hover {
+    background: rgba(255,107,53,0.16);
+    border-color: rgba(255,107,53,0.4);
+  }
+  .step-pill.active {
+    background: #ff6b35;
+    border-color: #ff6b35;
+    color: white;
+    font-weight: 600;
+  }
 
   /* MAIN */
   .main { max-width: 800px; margin: 0 auto; padding: 40px 20px 80px; }
@@ -631,7 +653,7 @@
 <div class="hero">
   <div class="plugin-badge">
     <div class="plugin-badge-dot"></div>
-    Claude Cowork Plugin
+    AI for Trade Businesses
   </div>
   <h1>From voice note to quote in under 3 minutes</h1>
   <p>Here is exactly what happens when a flooring contractor uses Claude Cowork to quote a job on-site.</p>
@@ -640,18 +662,23 @@
     <div class="hero-pill">Built on <span>Claude Cowork</span></div>
     <div class="hero-pill">No custom code required</div>
   </div>
-  <div class="step-pills">
-    <div class="step-pill active" onclick="scrollToStep('step1')">Voice note</div>
-    <div class="step-pill" onclick="scrollToStep('step2')">Extraction</div>
-    <div class="step-pill" onclick="scrollToStep('step3')">Quote built</div>
-    <div class="step-pill" onclick="scrollToStep('step4')">Review</div>
-    <div class="step-pill" onclick="scrollToStep('step5')">Client email</div>
-    <div class="step-pill" onclick="scrollToStep('step6')">Follow-up</div>
-    <div class="step-pill" onclick="scrollToStep('step-setup')">Setup</div>
-  </div>
 </div>
 
 <div class="main">
+
+  <!-- STEP NAV -->
+  <div class="step-nav">
+    <div class="step-pills-label">Jump to step</div>
+    <div class="step-pills">
+      <div class="step-pill active" onclick="scrollToStep('step1')">Voice note</div>
+      <div class="step-pill" onclick="scrollToStep('step2')">Extraction</div>
+      <div class="step-pill" onclick="scrollToStep('step3')">Quote built</div>
+      <div class="step-pill" onclick="scrollToStep('step4')">Review</div>
+      <div class="step-pill" onclick="scrollToStep('step5')">Client email</div>
+      <div class="step-pill" onclick="scrollToStep('step6')">Follow-up</div>
+      <div class="step-pill" onclick="scrollToStep('step-setup')">Setup</div>
+    </div>
+  </div>
 
   <!-- STEP 1: VOICE NOTE -->
   <div class="step" id="step1">
