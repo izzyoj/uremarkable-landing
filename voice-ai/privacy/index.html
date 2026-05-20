@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)/voice-ai/privacy/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Scale Reception</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --border: #e5e7eb;
+      --warn-bg: #fffbeb;
+      --warn-border: #f59e0b;
+      --callout-bg: #f0f9ff;
+      --callout-border: #0ea5e9;
+      --summary-bg: #f0fdf4;
+      --summary-border: #22c55e;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    /* ── Sticky top bar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .topbar-logo {
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg at 50% 50%, #4aa6d9, #7ec6ef, #86cfa4, #3fae74, #4aa6d9);
+      position: relative;
+      box-shadow: 0 2px 8px rgba(74,166,217,0.4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-mark::after {
+      content:'';
+      position: absolute;
+      inset: 5px;
+      background: white;
+      border-radius: 50%;
+    }
+    .topbar-title {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .topbar-home {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .topbar-home:hover { text-decoration: underline; }
+
+    /* ── Layout ── */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .two-col {
+      display: flex;
+      gap: 56px;
+      align-items: flex-start;
+    }
+
+    /* ── Sidebar table of contents ── */
+    .toc-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 76px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+    .toc-sidebar h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .toc-sidebar ol {
+      list-style: none;
+      padding: 0;
+      counter-reset: toc;
+    }
+    .toc-sidebar ol li {
+      counter-increment: toc;
+      margin-bottom: 2px;
+    }
+    .toc-sidebar ol li a {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+      padding: 4px 6px;
+      border-radius: 5px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .toc-sidebar ol li a::before {
+      content: counter(toc);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .toc-sidebar ol li a:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* ── Content area ── */
+    .content { flex: 1; min-width: 0; }
+
+    .page-header { margin-bottom: 32px; }
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .last-updated {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .intro-text {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.7;
+    }
+
+    /* ── Callout boxes ── */
+    .box {
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+    .box-warn {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn-border);
+    }
+    .box-warn .box-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+    .box-warn p { font-size: 0.9rem; color: #78350f; }
+
+    .box-summary {
+      background: var(--summary-bg);
+      border-left: 4px solid var(--summary-border);
+    }
+    .box-summary .box-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #166534;
+      margin-bottom: 10px;
+    }
+    .box-summary ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .box-summary ul li {
+      font-size: 0.92rem;
+      color: #14532d;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+
+    .box-callout {
+      background: var(--callout-bg);
+      border-left: 4px solid var(--callout-border);
+    }
+    .box-callout .box-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #075985;
+      margin-bottom: 6px;
+    }
+    .box-callout p { font-size: 0.9rem; color: #0c4a6e; }
+
+    /* ── Sections ── */
+    .policy-section {
+      margin-bottom: 44px;
+      padding-top: 8px;
+    }
+    .policy-section h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .policy-section p {
+      color: #374151;
+      margin-bottom: 12px;
+      font-size: 0.97rem;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul, .policy-section ol {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+    .policy-section li {
+      color: #374151;
+      font-size: 0.97rem;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+    .policy-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 18px 0 8px;
+    }
+
+    a { color: var(--accent); }
+    a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-inner a {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .footer-inner a:hover { text-decoration: underline; }
+    .footer-inner p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .two-col { flex-direction: column; gap: 32px; }
+      .toc-sidebar {
+        position: static;
+        width: 100%;
+        max-height: none;
+        background: #f9fafb;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+      .page-header h1 { font-size: 1.5rem; }
+    }
+  </style>
+<script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+<body>
+
+<!-- ── Top bar ── -->
+<header class="topbar">
+  <a class="topbar-logo" href="/voice-ai/">
+    <span class="logo-mark"></span>Scale Reception
+  </a>
+  <span class="topbar-title">Privacy Policy</span>
+  <a class="topbar-home" href="/voice-ai/">← Back to site</a>
+</header>
+
+<div class="page-wrap">
+  <div class="two-col">
+
+    <!-- ── Sidebar TOC ── -->
+    <aside class="toc-sidebar" aria-label="Table of contents">
+      <h3>Contents</h3>
+      <ol>
+        <li><a href="#who-we-are" style="font-weight: 600; color: var(--accent);">Who we are</a></li>
+        <li><a href="#what-we-collect" style="">What we collect</a></li>
+        <li><a href="#how-we-collect" style="">How we collect it</a></li>
+        <li><a href="#how-we-use" style="">How we use it</a></li>
+        <li><a href="#ai-agents" style="">AI voice agents &amp; recordings</a></li>
+        <li><a href="#third-parties" style="">Third-party providers</a></li>
+        <li><a href="#our-tools" style="">Our tools</a></li>
+        <li><a href="#overseas">Overseas processing</a></li>
+        <li><a href="#security">Data security</a></li>
+        <li><a href="#accuracy">Accuracy &amp; AI limitations</a></li>
+        <li><a href="#retention">Data retention</a></li>
+        <li><a href="#access">Access &amp; correction</a></li>
+        <li><a href="#complaints">Complaints</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ol>
+    </aside>
+
+    <!-- ── Main content ── -->
+    <main class="content">
+
+      <div class="page-header">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: 24 April 2026</p>
+        <p class="intro-text">
+          This policy covers everyone who interacts with <strong>Scale Reception</strong> — including visitors to our website, prospective and current clients, people who contact us by phone, SMS, or email, and anyone who interacts with an AI voice agent or chatbot we have built or deployed. We are committed to handling your personal information with care, in line with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles (APPs).
+        </p>
+      </div>
+
+      <!-- Lawyer review warning -->
+      <div class="box box-warn">
+        <div class="box-label">Note for Scale Reception</div>
+        <p>This document is a starting point and has not been reviewed by a qualified Australian lawyer. Before publishing, we recommend having it reviewed by a legal professional familiar with Australian privacy law to ensure it accurately reflects your specific services and obligations.</p>
+      </div>
+
+      <!-- Plain-English summary -->
+      <div class="box box-summary">
+        <div class="box-label">Plain-English Summary</div>
+        <ul>
+          <li>We collect personal information when you visit our website, fill in a form, call us, or interact with an AI voice agent we've built.</li>
+          <li>We use your information to provide our services, respond to enquiries, and improve our AI systems — not to sell to third parties.</li>
+          <li>Calls handled by our AI agents may be recorded or transcribed. Where required, callers are notified before recording starts.</li>
+          <li>We use trusted third-party tools (telephony, AI platforms, scheduling, etc.) to deliver our service. Some of these operate outside Australia.</li>
+          <li>You can request access to, or correction of, your personal information at any time by contacting us.</li>
+        </ul>
+      </div>
+
+      <!-- Optional: Call recording callout for client deployments -->
+      <div class="box box-callout">
+        <div class="box-label">Call Recording Notice (optional — for client deployments)</div>
+        <p>Calls to this service may be recorded or transcribed for the purposes of providing the service, ensuring quality, training AI systems, and generating notes or summaries for the business you are contacting. If recording applies to your call, you will be notified at the start of the conversation.</p>
+      </div>
+
+      <!-- Section 1 -->
+      <section class="policy-section" id="who-we-are">
+        <h2><span class="section-num">1</span> Who we are</h2>
+        <p><strong>Scale Reception</strong> (ABN 18786398358) is an Australian business that builds and deploys AI voice receptionist services. We design, configure, and manage AI-powered phone agents that answer calls on behalf of our clients — primarily businesses in the real estate and property sector. We are the operator of this website and the entity responsible for the personal information described in this policy.</p>
+        <p>We are based in Australia and our services are directed at Australian businesses and their customers.</p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="policy-section" id="what-we-collect">
+        <h2><span class="section-num">2</span> What information we collect</h2>
+        <p>Depending on how you interact with us or with an AI voice system we have deployed, we may collect:</p>
+        <h3>Contact and identity information</h3>
+        <ul>
+          <li>Name, email address, phone number, and postal address</li>
+          <li>Business name, role, or industry (for clients and leads)</li>
+        </ul>
+        <h3>Communication content</h3>
+        <ul>
+          <li>Voice recordings and transcripts of calls handled by our AI agents</li>
+          <li>Messages sent via SMS, web chat, or contact forms</li>
+          <li>Enquiry details, booking requests, and responses to AI agent questions</li>
+        </ul>
+        <h3>Technical information</h3>
+        <ul>
+          <li>IP address, browser type, and device type when visiting our website</li>
+          <li>Pages viewed, time on site, and referring URLs (collected via analytics tools)</li>
+        </ul>
+        <h3>Service delivery information</h3>
+        <ul>
+          <li>Preferences and instructions provided by clients about how their AI agent should behave</li>
+          <li>Call logs, agent interaction summaries, and performance data relating to deployed agents</li>
+        </ul>
+        <p>We only collect information that is reasonably necessary for our business functions. We do not knowingly collect sensitive information (such as health, financial, or biometric data) unless a client's specific use case requires it and appropriate consent has been obtained.</p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="policy-section" id="how-we-collect">
+        <h2><span class="section-num">3</span> How we collect information</h2>
+        <p>We collect personal information in several ways:</p>
+        <ul>
+          <li><strong>Website forms:</strong> when you submit an enquiry, request a demo, or sign up for updates</li>
+          <li><strong>Phone calls and SMS:</strong> when you call a number managed or powered by our systems</li>
+          <li><strong>AI voice agents and chatbots:</strong> when you interact with a voice agent or chat system we have built for a client</li>
+          <li><strong>Booking tools:</strong> when you schedule a call or meeting via an integrated calendar or booking system</li>
+          <li><strong>Email:</strong> when you contact us directly or respond to our communications</li>
+          <li><strong>Client onboarding:</strong> when a business engages us and provides information about themselves or their customers</li>
+          <li><strong>Automatic collection:</strong> via cookies or analytics tools when you browse our website</li>
+        </ul>
+        <p>In some cases, we may receive personal information about end-users (for example, callers to a client's AI agent) from our clients as part of delivering our services. In those situations, we handle that information on behalf of our client and in accordance with our agreements with them.</p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="policy-section" id="how-we-use">
+        <h2><span class="section-num">4</span> How we use information</h2>
+        <p>We use personal information to:</p>
+        <ul>
+          <li>Respond to enquiries and provide our AI receptionist services</li>
+          <li>Build, configure, test, and maintain AI voice agents and related systems for clients</li>
+          <li>Communicate with clients about their accounts, services, and updates</li>
+          <li>Process bookings, payments, and service agreements</li>
+          <li>Improve the quality and accuracy of our AI systems (including reviewing call transcripts and recordings)</li>
+          <li>Send relevant service updates or marketing communications (you can opt out at any time)</li>
+          <li>Comply with our legal and contractual obligations</li>
+          <li>Protect against fraud, misuse, or technical issues</li>
+        </ul>
+        <p>We do not sell, rent, or trade your personal information to third parties for their own marketing purposes.</p>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="policy-section" id="ai-agents">
+        <h2><span class="section-num">5</span> AI voice agents, chatbots, and call recordings</h2>
+        <p>Our core service is building and deploying AI voice agents that answer phone calls on behalf of businesses. This section explains how we handle information in that context.</p>
+
+        <h3>AI disclosure and how to know you're talking to an AI</h3>
+        <p>When you call a number powered by our AI voice agent, we disclose that you are speaking with an artificial intelligence system. This disclosure typically occurs at the start of the call or in a greeting message. We believe in being transparent about AI involvement so callers understand the nature of the interaction.</p>
+
+        <h3>Call recordings and transcripts</h3>
+        <p>Calls handled by an AI voice agent we have deployed may be recorded and/or automatically transcribed. We may retain these recordings and transcripts to:</p>
+        <ul>
+          <li>Deliver the service (for example, generating call summaries, forwarding booking requests, or creating notes)</li>
+          <li>Monitor call quality and performance</li>
+          <li>Identify errors or system improvements</li>
+          <li>Train and improve AI system accuracy and responses</li>
+          <li>Comply with legal or business requirements</li>
+        </ul>
+
+        <h3>Recording notice and consent</h3>
+        <p>Where a call is being recorded, we take reasonable steps to notify the caller before recording begins — typically by playing a disclosure message at the start of the call. The message informs the caller that the call may be recorded for service, quality, training, or note-taking purposes.</p>
+        <p>Callers are generally free to end the call if they do not consent to recording. If a caller continues after the notification, their continuation is treated as consent to recording.</p>
+
+        <h3>Data collected from calls</h3>
+        <p>During a call to an AI agent we have deployed, the following information may be collected:</p>
+        <ul>
+          <li><strong>Audio recording:</strong> the full call or call segments</li>
+          <li><strong>Transcripts:</strong> text conversion of spoken words</li>
+          <li><strong>Phone number:</strong> the caller's phone number (may be captured by telephony systems)</li>
+          <li><strong>Call metadata:</strong> call duration, date, time, and any call routing information</li>
+          <li><strong>Interaction content:</strong> details provided by the caller (e.g. name, query type, booking details)</li>
+        </ul>
+
+        <h3>State and territory recording laws</h3>
+        <p>Call recording laws vary significantly across Australian states and territories. Some key points:</p>
+        <ul>
+          <li><strong>Some states require all-party consent:</strong> In jurisdictions like New South Wales and Victoria, all parties to a conversation must consent before a call can be recorded.</li>
+          <li><strong>Some states apply one-party consent:</strong> In other jurisdictions, one party may be able to record without all parties' knowledge (though this is becoming less common).</li>
+          <li><strong>Business context:</strong> When a business receives an incoming call, there may be different consent rules compared to outgoing calls.</li>
+        </ul>
+        <p>We work with our clients to configure systems that comply with the laws of their state or territory. If you have questions about whether a specific call was recorded or about the applicable recording laws, you may contact the business whose AI agent you interacted with, or contact us directly.</p>
+
+        <h3>AI model processing</h3>
+        <p>AI voice agents we deploy may use third-party AI models to understand and respond to callers. This processing occurs via platforms we integrate with, such as voice agent infrastructure and large language model providers. Input to these models may include spoken words converted to text. We choose providers that operate appropriate data handling standards and we apply contractual protections where possible.</p>
+
+        <h3>No autonomous decision-making</h3>
+        <p>Our AI agents are designed to handle routine enquiries and bookings. They do not make significant decisions about individuals (such as eligibility decisions, approvals, or rejections) without human involvement. If an AI agent cannot assist or detects a sensitive matter, it will typically offer to connect the caller with a human or take a message for follow-up.</p>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="policy-section" id="third-parties">
+        <h2><span class="section-num">6</span> Third-party service providers</h2>
+        <p>To deliver our services, we work with a range of trusted third-party providers. These may include:</p>
+        <ul>
+          <li><strong>Telephony and call infrastructure:</strong> platforms used to manage phone numbers, route calls, and handle SMS (e.g. Twilio or similar providers)</li>
+          <li><strong>AI voice agent platforms:</strong> infrastructure used to build and manage AI voice agents (e.g. Retell AI or similar)</li>
+          <li><strong>AI language models:</strong> large language model providers used to power conversational responses within AI agents (e.g. Google Gemini, OpenAI, or similar)</li>
+          <li><strong>Workflow and automation tools:</strong> platforms used to automate follow-up tasks, notifications, or data handoffs</li>
+          <li><strong>Hosting and cloud infrastructure:</strong> providers used to host our website and any supporting systems</li>
+          <li><strong>Analytics:</strong> tools used to understand how our website is used</li>
+          <li><strong>CRM and client management:</strong> tools used to manage client relationships and communications</li>
+          <li><strong>Calendar and scheduling:</strong> tools used to handle booking and appointment integrations</li>
+        </ul>
+        <p>We take reasonable steps to ensure that third-party providers handle personal information appropriately and in line with applicable laws. Where possible, we put data processing agreements in place with our providers.</p>
+        <p>We do not authorise our service providers to use or disclose your personal information for purposes other than those set out in this policy or as required by law.</p>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="policy-section" id="our-tools">
+        <h2><span class="section-num">7</span> Our tools</h2>
+        <p>Scale Reception uses the following key platforms and tools to build and deliver AI voice receptionist services:</p>
+        <ul>
+          <li><strong>Twilio:</strong> Telephony infrastructure for managing phone numbers, routing calls, and handling SMS messages. Twilio may store call metadata and handle routing logic.</li>
+          <li><strong>Retell AI:</strong> AI voice agent platform used to build, configure, deploy, and manage voice agents. Retell AI handles call orchestration, AI conversation logic, and may store call recordings and transcripts.</li>
+          <li><strong>Google Gemini:</strong> Large language model used to power conversational responses and understanding within our AI agents. Voice input is converted to text and sent to Gemini for processing.</li>
+        </ul>
+        <p>Data processed by these tools may be transferred to, stored on, or processed on servers located outside Australia, including in the United States. Each of these providers has their own privacy policies and data handling practices. We recommend reviewing their privacy documentation if you have concerns about how your data is handled.</p>
+        <p>We have data processing agreements in place with these providers where possible to ensure they handle personal information appropriately. However, we cannot guarantee the same level of privacy protection as Australian law may provide, as some overseas jurisdictions have different privacy standards.</p>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="policy-section" id="overseas">
+        <h2><span class="section-num">8</span> Overseas processing</h2>
+        <p>Some of the third-party providers we use are based outside Australia, including in the United States. As a result, personal information (including call recordings or transcripts) may be stored or processed on servers located overseas.</p>
+        <p>Where this occurs, we take reasonable steps to ensure that overseas recipients handle personal information in a way that is consistent with the Australian Privacy Principles. In some cases, the overseas country may not have privacy laws that are equivalent to Australia's, but we seek to address this through our provider agreements and technical controls where possible.</p>
+        <p>By using our services or interacting with an AI agent we have deployed, you acknowledge that your information may be transferred, stored, or processed outside Australia in the circumstances described above.</p>
+      </section>
+
+      <!-- Section 9 -->
+      <section class="policy-section" id="security">
+        <h2><span class="section-num">9</span> Data security</h2>
+        <p>We take reasonable steps to protect the personal information we hold from misuse, interference, loss, unauthorised access, modification, or disclosure. These steps include:</p>
+        <ul>
+          <li>Using reputable, security-conscious third-party platforms and providers</li>
+          <li>Limiting access to personal information to those who need it to do their job</li>
+          <li>Using encrypted connections (HTTPS) for our website and where supported by our tools</li>
+          <li>Reviewing and updating our practices as our services evolve</li>
+        </ul>
+        <p>No method of electronic storage or transmission is 100% secure. While we work to protect your information, we cannot guarantee absolute security. If you become aware of any potential security concern related to your information, please contact us promptly.</p>
+      </section>
+
+      <!-- Section 10 -->
+      <section class="policy-section" id="accuracy">
+        <h2><span class="section-num">10</span> Accuracy and limitations of AI</h2>
+        <p>While we work hard to provide accurate AI voice agents, artificial intelligence systems are not perfect and may make mistakes. Callers and clients should be aware of the following:</p>
+        <h3>AI can make errors</h3>
+        <p>Our AI agents may occasionally misunderstand caller requests, provide inaccurate information, or make inappropriate responses. We continuously work to improve accuracy, but perfection is not achievable. If you notice an error or inappropriate response from an AI agent, we encourage you to report it to the business you contacted.</p>
+        <h3>Human review of important information</h3>
+        <p>For important matters — such as property details, pricing, availability, or service terms — we recommend that information provided by an AI agent be verified with a human representative. We design our agents to flag sensitive or important information for human follow-up where appropriate.</p>
+        <h3>Limitations and responsible use</h3>
+        <p>Our AI agents are designed to handle routine enquiries and bookings. They should not be relied upon for:</p>
+        <ul>
+          <li>Complex legal or financial advice</li>
+          <li>Critical decisions that affect an individual's rights or safety</li>
+          <li>Handling of sensitive personal or health information without clear consent</li>
+          <li>Services requiring qualified professional judgment</li>
+        </ul>
+        <p>When an AI agent encounters a matter outside its scope, it should escalate to a human or decline to proceed.</p>
+      </section>
+
+      <!-- Section 11 -->
+      <section class="policy-section" id="retention">
+        <h2><span class="section-num">11</span> Data retention</h2>
+        <p>We retain personal information for as long as it is needed to provide our services and meet our legal or contractual obligations. After that, we take reasonable steps to securely delete or de-identify the information.</p>
+        <p>For call recordings and transcripts generated by AI agents deployed for clients, we typically retain these recordings for <strong>90 days</strong> from the date of the call. This retention period allows us to review calls for service improvement, identify system errors, and refine our AI agent responses. After 90 days, recordings are securely deleted unless a longer retention period is required by the relevant client or applicable law.</p>
+
+        <h3>Requesting deletion of call history</h3>
+        <p>If you have called an AI voice agent we have deployed and would like us to delete your specific call history, recording, or transcript, you can request this at any time. To request deletion of your call records, please contact us at <a href="mailto:harrison@blackboxbots.com">harrison@blackboxbots.com</a>. We will process your deletion request within a reasonable timeframe, subject to any legal obligations we may have to retain the information.</p>
+
+        <p>If you would like to know more about how long we hold a specific type of information, you can contact us.</p>
+      </section>
+
+      <!-- Section 12 -->
+      <section class="policy-section" id="access">
+        <h2><span class="section-num">12</span> Access and correction</h2>
+        <p>You have the right to request access to personal information we hold about you, and to ask us to correct it if it is inaccurate, out of date, incomplete, or misleading.</p>
+        <p>To make a request, please contact us using the details in the Contact Us section below. We will respond within a reasonable timeframe — generally within 30 days. In most cases we will provide access free of charge, though we may charge a reasonable fee in some circumstances (for example, if a request requires significant effort to fulfil).</p>
+        <p>There are some situations where we may not be able to provide access — for example, where doing so would unreasonably affect the privacy of another person, or where we are required by law to withhold the information. If we refuse a request, we will tell you why and let you know how to make a complaint.</p>
+      </section>
+
+      <!-- Section 13 -->
+      <section class="policy-section" id="complaints">
+        <h2><span class="section-num">13</span> Complaints</h2>
+        <p>If you believe we have handled your personal information in a way that does not comply with the Australian Privacy Principles, you are welcome to raise it with us first. Please contact us using the details below and we will do our best to address your concern.</p>
+        <p>If you are not satisfied with our response, you can lodge a complaint with the <strong>Office of the Australian Information Commissioner (OAIC)</strong>:</p>
+        <ul>
+          <li>Website: <a href="https://www.oaic.gov.au/" target="_blank" rel="noopener">www.oaic.gov.au</a></li>
+          <li>Phone: 1300 363 992</li>
+          <li>GPO Box 5218, Sydney NSW 2001</li>
+        </ul>
+      </section>
+
+      <!-- Section 14 -->
+      <section class="policy-section" id="contact">
+        <h2><span class="section-num">14</span> Contact us</h2>
+        <p>For any privacy-related questions, requests, or concerns, please get in touch:</p>
+        <ul>
+          <li><strong>Business:</strong> Scale Reception</li>
+          <li><strong>ABN:</strong> 18786398358</li>
+          <li><strong>Email:</strong> <a href="mailto:harrison@blackboxbots.com">harrison@blackboxbots.com</a></li>
+        </ul>
+        <p>We aim to respond to all privacy enquiries within 5 business days.</p>
+        <p>This policy may be updated from time to time to reflect changes in our services or legal requirements. When we make significant changes, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/voice-ai/">← Back to Scale Reception</a> &nbsp;·&nbsp; <a href="/voice-ai/terms/">Terms of Service</a>
+    <p>© 2026 Scale Reception — ABN 18 786 398 358</p>
+    <p>This policy is governed by the laws of Australia.</p>
+  </div>
+</footer>
+
+<script>
+  // Highlight active TOC link on scroll
+  const sections = document.querySelectorAll('.policy-section');
+  const tocLinks = document.querySelectorAll('.toc-sidebar a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tocLinks.forEach(link => {
+          link.style.fontWeight = link.getAttribute('href') === '#' + id ? '600' : '';
+          link.style.color = link.getAttribute('href') === '#' + id ? 'var(--accent)' : '';
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+
+
+</body></html>
