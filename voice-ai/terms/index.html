@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)/voice-ai/terms/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Scale Reception</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --border: #e5e7eb;
+      --warn-bg: #fffbeb;
+      --warn-border: #f59e0b;
+      --callout-bg: #f0f9ff;
+      --callout-border: #0ea5e9;
+      --summary-bg: #f0fdf4;
+      --summary-border: #22c55e;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    /* ── Sticky top bar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .topbar-logo {
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg at 50% 50%, #4aa6d9, #7ec6ef, #86cfa4, #3fae74, #4aa6d9);
+      position: relative;
+      box-shadow: 0 2px 8px rgba(74,166,217,0.4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-mark::after {
+      content:'';
+      position: absolute;
+      inset: 5px;
+      background: white;
+      border-radius: 50%;
+    }
+    .topbar-title {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .topbar-home {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .topbar-home:hover { text-decoration: underline; }
+
+    /* ── Layout ── */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .two-col {
+      display: flex;
+      gap: 56px;
+      align-items: flex-start;
+    }
+
+    /* ── Sidebar table of contents ── */
+    .toc-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 76px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+    .toc-sidebar h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .toc-sidebar ol {
+      list-style: none;
+      padding: 0;
+      counter-reset: toc;
+    }
+    .toc-sidebar ol li {
+      counter-increment: toc;
+      margin-bottom: 2px;
+    }
+    .toc-sidebar ol li a {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+      padding: 4px 6px;
+      border-radius: 5px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .toc-sidebar ol li a::before {
+      content: counter(toc);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .toc-sidebar ol li a:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* ── Content area ── */
+    .content { flex: 1; min-width: 0; }
+
+    .page-header { margin-bottom: 32px; }
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .last-updated {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .intro-text {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.7;
+    }
+
+    /* ── Callout boxes ── */
+    .box {
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+    .box-warn {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn-border);
+    }
+    .box-warn .box-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+    .box-warn p { font-size: 0.9rem; color: #78350f; }
+
+    .box-summary {
+      background: var(--summary-bg);
+      border-left: 4px solid var(--summary-border);
+    }
+    .box-summary .box-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #166534;
+      margin-bottom: 10px;
+    }
+    .box-summary ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .box-summary ul li {
+      font-size: 0.92rem;
+      color: #14532d;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+
+    .box-callout {
+      background: var(--callout-bg);
+      border-left: 4px solid var(--callout-border);
+    }
+    .box-callout .box-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #075985;
+      margin-bottom: 6px;
+    }
+    .box-callout p { font-size: 0.9rem; color: #0c4a6e; }
+
+    /* ── Sections ── */
+    .policy-section {
+      margin-bottom: 44px;
+      padding-top: 8px;
+    }
+    .policy-section h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .policy-section p {
+      color: #374151;
+      margin-bottom: 12px;
+      font-size: 0.97rem;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul, .policy-section ol {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+    .policy-section li {
+      color: #374151;
+      font-size: 0.97rem;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+    .policy-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 18px 0 8px;
+    }
+
+    a { color: var(--accent); }
+    a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-inner a {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .footer-inner a:hover { text-decoration: underline; }
+    .footer-inner p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .two-col { flex-direction: column; gap: 32px; }
+      .toc-sidebar {
+        position: static;
+        width: 100%;
+        max-height: none;
+        background: #f9fafb;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+      .page-header h1 { font-size: 1.5rem; }
+    }
+  </style>
+<script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+<body>
+
+<!-- ── Top bar ── -->
+<header class="topbar">
+  <a class="topbar-logo" href="/voice-ai/">
+    <span class="logo-mark"></span>Scale Reception
+  </a>
+  <span class="topbar-title">Terms of Service</span>
+  <a class="topbar-home" href="/voice-ai/">← Back to site</a>
+</header>
+
+<div class="page-wrap">
+  <div class="two-col">
+
+    <!-- ── Sidebar TOC ── -->
+    <aside class="toc-sidebar" aria-label="Table of contents">
+      <h3>Contents</h3>
+      <ol>
+        <li><a href="#agreement">Agreement to terms</a></li>
+        <li><a href="#services">Our services</a></li>
+        <li><a href="#eligibility">Eligibility</a></li>
+        <li><a href="#account">Account and access</a></li>
+        <li><a href="#pricing">Pricing and payment</a></li>
+        <li><a href="#termination">Termination</a></li>
+        <li><a href="#use-restrictions">Restrictions on use</a></li>
+        <li><a href="#ip-rights">Intellectual property</a></li>
+        <li><a href="#client-content">Client-provided content</a></li>
+        <li><a href="#recording">Recording and consent</a></li>
+        <li><a href="#ai-limitations">AI system limitations</a></li>
+        <li><a href="#liability">Limitation of liability</a></li>
+        <li><a href="#indemnity">Indemnification</a></li>
+        <li><a href="#warranties">Warranties</a></li>
+        <li><a href="#confidentiality">Confidentiality</a></li>
+        <li><a href="#amendments">Changes to terms</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </aside>
+
+    <!-- ── Main content ── -->
+    <main class="content">
+
+      <div class="page-header">
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last updated: 26 April 2026</p>
+        <p class="intro-text">
+          These Terms of Service (the "Terms") govern your use of Scale Reception's website, services, and AI voice agent platform. By accessing our website or engaging our services, you agree to be bound by these Terms. If you do not agree, please do not use our services.
+        </p>
+      </div>
+
+      <!-- Lawyer review warning -->
+      <div class="box box-warn">
+        <div class="box-label">Note for Scale Reception</div>
+        <p>These Terms are a starting point and have not been reviewed by a qualified Australian lawyer. Before publishing, we recommend having them reviewed by a legal professional to ensure they appropriately protect your business and comply with Australian law (including Australian Consumer Law).</p>
+      </div>
+
+      <!-- Plain-English summary -->
+      <div class="box box-summary">
+        <div class="box-label">Plain-English Summary</div>
+        <ul>
+          <li>You agree to use our services lawfully and comply with all recording consent and telephony laws.</li>
+          <li>You provide content and instructions for your AI agent; you remain responsible for what it says and does.</li>
+          <li>Our AI systems are powerful but imperfect — we're not liable for errors, missed calls, or unexpected behavior (subject to ACL carve-outs).</li>
+          <li>You must pay invoices on time. If we raise prices, you have 14 days to accept or terminate without penalty.</li>
+          <li>Either party can end the relationship. After termination, we delete your data per our Privacy Policy.</li>
+          <li>You own your client data; we own the platform and AI technology.</li>
+        </ul>
+      </div>
+
+      <!-- Section 1 -->
+      <section class="policy-section" id="agreement">
+        <h2><span class="section-num">1</span> Agreement to terms</h2>
+        <p>By accessing or using Scale Reception's website, services, or AI voice agent platform (collectively, the "Service"), you enter into a legally binding agreement with <strong>Scale Reception</strong> (ABN 18786398358). If you are using the Service on behalf of a business or organization, you represent and warrant that you have the authority to bind that entity to these Terms.</p>
+        <p>These Terms, together with our Privacy Policy and any signed service agreements, constitute the entire agreement between you and Scale Reception regarding your use of the Service. If there is a conflict between a signed agreement and these Terms, the signed agreement takes precedence.</p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="policy-section" id="services">
+        <h2><span class="section-num">2</span> Our services</h2>
+        <p>Scale Reception provides AI voice receptionist services to businesses, primarily in the real estate sector. Our services include:</p>
+        <ul>
+          <li>Design and configuration of AI voice agents tailored to your business</li>
+          <li>Deployment and management of voice agents across phone systems</li>
+          <li>Integration with third-party platforms (CRMs, booking systems, etc.)</li>
+          <li>Ongoing monitoring, support, and optimization of agent performance</li>
+          <li>Access to our platform for managing and reviewing agent interactions</li>
+        </ul>
+        <h3>Service scope and support</h3>
+        <p>Your agreement will specify the scope of support included (e.g., business hours vs. 24/7 availability, response times for issues, frequency of performance reviews). Unless otherwise stated in a signed service agreement, Scale Reception provides:</p>
+        <ul>
+          <li>Standard business-hours support (Monday–Friday, 9am–5pm AEST)</li>
+          <li>Monthly performance reports and optimization recommendations</li>
+          <li>Bug fixes and platform updates on a best-efforts basis</li>
+        </ul>
+        <p>Support levels beyond these may be available as a paid add-on.</p>
+        <h3>Service delivery</h3>
+        <p>The Service is provided "as is" on a best-efforts basis. We do not guarantee the Service will be error-free, uninterrupted, or suitable for every application.</p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="policy-section" id="eligibility">
+        <h2><span class="section-num">3</span> Eligibility</h2>
+        <p>To use our Service, you must:</p>
+        <ul>
+          <li>Be at least 18 years of age (or the legal age of majority in your jurisdiction)</li>
+          <li>Be authorized to enter into legally binding agreements</li>
+          <li>Have a valid Australian Business Number (ABN) or be a registered Australian entity (for commercial clients)</li>
+          <li>Not be barred from using the Service under Australian law or any other applicable jurisdiction</li>
+          <li>Comply with all applicable laws and regulations in your use of the Service</li>
+        </ul>
+        <p>We reserve the right to refuse service to anyone in violation of these eligibility requirements.</p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="policy-section" id="account">
+        <h2><span class="section-num">4</span> Account and access</h2>
+        <p>When you sign up for our Service, you may create an account with login credentials (email and password). You are responsible for keeping your credentials confidential and for all activity that occurs under your account.</p>
+        <p>You agree to:</p>
+        <ul>
+          <li>Provide accurate and current information during registration</li>
+          <li>Maintain the confidentiality of your account credentials</li>
+          <li>Notify us immediately of any unauthorized access or suspected breach</li>
+          <li>Accept responsibility for all activity under your account</li>
+        </ul>
+        <p>We are not liable for unauthorized access resulting from your failure to protect your credentials.</p>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="policy-section" id="pricing">
+        <h2><span class="section-num">5</span> Pricing and payment</h2>
+        <h3>Pricing model</h3>
+        <p>Our service is typically provided on a monthly subscription basis. Pricing consists of:</p>
+        <ul>
+          <li><strong>Implementation or setup fee (where applicable):</strong> a one-time fee for configuring your AI agent</li>
+          <li><strong>Monthly retainer fee:</strong> a recurring monthly charge for platform access and agent management</li>
+        </ul>
+        <p>Specific pricing is detailed in your service agreement or proposal. We may adjust pricing with 30 days' written notice for new billing cycles. If you do not accept a price increase, you may terminate your agreement without penalty by notifying us in writing within 14 days of the price change notice. Continued use of the Service after the notice period constitutes acceptance of the new pricing.</p>
+
+        <h3>Payment terms</h3>
+        <p>Invoices are typically issued monthly and are due within 14 days of issue (or as specified in your agreement). Payment can be made by bank transfer or as otherwise agreed.</p>
+        <p>If payment is not received by the due date, we may:</p>
+        <ul>
+          <li>Charge late fees (where permitted by law)</li>
+          <li>Suspend your access to the Service until payment is received</li>
+          <li>Terminate your account and pursue other remedies</li>
+        </ul>
+
+        <h3>No refunds</h3>
+        <p>Monthly retainer fees and setup fees are generally non-refundable once incurred, except where Australian Consumer Law mandates otherwise (e.g., if the Service fails to meet consumer guarantees). If you terminate early, you remain responsible for fees through the end of the current billing cycle.</p>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="policy-section" id="termination">
+        <h2><span class="section-num">6</span> Termination</h2>
+        <h3>Termination by you</h3>
+        <p>You may terminate your agreement with Scale Reception at any time by providing written notice (email is acceptable). Your access will be suspended, and you will remain responsible for fees through the end of the current billing cycle unless otherwise agreed.</p>
+
+        <h3>Termination by us</h3>
+        <p>We may suspend or terminate your access immediately if:</p>
+        <ul>
+          <li>You breach these Terms or our Privacy Policy</li>
+          <li>You fail to pay invoices for more than 30 days</li>
+          <li>You use the Service to violate laws or harm others</li>
+          <li>You interfere with our systems or other users' access</li>
+        </ul>
+        <p>We may also terminate for convenience with 30 days' written notice if we cease providing the Service.</p>
+
+        <h3>Effect of termination</h3>
+        <p>Upon termination:</p>
+        <ul>
+          <li>Your access to the Service ceases immediately</li>
+          <li>We cease deploying or managing your AI agent</li>
+          <li>We securely delete or de-identify your data per our Privacy Policy (generally within 90 days)</li>
+          <li>You remain responsible for any outstanding fees</li>
+        </ul>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="policy-section" id="use-restrictions">
+        <h2><span class="section-num">7</span> Restrictions on use</h2>
+        <p>You agree not to use the Service to:</p>
+        <ul>
+          <li>Violate any applicable law or regulation</li>
+          <li>Harass, threaten, defame, or discriminate against others</li>
+          <li>Transmit malware, viruses, or other harmful code</li>
+          <li>Interfere with or disrupt the Service or our infrastructure</li>
+          <li>Attempt to gain unauthorized access to our systems or other users' accounts</li>
+          <li>Reverse-engineer, decompile, or attempt to extract our AI models or technology</li>
+          <li>Use the Service for fraud, scams, or deceptive practices</li>
+          <li>Collect or use personal information of others without consent</li>
+          <li>Test our security without written permission (unauthorized penetration testing)</li>
+          <li>Impersonate another person or entity</li>
+        </ul>
+        <p>Violation of these restrictions may result in immediate suspension or termination of your account, legal action, and claims for damages.</p>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="policy-section" id="ip-rights">
+        <h2><span class="section-num">8</span> Intellectual property rights</h2>
+        <h3>Our intellectual property</h3>
+        <p>Scale Reception retains all rights to:</p>
+        <ul>
+          <li>The Scale Reception platform and website</li>
+          <li>AI voice agent technology and machine learning models</li>
+          <li>Our branding, logos, and marketing materials</li>
+          <li>Improvements and updates to our Service</li>
+        </ul>
+        <p>By using the Service, you are granted a limited, non-exclusive, non-transferable license to access and use the platform for your intended business purpose only.</p>
+
+        <h3>Your intellectual property</h3>
+        <p>You retain ownership of:</p>
+        <ul>
+          <li>Business information and data you provide</li>
+          <li>Your customer data and call histories</li>
+          <li>Scripts, tone guidance, or custom instructions you provide</li>
+        </ul>
+        <p>You grant Scale Reception a limited license to use your data and content solely to deliver the Service (e.g., configuring your agent, optimizing responses, and generating reports).</p>
+      </section>
+
+      <!-- Section 9 -->
+      <section class="policy-section" id="client-content">
+        <h2><span class="section-num">9</span> Client-provided content</h2>
+        <p>You are responsible for all content, scripts, instructions, and data you provide to Scale Reception for use in your AI agent. This includes:</p>
+        <ul>
+          <li>Scripts or instructions for how the agent should respond</li>
+          <li>Business information and client data</li>
+          <li>Tone and personality guidelines</li>
+          <li>Integration with external systems or data sources</li>
+        </ul>
+        <p>You warrant that:</p>
+        <ul>
+          <li>You own or have the right to use all content you provide</li>
+          <li>Your content does not infringe third-party intellectual property rights</li>
+          <li>Your content does not violate any laws or third-party rights</li>
+          <li>Your use of the Service complies with all applicable laws (including privacy laws and consumer protection laws)</li>
+        </ul>
+        <p>Scale Reception is not responsible for errors, omissions, or inappropriate statements in content you provide. We recommend reviewing and testing your agent's responses before full deployment.</p>
+      </section>
+
+      <!-- Section 10 -->
+      <section class="policy-section" id="recording">
+        <h2><span class="section-num">10</span> Recording and consent</h2>
+        <h3>Call recording</h3>
+        <p>By using our Service, you authorize Scale Reception to record and store voice calls made to and from your AI agent. Recordings are retained in accordance with our Privacy Policy and for the purposes of:</p>
+        <ul>
+          <li>Training and improving the AI agent's performance</li>
+          <li>Providing audit trails and call history to you</li>
+          <li>Dispute resolution and quality assurance</li>
+          <li>Compliance with legal and regulatory requirements</li>
+        </ul>
+
+        <h3>Your responsibility for caller consent</h3>
+        <p>You are responsible for ensuring that callers to your AI agent provide informed consent to be recorded. <strong>This means you must set up a clear, upfront recording notice that plays when callers reach your line, and you must comply with the recording consent laws of your state or jurisdiction.</strong> This includes:</p>
+        <ul>
+          <li>Providing clear notice (automated or otherwise) that calls will be recorded</li>
+          <li>Obtaining explicit consent from callers before the call is recorded, if required by applicable law</li>
+          <li>Complying with all applicable telephony, privacy, and recording consent laws in your jurisdiction</li>
+        </ul>
+        <p>Many jurisdictions (including some Australian states) require "two-party" or "all-party" consent before recording calls. It is your obligation to comply with these requirements. Scale Reception is not liable for your failure to obtain proper consent or to comply with recording laws.</p>
+
+        <h3>Telephony compliance</h3>
+        <p>You agree that:</p>
+        <ul>
+          <li>Your use of our voice service complies with all applicable telephony regulations (including the Australian Communications and Media Authority regulations, Do Not Call Register obligations, and any anti-spam or anti-harassment laws)</li>
+          <li>Your AI agent will not use the Service to make unsolicited marketing calls, except where you have obtained proper consent</li>
+          <li>Your business and AI agent comply with caller ID laws and do not spoof, misrepresent, or falsify the calling number</li>
+          <li>You will not use the Service for harassment, threats, or illegal purposes</li>
+        </ul>
+      </section>
+
+      <!-- Section 11 -->
+      <section class="policy-section" id="ai-limitations">
+        <h2><span class="section-num">11</span> AI system limitations and disclaimers</h2>
+        <h3>AI is imperfect</h3>
+        <p>Our AI voice agents are powerful but not perfect. We want to be clear about their limitations:</p>
+        <ul>
+          <li>AI can misunderstand spoken words or context</li>
+          <li>Responses may occasionally be inaccurate, off-topic, or inappropriate</li>
+          <li>The agent may fail to complete a task or transfer a call correctly</li>
+          <li>The agent cannot predict or handle every edge case or unusual request</li>
+          <li>Natural language processing has inherent limitations and may improve over time</li>
+        </ul>
+
+        <h3>Not suitable for critical decisions</h3>
+        <p>Our AI agents are designed for routine inquiries, bookings, and screening calls. They are not suitable for:</p>
+        <ul>
+          <li>Legal or financial advice</li>
+          <li>Medical or health decisions</li>
+          <li>Decisions that significantly affect an individual's rights, safety, or opportunities</li>
+          <li>Highly sensitive or confidential information handling without human oversight</li>
+        </ul>
+
+        <h3>Human review recommended</h3>
+        <p>For any call or interaction that touches on important business matters (pricing, availability, property details, terms of service), we recommend having a human representative review or verify the information before relying on it.</p>
+
+        <h3>No liability for AI errors</h3>
+        <p>Subject to the limitations below, Scale Reception is not liable for errors, failures, or inappropriate responses from the AI agent, or for any losses arising from reliance on information provided by the agent.</p>
+      </section>
+
+      <!-- Section 12 -->
+      <section class="policy-section" id="liability">
+        <h2><span class="section-num">12</span> Limitation of liability</h2>
+        <h3>Exclusion of liability</h3>
+        <p>To the maximum extent permitted by law, Scale Reception is not liable for any indirect, incidental, special, consequential, or punitive damages arising from:</p>
+        <ul>
+          <li>Your use of, or inability to use, the Service</li>
+          <li>Errors, omissions, or interruptions in the Service</li>
+          <li>Loss of business, revenue, or customers</li>
+          <li>Loss of data or records</li>
+          <li>Unauthorized access to or alteration of your information</li>
+          <li>Third-party actions or content</li>
+        </ul>
+
+        <h3>Cap on liability</h3>
+        <p>Except where prohibited by law (including under Australian Consumer Law), Scale Reception's total liability to you for any claim arising under these Terms shall not exceed the lesser of: (a) the total amount you have paid to Scale Reception in the 12 months preceding the claim, or (b) $5,000. This cap does not apply to liability arising from our gross negligence, willful misconduct, or breach of confidentiality obligations.</p>
+
+        <h3>Non-excludable rights</h3>
+        <p>Nothing in these Terms excludes, restricts, or modifies any right, remedy, or obligation that cannot be excluded under the Australian Consumer Law or any other applicable law. To the extent any limitation in these Terms is void or unenforceable under Australian law, that limitation shall not apply, but the remainder of these Terms shall continue in effect.</p>
+
+        <h3>Exceptions</h3>
+        <p>This limitation does not apply to:</p>
+        <ul>
+          <li>Your indemnification obligations under these Terms</li>
+          <li>Breaches of confidentiality</li>
+          <li>Scale Reception's gross negligence or willful misconduct</li>
+          <li>Liability that cannot be excluded under Australian law</li>
+        </ul>
+      </section>
+
+      <!-- Section 13 -->
+      <section class="policy-section" id="indemnity">
+        <h2><span class="section-num">13</span> Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless Scale Reception, its officers, employees, and agents from claims, damages, losses, or expenses (including legal fees) directly arising from:</p>
+        <ul>
+          <li>Your breach of these Terms or applicable law</li>
+          <li>Content or instructions you provide to the Service (including scripts, tone guidance, or data you supply)</li>
+          <li>Your violation of a third party's intellectual property, privacy, or other legal rights</li>
+          <li>Your failure to comply with applicable laws (including recording consent, privacy, or telephony regulations) in your use of the Service</li>
+        </ul>
+        <p>This indemnity applies only to claims arising directly from your actions or content, and not to claims arising from Scale Reception's negligence, breach of these Terms, or misuse of the platform. You have no obligation to indemnify us for claims that would not have arisen but for our failure to use reasonable care.</p>
+      </section>
+
+      <!-- Section 14 -->
+      <section class="policy-section" id="warranties">
+        <h2><span class="section-num">14</span> Warranties and disclaimers</h2>
+        <h3>Limited warranty</h3>
+        <p>We warrant that we will provide the Service in a professional and workmanlike manner, consistent with industry standards. If the Service fails to meet this standard, your exclusive remedy is to request corrective action or terminate the agreement.</p>
+
+        <h3>Disclaimer of other warranties</h3>
+        <p>Except as expressly stated above, the Service is provided "as is" and "as available" without any other warranty or condition, express or implied, including implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+
+        <h3>No guarantee of results</h3>
+        <p>Scale Reception does not warrant that the Service will:</p>
+        <ul>
+          <li>Meet your specific requirements</li>
+          <li>Operate uninterrupted or error-free</li>
+          <li>Generate a specific number of leads or bookings</li>
+          <li>Improve your business outcomes</li>
+          <li>Be compatible with all third-party systems</li>
+        </ul>
+      </section>
+
+      <!-- Section 15 -->
+      <section class="policy-section" id="confidentiality">
+        <h2><span class="section-num">15</span> Confidentiality</h2>
+        <p>Both parties agree to maintain the confidentiality of sensitive information shared during the course of this relationship, except:</p>
+        <ul>
+          <li>As required by law or court order</li>
+          <li>To the extent necessary to provide the Service or defend against claims</li>
+          <li>With your written consent</li>
+          <li>To trusted service providers under confidentiality agreements</li>
+        </ul>
+        <p>For personal information you provide, please refer to our Privacy Policy, which governs how we collect, use, and protect your data.</p>
+      </section>
+
+      <!-- Section 16 -->
+      <section class="policy-section" id="amendments">
+        <h2><span class="section-num">16</span> Changes to these terms</h2>
+        <p>Scale Reception may update these Terms from time to time. We will notify you of any material changes by email or by posting the updated Terms on our website with a new "Last updated" date.</p>
+        <p>Your continued use of the Service following notice of changes constitutes your acceptance of the revised Terms. If you do not agree to the changes, you may terminate your account.</p>
+      </section>
+
+      <!-- Section 17 -->
+      <section class="policy-section" id="contact">
+        <h2><span class="section-num">17</span> Contact us</h2>
+        <p>If you have questions about these Terms of Service, please contact us:</p>
+        <ul>
+          <li><strong>Business:</strong> Scale Reception</li>
+          <li><strong>ABN:</strong> 18786398358</li>
+          <li><strong>Email:</strong> <a href="mailto:harrison@blackboxbots.com">harrison@blackboxbots.com</a></li>
+        </ul>
+        <p>These Terms are governed by the laws of Australia and shall be construed in accordance with the laws of the State in which you are located (or, if you are outside Australia, under the laws of New South Wales).</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/voice-ai/">← Back to Scale Reception</a>
+    <p>© 2026 Scale Reception — ABN 18 786 398 358</p>
+    <p>These terms are governed by the laws of Australia.</p>
+  </div>
+</footer>
+
+<script>
+  // Highlight active TOC link on scroll
+  const sections = document.querySelectorAll('.policy-section');
+  const tocLinks = document.querySelectorAll('.toc-sidebar a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tocLinks.forEach(link => {
+          link.style.fontWeight = link.getAttribute('href') === '#' + id ? '600' : '';
+          link.style.color = link.getAttribute('href') === '#' + id ? 'var(--accent)' : '';
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+
+
+</body></html>
