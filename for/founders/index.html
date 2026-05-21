@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fractional Chief Agent Officer for Founders | Uremarkable</title>
+  <meta name="description" content="Your fractional Chief Agent Officer. We map your highest-cost workflows, build the agents that replace them, and stay to make sure they keep working.">
+  <style>
+    :root {
+      --hero-bg: #1C1A18;
+      --bg: #f5f0eb;
+      --bg-white: #ffffff;
+      --warm-border: #E8E3DC;
+      --text: #1d1d1f;
+      --text-2: #6e6e73;
+      --text-3: #86868b;
+      --border: #d2d2d7;
+      --card-shadow: 0 2px 16px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+
+      /* Founders vertical */
+      --blue: #2D6BE4;
+      --blue-lt: #E8F0FC;
+      --blue-hover: #1D4EAB;
+      --blue-badge-bg: rgba(45,107,228,0.18);
+      --blue-badge-border: rgba(45,107,228,0.35);
+      --blue-card-hover: rgba(45,107,228,0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--warm-border);
+      padding: 14px 24px;
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px;
+    }
+    .nav-brand { font-weight: 700; color: var(--text); }
+    .nav-brand:hover { color: var(--blue); }
+    .nav-sep { color: var(--text-3); }
+    .nav-crumb { color: var(--text-2); }
+    .nav-crumb:hover { color: var(--text); }
+    .nav-crumb.active { color: var(--text); font-weight: 500; }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--hero-bg);
+      padding: 60px 24px 56px;
+      text-align: center;
+    }
+
+    .plugin-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--blue-badge-bg);
+      border: 1px solid var(--blue-badge-border);
+      color: var(--blue);
+      padding: 5px 13px;
+      border-radius: 20px;
+      font-size: 12px; font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+    .plugin-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(27px, 5vw, 44px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+      max-width: 660px;
+      margin: 0 auto 16px;
+      line-height: 1.15;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero h1 span.h1-plain { color: #ffffff; }
+
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: rgba(255,255,255,0.65);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .hero-pills {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+      margin-top: 28px;
+    }
+    .hero-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.75);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px; font-weight: 500;
+    }
+
+    /* ── Section ── */
+    .section {
+      padding: 52px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .section + .section { padding-top: 0; }
+
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      max-width: 520px;
+    }
+
+    /* ── Category section ── */
+    .category-card {
+      background: var(--bg-white);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .category-card p {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .category-card p:last-child { margin-bottom: 0; }
+    .category-card strong { color: var(--text); }
+
+    /* ── Comparison table ── */
+    .comparison-wrap {
+      margin-top: 28px;
+      overflow-x: auto;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: var(--bg-white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .comparison-table th {
+      background: var(--hero-bg);
+      color: rgba(255,255,255,0.7);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 14px 18px;
+      text-align: left;
+    }
+    .comparison-table th:first-child { color: rgba(255,255,255,0.4); }
+    .comparison-table th.col-ours { color: var(--blue); }
+    .comparison-table td {
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--warm-border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table td.row-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-3);
+      width: 120px;
+    }
+    .comparison-table td.col-theirs { color: var(--text-2); }
+    .comparison-table td.col-ours {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .col-ours-header-cell {
+      background: rgba(45,107,228,0.05);
+    }
+    .highlight-row td { background: rgba(45,107,228,0.03); }
+
+    /* ── What you get ── */
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .card-3 {
+      background: var(--bg-white);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.18s, transform 0.18s;
+    }
+    .card-3:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 0 0 1px var(--blue-card-hover);
+      transform: translateY(-1px);
+    }
+    .card-3-num {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .card-3-title {
+      font-size: 16px; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .card-3-desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.55;
+    }
+
+    /* ── ROI callout ── */
+    .roi-callout {
+      background: var(--blue-lt);
+      border: 1px solid rgba(45,107,228,0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .roi-callout strong { color: var(--blue); }
+
+    /* ── Cost table ── */
+    .cost-table-wrap {
+      margin-top: 28px;
+      overflow-x: auto;
+    }
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      background: var(--bg-white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .cost-table th {
+      background: var(--hero-bg);
+      color: rgba(255,255,255,0.65);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 13px 16px;
+      text-align: left;
+    }
+    .cost-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--warm-border);
+      vertical-align: top;
+    }
+    .cost-table tr:last-child td { border-bottom: none; }
+    .cost-table td.tier-name { font-weight: 700; color: var(--text); }
+    .cost-table td.tier-msgs { color: var(--text-2); font-size: 12.5px; }
+    .cost-table td.tier-cost { font-weight: 600; }
+    .cost-table td.tier-plan { color: var(--text-2); font-size: 12.5px; }
+    .tier-note {
+      font-size: 11.5px;
+      color: var(--text-3);
+      margin-top: 10px;
+      line-height: 1.55;
+    }
+
+    /* ── Proof section ── */
+    .proof-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .proof-card {
+      background: var(--bg-white);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 24px 22px;
+      box-shadow: var(--card-shadow);
+    }
+    .proof-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .proof-tag-dot {
+      width: 5px; height: 5px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+    .proof-title {
+      font-size: 15px; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .proof-desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .proof-result {
+      font-size: 12.5px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 8px;
+      padding: 10px 13px;
+      font-weight: 500;
+    }
+    .proof-result span { color: var(--blue); font-weight: 700; }
+
+    /* ── How it works ── */
+    .steps {
+      margin-top: 28px;
+      background: var(--bg-white);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .step-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-num {
+      width: 30px; height: 30px;
+      min-width: 30px;
+      background: var(--blue-lt);
+      border: 1px solid rgba(45,107,228,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800;
+      color: var(--blue);
+    }
+    .step-title {
+      font-size: 14px; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.55;
+    }
+    .step-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+    .step-tag.blue {
+      background: var(--blue-lt);
+      color: var(--blue);
+    }
+    .step-tag.warm {
+      background: #f0ece6;
+      color: var(--text-2);
+    }
+
+    /* ── Limitations ── */
+    .limitations {
+      margin-top: 28px;
+      background: var(--bg-white);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .lim-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 16px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--warm-border);
+      font-size: 13.5px;
+    }
+    .lim-row:last-child { border-bottom: none; }
+    .lim-label { font-weight: 600; color: var(--text); }
+    .lim-desc { color: var(--text-2); line-height: 1.5; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--hero-bg);
+      padding: 56px 24px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .cta-section h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
+      max-width: 520px;
+      margin: 0 auto 14px;
+    }
+    .cta-section p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      max-width: 420px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px; font-weight: 600;
+      padding: 13px 28px;
+      border-radius: 10px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .cta-btn:hover {
+      background: var(--blue-hover);
+      transform: translateY(-1px);
+    }
+    .cta-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 14px;
+    }
+
+    /* ── Guide footer ── */
+    .guide-footer {
+      background: var(--bg-white);
+      border-top: 1px solid var(--warm-border);
+      padding: 22px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+    .guide-footer a {
+      color: var(--blue);
+      font-weight: 500;
+    }
+    .guide-footer a:hover { text-decoration: underline; }
+
+    /* ── Divider ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--warm-border);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ── Profile ── */
+    .profile-card {
+      display: flex; align-items: flex-start; gap: 24px;
+      background: var(--bg-white);
+      border: 1px solid var(--warm-border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .profile-avatar {
+      width: 64px; height: 64px; min-width: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--warm-border);
+    }
+    .profile-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .profile-name {
+      font-size: 17px; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .profile-title {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .profile-bio {
+      font-size: 14px; color: var(--text-2); line-height: 1.6;
+      margin-bottom: 14px; max-width: 480px;
+    }
+    .profile-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .profile-link {
+      display: inline-block;
+      font-size: 13px; font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--warm-border);
+      color: var(--text);
+      transition: background 0.15s;
+    }
+    .profile-link:hover { background: var(--bg); }
+    .profile-link-primary {
+      background: var(--blue); color: #fff;
+      border-color: var(--blue);
+    }
+    .profile-link-primary:hover {
+      background: var(--blue-hover); border-color: var(--blue-hover);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 580px) {
+      .lim-row { grid-template-columns: 1fr; gap: 4px; }
+      .comparison-table { font-size: 13px; }
+      .comparison-table th, .comparison-table td { padding: 10px 12px; }
+      .profile-card { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="https://uremarkable.com" class="nav-brand">uremarkable</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-crumb active">Founders</span>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="plugin-badge">
+    <div class="plugin-badge-dot"></div>
+    Fractional AI Service
+  </div>
+  <h1>Your fractional<br><span>AI Agent Implementor.</span><br><span class="h1-plain">Without the headcount.</span></h1>
+  <p class="hero-sub">We map your highest-cost manual workflows, build the agents that replace them, and stay to make sure they keep working. You own everything we build.</p>
+  <div class="hero-pills">
+    <div class="hero-pill">Founders &amp; SMBs</div>
+    <div class="hero-pill">A$31 to A$155/mo in Claude subscription costs for most clients</div>
+    <div class="hero-pill">Monthly retainer, not a project handoff</div>
+  </div>
+</div>
+
+<!-- Category section -->
+<div class="section">
+  <div class="section-label">The Category</div>
+  <h2 class="section-title">AI implementation is a real role. You just can't hire one full-time.</h2>
+  <p class="section-sub">Enterprise companies are building a new function. The question is whether founders and small businesses get access to the same capability.</p>
+  <div class="category-card">
+    <p>An AI operator responsible for mapping an organisation's manual workflows and replacing them with AI agents. In enterprise, these functions span three emerging roles: <strong>AI Orchestrator ($85K+)</strong>, <strong>AI Officer ($135K+)</strong>, and <strong>Chief Agent Officer ($195K+)</strong> per year as full-time hires. Any of these is a headcount commitment most founders and SMBs can't justify.</p>
+    <p>Uremarkable delivers the same function on a fractional basis. Same depth, same outcome, without a permanent salary on the books. You get the map, the builds, and the ongoing maintenance. You keep everything we produce.</p>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Comparison -->
+<div class="section">
+  <div class="section-label">Full-time vs Fractional</div>
+  <h2 class="section-title">What you get, and what you'd be paying otherwise</h2>
+  <p class="section-sub">The enterprise benchmark makes the fractional comparison obvious.</p>
+  <div class="comparison-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Full-time AI Specialist hire</th>
+          <th class="col-ours">Uremarkable (fractional)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label">Cost</td>
+          <td class="col-theirs">$85K to $250K+ per year (salary)</td>
+          <td class="col-ours col-ours-header-cell">Monthly retainer</td>
+        </tr>
+        <tr>
+          <td class="row-label">Commitment</td>
+          <td class="col-theirs">Permanent headcount</td>
+          <td class="col-ours col-ours-header-cell">Cancel anytime</td>
+        </tr>
+        <tr>
+          <td class="row-label">Niche depth</td>
+          <td class="col-theirs">Generalist across all enterprise systems</td>
+          <td class="col-ours col-ours-header-cell">Founders and SMBs, 2 to 15 person businesses</td>
+        </tr>
+        <tr>
+          <td class="row-label">IP ownership</td>
+          <td class="col-theirs">Company-owned, but stays when they leave</td>
+          <td class="col-ours col-ours-header-cell">You own everything we build, full stop</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="row-label">Access</td>
+          <td class="col-theirs">Enterprise budgets only</td>
+          <td class="col-ours col-ours-header-cell">Available to founders and 3-to-15 person businesses</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- What you get -->
+<div class="section">
+  <div class="section-label">The Service</div>
+  <h2 class="section-title">Map. Build. Maintain.</h2>
+  <p class="section-sub">Three phases, running as one continuous engagement. Not a handoff after phase two.</p>
+  <div class="cards-3">
+    <div class="card-3">
+      <div class="card-3-num">01. Map</div>
+      <div class="card-3-title">Workflow Audit</div>
+      <div class="card-3-desc">We find the workflows costing you the most time. Not theory, not frameworks. We sit with your actual day and find the repeating, manual, replaceable work.</div>
+    </div>
+    <div class="card-3">
+      <div class="card-3-num">02. Build</div>
+      <div class="card-3-title">Agent Deployment</div>
+      <div class="card-3-desc">We build the agents using Claude, connected to your existing tools. No new platforms to manage. No code for you to maintain.</div>
+    </div>
+    <div class="card-3">
+      <div class="card-3-num">03. Maintain</div>
+      <div class="card-3-title">Ongoing Retainer</div>
+      <div class="card-3-desc">We stay. Monthly check-ins, agent updates as your workflows evolve, new automations as your business grows. The retainer is what keeps the system working.</div>
+    </div>
+  </div>
+  <div class="roi-callout">
+    At A$30.91/mo (Pro) to A$154.54/mo (Max) in Claude subscription costs, a founder getting 2 to 3 hours a day back at A$150/hr in opportunity cost is saving <strong>A$9,000+ per month</strong>. The AI subscription is noise compared to that return.
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Cost transparency -->
+<div class="section">
+  <div class="section-label">Cost Transparency</div>
+  <h2 class="section-title">What Claude actually costs at different usage levels</h2>
+  <p class="section-sub">The fear of thousands is real but only at scale most clients won't reach in year one. These are the real numbers.</p>
+  <div class="cost-table-wrap">
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Usage level</th>
+          <th>Messages/day</th>
+          <th>Haiku/mo</th>
+          <th>Sonnet/mo</th>
+          <th>Opus/mo</th>
+          <th>Right plan (AUD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tier-name">Getting started</td>
+          <td class="tier-msgs">60 user / 120 agent</td>
+          <td class="tier-cost">~A$12</td>
+          <td class="tier-cost">~A$37</td>
+          <td class="tier-cost">~A$185</td>
+          <td class="tier-plan">Pro A$30.91/mo</td>
+        </tr>
+        <tr>
+          <td class="tier-name">Active (3 to 5 workflows)</td>
+          <td class="tier-msgs">160 user / 320 agent</td>
+          <td class="tier-cost">~A$59</td>
+          <td class="tier-cost">~A$177</td>
+          <td class="tier-cost">~A$885</td>
+          <td class="tier-plan">Max 5x A$154.54/mo</td>
+        </tr>
+        <tr>
+          <td class="tier-name">Power user (daily automations)</td>
+          <td class="tier-msgs">300 user / 600 agent</td>
+          <td class="tier-cost">~A$177</td>
+          <td class="tier-cost">~A$531</td>
+          <td class="tier-cost">~A$2,655</td>
+          <td class="tier-plan">Max 20x A$309/mo</td>
+        </tr>
+        <tr>
+          <td class="tier-name">Full agentic organisation</td>
+          <td class="tier-msgs">500+ user / 1000+ agent</td>
+          <td class="tier-cost">A$454/mo+</td>
+          <td class="tier-cost">A$1,362/mo+</td>
+          <td class="tier-cost">A$6,810/mo+</td>
+          <td class="tier-plan">Direct API</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tier-note">Assumes prompt caching active. Agent messages = 2x user messages (agentic turns). For a 3 to 15 person company running a few automations, Medium is the realistic ceiling. That's A$59 to A$177 per month in AI costs. Heavy+ (500+ user messages/day) can increase costs into thousands, so we can chat about how to optimise that. Opus is for complex reasoning tasks only. Most automations run on Haiku or Sonnet.</p>
+</div>
+
+
+<hr class="section-divider">
+
+<!-- How it works -->
+<div class="section">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">From discovery to running agents in four steps</h2>
+  <p class="section-sub">Most clients have at least one workflow automated within the first two weeks.</p>
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">Discovery session (60 min)</div>
+        <div class="step-desc">We walk through your current week, find the highest-friction manual work, and rank which workflows have the most to gain from automation. You get a written brief within 24 hours.</div>
+        <span class="step-tag blue">Free to start</span>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">Setup (first week)</div>
+        <div class="step-desc">Claude installed and configured to your environment. Your first workflow scoped, built, and tested with you watching. Nothing deployed without your sign-off.</div>
+        <span class="step-tag warm">macOS or Windows required</span>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">First agent live</div>
+        <div class="step-desc">Your first automation running. You can see every message it sends, every decision it makes. Full visibility, full control. We stay on call for the first week of live operation.</div>
+        <span class="step-tag blue">Pro A$30.91/mo or Max A$154.54/mo required</span>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div>
+        <div class="step-title">Retainer (ongoing)</div>
+        <div class="step-desc">Monthly check-in, agent tune-ups, new workflows as your business evolves. We stay. That's the whole model. You're not buying a project. You're buying an operator who stays accountable for the system working.</div>
+        <span class="step-tag warm">Monthly, cancel anytime</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Honest limitations -->
+<div class="section">
+  <div class="section-label">Honest Limitations</div>
+  <h2 class="section-title">What you should know before you book</h2>
+  <p class="section-sub">No spin. The constraints are real, and they're worth naming upfront.</p>
+  <div class="limitations">
+    <div class="lim-row">
+      <div class="lim-label">macOS or Windows required</div>
+      <div class="lim-desc">Claude Desktop runs on Mac and Windows. Linux is not currently supported. All scheduled and agentic tasks require the machine to be awake and Claude Desktop running.</div>
+    </div>
+    <div class="lim-row">
+      <div class="lim-label">Pro or Max plan required</div>
+      <div class="lim-desc">Dispatch (scheduled automation) requires a Claude Pro (A$30.91/mo) or Max plan (A$154.54/mo+). The free tier does not support background agent tasks.</div>
+    </div>
+    <div class="lim-row">
+      <div class="lim-label">Not a one-off project</div>
+      <div class="lim-desc">Agents need maintenance. Workflows change, prompts drift, connected tools update. The retainer model exists because a one-off build without ongoing support degrades over time. If you want a handoff, this is not the right service.</div>
+    </div>
+    <div class="lim-row">
+      <div class="lim-label">We pick the workflows</div>
+      <div class="lim-desc">The discovery session exists to find the right workflows, not to build whatever you have in mind on day one. High-effort, low-value automations don't get built. That's part of the service.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Profile -->
+<div class="section">
+  <div class="section-label">Your Operator</div>
+  <h2 class="section-title">Who you're working with</h2>
+  <p class="section-sub">Fractional means you're working with a person, not a platform. Here's who that is.</p>
+  <div class="profile-card">
+    <div class="profile-avatar"><img src="data:image/jpeg;base64,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" alt="Baz Ozturk"></div>
+    <div class="profile-body">
+      <div class="profile-name">Baz Ozturk</div>
+      <div class="profile-title">Fractional AI Agent Implementor</div>
+      <p class="profile-bio">AI delivery background across enterprise and government. Now focused on bringing the same capability to founders and 2-to-15 person businesses who can't justify a full-time hire but need someone accountable for the system actually working.</p>
+      <div class="profile-links">
+        <a href="https://www.linkedin.com/in/baz-ozturk/" target="_blank" class="profile-link">LinkedIn</a>
+        <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" class="profile-link profile-link-primary">Book a session</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Find out what's costing you the most time</h2>
+  <p>Book a 60-minute discovery session. We'll map your workflows and tell you honestly whether automation is the right move, and what it would cost.</p>
+  <a href="https://calendar.notion.so/meet/uremarkable/baz" class="cta-btn" target="_blank">Book a discovery session</a>
+  <p class="cta-note">Free to start &bull; macOS or Windows &bull; ~60 minutes</p>
+</div>
+
+<!-- Guide footer -->
+<div class="guide-footer">
+  <a href="https://uremarkable.com/for/real-estate/">Real estate automations</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://uremarkable.com/for/trades/">Trades automations</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://uremarkable.com">uremarkable.com</a>
+</div>
+
+</body>
+</html>
