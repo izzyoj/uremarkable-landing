@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ScaleReception — AI Receptionist for Real Estate Agents</title>
+  <title>Scale Sales — AI Sales Associate for Real Estate Agents</title>
 
 
   <style>
@@ -339,6 +339,91 @@
       line-height: 1.6;
     }
 
+    /* ─── ABSOLUTE ROI ─────────────────────────────────────── */
+    .roi-section {
+      padding: 80px 40px;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .roi-section .section-label { margin-bottom: 16px; }
+
+    .roi-section h2 {
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.8px;
+      margin-bottom: 10px;
+    }
+
+    .roi-section .sub {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+
+    .roi-table {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto 48px;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(11,34,54,0.08);
+    }
+
+    .roi-table thead th {
+      background: var(--ink);
+      color: #fff;
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: left;
+      letter-spacing: 0.3px;
+    }
+
+    .roi-table thead th:last-child { background: var(--accent); }
+
+    .roi-table tbody tr:nth-child(even) { background: var(--bg-2); }
+    .roi-table tbody tr:nth-child(odd) { background: #fff; }
+
+    .roi-table td {
+      padding: 16px 20px;
+      font-size: 15px;
+      color: var(--ink-soft);
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    .roi-table td:first-child { font-weight: 700; color: var(--ink); }
+    .roi-table td:last-child { font-weight: 700; color: var(--accent); }
+    .roi-table tbody tr:last-child td { border-bottom: none; }
+
+    .roi-bottom {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .roi-bottom p {
+      font-size: 17px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .roi-bottom .roi-guarantee {
+      font-size: 15px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 660px) {
+      .roi-table thead th, .roi-table td { padding: 10px 10px; font-size: 12px; }
+    }
+
     /* ─── PRICING ──────────────────────────────────────────── */
     .pricing-section {
       padding: 80px 40px;
@@ -660,14 +745,14 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Scale<span>Reception</span></a>
+    <a href="#" class="nav-logo">Scale<span>Sales</span></a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">AI Assistant · Sydney Real Estate</div>
-    <h1>Voicemail had<br><em>a good run.</em></h1>
-    <p class="hero-sub">You're mid-inspection. A buyer calls. Shazza answers, qualifies the lead, books the callback, and logs it to your CRM. Nothing slips.</p>
+    <div class="hero-eyebrow">AI Sales Associate · Sydney Real Estate</div>
+    <h1>Voicemail is costing<br>you listings. <em>Meet Shazza.</em></h1>
+    <p class="hero-sub">You're mid-inspection, pitching, appraising, or at an open home. Shazza answers, qualifies the lead, books the callback, and logs it to your CRM. Nothing slips.</p>
     <div class="hero-ctas">
       <button class="btn-primary" id="hero-demo-btn">
         <span class="btn-icon">📞</span> Speak with Shazza now
@@ -682,35 +767,43 @@
   <section class="problem-section" id="problem">
     <div class="section-label">The Problem</div>
     <h2>Superstar Agents<br>miss heaps of calls.<br>DOM pays for it.</h2>
+    <p class="sub">You aren't losing buyers. You are losing time, covert listings and impacting days on market.</p>
 
     <div class="problem-beats">
 
       <!-- Beat 1 -->
       <div class="beat">
-        <div class="beat-num red">27%</div>
+        <div class="beat-num">7 hrs</div>
         <div class="beat-copy">
-          <div class="beat-label">of inbound calls go unanswered during viewings, appraisals, and settlements.</div>
-          <div class="beat-body">Every missed call is a tick on your Days on Market. DOM is the number you walk into every listing presentation with. Don't let it climb.</div>
+          <div class="beat-label">The 7-Hour Administrative Drain</div>
+          <div class="beat-body">The average high-volume agent spends up to 7 hours every single week repeating basic property data, price guides, strata info, and open times, to buyers while driving between appointments. That is <strong>30 hours of pure admin</strong> reclaimed every single month.</div>
         </div>
       </div>
 
       <!-- Beat 2 -->
       <div class="beat">
-        <div class="beat-num accent">62%</div>
+        <div class="beat-num accent">$6K</div>
         <div class="beat-copy">
-          <div class="beat-lead-in">Buyer calls after your open home, but...</div>
-          <div class="beat-label">6 out of 10 callers won't leave a voicemail.</div>
-          <div class="beat-body">They're not gone yet... but by Monday they've seen two more properties, talked to their broker, consulted their psychic, cold plunged, and the conviction you had them at Saturday is half what it was.</div>
+          <div class="beat-label">The $200/hr Trade-Off</div>
+          <div class="beat-body">At an elite agent's hourly value, spending your day acting as a manual data-repeater costs you <strong>$6,000 a month</strong> in lost prospecting and relationship-building time.</div>
         </div>
       </div>
 
       <!-- Beat 3 -->
       <div class="beat">
-        <div class="beat-num">$25K</div>
+        <div class="beat-num red">62%</div>
         <div class="beat-copy">
-          <div class="beat-lead-in">Each missed call costs more than you think.</div>
-          <div class="beat-label">Average commission on a missed Mosman listing enquiry.</div>
-          <div class="beat-body">That's not a lost buyer. That's a harder close. And harder closes stretch your days on market. Don't wave goodbye to a potential $25K.</div>
+          <div class="beat-label">The "Ghost Vendor" Risk</div>
+          <div class="beat-body">High-net-worth Sydney vendors are covert. When interviewing agents, they call mobile numbers sequentially. If you go to voicemail, <strong>62% will not leave a message</strong>. They simply hang up and dial your competitor down the road.</div>
+        </div>
+      </div>
+
+      <!-- Beat 4 -->
+      <div class="beat">
+        <div class="beat-num red">$40K</div>
+        <div class="beat-copy">
+          <div class="beat-label">The Invisible $40,000 Leak</div>
+          <div class="beat-body">In a market with a $2M median house price, missing just <em>one</em> covert vendor call because you were stuck in a listing presentation costs you <strong>$40,000 AUD</strong> in lost commission.</div>
         </div>
       </div>
 
@@ -720,8 +813,8 @@
   <!-- HOW IT WORKS -->
   <section class="hiw-section" id="solution">
     <div class="section-label">How It Works</div>
-    <h2>Let Shazza run her mouth.</h2>
-    <p class="sub">Set up in a day. Forward your number to Shazza. She handles the rest... so you can focus on becoming the Sales Person of the Year award.</p>
+    <h2>Let Shazza run like an elite Executive Assistant</h2>
+    <p class="sub">Set up in a day. Shazza runs in the background of your mobile number. She handles the rest ... so you can focus on exchange day and on becoming the Sales Person of the Year award.</p>
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-num">1</div>
@@ -741,11 +834,54 @@
     </div>
   </section>
 
+  <!-- ABSOLUTE ROI -->
+  <section class="roi-section" id="roi">
+    <div class="section-label">Absolute ROI</div>
+    <h2>The numbers don't lie.</h2>
+    <p class="sub">Side by side. No spin. Just what happens when you pick up versus what happens when you don't.</p>
+    <table class="roi-table">
+      <thead>
+        <tr>
+          <th>The Metric</th>
+          <th>The Traditional Way<br><span style="font-weight:400;font-size:11px;">(Voicemail / Text-Back)</span></th>
+          <th>The Shazza Way</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Response Time</td>
+          <td>5 to 45 minutes (Missed call loop)</td>
+          <td>Instant (0 seconds)</td>
+        </tr>
+        <tr>
+          <td>Time Reclaimed</td>
+          <td>0 hours</td>
+          <td>7 hours per week</td>
+        </tr>
+        <tr>
+          <td>Covert Vendor Leak</td>
+          <td>100% loss (They hang up)</td>
+          <td>0% loss (Captured &amp; Booked)</td>
+        </tr>
+        <tr>
+          <td>Monthly Cost</td>
+          <td>Free (But costs $6,000 in lost time)</td>
+          <td>$399 AUD</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="roi-bottom">
+      <p>Our Founding 5 Offer is just <strong>$399 AUD/mo</strong> (with a waived $500 setup fee). If Shazza catches just <em>one</em> covert vendor per year who would have hung up on your voicemail, she delivers an <strong>835% cash-on-cash return</strong>. One saved listing pays for the next 8 years of the service.</p>
+      <p class="roi-guarantee">If she doesn't pay for herself in month one, cancel anytime. And we'll take you for coffee and lunch at Roastville (best coffee in town).</p>
+      <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" class="btn-primary" style="margin-top:8px;">Claim Your Founding Spot Now</a>
+    </div>
+  </section>
+
   <!-- PRICING -->
   <section class="pricing-section" id="pricing">
     <div class="section-label">Pricing</div>
-    <h2>Simple. No lock-in. Cancel anytime.</h2>
-    <p class="sub">Voicemail had a good run. One recovered call covers the next four years. <em>($25,000 ÷ $5,988 = 4.17 years)</em></p>
+    <h2>Simple pricing. No lock-in. 100% Risk Reversal.</h2>
+    <p class="sub">One recovered vendor call covers the next 8 years. <em>($40,000 commission ÷ $4,788 annual cost)</em></p>
     <div class="pricing-grid">
       <div class="plan-card featured">
         <div class="plan-badge">Founding 5 Offer</div>
@@ -794,7 +930,7 @@
     <div class="about-intro">
       <div class="about-eyebrow">Who we are</div>
       <h2>Built by people who know <em>real estate from the inside.</em></h2>
-      <p>We're not a tech company that discovered real estate. We grew up in it — and we built ScaleReception to solve a problem we've watched cost agents commissions for years.</p>
+      <p>We're not a tech company that discovered real estate. We grew up in it — and we built Scale Sales to solve a problem we've watched cost agents commissions for years.</p>
     </div>
     <div class="founders-grid">
 
@@ -865,7 +1001,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 ScaleReception · <a href="https://calendar.notion.so/meet/uremarkable/baz" style="color:var(--accent);text-decoration:none;">Book a call</a> &nbsp;·&nbsp; <a href="/voice-ai/terms/" style="color:var(--accent);text-decoration:none;">Terms of Service</a> &nbsp;·&nbsp; <a href="/voice-ai/privacy/" style="color:var(--accent);text-decoration:none;">Privacy Policy</a></p>
+    <p>© 2026 Scale Sales · <a href="https://calendar.notion.so/meet/uremarkable/baz" style="color:var(--accent);text-decoration:none;">Book a call</a> &nbsp;·&nbsp; <a href="/voice-ai/terms/" style="color:var(--accent);text-decoration:none;">Terms of Service</a> &nbsp;·&nbsp; <a href="/voice-ai/privacy/" style="color:var(--accent);text-decoration:none;">Privacy Policy</a></p>
   </footer>
 
 
