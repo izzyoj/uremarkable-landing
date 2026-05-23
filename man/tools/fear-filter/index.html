@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fear Filter | MAN Protocol Tools</title>
+<meta name="description" content="Three questions. Name the filter that's been running under your decisions. Once it's named, it loses its grip.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #b8860b;
+  --gold-dark: #9a7009;
+  --gold-light: rgba(184,134,11,0.09);
+  --gold-border: rgba(184,134,11,0.25);
+  --text: #1d1d1f;
+  --text-2: #6e6e73;
+  --text-3: #86868b;
+  --bg: #ffffff;
+  --bg-2: #f5f5f7;
+  --border: rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo { font-size: 15px; font-weight: 800; color: var(--gold); letter-spacing: 0.15em; }
+.nav-sep { width: 1px; height: 16px; background: var(--border); }
+.nav-tagline { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-link { font-size: 13px; font-weight: 500; color: var(--text-2); text-decoration: none; }
+.nav-link:hover { color: var(--text); }
+.nav-cta {
+  font-size: 13px; font-weight: 600; color: var(--gold); text-decoration: none;
+  padding: 7px 14px; border: 1px solid var(--gold-border); border-radius: 8px; transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+
+/* HERO */
+.hero-section {
+  padding: 80px 24px 64px;
+  text-align: center;
+}
+.hero-inner { max-width: 560px; margin: 0 auto; }
+.offer-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gold); background: var(--gold-light); border: 1px solid var(--gold-border);
+  padding: 5px 12px; border-radius: 20px; margin-bottom: 20px;
+}
+.hero-h1 {
+  font-size: 42px; font-weight: 800; color: var(--text);
+  line-height: 1.08; letter-spacing: -0.04em; margin-bottom: 18px;
+}
+@media (max-width: 600px) { .hero-h1 { font-size: 30px; } }
+.hero-sub {
+  font-size: 17px; color: var(--text-2); line-height: 1.6;
+  max-width: 480px; margin: 0 auto 32px;
+}
+.btn-primary {
+  display: inline-block; padding: 16px 32px; background: var(--gold); color: #fff;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; text-decoration: none; transition: background 0.15s, transform 0.1s;
+  letter-spacing: -0.01em;
+}
+.btn-primary:hover { background: var(--gold-dark); }
+.btn-primary:active { transform: scale(0.98); }
+.hero-meta {
+  margin-top: 16px; display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--text-3);
+}
+.hero-meta span { display: flex; align-items: center; gap: 4px; }
+.hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); }
+
+/* CONTEXT STRIP */
+.context-strip {
+  background: var(--text); padding: 48px 24px; text-align: center;
+}
+.context-inner { max-width: 560px; margin: 0 auto; }
+.context-quote {
+  font-size: 20px; font-weight: 700; color: #fff; line-height: 1.35;
+  letter-spacing: -0.02em; margin-bottom: 10px;
+}
+.context-quote .gold { color: var(--gold); }
+.context-sub {
+  font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-top: 12px;
+}
+
+/* QUIZ WRAPPER */
+.quiz-section { padding: 64px 24px; }
+.quiz-inner { max-width: 560px; margin: 0 auto; }
+
+/* PROGRESS */
+.progress-bar-wrap { margin-bottom: 40px; }
+.progress-label {
+  display: flex; justify-content: space-between;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 10px;
+}
+.progress-track {
+  height: 4px; background: var(--bg-2); border-radius: 4px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: var(--gold); border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+/* QUESTION CARD */
+.q-card {
+  display: none;
+  animation: fadeUp 0.35s ease;
+}
+.q-card.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.q-number {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.q-label {
+  font-size: 26px; font-weight: 800; color: var(--text);
+  line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 10px;
+}
+@media (max-width: 600px) { .q-label { font-size: 22px; } }
+.q-sub {
+  font-size: 15px; color: var(--text-2); line-height: 1.6; margin-bottom: 28px;
+}
+
+/* TEXT INPUT */
+.q-textarea {
+  width: 100%; min-height: 110px; padding: 16px; font-size: 16px;
+  font-family: var(--font); color: var(--text); background: var(--bg-2);
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  resize: vertical; outline: none; transition: border-color 0.2s;
+  line-height: 1.5;
+}
+.q-textarea:focus { border-color: var(--gold); background: var(--bg); }
+.q-textarea::placeholder { color: var(--text-3); }
+
+/* OPTION CARDS */
+.options-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.opt-card {
+  display: flex; align-items: flex-start; gap: 16px; padding: 18px 20px;
+  background: var(--bg-2); border: 2px solid transparent;
+  border-radius: var(--radius); cursor: pointer; transition: all 0.15s;
+  text-align: left;
+}
+.opt-card:hover { background: var(--bg); border-color: var(--gold-border); }
+.opt-card.selected { background: var(--gold-light); border-color: var(--gold); }
+.opt-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.opt-body {}
+.opt-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.opt-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+/* BINARY OPTIONS */
+.binary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+@media (max-width: 480px) { .binary-grid { grid-template-columns: 1fr; } }
+.binary-card {
+  padding: 20px 18px; background: var(--bg-2); border: 2px solid transparent;
+  border-radius: var(--radius); cursor: pointer; transition: all 0.15s; text-align: center;
+}
+.binary-card:hover { background: var(--bg); border-color: var(--gold-border); }
+.binary-card.selected { background: var(--gold-light); border-color: var(--gold); }
+.binary-icon { font-size: 26px; margin-bottom: 10px; }
+.binary-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.binary-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+/* NEXT BUTTON */
+.btn-next {
+  width: 100%; padding: 16px; background: var(--gold); color: #fff;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
+  font-family: var(--font); cursor: pointer; transition: background 0.15s, transform 0.1s;
+  letter-spacing: -0.01em; margin-top: 4px;
+}
+.btn-next:hover { background: var(--gold-dark); }
+.btn-next:active { transform: scale(0.98); }
+.btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* RESULT */
+.result-card { display: none; animation: fadeUp 0.4s ease; }
+.result-card.active { display: block; }
+
+.result-filter-name {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.result-h2 {
+  font-size: 32px; font-weight: 800; color: var(--text);
+  line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px;
+}
+@media (max-width: 600px) { .result-h2 { font-size: 24px; } }
+.result-body {
+  font-size: 16px; color: var(--text-2); line-height: 1.7; margin-bottom: 24px;
+}
+.result-body strong { color: var(--text); font-weight: 700; }
+
+.result-reframe {
+  background: var(--gold-light); border: 1px solid var(--gold-border);
+  border-radius: var(--radius); padding: 22px 22px; margin-bottom: 28px;
+}
+.result-reframe-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.result-reframe-text {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  line-height: 1.45; letter-spacing: -0.01em;
+}
+
+.result-principle {
+  background: var(--bg-2); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 28px;
+}
+.result-principle-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 10px;
+}
+.result-principle-text {
+  font-size: 14px; color: var(--text-2); line-height: 1.6; font-style: italic;
+}
+
+.result-action {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  line-height: 1.5; margin-bottom: 28px; letter-spacing: -0.01em;
+}
+
+.divider { height: 1px; background: var(--border); margin: 36px 0; }
+
+.man-cta-card {
+  background: var(--text); border-radius: var(--radius); padding: 32px 28px; text-align: center;
+}
+.man-cta-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 12px;
+}
+.man-cta-title {
+  font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2;
+  letter-spacing: -0.03em; margin-bottom: 10px;
+}
+.man-cta-title .gold { color: var(--gold); }
+.man-cta-sub {
+  font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 22px;
+}
+.btn-gold {
+  display: inline-block; padding: 14px 28px; background: var(--gold); color: #fff;
+  border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none;
+  transition: background 0.15s;
+}
+.btn-gold:hover { background: var(--gold-dark); }
+
+.restart-link {
+  display: block; text-align: center; margin-top: 24px;
+  font-size: 14px; color: var(--text-3); cursor: pointer; text-decoration: underline;
+}
+.restart-link:hover { color: var(--text-2); }
+
+/* FOOTER */
+footer {
+  padding: 40px 24px; border-top: 1px solid var(--border);
+  text-align: center;
+}
+.footer-brand { font-size: 14px; font-weight: 800; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 8px; }
+.footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 12px; }
+.footer-links a { font-size: 13px; color: var(--text-3); text-decoration: none; }
+.footer-links a:hover { color: var(--text-2); }
+.footer-copy { font-size: 12px; color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="https://www.uremarkable.com" class="nav-brand">
+    <span class="nav-logo">U/R</span>
+    <span class="nav-sep"></span>
+    <span class="nav-tagline">MAN Protocol</span>
+  </a>
+  <div class="nav-right">
+    <a href="https://www.uremarkable.com/man/" class="nav-link">About MAN</a>
+    <a href="https://www.uremarkable.com/quiz/man/" class="nav-cta">Take the quiz</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section" id="top">
+  <div class="hero-inner">
+    <div class="offer-label">MAN Protocol Tools</div>
+    <h1 class="hero-h1">The Fear Filter</h1>
+    <p class="hero-sub">Three questions. Name the filter that's been running under your decisions. Once it's named, it loses its grip.</p>
+    <button class="btn-primary" onclick="startTool()">Start the exercise</button>
+    <div class="hero-meta">
+      <span>3 questions</span>
+      <span class="dot"></span>
+      <span>Under 2 minutes</span>
+      <span class="dot"></span>
+      <span>No account needed</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT STRIP -->
+<div class="context-strip">
+  <div class="context-inner">
+    <p class="context-quote">It's not a courage problem.<br><span class="gold">It's a misidentified fear.</span></p>
+    <p class="context-sub">Most people treat holding back as a willpower failure. It isn't. It's a filter running in the background of every decision, installed before you had words for it. The filter doesn't disappear when you push through it. It disappears when you name it correctly.</p>
+  </div>
+</div>
+
+<!-- QUIZ SECTION -->
+<section class="quiz-section" id="quiz-section" style="display:none;">
+  <div class="quiz-inner">
+
+    <!-- PROGRESS -->
+    <div class="progress-bar-wrap">
+      <div class="progress-label">
+        <span id="progress-text">Question 1 of 3</span>
+        <span id="progress-pct">33%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:33%"></div>
+      </div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="q-card active" id="q1">
+      <div class="q-number">Question 1</div>
+      <h2 class="q-label">Name the thing you've been holding.</h2>
+      <p class="q-sub">The unsent email. The idea you've had for months and never said. The thing you were about to say in the meeting. And didn't. Write it here in one sentence.</p>
+      <textarea class="q-textarea" id="q1-input" placeholder="The thing I've been holding back is..."></textarea>
+      <div style="margin-top:20px;">
+        <button class="btn-next" id="q1-next" onclick="goQ2()" disabled>Continue</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card" id="q2">
+      <div class="q-number">Question 2</div>
+      <h2 class="q-label">Which script is it protecting?</h2>
+      <p class="q-sub">Every fear serves a deeper script, usually installed before the age of twelve. Pick the one that feels closest to what's running underneath yours.</p>
+      <div class="options-grid" id="q2-options">
+        <div class="opt-card" onclick="selectQ2(this, 'safety')">
+          <div class="opt-icon">🛡</div>
+          <div class="opt-body">
+            <div class="opt-title">Safety</div>
+            <div class="opt-desc">If I put this out there and it goes wrong, I'm exposed. Vulnerable. Something about that feels genuinely threatening, not just uncomfortable.</div>
+          </div>
+        </div>
+        <div class="opt-card" onclick="selectQ2(this, 'belonging')">
+          <div class="opt-icon">👥</div>
+          <div class="opt-body">
+            <div class="opt-title">Belonging</div>
+            <div class="opt-desc">If this goes wrong, I might lose my place. The approval, the connection, the "in." There's something about being seen to fail that feels like losing the room.</div>
+          </div>
+        </div>
+        <div class="opt-card" onclick="selectQ2(this, 'status')">
+          <div class="opt-icon">⭐</div>
+          <div class="opt-body">
+            <div class="opt-title">Status</div>
+            <div class="opt-desc">What I've built, the credibility, the reputation for knowing what I'm doing, that takes a hit if this goes wrong and people see it.</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-next" id="q2-next" onclick="goQ3()" disabled>Continue</button>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-card" id="q3">
+      <div class="q-number">Question 3</div>
+      <h2 class="q-label">What are you actually protecting?</h2>
+      <p class="q-sub">If this went wrong and people saw it, what would feel most at risk?</p>
+      <div class="binary-grid" id="q3-options">
+        <div class="binary-card" onclick="selectQ3(this, 'outcome')">
+          <div class="binary-icon">🎯</div>
+          <div class="binary-title">The result</div>
+          <div class="binary-desc">A setback. A wasted effort. Something that went wrong but could, eventually, be recovered from.</div>
+        </div>
+        <div class="binary-card" onclick="selectQ3(this, 'identity')">
+          <div class="binary-icon">🪞</div>
+          <div class="binary-title">The version of me they hold</div>
+          <div class="binary-desc">How I'm perceived. The image. The story about who I am in that person's head.</div>
+        </div>
+      </div>
+      <button class="btn-next" id="q3-next" onclick="showResult()" disabled>Name my filter</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-card" id="result">
+      <div class="result-filter-name" id="result-label"></div>
+      <h2 class="result-h2" id="result-title"></h2>
+      <p class="result-body" id="result-body"></p>
+
+      <div class="result-reframe">
+        <div class="result-reframe-label">The reframe</div>
+        <div class="result-reframe-text" id="result-reframe"></div>
+      </div>
+
+      <div class="result-principle">
+        <div class="result-principle-label">The mechanism</div>
+        <div class="result-principle-text" id="result-principle"></div>
+      </div>
+
+      <p class="result-action" id="result-action"></p>
+
+      <div class="divider"></div>
+
+      <div class="man-cta-card">
+        <div class="man-cta-label">What's next</div>
+        <h3 class="man-cta-title">The filter lives in the <span class="gold">M</span> layer.</h3>
+        <p class="man-cta-sub">The MAN Protocol starts with Mindset, because nothing in the Action or Nutrition layers sticks while the filter is running. The identity quiz finds the gap across all three pillars.</p>
+        <a href="https://www.uremarkable.com/quiz/man/" class="btn-gold">Take the MAN diagnostic</a>
+      </div>
+
+      <span class="restart-link" onclick="restartTool()">Start again</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">UREMARKABLE</div>
+  <div class="footer-links">
+    <a href="https://www.uremarkable.com/man/">MAN Protocol</a>
+    <a href="https://www.uremarkable.com/quiz/man/">Identity Quiz</a>
+    <a href="https://www.uremarkable.com/">Home</a>
+  </div>
+  <div class="footer-copy">Part of the MAN Protocol toolkit</div>
+</footer>
+
+<script>
+const answers = { q1: '', q2: '', q3: '' };
+
+// Q1 textarea enable
+document.getElementById('q1-input').addEventListener('input', function() {
+  const hasContent = this.value.trim().length > 5;
+  document.getElementById('q1-next').disabled = !hasContent;
+  answers.q1 = this.value.trim();
+});
+
+function startTool() {
+  document.getElementById('top').style.display = 'none';
+  document.querySelector('.context-strip').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'block';
+  document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function setProgress(q, pct) {
+  document.getElementById('progress-text').textContent = `Question ${q} of 3`;
+  document.getElementById('progress-pct').textContent = `${pct}%`;
+  document.getElementById('progress-fill').style.width = `${pct}%`;
+}
+
+function goQ2() {
+  answers.q1 = document.getElementById('q1-input').value.trim();
+  document.getElementById('q1').classList.remove('active');
+  document.getElementById('q2').classList.add('active');
+  setProgress(2, 66);
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 20, behavior: 'smooth' });
+}
+
+function selectQ2(el, val) {
+  document.querySelectorAll('#q2-options .opt-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  answers.q2 = val;
+  document.getElementById('q2-next').disabled = false;
+}
+
+function goQ3() {
+  document.getElementById('q2').classList.remove('active');
+  document.getElementById('q3').classList.add('active');
+  setProgress(3, 100);
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 20, behavior: 'smooth' });
+}
+
+function selectQ3(el, val) {
+  document.querySelectorAll('#q3-options .binary-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  answers.q3 = val;
+  document.getElementById('q3-next').disabled = false;
+}
+
+function showResult() {
+  document.getElementById('q3').classList.remove('active');
+  document.getElementById('result').classList.add('active');
+
+  // Hide progress bar
+  document.querySelector('.progress-bar-wrap').style.display = 'none';
+
+  const results = {
+    safety: {
+      label: 'Your filter type: The Exposure Filter',
+      title: 'You\'re not protecting a result. You\'re protecting your cover.',
+      body: `The safety script says: <strong>don't expose yourself</strong>. Keep the surface managed. Stay in the known range. This script was installed to protect something real, usually in an environment where being wrong or vulnerable had a real cost.<br><br>That cost probably isn't the same now. But the filter doesn't check dates. It runs the same program regardless of context, and it runs it quietly, under decisions that feel completely rational.`,
+      reframe: answers.q3 === 'identity'
+        ? 'This is an identity fear, not an outcome fear. Failure is recoverable. The feeling of being exposed is what the filter is actually protecting against. Name that correctly and the calculation changes.'
+        : 'The outcome you\'re worried about is real, but notice the deeper layer: it\'s not the result itself that feels most threatening. It\'s the exposure that comes with it. Two different problems with two different solutions.',
+      principle: '"Any script that you call out, you\'re weakening its power. Name it precisely and it loses its automatic grip." — Chase Hughes',
+      action: 'The thing you named in Q1: go back to it now and ask specifically what would become visible if it went wrong. Not what would happen, what would be seen. That\'s the actual filter. Name it once, out loud or on paper. That act alone starts to loosen it.'
+    },
+    belonging: {
+      label: 'Your filter type: The Belonging Filter',
+      title: 'You\'re not protecting a result. You\'re protecting a seat.',
+      body: `The belonging script says: <strong>don\'t do anything that makes them question whether you fit</strong>. This is one of the oldest scripts humans carry. Social belonging isn\'t a preference, it\'s a survival mechanism. The filter keeps you safe by keeping you legible to the group.<br><br>The question is whether the group you\'re protecting your seat with is the group you actually want to belong to. And whether this specific filter is still earning what it once earned.`,
+      reframe: answers.q3 === 'identity'
+        ? 'This is an identity fear. The outcome isn\'t what the filter is protecting. It\'s the story the group holds about you. Fear of failure is recoverable. Fear of changed perception feels permanent. Those are structurally different. Name the right one.'
+        : 'The outcome matters, but track the layer underneath it: the filter is less worried about the result than about what the result says to the room. That\'s a belonging fear, not an outcome fear. Name it correctly.',
+      principle: '"Your behaviour is not random. It\'s the output of an identity that was mostly constructed by an eight-year-old solving a child\'s problem." — Chase Hughes',
+      action: 'The thing you named in Q1: ask yourself whose approval you\'re weighing it against. Not generally. Specifically. One person or group. Name them. That\'s where the filter was calibrated. The filter can\'t be recalibrated until it\'s located.'
+    },
+    status: {
+      label: 'Your filter type: The Credibility Filter',
+      title: 'You\'re not protecting a result. You\'re protecting a version of yourself.',
+      body: `The status script says: <strong>don\'t let them update the image downward</strong>. You\'ve built something. A reputation, a track record, a way people see you. The filter\'s job is to protect that by screening out anything that could change the image in the wrong direction.<br><br>This filter is particularly good at making itself invisible. It doesn\'t feel like fear. It feels like standards, caution, perfectionism, not being ready yet. Those are the same filter with better marketing.`,
+      reframe: answers.q3 === 'identity'
+        ? 'This is a pure identity fear. Outcomes are recoverable. The credibility filter is protecting the story, not the work. The filter makes that reversal invisible by framing every held-back moment as caution or standards. Name what it\'s actually protecting.'
+        : 'There\'s a real outcome concern here. But underneath it, notice that the outcome matters partly because of what it signals about you. The credibility filter converts outcome anxiety into identity protection. Both are real. The second is what runs the filter.',
+      principle: '"The greatest leverage is almost always at the perception layer. Change what someone sees, and the behaviour follows without force." — Chase Hughes, PCP Model',
+      action: 'The thing you named in Q1: write down specifically what it would mean about you, in one sentence, if it went wrong and someone you respect saw it. That sentence is the filter\'s actual instruction. Reading it back changes the relationship to it.'
+    }
+  };
+
+  const r = results[answers.q2] || results['safety'];
+  document.getElementById('result-label').textContent = r.label;
+  document.getElementById('result-title').textContent = r.title;
+  document.getElementById('result-body').innerHTML = r.body;
+  document.getElementById('result-reframe').textContent = r.reframe;
+  document.getElementById('result-principle').textContent = r.principle;
+  document.getElementById('result-action').textContent = r.action;
+
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 20, behavior: 'smooth' });
+}
+
+function restartTool() {
+  answers.q1 = ''; answers.q2 = ''; answers.q3 = '';
+  document.getElementById('q1-input').value = '';
+  document.getElementById('q1-next').disabled = true;
+  document.getElementById('q2-next').disabled = true;
+  document.getElementById('q3-next').disabled = true;
+  document.querySelectorAll('.opt-card, .binary-card').forEach(c => c.classList.remove('selected'));
+  document.querySelector('.progress-bar-wrap').style.display = 'block';
+  setProgress(1, 33);
+  document.getElementById('result').classList.remove('active');
+  document.getElementById('q1').classList.add('active');
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 20, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
