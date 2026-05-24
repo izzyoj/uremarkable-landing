@@ -317,7 +317,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); -web
       </div>
       <div class="pillar-card">
         <div class="pillar-letter">N</div>
-        <div class="pillar-name">Nutrition</div>
+        <div class="pillar-name">Nourishment</div>
         <div class="pillar-desc">Biochemical substrate. Gut-brain axis. What you consume: food, media, and environment.</div>
       </div>
     </div>
@@ -375,7 +375,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); -web
   <div class="quiz-header">
     <div class="section-label">Step 1: Get your personalised brief</div>
     <h2 class="quiz-h2">90 seconds between you and your current identity</h2>
-    <p class="quiz-h2-sub">Nine questions across Mindset, Action, and Nutrition. Your score and pillar breakdown appear on screen instantly. Drop your email to unlock the full protocol brief.</p>
+    <p class="quiz-h2-sub">Nine questions across Mindset, Action, and Nourishment. Your score and pillar breakdown appear on screen instantly. Drop your email to unlock the full protocol brief.</p>
     <div class="pull-quote" style="margin-top:20px; max-width:540px;">
       <div class="pull-quote-text">"The most effective compliance always begins with identity. People do what they believe people like them do."</div>
       <div class="pull-quote-attr">Chase Hughes, The Ellipsis Manual</div>
@@ -478,8 +478,8 @@ var PILLAR_DATA = {
     tgResult: 'Your planning-to-action ratio this week is 3:1. The pattern shows the friction fires at the transition from setup to go. Here is the minimum viable rep for your actual goal based on what you have logged this week...'
   },
   N: {
-    letter: 'N', name: 'Nutrition',
-    diagnosis: 'Your biggest gap is in the Nutrition pillar, the biochemical substrate everything else runs on. The afternoon fog, the inconsistent focus, the motivation you keep waiting for: these are often substrate problems being misread as willpower problems. 95% of serotonin is produced in the gut. The gut-brain axis runs bidirectionally: emotional state shifts gut chemistry and gut chemistry shifts emotional state right back. What you put in, food, media, environment, shapes the neurological baseline your mindset and action operate from.',
+    letter: 'N', name: 'Nourishment',
+    diagnosis: 'Your biggest gap is in the Nourishment pillar, the biochemical substrate everything else runs on. The afternoon fog, the inconsistent focus, the motivation you keep waiting for: these are often substrate problems being misread as willpower problems. 95% of serotonin is produced in the gut. The gut-brain axis runs bidirectionally: emotional state shifts gut chemistry and gut chemistry shifts emotional state right back. What you put in, food, media, environment, shapes the neurological baseline your mindset and action operate from.',
     mechanismName: 'The Input Sequence',
     mechanism: 'The first 60 to 90 minutes set your neurological and biochemical baseline for the day. Water before caffeine: adenosine needs 90 minutes to clear after waking before caffeine gives clean energy rather than a rebound crash. Protein before 9am: neurotransmitter precursors need to be available before the cognitive load begins. Phone-free first task: cortisol peaks at wake and needs to land before stimulus input starts. And across the whole day, what you consume mentally shapes your identity as much as anything physical. Get the sequence right and the motivation you are waiting for tends to show up on its own.',
     todayAction: 'Tomorrow morning: water before coffee. Something with protein before 10am. Phone face-down for the first 30 minutes. Three inputs, one morning. Run it once and check what noon feels like. That is the experiment.',
@@ -533,7 +533,7 @@ function decodeBriefState(encoded) {
 /* ── Brief page rendering ───────────────────────────────── */
 function renderBriefHero(state) {
   var td = TIER_DATA[state.tier] || TIER_DATA.intent;
-  var pillarNames = { M: 'Mindset', A: 'Action', N: 'Nutrition' };
+  var pillarNames = { M: 'Mindset', A: 'Action', N: 'Nourishment' };
   var today = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
   var barsHTML = ['M','A','N'].map(function(p) {
     var score = state.pillarScores[p];
@@ -657,7 +657,7 @@ function submitBriefEmail() {
   var btn = document.getElementById('btnBriefUnlock');
   btn.disabled = true; btn.textContent = 'Loading brief...';
   var state = currentBriefState;
-  var pillarNames = { M: 'Mindset', A: 'Action', N: 'Nutrition' };
+  var pillarNames = { M: 'Mindset', A: 'Action', N: 'Nourishment' };
   fetch('https://formsubmit.co/ajax/uremarkable1@gmail.com', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -783,7 +783,7 @@ const questions = [
     ]
   },
   {
-    pillar: 'N', pillarName: 'Nutrition',
+    pillar: 'N', pillarName: 'Nourishment',
     text: 'How does your energy feel across the day, not just physically, but mentally?',
     answers: [
       { label: 'Stable. I have connected what I eat to how I think.', pts: 0 },
@@ -793,7 +793,7 @@ const questions = [
     ]
   },
   {
-    pillar: 'N', pillarName: 'Nutrition',
+    pillar: 'N', pillarName: 'Nourishment',
     text: 'What goes into your body in the first hour after you wake up?',
     answers: [
       { label: 'Water, then protein, then caffeine after 90 minutes, in that order', pts: 0 },
@@ -803,7 +803,7 @@ const questions = [
     ]
   },
   {
-    pillar: 'N', pillarName: 'Nutrition',
+    pillar: 'N', pillarName: 'Nourishment',
     text: 'How deliberate are you about what you let into your head across the day, media, conversations, environment?',
     answers: [
       { label: 'Very. I treat mental input like nutrition because it is.', pts: 0 },
