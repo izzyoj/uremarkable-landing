@@ -470,14 +470,19 @@
     .philosophy-bg { background: var(--bg-soft); }
     .quote-trio { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
 
-    /* ── PEOPLE BEHIND IT ── */
-    .people-section { background: var(--bg-warm); }
-    .people-intro { font-size: 18px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 40px; }
+    /* ── WHY / HOW / WHAT ── */
+    .why-section { background: var(--ink); color: #fff; }
+    .why-section .label { color: rgba(255,255,255,0.4); }
+    .why-section h2 { color: #fff; }
+    .why-text { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.85; margin-bottom: 24px; }
+    .why-pivot { font-size: 22px; font-weight: 700; color: rgba(255,255,255,0.95); margin: 36px 0; line-height: 1.3; }
+    .why-anchor { font-size: 17px; font-weight: 600; color: var(--gold); margin-top: 40px; }
+    .how-section { background: #fff; }
+    .what-section { background: var(--bg-soft); }
     .founder-card {
-      background: #fff; border: 1px solid var(--border);
+      background: var(--bg-soft); border: 1px solid var(--border);
       border-radius: 20px; padding: 32px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
     .founder-header {
       display: flex; align-items: flex-start; gap: 20px;
@@ -493,32 +498,26 @@
     .founder-name { font-size: 20px; font-weight: 700; margin-bottom: 3px; }
     .founder-role { font-size: 14px; color: var(--gold); font-weight: 500; }
     .founder-bio { font-size: 16px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; }
-    .founder-creds {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
+    .founder-creds { display: flex; flex-wrap: wrap; gap: 8px; }
     .founder-cred {
-      background: var(--bg-soft); border: 1px solid var(--border);
+      background: #fff; border: 1px solid var(--border);
       border-radius: 6px; padding: 5px 12px;
       font-size: 13px; color: var(--ink);
     }
-
-    .influences-header {
-      font-size: 13px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--ink-soft); margin-bottom: 16px;
-    }
-    .influences-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 12px;
-    }
-    .influence-card {
+    .inspiration-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 32px; }
+    .inspiration-card {
+      display: flex; align-items: center; gap: 16px;
       background: #fff; border: 1px solid var(--border);
-      border-radius: 12px; padding: 16px;
+      border-radius: 16px; padding: 20px 24px;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.15s, transform 0.1s;
     }
-    .influence-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-    .influence-work { font-size: 12px; color: var(--gold); font-weight: 500; margin-bottom: 6px; }
-    .influence-note { font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
+    .inspiration-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-1px); }
+    .inspiration-body { flex: 1; }
+    .inspiration-name { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .inspiration-work { font-size: 12px; color: var(--gold); font-weight: 500; margin-bottom: 8px; }
+    .inspiration-note { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+    .inspiration-arrow { font-size: 20px; color: rgba(0,0,0,0.18); flex-shrink: 0; }
 
     /* ── PILLARS NAV ── */
     .pillars-nav-section { background: var(--bg-soft); }
@@ -1190,19 +1189,25 @@
   </section>
 </div>
 
-<!-- PEOPLE BEHIND IT -->
-<div class="people-section">
+<!-- WHY -->
+<div class="why-section">
   <section>
-    <div class="label">People behind it</div>
+    <div class="label">Why it exists</div>
     <h2>Built by someone who needed it.</h2>
-    <p class="people-intro">MAN wasn't built from theory. It was built from a specific kind of exhaustion: knowing exactly who you want to be, being able to describe that person in detail, and still waking up every day acting like someone else.</p>
-    <p class="people-intro">That gap has a structure. Who you are: the identity your brain has been constructing since childhood, the lens through which every thought gets filtered. Who you say you are: the version you present, perform, project. And who you're becoming: the direction you're either moving toward or running from.</p>
-    <p class="people-intro">Most people treat that gap as a motivation problem. It isn't. The brain isn't looking for inspiration. It's looking for the fastest route to less discomfort. Every habit, every default behavior, every shortcut your nervous system takes is just the brain doing its job: find the pattern, groove the path, reduce the load.</p>
-    <p class="people-intro">The problem is which path it grooves.</p>
-    <p class="people-intro">Without a system, the path of least resistance leads away from becoming. I knew that. 38 years of training had shown me exactly how to build one layer of a human life, the physical one. 48 years of living had shown me the gap in every other layer, especially the one that costs the most to leave unfilled: meaning.</p>
-    <p class="people-intro">MAN is the system that makes the becoming-path the easiest path, across Mindset, Action, and Nourishment. Not through willpower. Through design.</p>
-    <p class="people-intro">Built because the gap was real. Still being closed.</p>
+    <p class="why-text">MAN wasn't built from theory. It was built from a specific kind of exhaustion: knowing exactly who you want to be, being able to describe that person in detail, and still waking up every day acting like someone else.</p>
+    <p class="why-text">That gap has a structure. Who you are: the identity your brain has been constructing since childhood, the lens through which every thought gets filtered. Who you say you are: the version you present, perform, project. And who you're becoming: the direction you're either moving toward or running from.</p>
+    <p class="why-text">Most people treat that gap as a motivation problem. It isn't. The brain isn't looking for inspiration. It's looking for the fastest route to less discomfort. Every habit, every default behavior, every shortcut your nervous system takes is just the brain doing its job: find the pattern, groove the path, reduce the load.</p>
+    <p class="why-pivot">The problem is which path it grooves.</p>
+    <p class="why-text">Without a system, the path of least resistance leads away from becoming. I knew that. 38 years of training had shown me exactly how to build one layer of a human life, the physical one. 48 years of living had shown me the gap in every other layer, especially the one that costs the most to leave unfilled: meaning.</p>
+    <p class="why-text">MAN is the system that makes the becoming-path the easiest path, across Mindset, Action, and Nourishment. Not through willpower. Through design.</p>
+    <p class="why-anchor">Built because the gap was real. Still being closed.</p>
+  </section>
+</div>
 
+<!-- HOW -->
+<div class="how-section">
+  <section>
+    <div class="label">The mechanism</div>
     <div class="founder-card">
       <div class="founder-header">
         <img src="data:image/jpeg;base64,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" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center top;" alt="Baz Ozturk">
@@ -1215,39 +1220,64 @@
       <p class="founder-bio">Then I looked at my own life. I didn't have meaning. I was looking for it but lost at every turn. One constant was that I knew how to move. 38 years of it with martial arts, across kickboxing, strength, boxing, and capoeira. I had the books. I had the frameworks. I had the results. On paper. But knowing was not becoming. Finding meaning wasn't the answer. I needed to create it. So I applied delivery discipline to identity change. MAN is what came out.</p>
 
     </div>
+  </section>
+</div>
 
-    <div class="influences-header">The thinkers who shaped the framework</div>
-    <div class="influences-grid">
-      <div class="influence-card">
-        <div class="influence-name">James Clear</div>
-        <div class="influence-work">Atomic Habits</div>
-        <div class="influence-note">Identity-based habits. 1% better every day. Votes, not results.</div>
-      </div>
-      <div class="influence-card">
-        <div class="influence-name">Peter Crone</div>
-        <div class="influence-work">The World According to You</div>
-        <div class="influence-note">Self-authorship. Being precedes doing. The language of identity.</div>
-      </div>
-      <div class="influence-card">
-        <div class="influence-name">Chase Hughes</div>
-        <div class="influence-work">The Ellipsis Manual</div>
-        <div class="influence-note">Identity compliance. Threat modeling. How belief drives behaviour.</div>
-      </div>
-      <div class="influence-card">
-        <div class="influence-name">Nir Eyal</div>
-        <div class="influence-work">Hooked · Indistractable</div>
-        <div class="influence-note">Behavioural design. Trigger-action-reward. Attention as architecture.</div>
-      </div>
-      <div class="influence-card">
-        <div class="influence-name">Viktor Frankl</div>
-        <div class="influence-work">Man's Search for Meaning</div>
-        <div class="influence-note">Meaning isn't found. It's created. The philosophical root of identity-led becoming.</div>
-      </div>
-      <div class="influence-card">
-        <div class="influence-name">Andrew Huberman</div>
-        <div class="influence-work">Huberman Lab</div>
-        <div class="influence-note">Neuroscience of sleep, light, attention, and inputs. The science behind the Nourishment pillar.</div>
-      </div>
+<!-- WHAT -->
+<div class="what-section">
+  <section>
+    <div class="label">Inspiration</div>
+    <h2>What shaped it.</h2>
+    <p class="body-text">Six thinkers whose work is embedded in MAN. Not referenced loosely — each one contributes a specific mechanism to the protocol.</p>
+    <div class="inspiration-grid">
+      <a href="/man/inspiration/james-clear/" class="inspiration-card">
+        <div class="inspiration-body">
+          <div class="inspiration-name">James Clear</div>
+          <div class="inspiration-work">Atomic Habits</div>
+          <div class="inspiration-note">Identity-based habits. 1% better every day. Votes, not results.</div>
+        </div>
+        <div class="inspiration-arrow">→</div>
+      </a>
+      <a href="/man/inspiration/peter-crone/" class="inspiration-card">
+        <div class="inspiration-body">
+          <div class="inspiration-name">Peter Crone</div>
+          <div class="inspiration-work">The World According to You</div>
+          <div class="inspiration-note">Self-authorship. Being precedes doing. The language of identity.</div>
+        </div>
+        <div class="inspiration-arrow">→</div>
+      </a>
+      <a href="/man/inspiration/chase-hughes/" class="inspiration-card">
+        <div class="inspiration-body">
+          <div class="inspiration-name">Chase Hughes</div>
+          <div class="inspiration-work">The Ellipsis Manual</div>
+          <div class="inspiration-note">Identity compliance. Threat modeling. How belief drives behaviour.</div>
+        </div>
+        <div class="inspiration-arrow">→</div>
+      </a>
+      <a href="/man/inspiration/nir-eyal/" class="inspiration-card">
+        <div class="inspiration-body">
+          <div class="inspiration-name">Nir Eyal</div>
+          <div class="inspiration-work">Hooked · Indistractable</div>
+          <div class="inspiration-note">Behavioural design. Trigger-action-reward. Attention as architecture.</div>
+        </div>
+        <div class="inspiration-arrow">→</div>
+      </a>
+      <a href="/man/inspiration/viktor-frankl/" class="inspiration-card">
+        <div class="inspiration-body">
+          <div class="inspiration-name">Viktor Frankl</div>
+          <div class="inspiration-work">Man's Search for Meaning</div>
+          <div class="inspiration-note">Meaning isn't found. It's created. The philosophical root of identity-led becoming.</div>
+        </div>
+        <div class="inspiration-arrow">→</div>
+      </a>
+      <a href="/man/inspiration/andrew-huberman/" class="inspiration-card">
+        <div class="inspiration-body">
+          <div class="inspiration-name">Andrew Huberman</div>
+          <div class="inspiration-work">Huberman Lab</div>
+          <div class="inspiration-note">Neuroscience of sleep, light, attention, and inputs. The science behind the Nourishment pillar.</div>
+        </div>
+        <div class="inspiration-arrow">→</div>
+      </a>
     </div>
   </section>
 </div>
