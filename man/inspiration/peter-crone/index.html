@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peter Crone | MAN Protocol Inspiration</title>
+  <meta name="description" content="Peter Crone made the case that identity precedes everything else. Here is how MAN builds on the being layer." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
+      --bg: #ffffff;
+      --bg-soft: #f5f5f7;
+      --bg-warm: #faf8f4;
+      --border: #e5e5ea;
+      --gold: #b8860b;
+      --gold-light: #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    html {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    /* NAV */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-brand span {
+      color: var(--ink-soft);
+      font-weight: 400;
+      margin: 0 4px;
+    }
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold-border);
+      background: var(--gold-light);
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.75; }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px 24px 0;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+    .breadcrumb a {
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* SECTION BASE */
+    .section {
+      padding: 72px 24px;
+    }
+    .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--bg);
+      padding: 56px 24px 72px;
+    }
+    .hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .hero-tagline {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+      max-width: 540px;
+    }
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .chip-m { background: #e8f0fe; color: #2563eb; }
+    .chip-a { background: #fef3c7; color: #92400e; }
+    .chip-n { background: #d1fae5; color: #065f46; }
+    .chip-book {
+      background: var(--bg-soft);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .chip-book:hover { opacity: 0.7; }
+    .chip-book-icon {
+      margin-right: 5px;
+      font-style: normal;
+    }
+
+    /* SECTION HEADINGS AND TEXT */
+    .section h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .section p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* DARK SECTION */
+    .section-dark {
+      background: var(--ink);
+      color: #f5f5f7;
+    }
+    .section-dark .label { color: #86868b; }
+    .section-dark h2 { color: #f5f5f7; }
+    .section-dark p { color: #a1a1a6; }
+
+    /* QUOTE BLOCK */
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin: 32px 0;
+      background: rgba(255,255,255,0.05);
+      border-radius: 0 8px 8px 0;
+    }
+    .quote-block blockquote {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #f5f5f7;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .quote-block cite {
+      font-size: 14px;
+      color: #86868b;
+      font-style: normal;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .card-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    /* GOLD/PILLAR SECTION */
+    .section-gold {
+      background: var(--gold-light);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .section-gold .label { color: var(--gold); }
+    .section-gold p { color: var(--ink-soft); }
+
+    /* BOOK SECTION */
+    .book-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold-border);
+      background: var(--gold-light);
+      padding: 10px 20px;
+      border-radius: 24px;
+      transition: opacity 0.15s;
+    }
+    .book-link:hover { opacity: 0.75; }
+
+    /* CTA SECTION */
+    .section-cta {
+      background: var(--ink);
+      text-align: center;
+    }
+    .section-cta h2 { color: #f5f5f7; }
+    .section-cta p { color: #a1a1a6; }
+    .btn-primary {
+      display: inline-block;
+      margin-top: 28px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 28px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .cta-secondary {
+      display: block;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #86868b;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .cta-secondary:hover { color: #f5f5f7; }
+
+    /* FOOTER */
+    .footer {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+    }
+    .footer-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      align-items: center;
+    }
+    .footer-brand {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      margin-right: 8px;
+    }
+    .footer a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer a:hover { color: var(--ink); }
+    .footer-sep {
+      color: var(--border);
+    }
+
+    @media (min-width: 560px) {
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cards .card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <a href="/man/" class="nav-brand">MAN <span>/</span> Inspiration</a>
+      <a href="/man/quiz/" class="nav-cta">Take the quiz</a>
+    </div>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="/man/">MAN Protocol</a>
+    <span>›</span>
+    <a href="/man/inspiration/">Inspiration</a>
+    <span>›</span>
+    Peter Crone
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="label">The Being Layer</div>
+      <h1>Peter Crone</h1>
+      <p class="hero-tagline">Author of The World According to You. The thinker who made the case that identity precedes everything else.</p>
+      <div class="chip-row">
+        <span class="chip chip-m">Mindset</span>
+        <span class="chip chip-book">
+          <i class="chip-book-icon">📖</i> The World According to You
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- WHO HE IS -->
+  <section class="section" style="background: var(--bg);">
+    <div class="section-inner">
+      <div class="label">Who he is</div>
+      <h2>The mind architect.</h2>
+      <p>Peter Crone works at the intersection of psychology, consciousness, and identity. His core premise is deceptively simple: the self you experience is not fixed. It was authored, mostly unconsciously, by experiences you did not choose. And it can be re-authored.</p>
+      <p>He uses the word "being" deliberately. Not mindset, not attitude, not perspective. Being. Because everything you do flows from it. Change the being and the doing changes automatically. Try to change the doing without touching the being and you are in a constant war with yourself.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- THE INSIGHT -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <div class="label">The core insight</div>
+      <h2>Being precedes doing. Always.</h2>
+      <div class="quote-block">
+        <blockquote>"You are not the labels the world has given you. You are the awareness behind them."</blockquote>
+        <cite>Peter Crone</cite>
+      </div>
+      <p>Most self-improvement effort targets behaviour. That is the wrong layer. Behaviour is the output. Identity is the source code. Crone's work names this directly: if you are operating from a self-concept built on "I am not enough" or "I am not safe," every action you take will be filtered through that lens. Not because you chose it. Because it is the water you swim in.</p>
+      <p>The gap MAN is built to close starts here. Who you are is the Personal Construct Psychology layer: the lens your brain has been building since childhood. You cannot close the gap between who you are and who you are becoming without first seeing the lens clearly.</p>
+    </div>
+  </section>
+
+  <!-- HOW MAN APPLIES IT -->
+  <section class="section" style="background: var(--bg-soft);">
+    <div class="section-inner">
+      <div class="label">How MAN uses it</div>
+      <h2>The three-layer gap.</h2>
+      <p>Crone's framework is the foundation of MAN's identity model. The protocol works with three layers: who you ARE (the identity construct, built unconsciously), who you SAY you are (the projected self, often aspirational), and who you are BECOMING (the direction you are either moving toward or away from). The gap between these layers is where most human suffering lives.</p>
+      <p>MAN's Mindset pillar starts here. Before any tool, any habit, any system, the protocol asks you to see the construct. Not to analyse it to death. Just to see it. The decision gate, the morning anchor, the identity auditor: all of them route decisions through the becoming-self, not the default self.</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">The self was authored</div>
+          <div class="card-body">Your identity is not fixed. It was constructed from experiences you did not choose. That means it can be reconstructed from ones you do.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Being before doing</div>
+          <div class="card-body">You cannot sustainably change what you do without changing who you are being. Every system that skips this step is building on sand.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">The lens shapes the view</div>
+          <div class="card-body">Who you are is not just who you think you are. It is the filter through which every perception, every decision, every moment gets processed.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- PILLARS -->
+  <section class="section section-gold">
+    <div class="section-inner">
+      <div class="label">Pillars</div>
+      <div class="chip-row" style="margin-bottom: 16px;">
+        <span class="chip chip-m">Mindset</span>
+      </div>
+      <p>Crone's work sits entirely in the Mindset pillar. It is the philosophical bedrock under the whole protocol. The identity-first logic that every other mechanism depends on.</p>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="section" style="background: var(--bg);">
+    <div class="section-inner">
+      <div class="label">Read the source</div>
+      <h2>The World According to You</h2>
+      <p>A short, readable book that makes the case for self-authorship without the therapy-speak. If you have ever thought "I know what I should do but I cannot make myself do it," this is the diagnosis.</p>
+      <a href="https://www.petercrone.com/" class="book-link" target="_blank" rel="noopener">
+        Find it ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-cta">
+    <div class="section-inner" style="text-align: center;">
+      <h2>Find your layer.</h2>
+      <p>The quiz identifies which pillar is under pressure right now. Mindset is usually where it starts.</p>
+      <a href="/man/quiz/" class="btn-primary">Take the quiz</a>
+      <a href="/man/inspiration/" class="cta-secondary">Back to Inspiration</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="/man/" class="footer-brand">MAN Protocol</a>
+      <span class="footer-sep">·</span>
+      <a href="/man/inspiration/">Inspiration</a>
+      <span class="footer-sep">·</span>
+      <a href="/man/pillars/mindset/">Mindset</a>
+      <span class="footer-sep">·</span>
+      <a href="/man/pillars/action/">Action</a>
+      <span class="footer-sep">·</span>
+      <a href="/man/pillars/nourishment/">Nourishment</a>
+    </div>
+  </footer>
+
+</body>
+</html>

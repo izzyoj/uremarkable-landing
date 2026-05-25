@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspiration | MAN Protocol</title>
+  <meta name="description" content="Six thinkers whose work is embedded in MAN. Not a reading list. The intellectual foundation the protocol was built on.">
+  <meta property="og:title" content="Inspiration | MAN Protocol">
+  <meta property="og:description" content="Six thinkers whose work is embedded in MAN. Not a reading list. The intellectual foundation the protocol was built on.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:         #1d1d1f;
+      --ink-soft:    #6e6e73;
+      --bg:          #ffffff;
+      --bg-soft:     #f5f5f7;
+      --bg-warm:     #faf8f4;
+      --border:      #e5e5ea;
+      --gold:        #b8860b;
+      --gold-light:  #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    .nav-wrap {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 720px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-size: 15px; font-weight: 700; text-decoration: none; color: var(--ink); letter-spacing: -0.01em; }
+    .nav-brand span { color: var(--gold); }
+    .nav-cta {
+      font-size: 13px; font-weight: 600;
+      background: var(--ink); color: #fff;
+      padding: 7px 16px; border-radius: 20px;
+      text-decoration: none;
+    }
+
+    section { max-width: 720px; margin: 0 auto; padding: 72px 24px; }
+
+    .label {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.1; margin-bottom: 20px;
+    }
+    h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.15; margin-bottom: 16px;
+    }
+
+    .body-text { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 16px; }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    .breadcrumb a { color: var(--ink-soft); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb-sep { color: var(--border); }
+    .breadcrumb-current { color: var(--gold); font-weight: 600; }
+
+    /* HERO */
+    .hero-bg { background: var(--bg); }
+
+    .hero-sub {
+      font-size: 20px; color: var(--ink-soft); line-height: 1.5;
+      margin-top: 16px; max-width: 560px;
+    }
+
+    /* THINKER CARDS */
+    .cards-bg { background: var(--bg-soft); }
+    .cards-grid {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-top: 36px;
+    }
+    .thinker-card {
+      display: flex; align-items: center; gap: 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 28px;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.15s, transform 0.1s;
+    }
+    .thinker-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .thinker-pillar-tag {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .pillar-chip {
+      font-size: 11px; font-weight: 700;
+      padding: 3px 10px; border-radius: 20px;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .chip-m { background: #e8f0fe; color: #2563eb; }
+    .chip-a { background: #fef3c7; color: #92400e; }
+    .chip-n { background: #d1fae5; color: #065f46; }
+    .thinker-body { flex: 1; }
+    .thinker-name { font-size: 18px; font-weight: 700; margin-bottom: 3px; }
+    .thinker-work { font-size: 12px; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .thinker-note { font-size: 15px; color: var(--ink-soft); line-height: 1.5; }
+    .thinker-arrow { font-size: 20px; color: rgba(0,0,0,0.18); flex-shrink: 0; }
+
+    /* FOOTER NOTE */
+    .footer-note-bg { background: var(--ink); }
+    .footer-note-bg section { color: #fff; }
+    .footer-note-bg .label { color: rgba(255,255,255,0.4); }
+    .footer-note-bg h2 { color: #fff; }
+    .footer-note-text {
+      font-size: 18px; color: rgba(255,255,255,0.7);
+      line-height: 1.7; margin-bottom: 16px;
+    }
+    .footer-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+    .btn-primary {
+      background: #fff; color: var(--ink);
+      border: none; border-radius: 980px;
+      padding: 14px 28px; font-size: 16px; font-weight: 600;
+      cursor: pointer; text-decoration: none; display: inline-block;
+    }
+    .btn-ghost {
+      background: transparent; color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 980px;
+      padding: 14px 28px; font-size: 16px; font-weight: 500;
+      cursor: pointer; text-decoration: none; display: inline-block;
+    }
+    .btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px; color: var(--ink-soft);
+    }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <a href="/man/" class="nav-brand">MAN <span>/</span> Inspiration</a>
+      <a href="/man/quiz/" class="nav-cta">Take the quiz</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero-bg">
+    <section>
+      <div class="breadcrumb">
+        <a href="/man/">MAN Protocol</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Inspiration</span>
+      </div>
+      <div class="label">What shaped it</div>
+      <h1>Six thinkers.<br>One framework.</h1>
+      <p class="hero-sub">MAN wasn't built in a vacuum. These are the people whose work is embedded in how the protocol thinks, what it asks of you, and why it's built the way it is.</p>
+    </section>
+  </div>
+
+  <!-- THINKER CARDS -->
+  <div class="cards-bg">
+    <section>
+
+      <a href="/man/inspiration/james-clear/" class="thinker-card">
+        <div class="thinker-pillar-tag">
+          <span class="pillar-chip chip-a">Action</span>
+          <span class="pillar-chip chip-m">Mindset</span>
+        </div>
+        <div class="thinker-body">
+          <div class="thinker-name">James Clear</div>
+          <div class="thinker-work">Atomic Habits</div>
+          <div class="thinker-note">Identity-based habits. Every action is a vote for who you are becoming.</div>
+        </div>
+        <div class="thinker-arrow">›</div>
+      </a>
+
+      <a href="/man/inspiration/peter-crone/" class="thinker-card">
+        <div class="thinker-pillar-tag">
+          <span class="pillar-chip chip-m">Mindset</span>
+        </div>
+        <div class="thinker-body">
+          <div class="thinker-name">Peter Crone</div>
+          <div class="thinker-work">The World According to You</div>
+          <div class="thinker-note">Being precedes doing. You can't change behaviour without addressing identity first.</div>
+        </div>
+        <div class="thinker-arrow">›</div>
+      </a>
+
+      <a href="/man/inspiration/chase-hughes/" class="thinker-card">
+        <div class="thinker-pillar-tag">
+          <span class="pillar-chip chip-m">Mindset</span>
+          <span class="pillar-chip chip-a">Action</span>
+        </div>
+        <div class="thinker-body">
+          <div class="thinker-name">Chase Hughes</div>
+          <div class="thinker-work">The Ellipsis Manual</div>
+          <div class="thinker-note">The projected self. The gap between who you are and who you perform creates friction the brain registers as discomfort.</div>
+        </div>
+        <div class="thinker-arrow">›</div>
+      </a>
+
+      <a href="/man/inspiration/nir-eyal/" class="thinker-card">
+        <div class="thinker-pillar-tag">
+          <span class="pillar-chip chip-m">Mindset</span>
+          <span class="pillar-chip chip-a">Action</span>
+        </div>
+        <div class="thinker-body">
+          <div class="thinker-name">Nir Eyal</div>
+          <div class="thinker-work">Hooked · Indistractable</div>
+          <div class="thinker-note">All human motivation is driven by the desire to escape discomfort. The carrot IS the stick.</div>
+        </div>
+        <div class="thinker-arrow">›</div>
+      </a>
+
+      <a href="/man/inspiration/viktor-frankl/" class="thinker-card">
+        <div class="thinker-pillar-tag">
+          <span class="pillar-chip chip-m">Mindset</span>
+          <span class="pillar-chip chip-n">Nourish</span>
+        </div>
+        <div class="thinker-body">
+          <div class="thinker-name">Viktor Frankl</div>
+          <div class="thinker-work">Man's Search for Meaning</div>
+          <div class="thinker-note">Meaning isn't found. It's created. The philosophical root of identity-led becoming.</div>
+        </div>
+        <div class="thinker-arrow">›</div>
+      </a>
+
+      <a href="/man/inspiration/andrew-huberman/" class="thinker-card">
+        <div class="thinker-pillar-tag">
+          <span class="pillar-chip chip-n">Nourish</span>
+          <span class="pillar-chip chip-a">Action</span>
+        </div>
+        <div class="thinker-body">
+          <div class="thinker-name">Andrew Huberman</div>
+          <div class="thinker-work">Huberman Lab</div>
+          <div class="thinker-note">Biology is upstream of behaviour. Get the inputs right and the architecture becomes possible.</div>
+        </div>
+        <div class="thinker-arrow">›</div>
+      </a>
+
+    </section>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div class="footer-note-bg">
+    <section>
+      <div class="label">The point</div>
+      <h2>Built on shoulders, not handed down from them.</h2>
+      <p class="footer-note-text">These aren't endorsements and they're not a reading list. Each of these thinkers contributed a specific mechanism to how MAN works. The protocol borrows the insight, translates it into a daily system, and applies it to a specific problem: closing the gap between who you are and who you're becoming.</p>
+      <p class="footer-note-text">None of them built MAN. But none of MAN would exist without them.</p>
+      <div class="footer-cta-row">
+        <a href="/man/quiz/" class="btn-primary">Take the quiz</a>
+        <a href="/man/" class="btn-ghost">Back to MAN</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p><a href="/man/">MAN Protocol</a> &nbsp;·&nbsp; <a href="/man/pillars/mindset/">Mindset</a> &nbsp;·&nbsp; <a href="/man/pillars/action/">Action</a> &nbsp;·&nbsp; <a href="/man/pillars/nourishment/">Nourishment</a> &nbsp;·&nbsp; <a href="/man/tools/">Tools</a></p>
+  </footer>
+
+</body>
+</html>

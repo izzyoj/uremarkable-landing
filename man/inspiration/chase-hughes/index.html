@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chase Hughes | MAN Protocol Inspiration</title>
+  <meta name="description" content="Chase Hughes, author of The Ellipsis Manual. The intelligence professional who mapped the architecture of identity, projection, and belief-driven behaviour.">
+  <style>
+    :root {
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
+      --bg: #ffffff;
+      --bg-soft: #f5f5f7;
+      --bg-warm: #faf8f4;
+      --border: #e5e5ea;
+      --gold: #b8860b;
+      --gold-light: #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    /* Nav */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-brand span {
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 7px 16px;
+      border-radius: 20px;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.8;
+    }
+
+    /* Sections */
+    .section {
+      padding: 72px 24px;
+    }
+
+    .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Labels */
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 80px 24px 72px;
+    }
+
+    .hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .hero .label {
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .hero-tagline {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 560px;
+      margin-bottom: 28px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .chip-m {
+      background: #e8f0fe;
+      color: #2563eb;
+    }
+
+    .chip-a {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .chip-n {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .chip-book {
+      background: var(--gold-light);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+    }
+
+    /* Who he is */
+    .section-white {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .section p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Dark section */
+    .section-dark {
+      background: #1d1d1f;
+      border-bottom: none;
+    }
+
+    .section-dark .label {
+      color: #8e8e93;
+    }
+
+    .section-dark h2 {
+      color: #f5f5f7;
+    }
+
+    .section-dark p {
+      color: #aeaeb2;
+    }
+
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 20px 0 20px 24px;
+      margin: 32px 0;
+    }
+
+    .quote-text {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #f5f5f7;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .quote-attr {
+      font-size: 14px;
+      color: #8e8e93;
+      font-style: normal;
+    }
+
+    /* Soft section */
+    .section-soft {
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Cards */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .card-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    /* Pillars section */
+    .section-warm {
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .section-warm h2 {
+      color: var(--ink);
+    }
+
+    /* Book section */
+    .book-block {
+      background: var(--gold-light);
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 24px;
+    }
+
+    .book-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .book-body {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1.5px solid var(--gold-border);
+      padding: 10px 20px;
+      border-radius: 24px;
+      background: var(--bg);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .btn-link:hover {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+
+    /* CTA dark */
+    .section-cta {
+      background: #1d1d1f;
+    }
+
+    .section-cta h2 {
+      color: #f5f5f7;
+      font-size: clamp(26px, 4.5vw, 36px);
+      margin-bottom: 16px;
+    }
+
+    .section-cta p {
+      color: #aeaeb2;
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1d1d1f;
+      background: #f5f5f7;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 28px;
+      transition: opacity 0.15s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 500;
+      color: #aeaeb2;
+      text-decoration: none;
+      padding: 14px 20px;
+      border-radius: 28px;
+      border: 1px solid #3a3a3c;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: #636366;
+      color: #f5f5f7;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+    }
+
+    .footer-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--ink);
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: #aeaeb2;
+    }
+
+    /* Pillar pill row */
+    .pillars-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    /* Responsive */
+    @media (min-width: 640px) {
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .cards .card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <a href="/man/" class="nav-brand">MAN <span>/</span> Inspiration</a>
+      <a href="/man/quiz/" class="nav-cta">Take the quiz</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="label">The Identity Gap</div>
+      <h1>Chase Hughes</h1>
+      <p class="hero-tagline">Author of The Ellipsis Manual. The intelligence professional who mapped the architecture of identity, projection, and belief-driven behaviour.</p>
+      <div class="chips">
+        <span class="chip chip-m">Mindset</span>
+        <span class="chip chip-a">Action</span>
+        <span class="chip chip-book">The Ellipsis Manual</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Who he is -->
+  <div class="section section-white">
+    <div class="section-inner">
+      <div class="label">Who he is</div>
+      <h2>The behaviour scientist from the field.</h2>
+      <p>Chase Hughes spent years in the US Navy applying behavioural science operationally. His work is not theoretical. It was tested in environments where reading people wrong had consequences. That background shows in how his frameworks are built: lean, specific, applied.</p>
+      <p>He maps the gap between the self someone has constructed internally and the self they project outward. That gap, he found, is not neutral. It creates detectable, consistent patterns of discomfort. The brain registers the mismatch as threat, even when nothing external has changed.</p>
+    </div>
+  </div>
+
+  <!-- The core insight -->
+  <div class="section section-dark">
+    <div class="section-inner">
+      <div class="label">The core insight</div>
+      <h2>The projected self creates real friction.</h2>
+      <div class="quote-block">
+        <p class="quote-text">"Your behaviour is always in alignment with your belief system, whether you're aware of that belief system or not."</p>
+        <span class="quote-attr">Chase Hughes</span>
+      </div>
+      <p>Hughes identified what he calls the projected identity: the version of yourself you perform for the world. It is not the same as who you ARE internally, and it is often not the same as who you are BECOMING. The gap between these three layers is not psychological abstraction. It is something the nervous system experiences as low-grade discomfort, most of the time.</p>
+      <p>His FATE and FEAR frameworks map the motivational terrain. People move toward FATE (Fulfilment, Acceptance, Trust, Excitement) or away from FEAR (Frustration, Embarrassment, Anxiety, Rejection). Not pleasure vs pain in a simple sense. Direction vs avoidance. The distinction matters because MAN is built on direction, not just escape.</p>
+    </div>
+  </div>
+
+  <!-- How MAN applies it -->
+  <div class="section section-soft">
+    <div class="section-inner">
+      <div class="label">How MAN uses it</div>
+      <h2>The three-layer gap model.</h2>
+      <p>Hughes' work is the direct source of MAN's three-layer identity framework. Who you ARE is the internal construct (Personal Construct Psychology). Who you SAY you are is the projected identity Hughes maps. Who you're BECOMING is the direction vector his FATE framework tracks. Most people live in the gap between all three simultaneously and wonder why they feel off.</p>
+      <p>The Mindset pillar's decision gate is built on this. Every decision that routes through the protocol gets filtered through one question: which layer is this coming from? The default self? The performed self? Or the becoming-self? The gap narrows one decision at a time.</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Projection costs energy</div>
+          <p class="card-body">Performing a self that does not match your internal construct is metabolically and psychologically expensive. The closer the gap, the cheaper the running cost.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Belief drives behaviour</div>
+          <p class="card-body">Every default action you take is consistent with a belief you hold about yourself, whether you know that belief exists or not. Surface the belief to change the action.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Direction beats avoidance</div>
+          <p class="card-body">FATE is more powerful than escaping FEAR. Building toward something generates different energy than running from something. MAN routes toward becoming, not away from pain.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Which pillars -->
+  <div class="section section-warm">
+    <div class="section-inner">
+      <div class="label">Which pillars</div>
+      <h2>Where Hughes sits in the protocol.</h2>
+      <div class="pillars-row">
+        <span class="chip chip-m">Mindset</span>
+        <span class="chip chip-a">Action</span>
+      </div>
+      <p>Hughes sits across both. The projected identity model is Mindset: it is about how you see yourself and how that diverges from how you act. But the FATE/FEAR framework is Action. It is about the directional choices you make inside that gap. If you are working through the Mindset pillar, Hughes is foundational. If your work is in Action, the FATE framework gives you the motivational vocabulary to reframe each choice.</p>
+    </div>
+  </div>
+
+  <!-- Book -->
+  <div class="section section-white">
+    <div class="section-inner">
+      <div class="label">Read the source</div>
+      <h2>The Ellipsis Manual</h2>
+      <div class="book-block">
+        <div class="book-title">The Ellipsis Manual</div>
+        <p class="book-body">Dense, field-tested, and not written for a general audience. The best primer on how identity, belief, and behaviour connect in practice. Also look at 6 Minute X-Ray if you want the applied behavioural read side. Both are more useful after you have done the quiz and know which pillar you are working in.</p>
+        <a href="https://www.chasetactical.com/" class="btn-link" target="_blank" rel="noopener">Find it &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section section-cta">
+    <div class="section-inner">
+      <h2>Which layer is running you right now?</h2>
+      <p>The quiz takes less than five minutes. It maps where the gap is widest across Mindset, Action, and Nourishment.</p>
+      <div class="cta-actions">
+        <a href="/man/quiz/" class="btn-primary">Take the quiz</a>
+        <a href="/man/inspiration/" class="btn-secondary">Back to Inspiration</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">MAN Protocol</div>
+      <div class="footer-links">
+        <a href="/man/">Home</a>
+        <a href="/man/quiz/">Quiz</a>
+        <a href="/man/inspiration/">Inspiration</a>
+        <a href="/man/tools/">Tools</a>
+        <a href="/man/pillars/mindset/">Mindset</a>
+        <a href="/man/pillars/action/">Action</a>
+        <a href="/man/pillars/nourishment/">Nourishment</a>
+      </div>
+      <div class="footer-copy">MAN Protocol &copy; 2026</div>
+    </div>
+  </footer>
+
+</body>
+</html>

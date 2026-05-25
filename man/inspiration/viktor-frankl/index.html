@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viktor Frankl | MAN Protocol Inspiration</title>
+  <style>
+    :root {
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
+      --bg: #ffffff;
+      --bg-soft: #f5f5f7;
+      --bg-warm: #faf8f4;
+      --border: #e5e5ea;
+      --gold: #b8860b;
+      --gold-light: #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 17px; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .nav-brand span {
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--ink);
+      padding: 7px 16px;
+      border-radius: 100px;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.75; }
+
+    /* SECTION WRAPPER */
+    .section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    /* CHIPS */
+    .chip {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.01em;
+    }
+    .chip-m { background: #e8f0fe; color: #2563eb; }
+    .chip-a { background: #fef3c7; color: #92400e; }
+    .chip-n { background: #d1fae5; color: #065f46; }
+    .chip-book {
+      background: var(--gold-light);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    /* LABELS */
+    .label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    /* TYPOGRAPHY */
+    h1 {
+      font-size: clamp(40px, 6vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--ink);
+      margin: 16px 0 20px;
+    }
+    h2 {
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: inherit;
+      margin-bottom: 24px;
+    }
+    .tagline {
+      font-size: 19px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+    p {
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* DARK SECTION */
+    .dark-section {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .dark-section h2 { color: var(--bg); }
+    .dark-section p { color: rgba(255,255,255,0.65); }
+    .dark-section .label { color: rgba(255,255,255,0.45); }
+
+    /* QUOTE */
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin: 32px 0;
+      background: rgba(255,255,255,0.06);
+      border-radius: 0 8px 8px 0;
+    }
+    .dark-section .quote-block { background: rgba(255,255,255,0.05); }
+    .quote-block blockquote {
+      font-size: 20px;
+      line-height: 1.5;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 12px;
+    }
+    .quote-block cite {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      font-style: normal;
+    }
+
+    /* CARDS */
+    .cards { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .bg-soft-section .card { background: var(--bg); }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    /* PILLARS */
+    .pillar-block {
+      background: var(--gold-light);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 32px;
+    }
+    .pillar-block .chips { margin-bottom: 16px; }
+    .pillar-block p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-bottom: 0;
+    }
+
+    /* BOOK */
+    .book-block {
+      background: var(--bg-soft);
+      border-radius: 16px;
+      padding: 36px;
+      margin-top: 0;
+    }
+    .book-block h2 {
+      font-size: 24px;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-size: 16px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.75; }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #fff;
+    }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--ink-soft);
+      background: var(--bg);
+    }
+    .dark-section .btn-outline {
+      border-color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      background: transparent;
+    }
+    .dark-section .btn-primary {
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+    /* BG SOFT SECTION */
+    .bg-soft-section { background: var(--bg-soft); }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+    }
+    footer .section { padding: 40px 24px; }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      font-size: 15px;
+    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+    @media (max-width: 480px) {
+      .section { padding: 56px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <a href="/man/" class="nav-brand">MAN <span>/</span> Inspiration</a>
+      <a href="/man/quiz/" class="nav-cta">Take the quiz</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="section">
+      <p class="label">The Meaning Layer</p>
+      <h1>Viktor Frankl</h1>
+      <p class="tagline">Psychiatrist. Holocaust survivor. Author of Man's Search for Meaning. The person who established that meaning is not something you find: it is something you create.</p>
+      <div class="chips">
+        <span class="chip chip-m">Mindset</span>
+        <span class="chip chip-n">Nourishment</span>
+        <span class="chip chip-book">Man's Search for Meaning</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WHO HE IS -->
+  <div style="background: var(--bg);">
+    <div class="section">
+      <p class="label">Who he is</p>
+      <h2>The philosopher who survived.</h2>
+      <p>Viktor Frankl was an Austrian psychiatrist who survived four Nazi concentration camps, including Auschwitz. He lost most of his family. He wrote Man's Search for Meaning partly from memory of his experiences there, and partly as a clinical account of what he observed: that the people most likely to survive were not the physically strongest. They were the ones who found a reason.</p>
+      <p>What he built from that observation was logotherapy: a therapeutic framework centred on the premise that the primary human motivation is not pleasure (Freud) or power (Adler), but meaning. And that meaning is not handed to you by circumstance. It is constructed, chosen, and held even when everything else is stripped away.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- THE INSIGHT -->
+  <div class="dark-section">
+    <div class="section">
+      <p class="label">The core insight</p>
+      <h2>Between stimulus and response, there is a space.</h2>
+      <div class="quote-block">
+        <blockquote>"Between stimulus and response there is a space. In that space is our power to choose our response. In our response lies our growth and our freedom."</blockquote>
+        <cite>Viktor Frankl</cite>
+      </div>
+      <p>This is the philosophical root of everything MAN is built on. Not the habits, not the neuroscience, not the identity frameworks. This. The idea that humans have the capacity to choose their response to any situation, and that growth lives in that choice, not in the elimination of difficulty.</p>
+      <p>The second key: meaning is not found. It is created. You do not discover what your life is for. You decide. And that decision is made not once, but continuously, in every moment you choose to act from your becoming-self rather than your default self.</p>
+    </div>
+  </div>
+
+  <!-- HOW MAN APPLIES IT -->
+  <div class="bg-soft-section">
+    <div class="section">
+      <p class="label">How MAN uses it</p>
+      <h2>The gravitational anchor.</h2>
+      <p>The three-layer identity gap needs a destination. Who you are BECOMING has to be anchored in something that pulls: not just a vision board or a set of goals, but a genuine sense of why the becoming matters. Without that anchor, the gap is just abstract. With it, the becoming-path has gravitational pull.</p>
+      <p>This is why meaning sits in the Nourishment pillar alongside the biological inputs. Meaning is not a nice-to-have. It is as nourishing as sleep, as necessary as food, as structural as movement. Its absence is felt as a specific kind of emptiness that no amount of productivity, achievement, or consumption fills. Frankl named it. MAN is built around not letting it go unnamed.</p>
+
+      <div class="cards">
+        <div class="card">
+          <p class="card-title">Meaning is chosen</p>
+          <p>You don't find your purpose. You construct it, from the material of your choices, your attention, and your becoming. The construction is continuous.</p>
+        </div>
+        <div class="card">
+          <p class="card-title">The response is the freedom</p>
+          <p>You cannot control what happens to you. You can control what you do with the space between what happens and what you do. That space is not small. It is everything.</p>
+        </div>
+        <div class="card">
+          <p class="card-title">Suffering without meaning compounds</p>
+          <p>Pain is unavoidable. Suffering is pain amplified by meaninglessness. The same difficulty, held inside a framework of meaning, is experienced entirely differently.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WHICH PILLARS -->
+  <div style="background: var(--bg);">
+    <div class="section">
+      <p class="label">Where this sits</p>
+      <h2>Which pillars.</h2>
+      <div class="pillar-block">
+        <div class="chips">
+          <span class="chip chip-m">Mindset</span>
+          <span class="chip chip-n">Nourishment</span>
+        </div>
+        <p>Frankl's work is primarily Mindset: the identity-led becoming model requires a meaning anchor to function. But it also sits in Nourishment. Meaning is not decorative. It is a biological and psychological necessity, as fundamental as the physical inputs the pillar covers.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BOOK -->
+  <div style="background: var(--bg);">
+    <div class="section">
+      <p class="label">Read the source</p>
+      <div class="book-block">
+        <h2>Man's Search for Meaning</h2>
+        <p>One of the most widely read books of the 20th century. Short, devastating, and precise. The first half is memoir. The second half is clinical framework. Both halves are necessary. If you read only one book from this entire inspiration page, this is it.</p>
+        <div style="margin-top: 24px;">
+          <a href="https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273" class="btn btn-gold" target="_blank" rel="noopener">Find it</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="dark-section">
+    <div class="section">
+      <h2>Is meaning in your stack?</h2>
+      <p>The Nourishment pillar asks about more than food and sleep. The quiz surfaces where the gap is widest.</p>
+      <div class="cta-actions">
+        <a href="/man/quiz/" class="btn btn-primary">Take the quiz</a>
+        <a href="/man/inspiration/" class="btn btn-outline">Back to Inspiration</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="section">
+      <div class="footer-inner">
+        <span class="footer-brand">MAN Protocol</span>
+        <nav class="footer-links">
+          <a href="/man/">Overview</a>
+          <a href="/man/mindset/">Mindset</a>
+          <a href="/man/action/">Action</a>
+          <a href="/man/nourishment/">Nourishment</a>
+          <a href="/man/inspiration/">Inspiration</a>
+          <a href="/man/tools/">Tools</a>
+          <a href="/man/quiz/">Quiz</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nir Eyal | MAN Protocol Inspiration</title>
+  <meta name="description" content="Nir Eyal, author of Hooked and Indistractable. The person who reframed human motivation from pleasure-seeking to discomfort-fleeing, and what that means for building systems that actually hold.">
+  <style>
+    :root {
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
+      --bg: #ffffff;
+      --bg-soft: #f5f5f7;
+      --bg-warm: #faf8f4;
+      --border: #e5e5ea;
+      --gold: #b8860b;
+      --gold-light: #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    /* Nav */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-brand span {
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 7px 16px;
+      border-radius: 20px;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.8;
+    }
+
+    /* Sections */
+    .section {
+      padding: 72px 24px;
+    }
+
+    .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Labels */
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 80px 24px 72px;
+    }
+
+    .hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .hero .label {
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .hero-tagline {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 560px;
+      margin-bottom: 28px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .chip-m {
+      background: #e8f0fe;
+      color: #2563eb;
+    }
+
+    .chip-a {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .chip-n {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .chip-book {
+      background: var(--gold-light);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+    }
+
+    /* White section */
+    .section-white {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .section p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Dark section */
+    .section-dark {
+      background: #1d1d1f;
+      border-bottom: none;
+    }
+
+    .section-dark .label {
+      color: #8e8e93;
+    }
+
+    .section-dark h2 {
+      color: #f5f5f7;
+    }
+
+    .section-dark p {
+      color: #aeaeb2;
+    }
+
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 20px 0 20px 24px;
+      margin: 32px 0;
+    }
+
+    .quote-text {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #f5f5f7;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .quote-attr {
+      font-size: 14px;
+      color: #8e8e93;
+      font-style: normal;
+    }
+
+    /* Soft section */
+    .section-soft {
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Cards */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .card-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    /* Warm section */
+    .section-warm {
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .section-warm h2 {
+      color: var(--ink);
+    }
+
+    /* Book section */
+    .book-block {
+      background: var(--gold-light);
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 24px;
+    }
+
+    .book-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .book-body {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1.5px solid var(--gold-border);
+      padding: 10px 20px;
+      border-radius: 24px;
+      background: var(--bg);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .btn-link:hover {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+
+    /* CTA dark */
+    .section-cta {
+      background: #1d1d1f;
+    }
+
+    .section-cta h2 {
+      color: #f5f5f7;
+      font-size: clamp(26px, 4.5vw, 36px);
+      margin-bottom: 16px;
+    }
+
+    .section-cta p {
+      color: #aeaeb2;
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1d1d1f;
+      background: #f5f5f7;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 28px;
+      transition: opacity 0.15s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 500;
+      color: #aeaeb2;
+      text-decoration: none;
+      padding: 14px 20px;
+      border-radius: 28px;
+      border: 1px solid #3a3a3c;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: #636366;
+      color: #f5f5f7;
+    }
+
+    /* Pillars row */
+    .pillars-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+    }
+
+    .footer-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--ink);
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: #aeaeb2;
+    }
+
+    /* Responsive */
+    @media (min-width: 640px) {
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .cards .card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <a href="/man/" class="nav-brand">MAN <span>/</span> Inspiration</a>
+      <a href="/man/quiz/" class="nav-cta">Take the quiz</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="label">The Discomfort Bridge</div>
+      <h1>Nir Eyal</h1>
+      <p class="hero-tagline">Author of Hooked and Indistractable. The person who reframed human motivation from pleasure-seeking to discomfort-fleeing, and what that means for building systems that actually hold.</p>
+      <div class="chips">
+        <span class="chip chip-m">Mindset</span>
+        <span class="chip chip-a">Action</span>
+        <span class="chip chip-book">Hooked</span>
+        <span class="chip chip-book">Indistractable</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Who he is -->
+  <div class="section section-white">
+    <div class="section-inner">
+      <div class="label">Who he is</div>
+      <h2>The behavioural designer.</h2>
+      <p>Nir Eyal wrote Hooked to explain how technology products get people hooked. He then wrote Indistractable because he realised the same mechanisms were being used against people who did not understand them. His work covers both sides of the same coin: how behaviour gets designed into systems, and how to reclaim control when those systems are not yours.</p>
+      <p>The insight that cut through both books and into MAN: human motivation is not primarily about seeking pleasure. It is about escaping discomfort. Every action, from checking your phone to going for a run, starts with an internal trigger, a form of discomfort the brain is trying to reduce. The carrot IS the stick.</p>
+    </div>
+  </div>
+
+  <!-- The core insight -->
+  <div class="section section-dark">
+    <div class="section-inner">
+      <div class="label">The core insight</div>
+      <h2>All motivation is discomfort-fleeing.</h2>
+      <div class="quote-block">
+        <p class="quote-text">"The drive to relieve discomfort is the root cause of all our behaviour."</p>
+        <span class="quote-attr">Nir Eyal</span>
+      </div>
+      <p>This is one of the most practically useful reframes in behavioural science. It means that asking "how do I get more motivated?" is almost always the wrong question. The motivation is already there. The brain is constantly routing toward discomfort reduction. The question is: which discomfort is loudest right now?</p>
+      <p>Without a system, the brain picks the fastest discomfort exit available: scroll, snack, avoid, numb. These are not failures of willpower. They are completely rational discomfort-reduction moves. The problem is they route away from becoming, not toward it. MAN's job is to make the becoming-path the fastest discomfort exit.</p>
+    </div>
+  </div>
+
+  <!-- How MAN applies it -->
+  <div class="section section-soft">
+    <div class="section-inner">
+      <div class="label">How MAN uses it</div>
+      <h2>The Eyal bridge.</h2>
+      <p>This is the piece that turns the three-layer identity gap into a system. The gap between who you ARE and who you are BECOMING creates genuine psychological discomfort. Without a designed path, the brain routes to cheaper exits. MAN's protocol is designed so the becoming-path IS the cheapest exit: not by eliminating discomfort, but by making the right action the most available response to it.</p>
+      <p>Combined with BJ Fogg's B=MAP framework: motivation is discomfort (Eyal), ability is system design (Fogg), prompt is the protocol's tools. The Fear Filter at /man/tools/fear-filter/ is Eyal's internal trigger model made into a daily practice.</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">The carrot IS the stick</div>
+          <p class="card-body">You are not pulling yourself toward a goal. You are pushing away from a discomfort. Understanding which discomfort you are avoiding changes everything about how you design the system.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Internal triggers first</div>
+          <p class="card-body">Every behaviour starts with an internal state, not an external event. The trigger is almost always an emotion. Name it before trying to change the action.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Design beats willpower</div>
+          <p class="card-body">Willpower is a finite resource applied to infinite pressure. Design changes the terrain so the right choice is also the easiest choice.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Which pillars -->
+  <div class="section section-warm">
+    <div class="section-inner">
+      <div class="label">Which pillars</div>
+      <h2>Where Eyal sits in the protocol.</h2>
+      <div class="pillars-row">
+        <span class="chip chip-m">Mindset</span>
+        <span class="chip chip-a">Action</span>
+      </div>
+      <p>Eyal's work bridges both. The discomfort-fleeing model is Mindset: it reframes how the brain makes decisions at a foundational level. The system design logic is Action. It is about architecting the environment so the right behaviour is the path of least resistance. If you are stuck in the Mindset pillar, Eyal explains the mechanism. If your work is in Action, his system design principles give you the tools to remove friction from the right path.</p>
+    </div>
+  </div>
+
+  <!-- Book -->
+  <div class="section section-white">
+    <div class="section-inner">
+      <div class="label">Read the source</div>
+      <h2>Hooked and Indistractable</h2>
+      <div class="book-block">
+        <div class="book-title">Hooked and Indistractable</div>
+        <p class="book-body">Read Hooked to understand how behaviour gets built into products and habits. Read Indistractable to understand how to apply the same framework to reclaim your own attention and action. Both together build the complete picture. Hooked is the mechanism; Indistractable is the antidote. You need both to understand which systems are running you and how to run them instead.</p>
+        <a href="https://www.nirandfar.com/" class="btn-link" target="_blank" rel="noopener">nirandfar.com &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section section-cta">
+    <div class="section-inner">
+      <h2>What discomfort is running your defaults?</h2>
+      <p>The MAN quiz identifies which pillar is under pressure. The Fear Filter at the tools page takes Eyal's internal trigger model and makes it a daily practice.</p>
+      <div class="cta-actions">
+        <a href="/man/quiz/" class="btn-primary">Take the quiz</a>
+        <a href="/man/inspiration/" class="btn-secondary">Back to Inspiration</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">MAN Protocol</div>
+      <div class="footer-links">
+        <a href="/man/">Home</a>
+        <a href="/man/quiz/">Quiz</a>
+        <a href="/man/inspiration/">Inspiration</a>
+        <a href="/man/tools/">Tools</a>
+        <a href="/man/pillars/mindset/">Mindset</a>
+        <a href="/man/pillars/action/">Action</a>
+        <a href="/man/pillars/nourishment/">Nourishment</a>
+      </div>
+      <div class="footer-copy">MAN Protocol &copy; 2026</div>
+    </div>
+  </footer>
+
+</body>
+</html>
