@@ -523,15 +523,15 @@
     /* ── PILLARS NAV ── */
     .pillars-nav-section { background: var(--bg-soft); }
     .pillar-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
-    .pillar-card {
+    .pillar-cards .pillar-card {
       display: flex; align-items: flex-start; gap: 20px;
       background: #fff; border: 1px solid var(--border);
       border-radius: 16px; padding: 28px;
       text-decoration: none; color: inherit;
       transition: box-shadow 0.15s;
     }
-    .pillar-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-    .pillar-letter {
+    .pillar-cards .pillar-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .pillar-cards .pillar-card .pillar-letter {
       width: 48px; height: 48px; border-radius: 12px;
       background: var(--gold-light); border: 1px solid var(--gold-border);
       display: flex; align-items: center; justify-content: center;
