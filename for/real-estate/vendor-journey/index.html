@@ -1063,9 +1063,15 @@
       body += "(I haven't added specific notes yet, but I'd like to have a conversation.)\n\n";
     }
     body += '---\nSent from Scale Sales Vendor Journey Map\nuremarkable.com';
-    const subject = encodeURIComponent('Vendor Journey \u2014 My Notes');
+    const subject = encodeURIComponent('Vendor Journey - My Notes');
     const encodedBody = encodeURIComponent(body);
-    window.location.href = 'mailto:uremarkable1@gmail.com?subject=' + subject + '&body=' + encodedBody;
+    const mailtoUrl = 'mailto:uremarkable1@gmail.com?subject=' + subject + '&body=' + encodedBody;
+    const a = document.createElement('a');
+    a.href = mailtoUrl;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   function closeModal(e) {
