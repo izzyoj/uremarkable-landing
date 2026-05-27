@@ -767,7 +767,28 @@
     .catch-bad { color: #c0392b; font-weight: 600; }
     .catch-good { color: var(--accent); font-weight: 600; }
     .compare-footnote { font-size: 12px; color: var(--muted); margin: 16px auto 0; line-height: 1.5; font-style: italic; text-align: left; max-width: 1040px; }
-  </style>
+  
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--cloud);
+    }
+    .cred-card {
+      padding: 32px 28px;
+      border-right: 1px solid var(--border);
+    }
+    .cred-card:last-child { border-right: none; }
+    @media (max-width: 640px) {
+      .cred-grid { grid-template-columns: 1fr; }
+      .cred-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .cred-card:last-child { border-bottom: none; }
+    }
+
+    </style>
 
 </head>
 <body>
@@ -860,6 +881,32 @@
         <div class="step-num">3</div>
         <div class="step-title">You get the brief</div>
         <div class="step-body">Lead in your CRM, full brief wherever you like it, before you call them back. Hot leads flagged via SMS immediately. You call back informed, not brrrr cold.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CREDIBILITY STRIP -->
+  <section style="background:var(--bg-2);padding:64px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div style="max-width:860px;margin:0 auto;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:12px;">The methodology behind Shazza</div>
+      <p style="font-size:17px;color:var(--ink-soft);text-align:center;margin:0 auto 40px;max-width:520px;line-height:1.6;">Built by someone who has delivered at enterprise scale. These are the results the approach is built on.</p>
+      <div class="cred-grid">
+        <div class="cred-card">
+          <div style="font-size:48px;font-weight:800;color:var(--ink);line-height:1;">+30%</div>
+          <div style="font-size:13px;font-weight:700;color:var(--ink);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.05em;">lead volume</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">When the channel into leads was redesigned, volume went up 30%. Same discipline applies to how Shazza captures inbound.</div>
+        </div>
+        <div class="cred-card">
+          <div style="font-size:48px;font-weight:800;color:var(--ink);line-height:1;">K</div>
+          <div style="font-size:13px;font-weight:700;color:var(--ink);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.05em;">at-risk client recovered</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Agents who respond fast keep listings. The ones who don't, lose them. Speed of first contact is the variable.</div>
+        </div>
+        <div class="cred-card">
+          <div style="font-size:48px;font-weight:800;color:var(--ink);line-height:1;">70%</div>
+          <div style="font-size:13px;font-weight:700;color:var(--ink);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.05em;">national user adoption</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Onboarding UX built to convert. 70% of a national user base activated. Tools that get used are built differently.</div>
+        </div>
       </div>
     </div>
   </section>
