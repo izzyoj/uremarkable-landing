@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scale Sales — Vendor Journey Map</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    background: #fff;
+    padding: 36px 48px 26px;
+    border-bottom: 1px solid #e5e5ea;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .header-brand {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1e40af;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+  }
+
+  .header-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1d1d1f;
+    line-height: 1.2;
+  }
+
+  .header-subtitle {
+    font-size: 13px;
+    color: #6e6e73;
+    margin-top: 8px;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .instructions {
+    font-size: 12px;
+    color: #86868b;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #6e6e73;
+    font-weight: 500;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .dot-ops     { background: #93c5fd; }
+  .dot-leak    { background: #f59e0b; }
+  .dot-ai      { background: #7c3aed; }
+  .dot-champ   { background: #059669; }
+  .dot-notes   { background: #ca8a04; }
+
+  /* ===== CEM WRAPPER ===== */
+  .cem-wrapper {
+    padding: 28px 48px 40px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .cem-wrapper::-webkit-scrollbar { height: 5px; }
+  .cem-wrapper::-webkit-scrollbar-track { background: transparent; }
+  .cem-wrapper::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 3px; }
+
+  /* ===== MOBILE ===== */
+  .scroll-hint {
+    display: none;
+    font-size: 12px;
+    color: #86868b;
+    padding: 0 16px 8px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .page-header { padding: 24px 16px 20px; }
+    .header-title { font-size: 20px; }
+    .header-subtitle { font-size: 12px; }
+    .cem-wrapper { padding: 16px 16px 28px; }
+    .cta-section { margin: 0 16px 20px; padding: 24px 20px; }
+    .cta-headline { font-size: 17px; }
+    .page-footer { padding: 16px 16px 28px; }
+    .scroll-hint { display: block; }
+  }
+
+  /* ===== TABLE ===== */
+  .cem-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 1680px;
+    width: 100%;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  /* ===== THEAD ===== */
+  .cem-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #1e3a5f;
+    color: #fff;
+    padding: 16px 16px 14px;
+    text-align: left;
+    vertical-align: bottom;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    min-width: 195px;
+  }
+
+  .cem-table thead th:first-child {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    min-width: 152px;
+    width: 152px;
+    background: #1e3a5f;
+    border-right: 1px solid rgba(255,255,255,0.14);
+  }
+
+  .stage-num {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.38);
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    margin-bottom: 5px;
+  }
+
+  .stage-name-text {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .vendor-goal {
+    display: block;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  .reviewed-badge {
+    display: none;
+    align-items: center;
+    background: #30d158;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-top: 8px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+  }
+
+  th.is-reviewed .reviewed-badge { display: inline-flex; }
+
+  /* ===== STICKY ROW LABEL ===== */
+  .row-label {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    min-width: 152px;
+    width: 152px;
+    background: #f5f5f7;
+    padding: 13px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #86868b;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-right: 1px solid #e5e5ea;
+    border-bottom: 1px solid #e5e5ea;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  /* ===== LANE HEADER ROWS ===== */
+  .lane-header-row td {
+    padding: 9px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* Operations lane */
+  .ops-lane-header td {
+    background: #dbeafe;
+    color: #1e40af;
+    border-bottom: 1px solid #bfdbfe;
+  }
+  .ops-lane-header .row-label {
+    background: #dbeafe;
+    color: #1e40af;
+    border-right: 1px solid #bfdbfe;
+  }
+
+  /* AI lane */
+  .ai-lane-header td {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-bottom: 1px solid #ddd6fe;
+  }
+  .ai-lane-header .row-label {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-right: 1px solid #ddd6fe;
+  }
+
+  /* Champion lane */
+  .champ-lane-header td {
+    background: #d1fae5;
+    color: #065f46;
+    border-bottom: 1px solid #a7f3d0;
+  }
+  .champ-lane-header .row-label {
+    background: #d1fae5;
+    color: #065f46;
+    border-right: 1px solid #a7f3d0;
+  }
+
+  /* ===== CONTENT CELLS ===== */
+  .cem-table tbody td {
+    padding: 13px 15px;
+    font-size: 13px;
+    line-height: 1.6;
+    vertical-align: top;
+    border-right: 1px solid #e5e5ea;
+    border-bottom: 1px solid #e5e5ea;
+    color: #3c3c43;
+  }
+
+  /* ===== ROW TYPE BACKGROUNDS ===== */
+  .time-row td:not(.row-label)  { background: #f8faff; }
+  .leak-row td:not(.row-label)  { background: #fffbeb; border-left: 3px solid #f59e0b; color: #78350f; }
+  .ai-row td:not(.row-label)    { background: #faf5ff; border-left: 3px solid #7c3aed; }
+  .champ-row td:not(.row-label) { background: #f0fdf4; border-left: 3px solid #059669; }
+
+  .ai-row .row-label    { color: #7c3aed; }
+  .champ-row .row-label { color: #059669; }
+
+  /* ===== LISTS ===== */
+  .cell-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cell-list li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 5px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .cell-list li:last-child { margin-bottom: 0; }
+
+  /* Numbered (time drain) */
+  ol.cell-list { counter-reset: item; }
+  ol.cell-list li { counter-increment: item; }
+  ol.cell-list li::before {
+    content: counter(item) ".";
+    position: absolute;
+    left: 0;
+    color: #86868b;
+    font-weight: 600;
+    font-size: 11px;
+    top: 2px;
+  }
+
+  /* Bullet (friction, AI) */
+  ul.cell-list li::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #86868b;
+  }
+
+  .leak-row ul.cell-list li::before { background: #f59e0b; }
+  .ai-row ul.cell-list li::before   { background: #7c3aed; }
+
+  /* ===== ARM BADGE (in AI cells) ===== */
+  .arm-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(124, 58, 237, 0.12);
+    color: #5b21b6;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-bottom: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  /* ===== CHAMPION CELLS ===== */
+  .champ-role {
+    font-size: 14px;
+    font-weight: 700;
+    color: #065f46;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .champ-arm {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(5, 150, 105, 0.1);
+    color: #065f46;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .champ-why {
+    font-size: 12px;
+    color: #374151;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* ===== NOTES ROW ===== */
+  .notes-row .row-label {
+    color: #ca8a04;
+    background: #fefce8;
+    border-right: 1px solid #fde68a;
+  }
+
+  .notes-row td:not(.row-label) {
+    background: #fefce8;
+    border-left: 3px solid #fde68a;
+    min-height: 90px;
+    cursor: text;
+    outline: none;
+    color: #713f12;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .notes-row td:not(.row-label):empty::before {
+    content: "Click to add notes...";
+    color: #d4b896;
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  .notes-row td:not(.row-label):focus {
+    background: #fef9c3;
+    outline: 2px solid #ca8a04;
+    outline-offset: -2px;
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    margin: 0 48px 24px;
+    background: #1e3a5f;
+    border-radius: 16px;
+    padding: 32px 40px;
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .cta-headline {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .cta-subtext {
+    font-size: 14px;
+    color: rgba(255,255,255,0.62);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  .btn-cta-primary {
+    background: #fff;
+    color: #1e3a5f;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    font-family: inherit;
+  }
+
+  .btn-cta-primary:hover { opacity: 0.88; }
+
+  .btn-cta-secondary {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.22);
+    cursor: pointer;
+    transition: background 0.15s;
+    display: inline-flex;
+    align-items: center;
+    font-family: inherit;
+  }
+
+  .btn-cta-secondary:hover { background: rgba(255,255,255,0.18); }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    padding: 20px 48px 36px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .source-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #86868b;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+  }
+
+  .source-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .source-chip {
+    background: #fff;
+    border: 1px solid #e5e5ea;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    color: #6e6e73;
+  }
+
+  .action-block { display: flex; gap: 10px; align-items: center; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s;
+    font-family: inherit;
+  }
+
+  .btn:hover { opacity: 0.85; }
+  .btn-primary   { background: #1e3a5f; color: #fff; }
+  .btn-secondary { background: #fff; color: #1d1d1f; border: 1px solid #e5e5ea; }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .modal h3 { font-size: 18px; font-weight: 700; color: #1d1d1f; margin-bottom: 16px; }
+  .modal-notes {
+    background: #f5f5f7;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #3c3c43;
+    white-space: pre-wrap;
+    margin-bottom: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="header-top">
+    <div>
+      <div class="header-brand">Scale Sales — Vendor Journey Map</div>
+      <div class="header-title">Sydney Residential Real Estate<br>Vendor Experience Map</div>
+      <div class="header-subtitle">8-stage vendor journey mapped against agency operations, AI automation opportunities, and internal champions at each stage. Based on Customer Journey Map (CJM) approach and AU real estate AI research to create a complete Customer Experience Map (CEM).</div>
+    </div>
+    <div class="header-meta">
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot dot-ops"></div>Operations</div>
+        <div class="legend-item"><div class="legend-dot dot-leak"></div>Friction</div>
+        <div class="legend-item"><div class="legend-dot dot-ai"></div>AI opportunity</div>
+        <div class="legend-item"><div class="legend-dot dot-champ"></div>Champion</div>
+        <div class="legend-item"><div class="legend-dot dot-notes"></div>Notes</div>
+      </div>
+      <div class="instructions">Click any yellow cell to add your review notes</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE SCROLL HINT -->
+<div class="scroll-hint">Swipe left to see all 8 stages &rarr;</div>
+
+<!-- CEM TABLE -->
+<div class="cem-wrapper">
+<table class="cem-table" id="cemTable">
+
+<thead>
+  <tr>
+    <th></th>
+    <th id="th1">
+      <span class="stage-num">Stage 01</span>
+      <span class="stage-name-text">Initial Enquiry</span>
+      <span class="vendor-goal">"I need to find an agent I can actually trust."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th2">
+      <span class="stage-num">Stage 02</span>
+      <span class="stage-name-text">Appraisal</span>
+      <span class="vendor-goal">"Show me you know my property and my market."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th3">
+      <span class="stage-num">Stage 03</span>
+      <span class="stage-name-text">Listing Agreement</span>
+      <span class="vendor-goal">"Tell me exactly what I'm signing and what I get."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th4">
+      <span class="stage-num">Stage 04</span>
+      <span class="stage-name-text">Marketing Campaign</span>
+      <span class="vendor-goal">"I want to know my campaign is working."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th5">
+      <span class="stage-num">Stage 05</span>
+      <span class="stage-name-text">Open Homes + Feedback</span>
+      <span class="vendor-goal">"Tell me what buyers actually think — fast."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th6">
+      <span class="stage-num">Stage 06</span>
+      <span class="stage-name-text">Negotiation + Offers</span>
+      <span class="vendor-goal">"Help me make the right call, not just a fast one."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th7">
+      <span class="stage-num">Stage 07</span>
+      <span class="stage-name-text">Contract to Settlement</span>
+      <span class="vendor-goal">"I just need to know it's all under control."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th8">
+      <span class="stage-num">Stage 08</span>
+      <span class="stage-name-text">Post-Settlement</span>
+      <span class="vendor-goal">"Make me feel like more than just a closed deal."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+  </tr>
+</thead>
+
+<tbody>
+
+  <!-- ==============================
+       LANE 1: VENDOR OPERATIONS
+  =============================== -->
+  <tr class="lane-header-row ops-lane-header">
+    <td class="row-label">Vendor Operations</td>
+    <td>Agency managing the vendor (seller) relationship — current manual workflow at each stage</td>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+
+  <!-- TIME DRAIN -->
+  <tr class="time-row">
+    <td class="row-label">&#8987; Time drain</td>
+    <td>
+      <ol class="cell-list">
+        <li>Portal inbox checks throughout the day</li>
+        <li>Voicemail callbacks after missed calls</li>
+        <li>Manual CRM lead logging and source tagging</li>
+        <li>Missed calls during open homes go unacknowledged</li>
+      </ol>
+    </td>
+    <td>
+      <ol class="cell-list">
+        <li>Appraisal booking via phone</li>
+        <li>Manual comparable sales research</li>
+        <li>Preparing and printing welcome kits</li>
+        <li>Travel to appraisal without a pre-briefed vendor</li>
+      </ol>
+    </td>
+    <td>
+      <ol class="cell-list">
+        <li>Verbal fee and inclusion explanations</li>
+        <li>Print, scan, email paperwork cycle</li>
+        <li>Chasing vendor signatures manually</li>
+        <li>Answering repeated FAQ calls from vendor</li>
+      </ol>
+    </td>
+    <td>
+      <ol class="cell-list">
+        <li>Writing listing copy from scratch per property</li>
+        <li>Briefing photographer and coordinating scheduling</li>
+        <li>Loading portals manually (REA, Domain, socials)</li>
+        <li>Drafting weekly vendor update emails</li>
+        <li>Creating social content for each listing separately</li>
+      </ol>
+    </td>
+    <td>
+      <ol class="cell-list">
+        <li>Running open homes and manually logging attendees</li>
+        <li>Collecting buyer comments on paper or phone notes</li>
+        <li>Writing individual feedback summaries per vendor</li>
+      </ol>
+    </td>
+    <td>
+      <ol class="cell-list">
+        <li>Preparing offer comparison documents manually</li>
+        <li>Explaining contract terms verbally per offer round</li>
+        <li>Managing vendor expectations across multiple rounds</li>
+      </ol>
+    </td>
+    <td>
+      <ol class="cell-list">
+        <li>Chasing conveyancers by phone for updates</li>
+        <li>Following up finance timelines manually</li>
+        <li>Coordinating all parties via email and calls</li>
+        <li>Staying across moving parts without a central system</li>
+      </ol>
+    </td>
+    <td>
+      <ol class="cell-list">
+        <li>Ad hoc follow-up if any</li>
+        <li>Manual review requests with no set trigger</li>
+        <li>One-off referral asks with no system behind them</li>
+      </ol>
+    </td>
+  </tr>
+
+  <!-- FRICTION / LEAK -->
+  <tr class="leak-row">
+    <td class="row-label">&#128184; Friction / leak</td>
+    <td>
+      <ul class="cell-list">
+        <li>Every missed call = lost vendor or buyer lead</li>
+        <li>Slow first response drops conversion immediately</li>
+        <li>Unresponsiveness at the decision moment = gone for good</li>
+        <li>First 30 seconds of contact set the entire relationship tone</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Rushed appraisal = vendor feels like a transaction</li>
+        <li>Weak or generic CMA = instant confidence loss</li>
+        <li>Poor welcome kit signals an amateur operation</li>
+        <li>Three agents are usually compared — the most prepared wins</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Confusing fee structure = vendor price-shops to competitor</li>
+        <li>Unclear inclusions = pre-campaign anxiety begins</li>
+        <li>Paper-based process = friction at the commitment moment</li>
+        <li>Repeated FAQ calls = wasted agent time before campaign starts</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Late or vague updates erode trust systematically</li>
+        <li>No visible progress = vendor calls to check in (agent time drain)</li>
+        <li>Marketing spend never clearly explained = feels unjustified</li>
+        <li>No milestone alerts = vendor always guessing what happens next</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Delayed feedback = steady erosion of vendor confidence</li>
+        <li>Vague summaries = vendor questions agent engagement</li>
+        <li>No sentiment analysis = campaign not adapting to buyer signals</li>
+        <li>"Vague feel-good fluff" is the exact failure mode agents fall into</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Pressure-led negotiation = vendor regret and blame post-sale</li>
+        <li>No comparative data = poor decision under stress</li>
+        <li>Missed conditions and risk flags = dispute exposure</li>
+        <li>Vendor makes emotional call without a framework to anchor to</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Vendor confusion in contract is the single most common friction point</li>
+        <li>Reactive communication = trust breaks at the most critical stage</li>
+        <li>Any missed deadline here costs referrals and reputation</li>
+        <li>Vendors remember how this stage felt more than any other</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Total silence after exchange = transactional impression locked in</li>
+        <li>No referral system = no compounding pipeline</li>
+        <li>Review capture left to chance = zero social proof accumulation</li>
+        <li>Property management opportunity missed entirely</li>
+      </ul>
+    </td>
+  </tr>
+
+  <!-- ==============================
+       LANE 2: AI AUTOMATION
+  =============================== -->
+  <tr class="lane-header-row ai-lane-header">
+    <td class="row-label">AI Automation</td>
+    <td>Where AI removes the manual drag and plugs the leaks — bucketed against the operational arm it affects</td>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+
+  <!-- AI OPPORTUNITIES -->
+  <tr class="ai-row">
+    <td class="row-label">&#129302; AI opportunities</td>
+    <td>
+      <div class="arm-badge">Front Office / BDM</div>
+      <ul class="cell-list">
+        <li>AI voice agent: 24/7 call answering, no missed leads</li>
+        <li>Seller-intent qualification on every enquiry</li>
+        <li>Auto-book appraisal from call or web form</li>
+        <li>Instant SMS response with booking confirmation</li>
+        <li>Suburb and reputation insight pack sent on booking</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Sales</div>
+      <ul class="cell-list">
+        <li>Automated CMA generation with comparable selection</li>
+        <li>Suburb micro-market commentary generated per property</li>
+        <li>AVM-supported price range pack ready before the meeting</li>
+        <li>Pre-appraisal vendor briefing sent via SMS</li>
+        <li>Agent-fit scoring to match vendor to right team member</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Administration</div>
+      <ul class="cell-list">
+        <li>Plain-English authority and fee explanation generated automatically</li>
+        <li>Clause-by-clause contract summary for vendor</li>
+        <li>E-sign listing agreement sent and tracked digitally</li>
+        <li>Automated FAQ response pack: fees, inclusions, timeline</li>
+        <li>Vendor dashboard activated on signature</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Marketing / Sales</div>
+      <ul class="cell-list">
+        <li>AI listing copywriter generates description from brief</li>
+        <li>Auto-push to REA, Domain, and social on schedule</li>
+        <li>Weekly vendor report auto-generated with KPIs</li>
+        <li>Campaign performance dashboard with buyer engagement data</li>
+        <li>Milestone alerts: listing live, first inspection, offer received</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Sales</div>
+      <ul class="cell-list">
+        <li>Open home check-in and attendee logging automation</li>
+        <li>Buyer follow-up SMS/email sent automatically post-inspection</li>
+        <li>Feedback sentiment analysis from buyer comments</li>
+        <li>Instant objection and concern summary delivered to vendor same day</li>
+        <li>Campaign adjustment recommendations based on buyer patterns</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Sales Leadership</div>
+      <ul class="cell-list">
+        <li>Offer comparison summaries in plain language</li>
+        <li>Risk flags on conditions: finance, building, settlement timing</li>
+        <li>Scenario analysis: price vs terms vs settlement risk</li>
+        <li>Buyer motivation scoring to inform negotiation approach</li>
+        <li>All negotiation comms logged and timestamped automatically</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Administration</div>
+      <ul class="cell-list">
+        <li>Milestone-triggered vendor status updates at each checkpoint</li>
+        <li>Task routing to conveyancers without manual follow-up</li>
+        <li>Deadline reminders and escalation alerts when a step is slipping</li>
+        <li>Proactive delay notification sent before anyone has to ask</li>
+        <li>All parties (vendor, buyer, conveyancer, finance) on one tracker</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">BDM / Property Mgmt</div>
+      <ul class="cell-list">
+        <li>Automated thank-you message at settlement</li>
+        <li>Review request triggered at peak satisfaction (week 2)</li>
+        <li>Referral ask deployed at 90-day mark</li>
+        <li>Anniversary touchpoint and sold-price follow-up at 12 months</li>
+        <li>PM pipeline entry triggered automatically post-settlement</li>
+      </ul>
+    </td>
+  </tr>
+
+  <!-- ==============================
+       LANE 3: CHAMPION
+  =============================== -->
+  <tr class="lane-header-row champ-lane-header">
+    <td class="row-label">Champion</td>
+    <td>The internal role who owns this stage and would drive AI adoption within the agency</td>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+
+  <!-- CHAMPION ROW -->
+  <tr class="champ-row">
+    <td class="row-label">&#128100; Stage champion</td>
+    <td>
+      <div class="champ-role">BDM / Reception</div>
+      <span class="champ-arm">Front Office</span>
+      <div class="champ-why">Owns lead volume and first-response SLA. Every missed call is their problem to fix.</div>
+    </td>
+    <td>
+      <div class="champ-role">Listing Agent</div>
+      <span class="champ-arm">Sales</span>
+      <div class="champ-why">Appraisal win rate is their number. Better prep = more listings won against competitors.</div>
+    </td>
+    <td>
+      <div class="champ-role">Office Manager</div>
+      <span class="champ-arm">Administration</span>
+      <div class="champ-why">Paperwork processing is their domain. Digital workflow = fewer errors, faster turnaround, fewer callbacks.</div>
+    </td>
+    <td>
+      <div class="champ-role">Marketing Coordinator + Listing Agent</div>
+      <span class="champ-arm">Marketing / Sales</span>
+      <div class="champ-why">Marketing coordinator owns execution; listing agent owns vendor satisfaction. Both benefit directly.</div>
+    </td>
+    <td>
+      <div class="champ-role">Listing Agent</div>
+      <span class="champ-arm">Sales</span>
+      <div class="champ-why">Feedback speed and quality reflect directly on their vendor relationship and campaign credibility.</div>
+    </td>
+    <td>
+      <div class="champ-role">Senior Listing Agent / Principal</div>
+      <span class="champ-arm">Sales Leadership</span>
+      <div class="champ-why">High-stakes outcomes. Data-led negotiation protects reputation and reduces post-sale disputes.</div>
+    </td>
+    <td>
+      <div class="champ-role">Office Manager / Admin</div>
+      <span class="champ-arm">Administration</span>
+      <div class="champ-why">Settlement coordination is admin-heavy. Any delay here reflects on the whole agency's professionalism.</div>
+    </td>
+    <td>
+      <div class="champ-role">BDM / Property Manager</div>
+      <span class="champ-arm">BDM / Property Mgmt</span>
+      <div class="champ-why">BDM owns the referral pipeline. PM owns the next service relationship. Both have direct financial upside from getting this right.</div>
+    </td>
+  </tr>
+
+  <!-- ==============================
+       NOTES ROW
+  =============================== -->
+  <tr class="notes-row">
+    <td class="row-label">&#128221; Your notes</td>
+    <td contenteditable="true" data-stage="Stage 01: Initial Enquiry" onblur="markReviewed('th1', this)"></td>
+    <td contenteditable="true" data-stage="Stage 02: Appraisal" onblur="markReviewed('th2', this)"></td>
+    <td contenteditable="true" data-stage="Stage 03: Listing Agreement" onblur="markReviewed('th3', this)"></td>
+    <td contenteditable="true" data-stage="Stage 04: Marketing Campaign" onblur="markReviewed('th4', this)"></td>
+    <td contenteditable="true" data-stage="Stage 05: Open Homes + Feedback" onblur="markReviewed('th5', this)"></td>
+    <td contenteditable="true" data-stage="Stage 06: Negotiation + Offers" onblur="markReviewed('th6', this)"></td>
+    <td contenteditable="true" data-stage="Stage 07: Contract to Settlement" onblur="markReviewed('th7', this)"></td>
+    <td contenteditable="true" data-stage="Stage 08: Post-Settlement" onblur="markReviewed('th8', this)"></td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+
+<!-- CTA SECTION -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-headline">Seen enough to have a conversation?</div>
+      <div class="cta-subtext">Send through your notes and we'll start from wherever your agency has the most friction. Or grab 20 minutes and we can walk through it together.</div>
+    </div>
+    <div class="cta-buttons">
+      <button class="btn-cta-primary" onclick="sendNotes()">Send my notes</button>
+      <a class="btn-cta-secondary" href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank">Book a chat</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <div>
+    <div class="source-label">Sources</div>
+    <div class="source-chips">
+      <span class="source-chip">Scale Sales — AI Opportunity Mapping</span>
+    </div>
+  </div>
+  <div class="action-block">
+    <button class="btn btn-secondary" onclick="clearNotes()">Clear notes</button>
+    <button class="btn btn-primary" onclick="exportNotes()">View all notes</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <h3>Your review notes</h3>
+    <div class="modal-notes" id="modalNotes"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModalDirect()">Close</button>
+      <button class="btn btn-secondary" onclick="sendNotes()">Send via email</button>
+      <button class="btn btn-primary" onclick="copyToClipboard()">Copy to clipboard</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function markReviewed(thId, cell) {
+    const th = document.getElementById(thId);
+    if (cell.innerText.trim().length > 0) {
+      th.classList.add('is-reviewed');
+    } else {
+      th.classList.remove('is-reviewed');
+    }
+  }
+
+  function collectNotes() {
+    const cells = document.querySelectorAll('.notes-row td[contenteditable]');
+    let output = 'VENDOR CEM — REVIEW NOTES\n';
+    output += '=================================\n\n';
+    let hasAny = false;
+    cells.forEach(cell => {
+      const stage = cell.getAttribute('data-stage');
+      const text = cell.innerText.trim();
+      if (text) {
+        output += stage + '\n' + text + '\n\n';
+        hasAny = true;
+      }
+    });
+    if (!hasAny) output += '(No notes added yet)';
+    return { text: output, hasAny };
+  }
+
+  function exportNotes() {
+    const { text } = collectNotes();
+    document.getElementById('modalNotes').textContent = text;
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function sendNotes() {
+    const cells = document.querySelectorAll('.notes-row td[contenteditable]');
+    let body = 'Hi,\n\nHere are my notes from the Scale Sales Vendor Journey Map:\n\n';
+    let hasAny = false;
+    cells.forEach(cell => {
+      const stage = cell.getAttribute('data-stage');
+      const text = cell.innerText.trim();
+      if (text) {
+        body += stage + ':\n' + text + '\n\n';
+        hasAny = true;
+      }
+    });
+    if (!hasAny) {
+      body += "(I haven't added specific notes yet, but I'd like to have a conversation.)\n\n";
+    }
+    body += '---\nSent from Scale Sales Vendor Journey Map\nuremarkable.com';
+    const subject = encodeURIComponent('Vendor Journey \u2014 My Notes');
+    const encodedBody = encodeURIComponent(body);
+    window.location.href = 'mailto:uremarkable1@gmail.com?subject=' + subject + '&body=' + encodedBody;
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modalOverlay'))
+      document.getElementById('modalOverlay').classList.remove('open');
+  }
+
+  function closeModalDirect() {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+
+  function copyToClipboard() {
+    const text = document.getElementById('modalNotes').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.modal-actions .btn-primary');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  function clearNotes() {
+    if (!confirm('Clear all notes? This cannot be undone.')) return;
+    document.querySelectorAll('.notes-row td[contenteditable]').forEach(c => c.innerText = '');
+    ['th1','th2','th3','th4','th5','th6','th7','th8'].forEach(id =>
+      document.getElementById(id).classList.remove('is-reviewed'));
+  }
+</script>
+
+</body>
+</html>
