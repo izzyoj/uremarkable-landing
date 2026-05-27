@@ -2532,6 +2532,16 @@ footer {
   .cowork-left { flex: none; height: 280px; border-right: none; border-bottom: 1px solid #e5e5e5; }
   .cowork-right { flex: none; height: 320px; }
 }
+
+/* ── STATS STRIP ── */
+.stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+.stats-card { padding:32px 28px; border-right:1px solid var(--border); }
+.stats-card:last-child { border-right:none; }
+@media (max-width:640px) {
+  .stats-grid { grid-template-columns:1fr; }
+  .stats-card { border-right:none; border-bottom:1px solid var(--border); }
+  .stats-card:last-child { border-bottom:none; }
+}
 </style>
 <script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
 <body>
@@ -3041,18 +3051,18 @@ footer {
 <section style="background:var(--bg);padding:56px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="section-inner">
     <div class="section-label" style="text-align:center;margin-bottom:40px;">The methodology isn&#39;t new. The canvas is.</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;">
-      <div style="padding:32px 28px;border-right:1px solid var(--border);">
+    <div class="stats-grid">
+      <div class="stats-card">
         <div style="font-size:44px;font-weight:800;color:var(--text);letter-spacing:-1.5px;line-height:1;">732</div>
         <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin:8px 0 10px;">hrs of operational waste eliminated</div>
         <div style="font-size:13px;color:var(--text-2);line-height:1.6;">Found in one workflow audit. No headcount added.</div>
       </div>
-      <div style="padding:32px 28px;border-right:1px solid var(--border);">
+      <div class="stats-card">
         <div style="font-size:44px;font-weight:800;color:var(--text);letter-spacing:-1.5px;line-height:1;">$2M</div>
         <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin:8px 0 10px;">recovered from a single process fix</div>
         <div style="font-size:13px;color:var(--text-2);line-height:1.6;">Identification and removal. Nothing built, nothing hired.</div>
       </div>
-      <div style="padding:32px 28px;">
+      <div class="stats-card">
         <div style="font-size:44px;font-weight:800;color:var(--text);letter-spacing:-1.5px;line-height:1;">15+</div>
         <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin:8px 0 10px;">years enterprise product leadership</div>
         <div style="font-size:13px;color:var(--text-2);line-height:1.6;">Gumtree, Australian federal government, real estate software, financial services.</div>
