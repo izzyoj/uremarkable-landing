@@ -748,6 +748,18 @@ section {
 @media (max-width: 480px) {
   .ships-headline { font-size: 26px; }
 }
+@media (max-width: 640px) {
+  .stats-strip-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .stats-strip-grid > div {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border);
+  }
+  .stats-strip-grid > div:last-child {
+    border-bottom: none;
+  }
+}
 
 /* APP STORE SECTION */
 #app-store { background: var(--bg); }
@@ -3171,7 +3183,7 @@ footer {
 <section style="background:var(--bg);padding:56px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="section-inner">
     <div class="section-label" style="text-align:center;margin-bottom:40px;">The methodology isn&#39;t new. The canvas is.</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;" class="stats-strip-grid">
       <div style="padding:32px 28px;border-right:1px solid var(--border);">
         <div style="font-size:44px;font-weight:800;color:var(--text);letter-spacing:-1.5px;line-height:1;">732</div>
         <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin:8px 0 10px;">hrs of operational waste eliminated</div>
