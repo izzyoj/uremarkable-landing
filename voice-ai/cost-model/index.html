@@ -1,0 +1,582 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width�vice-width, initial-scale=1.0">
+  <title>AI Voice Agent — Cost Model (AUD/USD)</title>
+  
+<style>
+@charset "utf-8";
+
+:root { --bg: #f5f5f7; --card: #ffffff; --accent: #0071e3; --green: #34c759; --green-light: #f0faf3; --orange: #ff9f0a; --orange-light: #fff8e6; --red: #ff3b30; --red-light: #fff0ef; --purple: #5e5ce6; --purple-light: #f3f2ff; --text: #1d1d1f; --sub: #6e6e73; --muted: #86868b; --border: rgba(0,0,0,0.07); }
+
+* { box-sizing: border-box; margin: 0px; padding: 0px; }
+
+body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif; background: var(--bg); color: var(--text); padding: 24px 16px; max-width: 900px; margin: 0px auto; }
+
+.page-header { background: white; border-radius: 14px; padding: 20px 22px; margin-bottom: 16px; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 4px; }
+
+.page-title { font-size: 22px; font-weight: 800; color: var(--text); }
+
+.page-sub { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+.page-meta { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+
+.meta-chip { background: var(--bg); border-radius: 20px; padding: 4px 12px; font-size: 11.5px; font-weight: 600; color: var(--sub); }
+
+.section { margin-bottom: 20px; }
+
+.section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); margin-bottom: 10px; padding-left: 2px; }
+
+.card { background: var(--card); border-radius: 12px; padding: 16px 18px; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px; margin-bottom: 10px; }
+
+.card-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+
+.card-note { font-size: 12px; color: var(--sub); line-height: 1.5; }
+
+.stack-table { width: 100%; border-collapse: collapse; }
+
+.stack-table th { text-align: left; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); }
+
+.stack-table td { padding: 9px 10px; font-size: 13px; border-bottom: 1px solid var(--border); }
+
+.stack-table tr:last-child td { border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; }
+
+.stack-table .mono { font-family: "SF Mono", "Fira Code", monospace; font-size: 12.5px; font-weight: 600; }
+
+.stack-table .cost-green { color: rgb(26, 138, 56); }
+
+.stack-table .cost-orange { color: rgb(138, 80, 0); }
+
+.stack-table .cost-red { color: var(--red); }
+
+.stack-table .optional { color: var(--muted); font-size: 11px; font-style: italic; }
+
+.tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+.tier-card { background: white; border-radius: 12px; padding: 14px 16px; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px; }
+
+.tier-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+
+.tier-rate { font-size: 28px; font-weight: 800; line-height: 1; }
+
+.tier-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+.tier-stack { margin-top: 10px; font-size: 11.5px; color: var(--sub); line-height: 1.8; }
+
+.tier-card.budget .tier-label { color: var(--green); }
+
+.tier-card.budget .tier-rate { color: var(--green); }
+
+.tier-card.standard .tier-label { color: var(--accent); }
+
+.tier-card.standard .tier-rate { color: var(--accent); }
+
+.tier-card.premium .tier-label { color: var(--purple); }
+
+.tier-card.premium .tier-rate { color: var(--purple); }
+
+.agent-table { width: 100%; border-collapse: collapse; }
+
+.agent-table th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); padding: 8px 10px; border-bottom: 1.5px solid var(--border); background: var(--bg); }
+
+.agent-table td { padding: 10px; font-size: 12.5px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+
+.agent-table tr:last-child td { border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; }
+
+.agent-badge { display: inline-block; font-size: 9.5px; font-weight: 700; padding: 2px 7px; border-radius: 8px; margin-left: 5px; }
+
+.badge-vp { background: rgb(26, 26, 26); color: white; }
+
+.badge-bw { background: rgb(0, 0, 0); color: rgb(184, 147, 90); }
+
+.badge-rw { background: rgb(255, 196, 40); color: rgb(26, 26, 26); }
+
+.vol-low { color: var(--muted); }
+
+.vol-mid { color: var(--accent); font-weight: 700; }
+
+.vol-high { color: var(--red); }
+
+.cost-cell { font-family: "SF Mono", "Fira Code", monospace; font-size: 12px; }
+
+.cost-standard { color: var(--accent); font-weight: 700; }
+
+.cost-premium { color: var(--purple); }
+
+.agent-stat { font-size: 11px; color: var(--muted); }
+
+.margin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+.margin-card { background: white; border-radius: 12px; padding: 16px; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px; }
+
+.margin-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
+
+.margin-value { font-size: 26px; font-weight: 800; }
+
+.margin-detail { font-size: 11.5px; color: var(--sub); margin-top: 4px; }
+
+.margin-card.good .margin-value { color: var(--green); }
+
+.margin-card.ok .margin-value { color: var(--orange); }
+
+.margin-card.warn .margin-value { color: var(--red); }
+
+.workflow-table { width: 100%; border-collapse: collapse; }
+
+.workflow-table th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); padding: 7px 10px; border-bottom: 1.5px solid var(--border); background: var(--bg); }
+
+.workflow-table td { padding: 9px 10px; font-size: 12.5px; border-bottom: 1px solid var(--border); vertical-align: top; }
+
+.workflow-table tr:last-child td { border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; }
+
+.wf-tag { display: inline-block; font-size: 9.5px; font-weight: 700; padding: 2px 7px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
+
+.wf-ai { background: var(--purple-light); color: var(--purple); }
+
+.wf-hybrid { background: var(--orange-light); color: rgb(138, 80, 0); }
+
+.wf-human { background: var(--green-light); color: rgb(26, 138, 56); }
+
+.callout { border-radius: 10px; padding: 12px 14px; font-size: 12.5px; line-height: 1.55; margin-top: 10px; }
+
+.callout.green { background: var(--green-light); border-left: 3px solid var(--green); }
+
+.callout.orange { background: var(--orange-light); border-left: 3px solid var(--orange); color: rgb(90, 53, 0); }
+
+.callout.blue { background: rgb(240, 247, 255); border-left: 3px solid var(--accent); }
+
+.callout strong { font-weight: 700; }
+
+.footnote { font-size: 11px; color: var(--muted); margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border); line-height: 1.7; }
+
+@media (max-width: 600px) {
+  .tier-grid { grid-template-columns: 1fr; }
+  .margin-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-title">AI Voice Agent — Cost Model</div>
+  <div class="page-sub">Retell + ElevenLabs stack · Real estate agent pilot · 2026</div>
+  <div class="page-meta">
+    <span class="meta-chip">Retell AI (PAYG)</span>
+    <span class="meta-chip">ElevenLabs TTS (optional)</span>
+    <span class="meta-chip">Avg call: 3.5 min</span>
+    <span class="meta-chip">FX rate: 1 USD ≈ $1.58 AUD</span>
+  </div>
+</div>
+
+<!-- FX NOTICE -->
+<div class="callout orange" style="margin-bottom:16px;">
+  <strong>Currency note:</strong> Service costs (Retell, ElevenLabs, telephony) are billed in <strong>USD</strong> by US-based providers. AUD equivalents throughout use 1 USD = $1.58 AUD (May 2026 rate). COGS will fluctuate with the exchange rate — check monthly.
+</div>
+
+<!-- ── SECTION 1: SERVICE COST STACK ── -->
+<div class="section">
+  <div class="section-title">1 — Service Cost Stack (per minute)</div>
+  <div class="card">
+    <table class="stack-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Provider</th>
+          <th>Per Min (USD)</th>
+          <th>Per Min (AUD)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Conversation Voice Engine</td>
+          <td>Retell AI</td>
+          <td><span class="mono cost-green">$0.055</span></td>
+          <td><span class="mono">~$0.087</span></td>
+          <td>STT + orchestration layer. Always on.</td>
+        </tr>
+        <tr>
+          <td>Text-to-Speech — Standard</td>
+          <td>Cartesia / OpenAI / Retell</td>
+          <td><span class="mono cost-green">$0.015</span></td>
+          <td><span class="mono">~$0.024</span></td>
+          <td>Good quality, lower latency. Suitable for beta.</td>
+        </tr>
+        <tr>
+          <td>Text-to-Speech — Premium</td>
+          <td>ElevenLabs</td>
+          <td><span class="mono cost-orange">$0.040</span></td>
+          <td><span class="mono">~$0.063</span></td>
+          <td>Most natural voice, best for first impressions. Switch to this for go-live.</td>
+        </tr>
+        <tr>
+          <td>LLM — Budget</td>
+          <td>Gemini 2.5 Flash</td>
+          <td><span class="mono cost-green">$0.035</span></td>
+          <td><span class="mono">~$0.055</span></td>
+          <td>Fastest, cheapest. Fine for scripted qualification flows.</td>
+        </tr>
+        <tr>
+          <td>LLM — Recommended</td>
+          <td>GPT-4.1</td>
+          <td><span class="mono cost-orange">$0.045</span></td>
+          <td><span class="mono">~$0.071</span></td>
+          <td>Better at dynamic conversation, objection handling, unexpected questions.</td>
+        </tr>
+        <tr>
+          <td>Telephony</td>
+          <td>Twilio / Telnyx via Retell</td>
+          <td><span class="mono cost-green">$0.015</span></td>
+          <td><span class="mono">~$0.024</span></td>
+          <td>PSTN routing. Always on. AU numbers may vary ±$0.005/min.</td>
+        </tr>
+        <tr>
+          <td>Knowledge Base</td>
+          <td>Retell</td>
+          <td><span class="mono optional">$0.005 optional</span></td>
+          <td><span class="mono optional">~$0.008</span></td>
+          <td>Enables agent to pull live listing data. Worth it at go-live.</td>
+        </tr>
+        <tr style="background: #fafafa;">
+          <td><strong>Phone Number</strong></td>
+          <td>Retell</td>
+          <td><span class="mono cost-green">$2.00/mo flat</span></td>
+          <td><span class="mono">~$3.16/mo</span></td>
+          <td>One number per agent. Verified number (shown on caller ID): ~$15.80 AUD/mo.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout orange" style="margin-top:12px;">
+      <strong>⚠️ The advertised $0.07/min rate covers voice engine only.</strong> Real-world all-in cost is $0.12–$0.155/min once LLM, telephony, and TTS are included. Always quote from the all-in rate below — not the headline number.
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 2: ALL-IN TIER RATES ── -->
+<div class="section">
+  <div class="section-title">2 — All-In Rate Per Minute (3 Tiers)</div>
+  <div class="tier-grid">
+    <div class="tier-card budget">
+      <div class="tier-label">Budget Stack</div>
+      <div class="tier-rate">$0.12 <span style="font-size:14px;font-weight:600;">USD</span></div>
+      <div class="tier-sub">per minute &nbsp;·&nbsp; <strong>~$0.19 AUD/min</strong></div>
+      <div class="tier-stack">
+        Voice Engine: $0.055<br>
+        Standard TTS: $0.015<br>
+        Gemini 2.5 Flash: $0.035<br>
+        Telephony: $0.015<br>
+        <strong>Total: $0.120 USD / ~$0.190 AUD</strong>
+      </div>
+    </div>
+    <div class="tier-card standard">
+      <div class="tier-label">Standard Stack</div>
+      <div class="tier-rate">$0.13 <span style="font-size:14px;font-weight:600;">USD</span></div>
+      <div class="tier-sub">per minute &nbsp;·&nbsp; <strong>~$0.21 AUD/min</strong></div>
+      <div class="tier-stack">
+        Voice Engine: $0.055<br>
+        Standard TTS: $0.015<br>
+        GPT-4.1: $0.045<br>
+        Telephony: $0.015<br>
+        <strong>Total: $0.130 USD / ~$0.205 AUD</strong>
+      </div>
+    </div>
+    <div class="tier-card premium">
+      <div class="tier-label">Premium Stack</div>
+      <div class="tier-rate">$0.155 <span style="font-size:14px;font-weight:600;">USD</span></div>
+      <div class="tier-sub">per minute &nbsp;·&nbsp; <strong>~$0.245 AUD/min</strong></div>
+      <div class="tier-stack">
+        Voice Engine: $0.055<br>
+        ElevenLabs TTS: $0.040<br>
+        GPT-4.1: $0.045<br>
+        Telephony: $0.015<br>
+        <strong>Total: $0.155 USD / ~$0.245 AUD</strong>
+      </div>
+    </div>
+  </div>
+  <div class="callout blue" style="margin-top:10px;">
+    <strong>Recommendation:</strong> Start on <strong>Standard Stack ($0.13/min)</strong> — GPT-4.1 for conversation quality, standard TTS to keep costs down while you refine the script. Switch to Premium (ElevenLabs) when you go to full price.
+  </div>
+</div>
+
+<!-- ── SECTION 3: PER-AGENT BREAKDOWN ── -->
+<div class="section">
+  <div class="section-title">3 — Per-Agent Cost Breakdown — Sample Cohort (8 agents)</div>
+  <div class="card" style="padding: 0; overflow: hidden;">
+    <table class="agent-table">
+      <thead>
+        <tr>
+          <th>Agent</th>
+          <th>Profile Stats</th>
+          <th>Est. Calls/Mo<br><span style="font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;">low · mid · high</span></th>
+          <th>Mid Minutes</th>
+          <th>Std USD ($0.13)</th>
+          <th>Std AUD (~$0.21)</th>
+          <th>Prem USD ($0.155)</th>
+          <th>Prem AUD (~$0.245)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Agent A</strong><br>
+            <span class="agent-badge badge-vp">VP</span>
+          </td>
+          <td class="agent-stat">High-volume sales agent<br>Buyers agent background</td>
+          <td>
+            <span class="vol-low">45</span> · <span class="vol-mid">75</span> · <span class="vol-high">110</span>
+          </td>
+          <td class="cost-cell">263 min</td>
+          <td class="cost-cell cost-standard">$36.15</td>
+          <td class="cost-cell cost-standard">~$57 AUD</td>
+          <td class="cost-cell cost-premium">$42.75</td>
+          <td class="cost-cell cost-premium">~$68 AUD</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Agent B</strong><br>
+            <span class="agent-badge badge-vp">VP</span>
+          </td>
+          <td class="agent-stat">20+ active listings<br>30+ yrs in market, top rated</td>
+          <td>
+            <span class="vol-low">90</span> · <span class="vol-mid">140</span> · <span class="vol-high">190</span>
+          </td>
+          <td class="cost-cell">490 min</td>
+          <td class="cost-cell cost-standard">$65.70</td>
+          <td class="cost-cell cost-standard">~$104 AUD</td>
+          <td class="cost-cell cost-premium">$77.95</td>
+          <td class="cost-cell cost-premium">~$123 AUD</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Agent C</strong><br>
+            <span class="agent-badge badge-vp">VP</span>
+          </td>
+          <td class="agent-stat">20+ yrs · Triple-hat<br>Sales + Buyers + PM</td>
+          <td>
+            <span class="vol-low">50</span> · <span class="vol-mid">85</span> · <span class="vol-high">120</span>
+          </td>
+          <td class="cost-cell">298 min</td>
+          <td class="cost-cell cost-standard">$40.72</td>
+          <td class="cost-cell cost-standard">~$64 AUD</td>
+          <td class="cost-cell cost-premium">$48.19</td>
+          <td class="cost-cell cost-premium">~$76 AUD</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Agent D</strong><br>
+            <span class="agent-badge badge-vp">VP</span>
+          </td>
+          <td class="agent-stat">Top team revenue<br>Marketing coordinator, 7 agents</td>
+          <td>
+            <span class="vol-low">25</span> · <span class="vol-mid">45</span> · <span class="vol-high">70</span>
+          </td>
+          <td class="cost-cell">158 min</td>
+          <td class="cost-cell cost-standard">$22.52</td>
+          <td class="cost-cell cost-standard">~$36 AUD</td>
+          <td class="cost-cell cost-premium">$26.47</td>
+          <td class="cost-cell cost-premium">~$42 AUD</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Agent E</strong><br>
+            <span class="agent-badge badge-bw">BW</span>
+          </td>
+          <td class="agent-stat">$40M+ top sale · 10+ yrs<br>Multilingual agent</td>
+          <td>
+            <span class="vol-low">40</span> · <span class="vol-mid">70</span> · <span class="vol-high">100</span>
+          </td>
+          <td class="cost-cell">245 min</td>
+          <td class="cost-cell cost-standard">$33.85</td>
+          <td class="cost-cell cost-standard">~$53 AUD</td>
+          <td class="cost-cell cost-premium">$39.95</td>
+          <td class="cost-cell cost-premium">~$63 AUD</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Agent F</strong><br>
+            <span class="agent-badge badge-bw">BW</span>
+          </td>
+          <td class="agent-stat">$80M+ 12mo vol · high median<br>16 sales/yr · luxury tier</td>
+          <td>
+            <span class="vol-low">25</span> · <span class="vol-mid">50</span> · <span class="vol-high">75</span>
+          </td>
+          <td class="cost-cell">175 min</td>
+          <td class="cost-cell cost-standard">$24.75</td>
+          <td class="cost-cell cost-standard">~$39 AUD</td>
+          <td class="cost-cell cost-premium">$29.13</td>
+          <td class="cost-cell cost-premium">~$46 AUD</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Agent G</strong><br>
+            <span class="agent-badge badge-rw">RW LNS</span>
+          </td>
+          <td class="agent-stat">Top performer Yr 1 · Premier<br>Multi-suburb active</td>
+          <td>
+            <span class="vol-low">50</span> · <span class="vol-mid">90</span> · <span class="vol-high">140</span>
+          </td>
+          <td class="cost-cell">315 min</td>
+          <td class="cost-cell cost-standard">$42.95</td>
+          <td class="cost-cell cost-standard">~$68 AUD</td>
+          <td class="cost-cell cost-premium">$50.83</td>
+          <td class="cost-cell cost-premium">~$80 AUD</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Agent H</strong><br>
+            <span class="agent-badge badge-rw">RW LNS</span>
+          </td>
+          <td class="agent-stat">50+ sales/yr · 19 days DOM<br>High-availability brand</td>
+          <td>
+            <span class="vol-low">90</span> · <span class="vol-mid">150</span> · <span class="vol-high">220</span>
+          </td>
+          <td class="cost-cell">525 min</td>
+          <td class="cost-cell cost-standard">$70.25</td>
+          <td class="cost-cell cost-standard">~$111 AUD</td>
+          <td class="cost-cell cost-premium">$83.38</td>
+          <td class="cost-cell cost-premium">~$132 AUD</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout green" style="margin-top:0;">
+    All costs include $2/mo flat phone number fee. Call duration: 3.5 min average. Methodology: listing enquiry calls (3–6 per active listing × 30–40% phone rate) + referral/buyer follow-up volume. Agents B and H are highest-volume. Agents D and F are lowest.
+  </div>
+</div>
+
+
+
+<!-- ── SECTION 5: STANDARD RE WORKFLOW ── -->
+<div class="section">
+  <div class="section-title">4 — Standard RE Selling Workflow — What the AI Handles</div>
+  <div class="card" style="padding: 0; overflow: hidden;">
+    <table class="workflow-table">
+      <thead>
+        <tr>
+          <th>Call Type</th>
+          <th>Who Handles</th>
+          <th>Avg Duration</th>
+          <th>% of Total Volume</th>
+          <th>AI Scope</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>After-hours inbound buyer enquiry</strong><br><span style="font-size:11px;color:var(--muted);">6pm–9am, weekends</span></td>
+          <td><span class="wf-tag wf-ai">AI</span></td>
+          <td>3–4 min</td>
+          <td>~35% of all calls</td>
+          <td>Full qualification: budget, timeline, property match, inspection availability, CRM brief</td>
+        </tr>
+        <tr>
+          <td><strong>Overflow (agent unavailable)</strong><br><span style="font-size:11px;color:var(--muted);">In inspection, on another call</span></td>
+          <td><span class="wf-tag wf-ai">AI</span></td>
+          <td>2–3 min</td>
+          <td>~25% of all calls</td>
+          <td>Takes message, qualifies buyer, schedules callback, logs to CRM</td>
+        </tr>
+        <tr>
+          <td><strong>Post-inspection buyer follow-up</strong><br><span style="font-size:11px;color:var(--muted);">Outbound nurture, 24–48hr after OFI</span></td>
+          <td><span class="wf-tag wf-ai">AI</span></td>
+          <td>2–3 min</td>
+          <td>15–20 outbound/week</td>
+          <td>Checks buyer intent, surfaces warm leads, flags hot buyers to agent</td>
+        </tr>
+        <tr>
+          <td><strong>Initial listing enquiry (business hours)</strong><br><span style="font-size:11px;color:var(--muted);">First contact from REA/Domain lead</span></td>
+          <td><span class="wf-tag wf-hybrid">Hybrid</span></td>
+          <td>3–5 min</td>
+          <td>~30% of all calls</td>
+          <td>AI handles if agent busy, routes to agent with brief if available. Optionally AI-first in full coverage model.</td>
+        </tr>
+        <tr>
+          <td><strong>Vendor check-in / reporting</strong><br><span style="font-size:11px;color:var(--muted);">Weekly vendor update calls</span></td>
+          <td><span class="wf-tag wf-hybrid">Hybrid</span></td>
+          <td>5–10 min</td>
+          <td>~5% of volume</td>
+          <td>AI can deliver scripted weekly update (views, enquiries, feedback), escalates concerns to agent</td>
+        </tr>
+        <tr>
+          <td><strong>Principal / strategic discussion</strong><br><span style="font-size:11px;color:var(--muted);">Pricing, strategy, relationship</span></td>
+          <td><span class="wf-tag wf-human">Human</span></td>
+          <td>10–30 min</td>
+          <td>~5% of volume</td>
+          <td>Always agent. AI context handed off via call summary in CRM.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout blue" style="margin-top:0;">
+    <strong>Full coverage model</strong> (everything through AI first) = ~100% of calls routed, agent triaged post-qualification. Typical monthly cost for a median agent (85 calls × 3.5 min): <strong>~$38.75 USD / ~$61 AUD standard stack</strong>.<br><br>
+    <strong>Partial coverage model</strong> (after-hours + overflow only, ~60% of calls) = ~50 calls × 3.5 min: <strong>~$22.75 USD / ~$36 AUD standard stack</strong>. Recommended starting point for beta to ease agents into it.
+  </div>
+</div>
+
+<!-- ── SECTION 6: BETA SCENARIO ── -->
+<div class="section">
+  <div class="section-title">5 — Scenario: Highest-Volume Agent, Month 1–3</div>
+  <div class="card">
+    <div class="card-title">Agent H — Worst-case beta (highest volume agent)</div>
+    <div class="card-note" style="margin-top:8px;">
+      50+ sales/year, 19-day DOM, high call volume. If you can make it work at this volume, it works for any agent in the cohort.
+    </div>
+    <table class="stack-table" style="margin-top:12px;">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Calls Handled</th>
+          <th>Minutes</th>
+          <th>COGS USD Std</th>
+          <th>COGS AUD Std</th>
+          <th>COGS USD Prem</th>
+          <th>COGS AUD Prem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Month 1 (ramp)</td>
+          <td>60 calls</td>
+          <td>210 min</td>
+          <td class="mono cost-green">$29.30</td>
+          <td class="mono cost-green">~$46 AUD</td>
+          <td class="mono cost-orange">$34.55</td>
+          <td class="mono cost-orange">~$55 AUD</td>
+
+        </tr>
+        <tr>
+          <td>Month 2 (partial)</td>
+          <td>110 calls</td>
+          <td>385 min</td>
+          <td class="mono cost-green">$52.05</td>
+          <td class="mono cost-green">~$82 AUD</td>
+          <td class="mono cost-orange">$61.68</td>
+          <td class="mono cost-orange">~$97 AUD</td>
+
+        </tr>
+        <tr>
+          <td>Month 3 (full)</td>
+          <td>150 calls</td>
+          <td>525 min</td>
+          <td class="mono cost-green">$70.25</td>
+          <td class="mono cost-green">~$111 AUD</td>
+          <td class="mono cost-orange">$83.38</td>
+          <td class="mono cost-orange">~$132 AUD</td>
+
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout green" style="margin-top:12px;">
+      Even at full volume with ElevenLabs premium voice, AUD COGS for Agent H is ~$132/month. This is the ceiling — every other agent profile in the cohort runs below this. Use it as your worst-case planning number.
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTNOTES ── -->
+<div class="footnote">
+  <strong>Sources:</strong> Retell AI pricing page (retellai.com/pricing, May 2026) · ElevenLabs API pricing (elevenlabs.io/pricing/api, May 2026) · Retell AI cost breakdown blog (retellai.com/blog/ai-voice-agent-pricing-full-cost-breakdown) · Agent profile stats from internal agent volume data (May 2026)<br><br>
+  <strong>Methodology notes:</strong> Call volume estimates extrapolated from active listing counts and sales velocity, applying industry-standard 30–40% phone enquiry rate on total digital enquiry volume, plus referral/buyer follow-up multiplier. Average call duration of 3.5 min is the real-estate sector median for AI-handled qualification calls. AU telephony costs assumed to match US Twilio/Telnyx rates (±$0.005/min variance possible — confirm with Retell for AU numbers).<br><br>
+  <strong>FX note:</strong> AUD equivalents calculated at 1 USD = $1.58 AUD (May 2026). This rate fluctuates — COGS should be reviewed monthly. A 5-cent AUD weakening (e.g., to 1 USD = $1.63 AUD) adds approximately $4–$9 AUD to monthly COGS per agent depending on call volume.
+</div>
+
+
+
+</body></html>
