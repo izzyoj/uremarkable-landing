@@ -160,6 +160,27 @@
     }
     footer a { color: var(--text-tertiary); text-decoration: none; }
     footer a:hover { color: var(--text-secondary); }
+    /* ── Delivery stats ── */
+    .delivery-stats { border-top: 1px solid var(--border); padding: 40px 24px; }
+    .delivery-stats-inner { max-width: 900px; margin: 0 auto; }
+    .section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); text-align: center; margin-bottom: 24px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; text-align: center; }
+    .stat-value { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); line-height: 1; }
+    .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; }
+    @media (max-width: 700px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .stat-value { font-size: 22px; }
+    }
+    /* ── Testimonials ── */
+    .testimonials { border-top: 1px solid var(--border); padding: 48px 24px; }
+    .testimonials-inner { max-width: 900px; margin: 0 auto; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testimonial-card { background: #f5f5f7; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .testimonial-quote { font-size: 15px; line-height: 1.65; color: var(--text-primary); flex: 1; }
+    .testimonial-attr { font-size: 12px; font-weight: 600; color: var(--text-tertiary); border-top: 1px solid var(--border); padding-top: 14px; }
+    @media (max-width: 780px) {
+      .testimonial-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -214,6 +235,59 @@
       </a>
 
     </section>
+
+    <section class="delivery-stats">
+      <div class="delivery-stats-inner">
+        <p class="section-eyebrow">Delivery track record</p>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">28%</div>
+            <div class="stat-label">Capacity Uplift</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">95%</div>
+            <div class="stat-label">Value Delivered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">$12k</div>
+            <div class="stat-label">Monthly Savings</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">165+</div>
+            <div class="stat-label">Hours Eliminated</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">35%</div>
+            <div class="stat-label">Opex Reduction</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">9/10</div>
+            <div class="stat-label">User Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="testimonials-inner">
+        <p class="section-eyebrow">What others say</p>
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"His energy is contagious; he sucks you straight in. He makes you put the customer first. Working with Baz is simply good fun."</p>
+            <p class="testimonial-attr">Product &amp; Design Leader &middot; Gumtree</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Relentless customer advocacy, and the craft to back it up. He brought the voice of the customer into every room, turned data into insight, and fought for the right outcome every time. The perfect person to keep you grounded while you aim high."</p>
+            <p class="testimonial-attr">Technical Founder &amp; Principal Data &amp; AI Engineer &middot; Datafabric</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"A master of his craft. He led the team to many successful product deliveries; empathetic, bright, and full of energy. I would not hesitate to recommend him."</p>
+            <p class="testimonial-attr">Senior .NET Developer &middot; GovTech</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section class="profile">
       <div class="profile-inner">
