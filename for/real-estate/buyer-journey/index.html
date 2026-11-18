@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scale Sales — Buyer Journey Map</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    background: #fff;
+    padding: 36px 48px 26px;
+    border-bottom: 1px solid #e5e5ea;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .header-brand {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1e3a5f;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+  }
+
+  .header-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1d1d1f;
+    line-height: 1.2;
+  }
+
+  .header-subtitle {
+    font-size: 13px;
+    color: #6e6e73;
+    margin-top: 8px;
+    line-height: 1.6;
+    max-width: 620px;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .instructions {
+    font-size: 12px;
+    color: #86868b;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #6e6e73;
+    font-weight: 500;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .dot-jtbd   { background: #60a5fa; }
+  .dot-forces { background: #94a3b8; }
+  .dot-gap    { background: #f59e0b; }
+  .dot-ai     { background: #7c3aed; }
+  .dot-champ  { background: #059669; }
+  .dot-notes  { background: #ca8a04; }
+
+  /* ===== CEM WRAPPER ===== */
+  .cem-wrapper {
+    padding: 28px 48px 40px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .cem-wrapper::-webkit-scrollbar { height: 5px; }
+  .cem-wrapper::-webkit-scrollbar-track { background: transparent; }
+  .cem-wrapper::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 3px; }
+
+  /* ===== MOBILE ===== */
+  .scroll-hint {
+    display: none;
+    font-size: 12px;
+    color: #86868b;
+    padding: 0 16px 8px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .page-header { padding: 24px 16px 20px; }
+    .header-top { flex-direction: column; gap: 16px; }
+    .header-meta { align-items: flex-start; flex-shrink: 1; width: 100%; }
+    .legend { flex-wrap: wrap; gap: 10px 14px; }
+    .instructions { font-size: 11px; white-space: normal; }
+    .header-title { font-size: 20px; }
+    .header-subtitle { font-size: 12px; }
+    .cem-wrapper { padding: 16px 16px 28px; }
+    .cta-section { margin: 0 16px 20px; padding: 24px 20px; }
+    .cta-headline { font-size: 17px; }
+    .cta-inner { flex-direction: column; align-items: stretch; gap: 20px; }
+    .cta-buttons { flex-direction: column; width: 100%; flex-shrink: 1; }
+    .btn-cta-primary, .btn-cta-secondary { width: 100%; text-align: center; justify-content: center; }
+    .page-footer { padding: 16px 16px 28px; }
+    .scroll-hint { display: block; }
+  }
+
+  /* ===== TABLE ===== */
+  .cem-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 1680px;
+    width: 100%;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  /* ===== THEAD ===== */
+  .cem-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #1e3a5f;
+    color: #fff;
+    padding: 16px 16px 14px;
+    text-align: left;
+    vertical-align: bottom;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    min-width: 200px;
+  }
+
+  .cem-table thead th:first-child {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    min-width: 152px;
+    width: 152px;
+    background: #1e3a5f;
+    border-right: 1px solid rgba(255,255,255,0.14);
+  }
+
+  .stage-num {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.38);
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    margin-bottom: 5px;
+  }
+
+  .stage-name-text {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .buyer-quote {
+    display: block;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  .drop-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .drop-badge.warning {
+    background: rgba(245,158,11,0.22);
+    color: #fcd34d;
+    border: 1px solid rgba(245,158,11,0.35);
+  }
+
+  .drop-badge.critical {
+    background: rgba(239,68,68,0.22);
+    color: #fca5a5;
+    border: 1px solid rgba(239,68,68,0.35);
+  }
+
+  .reviewed-badge {
+    display: none;
+    align-items: center;
+    background: #30d158;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-top: 8px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+  }
+
+  th.is-reviewed .reviewed-badge { display: inline-flex; }
+
+  /* ===== STICKY ROW LABEL ===== */
+  .row-label {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    min-width: 152px;
+    width: 152px;
+    background: #f5f5f7;
+    padding: 13px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #86868b;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-right: 1px solid #e5e5ea;
+    border-bottom: 1px solid #e5e5ea;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  /* ===== LANE HEADER ROWS ===== */
+  .lane-header-row td {
+    padding: 9px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* Buyer experience lane */
+  .buyer-lane-header td {
+    background: #dbeafe;
+    color: #1e40af;
+    border-bottom: 1px solid #bfdbfe;
+  }
+  .buyer-lane-header .row-label {
+    background: #dbeafe;
+    color: #1e40af;
+    border-right: 1px solid #bfdbfe;
+  }
+
+  /* AI lane */
+  .ai-lane-header td {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-bottom: 1px solid #ddd6fe;
+  }
+  .ai-lane-header .row-label {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-right: 1px solid #ddd6fe;
+  }
+
+  /* Champion lane */
+  .champ-lane-header td {
+    background: #d1fae5;
+    color: #065f46;
+    border-bottom: 1px solid #a7f3d0;
+  }
+  .champ-lane-header .row-label {
+    background: #d1fae5;
+    color: #065f46;
+    border-right: 1px solid #a7f3d0;
+  }
+
+  /* ===== CONTENT CELLS ===== */
+  .cem-table tbody td {
+    padding: 13px 15px;
+    font-size: 13px;
+    line-height: 1.6;
+    vertical-align: top;
+    border-right: 1px solid #e5e5ea;
+    border-bottom: 1px solid #e5e5ea;
+    color: #3c3c43;
+  }
+
+  /* ===== ROW TYPE BACKGROUNDS ===== */
+  .jtbd-row td:not(.row-label)   { background: #f0f7ff; }
+  .forces-row td:not(.row-label) { background: #fafafa; }
+  .leak-row td:not(.row-label)   { background: #fffbeb; border-left: 3px solid #f59e0b; color: #78350f; }
+  .ai-row td:not(.row-label)     { background: #faf5ff; border-left: 3px solid #7c3aed; }
+  .champ-row td:not(.row-label)  { background: #f0fdf4; border-left: 3px solid #059669; }
+
+  .jtbd-row .row-label   { color: #1e40af; }
+  .forces-row .row-label { color: #64748b; }
+  .leak-row .row-label   { color: #b45309; }
+  .ai-row .row-label     { color: #7c3aed; }
+  .champ-row .row-label  { color: #059669; }
+
+  /* ===== JTBD CHIPS ===== */
+  .jtbd-stack { display: flex; flex-direction: column; gap: 8px; }
+
+  .jtbd-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #1d1d1f;
+  }
+
+  .jtbd-chip {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 8px;
+    margin-top: 1px;
+  }
+
+  .jtbd-chip.f { background: #dbeafe; color: #1d4ed8; }
+  .jtbd-chip.s { background: #ede9fe; color: #6d28d9; }
+  .jtbd-chip.e { background: #ffedd5; color: #c2410c; }
+
+  /* ===== 4 FORCES GRID ===== */
+  .forces-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .force-box {
+    border-radius: 8px;
+    padding: 9px 10px 8px;
+  }
+
+  .force-box.push    { background: #fff7ed; border-top: 2px solid #f97316; }
+  .force-box.pull    { background: #f0fdf4; border-top: 2px solid #22c55e; }
+  .force-box.anxiety { background: #fef2f2; border-top: 2px solid #ef4444; }
+  .force-box.habit   { background: #f8fafc; border-top: 2px solid #94a3b8; }
+
+  .force-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .push .force-label    { color: #c2410c; }
+  .pull .force-label    { color: #15803d; }
+  .anxiety .force-label { color: #b91c1c; }
+  .habit .force-label   { color: #64748b; }
+
+  .force-text {
+    font-size: 11px;
+    color: #6e6e73;
+    line-height: 1.5;
+  }
+
+  /* ===== LISTS ===== */
+  .cell-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cell-list li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 5px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .cell-list li:last-child { margin-bottom: 0; }
+
+  ul.cell-list li::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #86868b;
+  }
+
+  .leak-row ul.cell-list li::before { background: #f59e0b; }
+  .ai-row ul.cell-list li::before   { background: #7c3aed; }
+
+  /* ===== ARM BADGE ===== */
+  .arm-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(124,58,237,0.12);
+    color: #5b21b6;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-bottom: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  /* ===== CHAMPION CELLS ===== */
+  .champ-role {
+    font-size: 14px;
+    font-weight: 700;
+    color: #065f46;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .champ-arm {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(5,150,105,0.1);
+    color: #065f46;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .champ-why {
+    font-size: 12px;
+    color: #374151;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* ===== NOTES ROW ===== */
+  .notes-row .row-label {
+    color: #ca8a04;
+    background: #fefce8;
+    border-right: 1px solid #fde68a;
+  }
+
+  .notes-row td:not(.row-label) {
+    background: #fefce8;
+    border-left: 3px solid #fde68a;
+    min-height: 90px;
+    cursor: text;
+    outline: none;
+    color: #713f12;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .notes-row td:not(.row-label):empty::before {
+    content: "Click to add notes...";
+    color: #d4b896;
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  .notes-row td:not(.row-label):focus {
+    background: #fef9c3;
+    outline: 2px solid #ca8a04;
+    outline-offset: -2px;
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    margin: 0 48px 24px;
+    background: #1e3a5f;
+    border-radius: 16px;
+    padding: 32px 40px;
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .cta-headline {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .cta-subtext {
+    font-size: 14px;
+    color: rgba(255,255,255,0.62);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  .btn-cta-primary {
+    background: #fff;
+    color: #1e3a5f;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    font-family: inherit;
+  }
+
+  .btn-cta-primary:hover { opacity: 0.88; }
+
+  .btn-cta-secondary {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.22);
+    cursor: pointer;
+    transition: background 0.15s;
+    display: inline-flex;
+    align-items: center;
+    font-family: inherit;
+  }
+
+  .btn-cta-secondary:hover { background: rgba(255,255,255,0.18); }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    padding: 20px 48px 36px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .source-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #86868b;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+  }
+
+  .source-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .source-chip {
+    background: #fff;
+    border: 1px solid #e5e5ea;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    color: #6e6e73;
+  }
+
+  .action-block { display: flex; gap: 10px; align-items: center; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s;
+    font-family: inherit;
+  }
+
+  .btn:hover { opacity: 0.85; }
+  .btn-primary   { background: #1e3a5f; color: #fff; }
+  .btn-secondary { background: #fff; color: #1d1d1f; border: 1px solid #e5e5ea; }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .modal h3 { font-size: 18px; font-weight: 700; color: #1d1d1f; margin-bottom: 16px; }
+  .modal-notes {
+    background: #f5f5f7;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #3c3c43;
+    white-space: pre-wrap;
+    margin-bottom: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="header-top">
+    <div>
+      <div class="header-brand">Scale Sales — Buyer Journey Map</div>
+      <div class="header-title">Residential Real Estate<br>Buyer Experience Map</div>
+      <div class="header-subtitle">7-stage buyer journey mapped against the moments where buyers drop off, the forces driving and stalling their decision, and the AI interventions that keep more of them engaged through to offer.</div>
+    </div>
+    <div class="header-meta">
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot dot-jtbd"></div>Buyer JTBD</div>
+        <div class="legend-item"><div class="legend-dot dot-forces"></div>4 Forces</div>
+        <div class="legend-item"><div class="legend-dot dot-gap"></div>Drop-off</div>
+        <div class="legend-item"><div class="legend-dot dot-ai"></div>AI opportunity</div>
+        <div class="legend-item"><div class="legend-dot dot-champ"></div>Champion</div>
+        <div class="legend-item"><div class="legend-dot dot-notes"></div>Notes</div>
+      </div>
+      <div class="instructions">Click any yellow cell to add your review notes</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE SCROLL HINT -->
+<div class="scroll-hint">Swipe left to see all 7 stages →</div>
+
+<!-- CEM TABLE -->
+<div class="cem-wrapper">
+<table class="cem-table" id="cemTable">
+
+<thead>
+  <tr>
+    <th></th>
+    <th id="th1">
+      <span class="stage-num">Stage 01</span>
+      <span class="stage-name-text">Trigger</span>
+      <span class="buyer-quote">"Something has to change. We've been saying we'll buy for two years, now we actually have to."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th2">
+      <span class="stage-num">Stage 02</span>
+      <span class="stage-name-text">Search &amp; Shortlist</span>
+      <span class="buyer-quote">"I've been on Domain every day for three weeks. I think I know what I want."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th3">
+      <span class="stage-num">Stage 03</span>
+      <span class="stage-name-text">First Enquiry</span>
+      <span class="buyer-quote">"It's been 18 hours and I haven't heard back from either agent."</span>
+      <span class="drop-badge warning">Key drop-off</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th4">
+      <span class="stage-num">Stage 04</span>
+      <span class="stage-name-text">Inspection</span>
+      <span class="buyer-quote">"I liked it more in person. I still don't know what it's going to sell for."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th5">
+      <span class="stage-num">Stage 05</span>
+      <span class="stage-name-text">Consideration &amp; Due Diligence</span>
+      <span class="buyer-quote">"The building report came back with issues. The agent hasn't called us back."</span>
+      <span class="drop-badge critical">Highest drop-off</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th6">
+      <span class="stage-num">Stage 06</span>
+      <span class="stage-name-text">Offer &amp; Decision</span>
+      <span class="buyer-quote">"We're ready to make an offer. We just need to know if we're in the right ballpark."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+    <th id="th7">
+      <span class="stage-num">Stage 07</span>
+      <span class="stage-name-text">Post-Exchange to Settlement</span>
+      <span class="buyer-quote">"Settlement is in 42 days and I don't know what I'm supposed to be doing."</span>
+      <span class="reviewed-badge">Reviewed</span>
+    </th>
+  </tr>
+</thead>
+
+<tbody>
+
+  <!-- ==============================
+       LANE 1: BUYER EXPERIENCE
+  =============================== -->
+  <tr class="lane-header-row buyer-lane-header">
+    <td class="row-label">Buyer Experience</td>
+    <td>What the buyer is trying to do, and the forces pushing and stalling their decision at each stage</td>
+    <td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+
+  <!-- JTBD ROW -->
+  <tr class="jtbd-row">
+    <td class="row-label">🎯 Buyer JTBD</td>
+    <td>
+      <div class="jtbd-stack">
+        <div class="jtbd-line"><span class="jtbd-chip f">F</span>Secure housing that fits a changed life situation</div>
+        <div class="jtbd-line"><span class="jtbd-chip s">S</span>Be seen as someone who takes concrete action, not just talks about buying</div>
+        <div class="jtbd-line"><span class="jtbd-chip e">E</span>Feel in control of a major life transition that currently feels uncertain</div>
+      </div>
+    </td>
+    <td>
+      <div class="jtbd-stack">
+        <div class="jtbd-line"><span class="jtbd-chip f">F</span>Build a clear picture of what their budget can realistically buy, in which suburbs, with what trade-offs</div>
+        <div class="jtbd-line"><span class="jtbd-chip s">S</span>Appear to partner and family as someone who has done their research</div>
+        <div class="jtbd-line"><span class="jtbd-chip e">E</span>Feel informed and confident enough to make first contact without feeling naive</div>
+      </div>
+    </td>
+    <td>
+      <div class="jtbd-stack">
+        <div class="jtbd-line"><span class="jtbd-chip f">F</span>Get accurate info fast: price guide, strata, inspection times, comparable sales</div>
+        <div class="jtbd-line"><span class="jtbd-chip s">S</span>Feel treated like a serious buyer. Be respected as someone who has done their research.</div>
+        <div class="jtbd-line"><span class="jtbd-chip e">E</span>Feel acknowledged. The enquiry is an act of commitment. Silence is rejection-adjacent.</div>
+      </div>
+    </td>
+    <td>
+      <div class="jtbd-stack">
+        <div class="jtbd-line"><span class="jtbd-chip f">F</span>Assess the physical property: condition, layout, light, strata quality, renovation scope</div>
+        <div class="jtbd-line"><span class="jtbd-chip s">S</span>Make a credible judgment in front of their partner or family without seeming naive</div>
+        <div class="jtbd-line"><span class="jtbd-chip e">E</span>Leave with a gut feeling they can trust: either "this is it" or "this isn't it"</div>
+      </div>
+    </td>
+    <td>
+      <div class="jtbd-stack">
+        <div class="jtbd-line"><span class="jtbd-chip f">F</span>Complete the full information set: B&amp;P report, strata, finance confirmation, comparables, vendor circumstances</div>
+        <div class="jtbd-line"><span class="jtbd-chip s">S</span>Be seen as someone who made an informed, defensible decision</div>
+        <div class="jtbd-line"><span class="jtbd-chip e">E</span>Reach "I've done everything I can do." Confidence that they won't regret the decision.</div>
+      </div>
+    </td>
+    <td>
+      <div class="jtbd-stack">
+        <div class="jtbd-line"><span class="jtbd-chip f">F</span>Submit a competitive offer that has a reasonable chance of success without overpaying beyond actual value</div>
+        <div class="jtbd-line"><span class="jtbd-chip s">S</span>Appear decisive and credible to the agent. Not look like a time-waster with a low-ball.</div>
+        <div class="jtbd-line"><span class="jtbd-chip e">E</span>Feel like the decision is finished. The exhaustion of the search needs resolution.</div>
+      </div>
+    </td>
+    <td>
+      <div class="jtbd-stack">
+        <div class="jtbd-line"><span class="jtbd-chip f">F</span>Complete remaining logistics correctly and on time: insurance, final inspection, finance drawdown, removalist, utilities</div>
+        <div class="jtbd-line"><span class="jtbd-chip s">S</span>Appear organised and competent. Not be the buyer who causes delays.</div>
+        <div class="jtbd-line"><span class="jtbd-chip e">E</span>Transition from anxiety about whether the deal will fall through to genuine excitement</div>
+      </div>
+    </td>
+  </tr>
+
+  <!-- 4 FORCES ROW -->
+  <tr class="forces-row">
+    <td class="row-label">⚖️ 4 Forces</td>
+    <td>
+      <div class="forces-grid">
+        <div class="force-box push"><div class="force-label">Push</div><div class="force-text">Life event creates genuine urgency. The lease ends in 90 days. Doing nothing now has a real cost.</div></div>
+        <div class="force-box pull"><div class="force-label">Pull</div><div class="force-text">Ownership equals stability. Fixed mortgage, owning something, being done searching.</div></div>
+        <div class="force-box anxiety"><div class="force-label">Anxiety</div><div class="force-text">"What if we buy too soon and prices fall?" / "What if we can't get finance?"</div></div>
+        <div class="force-box habit"><div class="force-label">Habit</div><div class="force-text">Still renting. Still browsing on Saturday morning without calling agents. "We're just looking."</div></div>
+      </div>
+    </td>
+    <td>
+      <div class="forces-grid">
+        <div class="force-box push"><div class="force-label">Push</div><div class="force-text">Portal browsing reveals the gap between expectation and reality. The house they imagined doesn't exist at their budget.</div></div>
+        <div class="force-box pull"><div class="force-label">Pull</div><div class="force-text">Off-market access is enormously attractive. An agent who knows what's coming before it hits portals.</div></div>
+        <div class="force-box anxiety"><div class="force-label">Anxiety</div><div class="force-text">Am I looking in the right suburb? Am I missing better value somewhere else?</div></div>
+        <div class="force-box habit"><div class="force-label">Habit</div><div class="force-text">Still doing all research independently. The ingrained assumption: agents only help when you've found a property.</div></div>
+      </div>
+    </td>
+    <td>
+      <div class="forces-grid">
+        <div class="force-box push"><div class="force-label">Push</div><div class="force-text">Portal enquiry is the lowest-friction action available. Momentum from the search phase carries them forward.</div></div>
+        <div class="force-box pull"><div class="force-label">Pull</div><div class="force-text">The property matches enough criteria to feel like it could be "the one." Enquiry is partly emotional validation.</div></div>
+        <div class="force-box anxiety"><div class="force-label">Anxiety</div><div class="force-text">Will the agent dismiss me because I haven't sold yet? Do I need to disclose conditional finance?</div></div>
+        <div class="force-box habit"><div class="force-label">Habit</div><div class="force-text">Sending enquiries and waiting. Not following up proactively to avoid seeming desperate.</div></div>
+      </div>
+    </td>
+    <td>
+      <div class="forces-grid">
+        <div class="force-box push"><div class="force-label">Push</div><div class="force-text">Portal search is exhausting. The inspection is relief from the endless scroll, a concrete in-person step forward.</div></div>
+        <div class="force-box pull"><div class="force-label">Pull</div><div class="force-text">The property looks better in person. Standing in the living room imagining their furniture. Emotional attachment starts here.</div></div>
+        <div class="force-box anxiety"><div class="force-label">Anxiety</div><div class="force-text">What am I not seeing? Is the strata body corporate hiding something? What will the building report say?</div></div>
+        <div class="force-box habit"><div class="force-label">Habit</div><div class="force-text">Inspecting multiple properties in parallel. Collecting impressions. Keeping emotional distance. "I need to see more."</div></div>
+      </div>
+    </td>
+    <td>
+      <div class="forces-grid">
+        <div class="force-box push"><div class="force-label">Push</div><div class="force-text">Real momentum from the inspection. They liked the property. The sunk cost of time and research is real.</div></div>
+        <div class="force-box pull"><div class="force-label">Pull</div><div class="force-text">The image of living in that property is specific now. The pull is resolution of a long, exhausting search.</div></div>
+        <div class="force-box anxiety"><div class="force-label">Anxiety</div><div class="force-text">Peak anxiety. B&amp;P defects. Finance pending. Every new piece of information is a potential exit ramp.</div></div>
+        <div class="force-box habit"><div class="force-label">Habit</div><div class="force-text">"If in doubt, don't." Australian household's default risk posture on major financial decisions is conservative.</div></div>
+      </div>
+    </td>
+    <td>
+      <div class="forces-grid">
+        <div class="force-box push"><div class="force-label">Push</div><div class="force-text">Search fatigue at peak. This property is the best match they've seen. The push to end the search is as strong as the push to buy right.</div></div>
+        <div class="force-box pull"><div class="force-label">Pull</div><div class="force-text">The life event is now pressing harder. The lease ending sooner. The job relocation date confirmed.</div></div>
+        <div class="force-box anxiety"><div class="force-label">Anxiety</div><div class="force-text">Am I about to make the most expensive mistake of my life? Am I going to miss it because someone else goes higher?</div></div>
+        <div class="force-box habit"><div class="force-label">Habit</div><div class="force-text">Underbidding first to "see where the vendor is." Using the first offer as an information-gathering move.</div></div>
+      </div>
+    </td>
+    <td>
+      <div class="forces-grid">
+        <div class="force-box push"><div class="force-label">Push</div><div class="force-text">Contracts are signed. No going back without financial penalty. The push is now legal commitment.</div></div>
+        <div class="force-box pull"><div class="force-label">Pull</div><div class="force-text">The property is theirs (almost). Planning the move, the renovation, the first night in the new house.</div></div>
+        <div class="force-box anxiety"><div class="force-label">Anxiety</div><div class="force-text">Finance not formally approved yet. Final inspection needed. The agent they trusted has mentally moved on.</div></div>
+        <div class="force-box habit"><div class="force-label">Habit</div><div class="force-text">Passively waiting for solicitor and broker to manage the process. Not reaching out because "that's done now."</div></div>
+      </div>
+    </td>
+  </tr>
+
+  <!-- GAP / DROP-OFF ROW -->
+  <tr class="leak-row">
+    <td class="row-label">💸 Where buyers drop off</td>
+    <td>
+      <ul class="cell-list">
+        <li>No agent is present at this stage — the buyer hasn't engaged anyone yet</li>
+        <li>The agent who gets called first is usually the one on the portal listing the buyer happened to find, not the best-positioned one</li>
+        <li>No system capturing passive browsers as leads before first contact</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Agents are absent during the buyer's research phase</li>
+        <li>The buyer forms opinions about suburbs, prices, and compromises entirely without agent input</li>
+        <li>When first contact happens, the agent has to undo as much as they reinforce</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Average response time to portal enquiries: 4 to 18 hours</li>
+        <li>Many buyers book an inspection with a competing property before the reply arrives</li>
+        <li>The initial response, when it comes, is a generic auto-reply with no personalisation</li>
+        <li>The 90-day ready buyer gets the same response as the buyer 12 months away</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Agents run 5 to 10 open homes on a Saturday morning — the buyer gets a minute or two of face time</li>
+        <li>Post-inspection, most agents send no follow-up specific to that buyer's experience</li>
+        <li>The buyer leaves with questions they didn't ask. The agent has no record of what mattered to them.</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>40 to 60% of seriously interested buyers walk away at this stage</li>
+        <li>Agents treat this as the buyer's problem. "The B&amp;P is their responsibility." Agents go quiet.</li>
+        <li>The buyer receives a 60-page report, panics at "major defect" language, calls the agent, gets vague reassurance, and buys somewhere else</li>
+        <li>Silence from the agent confirms they don't care whether the buyer proceeds</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>Most agents, under time pressure, give vague guidance on price range</li>
+        <li>Post-offer, "we'll get back to you" with no timeframe — buyer is in limbo</li>
+        <li>The feedback loop is too slow. Unable to pursue other properties, unable to close.</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="cell-list">
+        <li>The post-exchange period is completely abandoned by most agents</li>
+        <li>The agent's economic incentive to stay engaged disappeared at exchange</li>
+        <li>Lost at two levels: the buyer never becomes a referral source and never becomes a future vendor lead</li>
+      </ul>
+    </td>
+  </tr>
+
+  <!-- ==============================
+       LANE 2: AI AUTOMATION
+  =============================== -->
+  <tr class="lane-header-row ai-lane-header">
+    <td class="row-label">AI Automation</td>
+    <td>Where AI closes the gap — keeping more buyers engaged from first signal through to offer</td>
+    <td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+
+  <!-- AI OPPORTUNITIES ROW -->
+  <tr class="ai-row">
+    <td class="row-label">🤖 AI opportunities</td>
+    <td>
+      <div class="arm-badge">Pre-Enquiry</div>
+      <ul class="cell-list">
+        <li>AI-powered suburb guides and "what can you buy for $X in Y suburb" tools on the agent's website</li>
+        <li>Passive browsers converted to identified leads before first contact</li>
+        <li>Market condition summaries tailored to buyer's search area</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Buyer Acquisition</div>
+      <ul class="cell-list">
+        <li>AI buyer qualification tool captures criteria and returns a personalised suburb briefing</li>
+        <li>Positions the agent as a knowledgeable guide before the buyer has found a specific property</li>
+        <li>Off-market match alerts sent when suitable properties become available</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Response Speed</div>
+      <ul class="cell-list">
+        <li>Instant intelligent first response within 60 seconds: acknowledges the property, provides price guide, inspection times, and comparable sales, asks one qualifying question</li>
+        <li>Agent receives reply drafted and buyer qualification score before they see the notification</li>
+        <li>Highest-ROI AI intervention in the entire buyer journey</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Inspection Follow-up</div>
+      <ul class="cell-list">
+        <li>Post-inspection debrief within 2 hours: building report summary, strata levy detail, comparable sales table, recommended B&amp;P inspector</li>
+        <li>AI sign-in app at the door captures buyer details, interest rating, and buying timeline automatically</li>
+        <li>Replaces clipboard-and-pen with structured buyer data for every open home</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Due Diligence Support</div>
+      <ul class="cell-list">
+        <li>B&amp;P plain-language summary: buyer uploads report, AI returns a read on which defects are cosmetic vs structural, with estimated remediation cost range</li>
+        <li>Proactive check-in at day 3 and day 7 post-inspection if no offer received: "Hey [name], I know you're working through the numbers. Can I answer anything?"</li>
+        <li>Finance confidence tool: confirms serviceability on this specific property at target price</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Offer Guidance</div>
+      <ul class="cell-list">
+        <li>Comparable sales dashboard in real time: 5 most comparable sales in 90 days with price-per-sqm and spread between guide and actual on this agent's last 10 campaigns</li>
+        <li>Private treaty: AI offer submission workflow with timestamps and automated buyer acknowledgement</li>
+        <li>Auction: AI-prepared comparable sales brief delivered 48 hours before auction day</li>
+      </ul>
+    </td>
+    <td>
+      <div class="arm-badge">Settlement &amp; Retention</div>
+      <ul class="cell-list">
+        <li>Automated settlement support sequence: week-by-week checklist after exchange — what to do, who to call, what documents are due</li>
+        <li>Post-settlement check-ins at 30 days, 90 days, and 12 months</li>
+        <li>Relationship pipeline that feeds referrals and future vendor listings automatically</li>
+      </ul>
+    </td>
+  </tr>
+
+  <!-- ==============================
+       LANE 3: CHAMPION
+  =============================== -->
+  <tr class="lane-header-row champ-lane-header">
+    <td class="row-label">Champion</td>
+    <td>The internal role who owns this stage and would drive AI adoption within the agency</td>
+    <td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+
+  <!-- CHAMPION ROW -->
+  <tr class="champ-row">
+    <td class="row-label">👤 Stage champion</td>
+    <td>
+      <div class="champ-role">Principal / Marketing</div>
+      <span class="champ-arm">Marketing</span>
+      <div class="champ-why">Website and content infrastructure. No individual agent can sustain passive lead capture at scale.</div>
+    </td>
+    <td>
+      <div class="champ-role">Principal / Digital</div>
+      <span class="champ-arm">Marketing</span>
+      <div class="champ-why">The agent who shows up during research — not just on listing day — earns trust before it's ever asked for.</div>
+    </td>
+    <td>
+      <div class="champ-role">Listing Agent + PA</div>
+      <span class="champ-arm">Front Office</span>
+      <div class="champ-why">The PA ensures no enquiry goes cold. The agent reviews qualification scores and prioritises follow-up on high-intent buyers.</div>
+    </td>
+    <td>
+      <div class="champ-role">Listing Agent + PA</div>
+      <span class="champ-arm">Sales</span>
+      <div class="champ-why">Sign-in and follow-up are administrative tasks AI owns. The agent's time at the open home is for relationship, not paperwork.</div>
+    </td>
+    <td>
+      <div class="champ-role">Listing Agent + PA</div>
+      <span class="champ-arm">Sales</span>
+      <div class="champ-why">The agent owns the relationship. The PA triggers the AI workflows. Neither can sustain this manually across a full campaign pipeline.</div>
+    </td>
+    <td>
+      <div class="champ-role">Listing Agent + Principal</div>
+      <span class="champ-arm">Sales Leadership</span>
+      <div class="champ-why">The agent owns the conversation. The principal owns the system that makes this scalable across all agents in the office.</div>
+    </td>
+    <td>
+      <div class="champ-role">PA + Principal</div>
+      <span class="champ-arm">Administration</span>
+      <div class="champ-why">The PA runs the settlement sequence. The principal designs and enforces the system. Post-settlement nurture is where referrals compound.</div>
+    </td>
+  </tr>
+
+  <!-- ==============================
+       NOTES ROW
+  =============================== -->
+  <tr class="notes-row">
+    <td class="row-label">📝 Your notes</td>
+    <td contenteditable="true" data-stage="Stage 01: Trigger" onblur="markReviewed('th1', this)"></td>
+    <td contenteditable="true" data-stage="Stage 02: Search and Shortlist" onblur="markReviewed('th2', this)"></td>
+    <td contenteditable="true" data-stage="Stage 03: First Enquiry" onblur="markReviewed('th3', this)"></td>
+    <td contenteditable="true" data-stage="Stage 04: Inspection" onblur="markReviewed('th4', this)"></td>
+    <td contenteditable="true" data-stage="Stage 05: Consideration and Due Diligence" onblur="markReviewed('th5', this)"></td>
+    <td contenteditable="true" data-stage="Stage 06: Offer and Decision" onblur="markReviewed('th6', this)"></td>
+    <td contenteditable="true" data-stage="Stage 07: Post-Exchange to Settlement" onblur="markReviewed('th7', this)"></td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+
+<!-- CTA SECTION -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-headline">Seen enough to have a conversation?</div>
+      <div class="cta-subtext">Share your notes and we'll start from wherever your agency is losing the most buyers. Or grab 20 minutes and we can walk through it together.</div>
+    </div>
+    <div class="cta-buttons">
+      <button class="btn-cta-primary" onclick="sendNotes()">Send my notes</button>
+      <a class="btn-cta-secondary" href="https://cal.boardy.ai/baz-ozturk" target="_blank">Book a chat</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <div>
+    <div class="source-label">From</div>
+    <div class="source-chips">
+      <span class="source-chip">Scale Sales — AI Opportunity Mapping</span>
+      <a class="source-chip" href="https://www.uremarkable.com/for/real-estate/" target="_blank" style="text-decoration:none;">uremarkable.com</a>
+    </div>
+  </div>
+  <div class="action-block">
+    <button class="btn btn-secondary" onclick="clearNotes()">Clear notes</button>
+    <button class="btn btn-primary" onclick="exportNotes()">View all notes</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <h3>Your review notes</h3>
+    <div class="modal-notes" id="modalNotes"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModalDirect()">Close</button>
+      <button class="btn btn-secondary" onclick="sendNotes()">Send via email</button>
+      <button class="btn btn-primary" onclick="copyToClipboard()">Copy to clipboard</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function markReviewed(thId, cell) {
+    const th = document.getElementById(thId);
+    if (cell.innerText.trim().length > 0) {
+      th.classList.add('is-reviewed');
+    } else {
+      th.classList.remove('is-reviewed');
+    }
+  }
+
+  function collectNotes() {
+    const cells = document.querySelectorAll('.notes-row td[contenteditable]');
+    let output = 'BUYER JOURNEY MAP — REVIEW NOTES\n';
+    output += '=================================\n\n';
+    let hasAny = false;
+    cells.forEach(cell => {
+      const stage = cell.getAttribute('data-stage');
+      const text = cell.innerText.trim();
+      if (text) {
+        output += stage + '\n' + text + '\n\n';
+        hasAny = true;
+      }
+    });
+    if (!hasAny) output += '(No notes added yet)';
+    return { text: output, hasAny };
+  }
+
+  function exportNotes() {
+    const { text } = collectNotes();
+    document.getElementById('modalNotes').textContent = text;
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function sendNotes() {
+    const cells = document.querySelectorAll('.notes-row td[contenteditable]');
+    let body = 'Hi,\n\nHere are my notes from the Scale Sales Buyer Journey Map:\n\n';
+    let hasAny = false;
+    cells.forEach(cell => {
+      const stage = cell.getAttribute('data-stage');
+      const text = cell.innerText.trim();
+      if (text) {
+        body += stage + ':\n' + text + '\n\n';
+        hasAny = true;
+      }
+    });
+    if (!hasAny) {
+      body += "(I haven't added specific notes yet, but I'd like to have a conversation.)\n\n";
+    }
+    body += '---\nSent from Scale Sales Buyer Journey Map\nuremarkable.com';
+    const subject = encodeURIComponent('Buyer Journey - My Notes');
+    const encodedBody = encodeURIComponent(body);
+    const mailtoUrl = 'mailto:baz@uremarkable.com?subject=' + subject + '&body=' + encodedBody;
+    const a = document.createElement('a');
+    a.href = mailtoUrl;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modalOverlay'))
+      document.getElementById('modalOverlay').classList.remove('open');
+  }
+
+  function closeModalDirect() {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+
+  function copyToClipboard() {
+    const text = document.getElementById('modalNotes').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.modal-actions .btn-primary');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  function clearNotes() {
+    if (!confirm('Clear all notes? This cannot be undone.')) return;
+    document.querySelectorAll('.notes-row td[contenteditable]').forEach(c => c.innerText = '');
+    ['th1','th2','th3','th4','th5','th6','th7'].forEach(id =>
+      document.getElementById(id).classList.remove('is-reviewed'));
+  }
+</script>
+
+</body>
+</html>
