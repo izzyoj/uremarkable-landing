@@ -1,0 +1,106 @@
+# Timed read of scripts/2026-11-18_test-clip_building-report.txt
+# Rate 2.4 words/s; /pause 0.4s, //pause longer 1.0s, (breathe) 0.5s, 2s holds
+# START | SPEAK+GAP | CUE LINE || NATURAL FLOW
+0:00.0 | 0.0+0.5s | (breathe) {smile, warm} || —
+0:00.5 | 1.2+1.0s | G'day, I'm Baz. //pause longer || G'day, I'm Baz.
+0:02.8 | 2.5+0.4s | I help Sydney real estate principals /pause || I help Sydney real estate principals
+0:05.7 | 1.2+0.4s | stop losing BUYERS /pause || stop losing BUYERS
+0:07.3 | 1.7+1.0s | between enquiry and offer, //pause longer || between enquiry and offer,
+0:10.0 | 0.0+0.5s | (breathe) || —
+0:10.5 | 2.9+0.4s | by using AI to keep buyers engaged, /pause || by using AI to keep buyers engaged,
+0:13.8 | 2.1+0.4s | so their agents sell faster, /pause || so their agents sell faster,
+0:16.3 | 0.8+0.4s | for more, /pause || for more,
+0:17.5 | 2.1+1.0s | and win the NEXT listing. ↘drop //pause longer || and win the NEXT listing.
+0:20.6 | 2.1+1.0s | [ So why enquiry to offer? ↗rise ] //pause longer || So why enquiry to offer?
+0:23.7 | 0.0+0.5s | (breathe) {slow} || —
+0:24.2 | 2.5+0.4s | A buyer who's liked a place /pause || A buyer who's liked a place
+0:27.1 | 2.1+0.4s | and ordered a building report /pause || and ordered a building report
+0:29.6 | 2.1+1.0s | is CLOSE to an offer. //pause longer || is CLOSE to an offer.
+0:32.6 | 3.8+1.0s | That's the buyer you can LEAST afford to lose. ↘drop //pause longer || That's the buyer you can LEAST afford to lose.
+0:37.4 | 2.1+0.4s | [ So where do they go? ↗rise /pause || So where do they go?
+0:39.9 | 1.7+0.0s | Let me show you. ] || Let me show you.
+0:41.5 | 0.0+0.5s | (SCREEN: whole map) (breathe) || —
+0:42.0 | 2.1+0.4s | This is the buyer journey, /pause || This is the buyer journey,
+0:44.5 | 1.7+0.4s | from the first trigger /pause || from the first trigger
+0:46.6 | 0.8+1.0s | to settlement. //pause longer || to settlement.
+0:48.4 | 4.6+1.0s | [ And this is the stage I want to zoom in on. ] //pause longer || And this is the stage I want to zoom in on.
+0:54.0 | 0.0+0.0s | (Stage 05 header) || —
+0:54.0 | 0.8+0.4s | Stage five, /pause || Stage five,
+0:55.2 | 0.8+1.0s | due diligence. //pause longer || due diligence.
+0:57.1 | 0.0+0.5s | (breathe) {softer, in the buyer's head} || —
+0:57.6 | 2.1+0.4s | The buyer might be thinking: /pause || The buyer might be thinking:
+1:00.1 | 2.9+0.4s | "The building report came back with issues. /pause || "The building report came back with issues.
+1:03.4 | 2.5+1.0s | The agent hasn't called us back." //pause longer || The agent hasn't called us back."
+1:06.9 | 2.5+1.0s | [ So what's going on for them? ↗rise ] //pause longer || So what's going on for them?
+1:10.4 | 0.0+0.0s | (Buyer JTBD row) {slow} || —
+1:10.4 | 2.5+0.4s | Their job here is to reach /pause || Their job here is to reach
+1:13.3 | 1.7+0.4s | a state of mind /pause || a state of mind
+1:15.3 | 1.7+0.0s | where they can think: || where they can think:
+1:17.0 | 2.1+0.4s | "I've done everything I can, /pause || "I've done everything I can,
+1:19.5 | 2.9+0.4s | so I'm confident to make an offer," /pause || so I'm confident to make an offer,"
+1:22.8 | 2.5+1.0s | so they won't REGRET the decision. ↘drop //pause longer || so they won't REGRET the decision.
+1:26.3 | 2.1+0.4s | [ Now if we move down /pause || Now if we move down
+1:28.8 | 2.1+0.0s | past the four forces row... ] || past the four forces row...
+1:30.9 | 0.0+0.5s | (Four forces row) (breathe) || —
+1:31.4 | 2.9+0.4s | These four forces shape the buyer's decision, /pause || These four forces shape the buyer's decision,
+1:34.7 | 2.9+1.0s | and how engaged they stay with you. //pause longer || and how engaged they stay with you.
+1:38.6 | 0.8+0.4s | The PUSH /pause || The PUSH
+1:39.8 | 2.5+0.4s | is the pain of their situation. /pause || is the pain of their situation.
+1:42.7 | 0.8+0.4s | The PULL /pause || The PULL
+1:44.0 | 2.1+0.4s | is the solution you're offering. /pause || is the solution you're offering.
+1:46.5 | 0.0+0.5s | (breathe) || —
+1:47.0 | 2.9+0.4s | Then there are the ANXIETIES they carry, /pause || Then there are the ANXIETIES they carry,
+1:50.3 | 2.1+0.4s | and the HABITS they've formed /pause || and the HABITS they've formed
+1:52.8 | 1.7+0.4s | from past purchase experiences /pause || from past purchase experiences
+1:54.8 | 1.7+1.0s | similar to this one. //pause longer || similar to this one.
+1:57.5 | 2.9+0.4s | [ So here's where it may go wrong /pause || So here's where it may go wrong
+2:00.8 | 2.9+1.0s | if the right process isn't baked in. ] //pause longer || if the right process isn't baked in.
+2:04.7 | 0.0+0.5s | (Drop-off row) (breathe) {lean in, building} || —
+2:05.2 | 1.2+1.0s | Picture this scenario. //pause longer || Picture this scenario.
+2:07.5 | 1.2+0.4s | The report lands, /pause || The report lands,
+2:09.1 | 1.7+0.4s | it says "major defect", /pause || it says "major defect",
+2:11.2 | 1.7+0.4s | and the buyer panics. /pause || and the buyer panics.
+2:13.2 | 1.7+0.4s | They call the agent /pause || They call the agent
+2:15.3 | 2.1+1.0s | and get a vague answer. //pause longer || and get a vague answer.
+2:18.4 | 0.0+0.5s | (breathe) {slow down, quieter} || —
+2:18.9 | 1.7+0.4s | Their questions go unanswered, /pause || Their questions go unanswered,
+2:21.0 | 1.2+0.4s | their anxiety rises, /pause || their anxiety rises,
+2:22.6 | 2.5+0.4s | and their conviction to go ahead /pause || and their conviction to go ahead
+2:25.5 | 1.2+1.0s | starts to fade. ↘drop //pause longer || starts to fade.
+2:27.8 | 3.3+0.4s | [ So who's in a position to fix that? ↗rise /pause || So who's in a position to fix that?
+2:31.5 | 3.3+0.0s | If we drop down to the champion row... ] || If we drop down to the champion row...
+2:34.8 | 0.0+0.0s | (Champion row) {conversational} || —
+2:34.8 | 1.7+0.4s | You and I know /pause || You and I know
+2:36.9 | 2.5+0.4s | the listing agent owns that relationship, /pause || the listing agent owns that relationship,
+2:39.8 | 2.5+0.4s | and the PA or support staff /pause || and the PA or support staff
+2:42.7 | 1.2+1.0s | keep it moving. //pause longer || keep it moving.
+2:45.0 | 3.8+0.4s | [ But they can't read every report line by line. /pause || But they can't read every report line by line.
+2:49.1 | 1.2+0.4s | So just below, /pause || So just below,
+2:50.8 | 3.3+0.0s | here are some opportunities where AI can help. ] || here are some opportunities where AI can help.
+2:54.1 | 0.0+0.5s | (AI opportunities row) (breathe) {lift energy} || —
+2:54.6 | 1.2+0.4s | One of them: /pause || One of them:
+2:56.2 | 2.5+0.4s | AI summarising a sixty-page building report /pause || AI summarising a sixty-page building report
+2:59.1 | 3.8+0.4s | so the agent understands EXACTLY what's worrying the buyer, /pause || so the agent understands EXACTLY what's worrying the buyer,
+3:03.3 | 0.0+0.5s | (breathe) || —
+3:03.8 | 1.7+0.4s | and drafting the questions /pause || and drafting the questions
+3:05.9 | 3.8+1.0s | the buyer could take to their inspector or builder. //pause longer || the buyer could take to their inspector or builder.
+3:10.6 | 2.1+0.4s | Then the agent calls PREPARED, /pause || Then the agent calls PREPARED,
+3:13.1 | 2.1+1.0s | instead of offering vague reassurance. ↘drop //pause longer || instead of offering vague reassurance.
+3:16.2 | 2.1+1.0s | [ So where can you start? ↗rise ] //pause longer || So where can you start?
+3:19.3 | 0.0+0.5s | (Back to camera) (breathe) {lean in, direct to lens} || —
+3:19.8 | 2.1+1.0s | Look at your last campaign. //pause longer || Look at your last campaign.
+3:22.8 | 2.9+0.4s | How many buyers ordered a building report /pause || How many buyers ordered a building report
+3:26.2 | 1.2+1.0s | and never offered? ↗rise //pause longer || and never offered?
+3:28.4 | 0.0+2.0s | {let it land, 2 seconds} || —
+3:30.4 | 2.1+0.4s | That might be your gap, /pause || That might be your gap,
+3:32.9 | 2.5+0.4s | or it might be somewhere else /pause || or it might be somewhere else
+3:35.8 | 1.2+0.4s | in your process, /pause || in your process,
+3:37.4 | 2.1+1.0s | or the tools behind it. //pause longer || or the tools behind it.
+3:40.5 | 0.0+0.5s | (breathe) {warm, slower} || —
+3:41.0 | 2.5+0.4s | If you run a Sydney office /pause || If you run a Sydney office
+3:43.9 | 3.8+0.4s | and want to check where your buyers drop off, /pause || and want to check where your buyers drop off,
+3:48.1 | 0.8+1.0s | let's chat. //pause longer || let's chat.
+3:49.9 | 2.1+0.4s | If it's not a fit, /pause || If it's not a fit,
+3:52.4 | 1.2+0.0s | I'll tell you. ↘drop || I'll tell you.
+3:53.6 | 0.0+2.0s | {hold eye contact, smile, stay quiet 2 seconds before you cut} || —
+# TOTAL 3:55.6
