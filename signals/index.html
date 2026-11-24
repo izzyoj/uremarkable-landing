@@ -972,8 +972,8 @@ function handleSubscribe(e) {
 
   // ── INTEGRATION POINT: Replace this fetch with Beehiiv / Mailchimp / ConvertKit embed ──
   // Beehiiv: POST to https://www.beehiiv.com/subscribe/[YOUR_PUB_ID]
-  // For now: sends to FormSubmit.co which forwards to uremarkable1@gmail.com
-  fetch('https://formsubmit.co/ajax/uremarkable1@gmail.com', {
+  // For now: sends to FormSubmit.co which forwards to gday@uremarkable.com
+  fetch('https://formsubmit.co/ajax/gday@uremarkable.com', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({ email: email, _subject: 'New Signal Subscriber', source: 'uremarkable.com/signals' })
