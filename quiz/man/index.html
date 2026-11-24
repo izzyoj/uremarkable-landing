@@ -572,7 +572,7 @@ function renderBriefGate() {
     '</ul>' +
     '<div class="email-row"><input type="email" class="email-input" id="briefEmail" placeholder="your@email.com" />' +
     '<button class="btn-unlock" id="btnBriefUnlock" onclick="submitBriefEmail()">Unlock the brief</button></div>' +
-    '<div class="unlock-privacy">Used to follow up, with your permission. Unsubscribe any time.</div>' +
+    '<div class="unlock-privacy">Baz at uremarkable uses this to follow up, with your permission. Reply "unsubscribe" any time.</div>' +
   '</div>';
 }
 
@@ -659,7 +659,7 @@ function submitBriefEmail() {
   btn.disabled = true; btn.textContent = 'Loading brief...';
   var state = currentBriefState;
   var pillarNames = { M: 'Mindset', A: 'Action', N: 'Nourishment' };
-  fetch('https://formsubmit.co/ajax/uremarkable1@gmail.com', {
+  fetch('https://formsubmit.co/ajax/gday@uremarkable.com', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({ email: email, _subject: 'MAN Protocol Quiz: Brief Unlock', source: 'uremarkable.com/quiz/man', tier: (TIER_DATA[state.tier] || {}).label, dominant_pillar: pillarNames[state.dominant], total_score: state.totalPts + '/36', mindset_score: state.pillarScores.M + '/12', action_score: state.pillarScores.A + '/12', nutrition_score: state.pillarScores.N + '/12' })
