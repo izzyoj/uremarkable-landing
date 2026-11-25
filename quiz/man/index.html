@@ -262,6 +262,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); -web
   .brief-top-bar, .brief-share-row { display: none !important; }
   .brief-card { box-shadow: none !important; border-radius: 0 !important; max-width: 100% !important; }
 }
+.care-line{font-size:12px;color:var(--text-2);line-height:1.5;text-align:center;margin:24px 0 0;}
+.bp-tie-note{font-size:14px;color:var(--text-2);line-height:1.55;margin:0 0 12px;}
 </style>
 </head>
 <body>
@@ -358,8 +360,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); -web
       </div>
       <div class="bundle-card">
         <div class="bundle-icon">💬</div>
-        <div class="bundle-title">AI Coach OS Walkthrough</div>
-        <div class="bundle-desc">What your daily check-ins could actually look like with a dedicated AI Coach available 24/7, personalised to you. Pattern recognition from your own data, not generic responses.</div>
+        <div class="bundle-title">Your Daily Check-in</div>
+        <div class="bundle-desc">What a two-minute morning and evening check-in in MAN Daily looks like for your gap. It remembers what you log and points out what keeps repeating, in your own words.</div>
       </div>
     </div>
   </div>
@@ -411,6 +413,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); -web
   <a href="https://www.uremarkable.com">uremarkable.com</a>
   <a href="https://www.uremarkable.com/help/">Help</a>
   <a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank">Book a call</a>
+<div class="care-line" style="flex-basis:100%;">MAN is not therapy or medical advice. If you are struggling, call Lifeline 13 11 14 or MensLine 1300 78 99 78.</div>
 </footer>
 </div><!-- /quiz-app -->
 
@@ -467,16 +470,16 @@ var PILLAR_DATA = {
     mechanism: "Every setback gets explained through three dimensions: permanent vs temporary, pervasive vs isolated, personal vs situational. Seligman's research on learned helplessness mapped the exact pattern that turns a miss into a verdict. MAN builds the opposite reflex. Not \"I always do this\" but \"not this time.\" Not \"I can't do anything right\" but \"this specific thing, today.\" Not \"I am this kind of person\" but \"the conditions were off.\" Two words that keep the loop open: not yet.",
     todayAction: 'Write down the last thing that went wrong. Now rewrite the story using three constraints: temporary, isolated, contextual. That is the attribution rewrite. Run it once before you sleep tonight. That is the first rep. Then book a 15-min with me and we can talk about it.',
     tgMsg: 'Caught myself in the permanence spiral again after missing my planned session this afternoon',
-    tgResult: "Based on your last 7 check-ins, this pattern fires most when sleep logged is under 6 hours the night before. Tonight is the lever, not tomorrow's session. Here is the attribution rewrite for today..."
+    tgResult: "You have logged this after short nights before. Worth watching. For today, run the rewrite: what was temporary, isolated and situational about this afternoon?"
   },
   A: {
     letter: 'A', name: 'Action',
-    diagnosis: 'Your biggest gap is in the Action pillar. Specifically: the gap between planning and the rep, and waiting for motivation that only arrives after you have already moved. William James identified this in 1890. Action and feeling are coupled, not sequential. "I will do it when I feel like it" is a holding pattern. The nervous system measures frequency, not size. One small rep builds the identity vote. Planning sessions build nothing.',
+    diagnosis: 'Your biggest gap is in the Action pillar. Specifically: the gap between planning and the rep, and waiting for motivation that only arrives after you have already moved. William James identified this in 1890. Feeling tends to follow action. "I will do it when I feel like it" is a holding pattern. The nervous system measures frequency, not size. One small rep builds the identity vote. Planning sessions on their own add none.',
     mechanismName: 'The Minimum Viable Rep',
-    mechanism: 'The smallest action that still counts as the real thing. Not a warmup. Not research. Not planning to plan. The question is not "am I ready?" but "what is the smallest version of actually doing this?" That rep, done consistently, compounds across weeks and months. Willpower-based bursts do not. The nervous system tracks frequency, not size. This is the architecture, not the shortcut.',
-    todayAction: 'Name the one thing you have been preparing to do but have not done. Now ask: what is the five-minute version of actually doing it, not planning it, doing it. That is the rep. Before you sleep tonight. Not tomorrow.',
+    mechanism: 'The smallest action that still counts as the real thing, with no warmup, research or planning to plan. The question to ask is "what is the smallest version of actually doing this?" Done most days, that rep adds up across weeks and months, where willpower bursts tend to fade.',
+    todayAction: 'Name the one thing you have been preparing to do but have not done. Now ask: what is the five-minute version of actually doing it, not planning it, doing it. That is the rep, and it happens before you sleep tonight.',
     tgMsg: 'Did the planning thing again instead of just starting. Spent 45 minutes organising the system instead of actually running it.',
-    tgResult: 'Your planning-to-action ratio this week is 3:1. The pattern shows the friction fires at the transition from setup to go. Here is the minimum viable rep for your actual goal based on what you have logged this week...'
+    tgResult: 'You have named this one a few times this week. The stall shows up at the switch from setting up to starting. What is the five-minute version of the real thing you can do tonight?'
   },
   N: {
     letter: 'N', name: 'Nourishment',
@@ -485,7 +488,7 @@ var PILLAR_DATA = {
     mechanism: 'The first 60 to 90 minutes set your neurological and biochemical baseline for the day. Water before caffeine: adenosine needs 90 minutes to clear after waking before caffeine gives clean energy rather than a rebound crash. Protein before 9am: neurotransmitter precursors need to be available before the cognitive load begins. Phone-free first task: cortisol peaks at wake and needs to land before stimulus input starts. And across the whole day, what you consume mentally shapes your identity as much as anything physical. Get the sequence right and the motivation you are waiting for tends to show up on its own.',
     todayAction: 'Tomorrow morning: water before coffee. Something with protein before 10am. Phone face-down for the first 30 minutes. Three inputs, one morning. Run it once and check what noon feels like. That is the experiment.',
     tgMsg: 'Had the mid-morning crash again around 10am, completely lost focus for about an hour and could not figure out why',
-    tgResult: 'Cross-referencing your check-in with logged morning inputs: caffeine before the 90-minute window on 4 of the last 5 days. The 10am crash is adenosine rebound, not a motivation problem. Here is the adjustment for tomorrow...'
+    tgResult: 'You have mentioned the 10am dip on a few mornings now. What went in during the first hour today? Try water and protein before coffee tomorrow and note how 10am feels.'
   }
 };
 
@@ -506,13 +509,13 @@ function getRampData(tier, pd) {
     { month: 'This week', text: '<strong>Target the dominant gap specifically.</strong> One mechanism, placed precisely. You are close and one well-placed fix changes the feel of the whole system.' },
     { month: 'Month 1', text: '<strong>Gap closed, compound accelerates.</strong> Removing the load-bearing constraint frees up the other two pillars. Most people feel this within two weeks.' },
     { month: 'Month 2', text: '<strong>Optimise, do not add.</strong> The system is running well. Refinement beats addition at this stage.' },
-    { month: 'Month 3', text: '<strong>The context layer deepens.</strong> Every check-in makes the pattern clearer. The AI Coach gets more precise. Your coach gets more prescriptive.' }
+    { month: 'Month 3', text: '<strong>The context layer deepens.</strong> Every check-in makes the pattern clearer. Your weekly review gets sharper, and so does your next rep.' }
   ];
   return [
     { month: 'This week', text: '<strong>Find the next 1%.</strong> Your dominant pillar brief shows where the marginal gain is. It is small by design.' },
     { month: 'Month 1', text: '<strong>The data layer compounds.</strong> At Warrior level, pattern precision is the edge. Every check-in adds resolution to what is working.' },
     { month: 'Month 2', text: '<strong>Coach from this pillar.</strong> The gap you have closed becomes a superpower. You can see it in others because you have been there.' },
-    { month: 'Month 3', text: '<strong>The system refines itself.</strong> Your AI Coach gets sharper with every session. The compound is the product.' }
+    { month: 'Month 3', text: '<strong>The system refines itself.</strong> Each check-in adds to the picture of what holds for you.' }
   ];
 }
 
@@ -539,7 +542,7 @@ function renderBriefHero(state) {
   var barsHTML = ['M','A','N'].map(function(p) {
     var score = state.pillarScores[p];
     var pct = Math.round((score / 12) * 100);
-    var isDom = p === state.dominant;
+    var top = Math.max(state.pillarScores.M, state.pillarScores.A, state.pillarScores.N); var isDom = state.pillarScores[p] === top;
     return '<div class="pillar-bar-row">' +
       '<div class="pillar-bar-label">' + pillarNames[p] + (isDom ? ' <span style="font-size:9px;color:var(--gold);font-weight:800;margin-left:2px;">&#9650;</span>' : '') + '</div>' +
       '<div class="pillar-bar-track"><div class="pillar-bar-fill' + (isDom ? ' dominant' : '') + '" id="bbar-' + p + '" style="width:0%" data-target="' + pct + '"></div></div>' +
@@ -553,7 +556,7 @@ function renderBriefHero(state) {
     '<div class="brief-score-row">' +
       '<div class="brief-score-num">' + state.totalPts + '</div>' +
       '<div class="brief-score-denom">&nbsp;/ 36</div>' +
-      '<div class="brief-score-label">identity score</div>' +
+      '<div class="brief-score-label">gap score (lower is better)</div>' +
     '</div>' +
     '<div class="pillar-bars" id="briefBars" style="margin-bottom:4px;">' + barsHTML + '</div>' +
     '<div class="brief-doc-date">Generated ' + today + '</div>' +
@@ -563,11 +566,11 @@ function renderBriefHero(state) {
 function renderBriefGate() {
   return '<div class="brief-body">' +
     '<div class="brief-gate-title">Unlock your protocol brief</div>' +
-    '<div class="brief-gate-sub">Your dominant gap diagnosis, the one mechanism to start today, what AI Coach check-ins look like for your situation, and your 30-day ramp.</div>' +
+    '<div class="brief-gate-sub">Your dominant gap diagnosis, the one mechanism to start today, what a daily check-in looks like for your situation, and your 30-day ramp.</div>' +
     '<ul class="unlock-bullets" style="margin-bottom:18px;">' +
       '<li>Which pillar is costing you most and why</li>' +
       '<li>The specific mechanism from that pillar to implement today</li>' +
-      '<li>What daily check-ins look like via Telegram for your situation</li>' +
+      '<li>What a MAN Daily check-in looks like for your situation</li>' +
       '<li>A 30-day ramp based on your tier and dominant gap</li>' +
     '</ul>' +
     '<div class="email-row"><input type="email" class="email-input" id="briefEmail" placeholder="your@email.com" />' +
@@ -578,6 +581,10 @@ function renderBriefGate() {
 
 function renderBriefContent(state) {
   var pd = PILLAR_DATA[state.dominant];
+  var ps = state.pillarScores, top = Math.max(ps.M, ps.A, ps.N);
+  var tied = ['M','A','N'].filter(function(k){ return ps[k] === top; });
+  var pn = { M: 'Mindset', A: 'Action', N: 'Nourishment' };
+  var tieNote = tied.length > 1 ? '<div class="bp-tie-note">Your gap is level across ' + tied.map(function(k){ return pn[k]; }).join(tied.length === 3 ? ', ' : ' and ').replace(/, (?=[^,]*$)/, ' and ') + '. No single pillar stands out, so the brief starts with ' + pd.name + '. Start there and the others get easier to read.</div>' : '';
   var rampData = getRampData(state.tier, pd);
   var tierLabel = (TIER_DATA[state.tier] || TIER_DATA.intent).label;
   var futurePrompt = 'Here are my MAN Protocol results: ' + tierLabel + ' tier. Dominant gap in ' + pd.name + '. Score ' + state.totalPts + '/36. Tell me a story of a day in my life once these three gaps are closed. Then create me a daily schedule to follow that will allow me to achieve this life.';
@@ -587,24 +594,25 @@ function renderBriefContent(state) {
   return '<div class="brief-body">' +
     '<div class="bp-confirm"><span>&#10003;</span><span>Protocol brief unlocked</span></div>' +
     '<div class="bp-section"><div class="bp-section-label">Your dominant gap</div><div class="bp-section-title">Where the system is leaking</div>' +
+    tieNote +
     '<div class="bp-pillar-card"><div class="bp-pillar-letter">' + pd.letter + '</div><div class="bp-pillar-name">' + pd.name + '</div><div class="bp-pillar-diagnosis">' + pd.diagnosis + '</div></div></div>' +
     '<div class="bp-section"><div class="bp-section-label">The mechanism</div><div class="bp-section-title">What to implement today</div>' +
     '<div class="bp-mechanism"><div class="bp-mechanism-name">' + pd.mechanismName + '</div><div class="bp-mechanism-text">' + pd.mechanism + '</div>' +
     '<div class="bp-today-label">Your action today</div><div class="bp-today-text">' + pd.todayAction + '</div></div></div>' +
-    '<div class="bp-section"><div class="bp-section-label">AI Coach in practice</div><div class="bp-section-title">What your daily check-in looks like</div>' +
+    '<div class="bp-section"><div class="bp-section-label">MAN Daily in practice</div><div class="bp-section-title">What your daily check-in looks like</div>' +
     '<div class="bp-tg-item"><div class="bp-tg-message"><span class="tg-you">YOU</span><span class="tg-msg-text">' + pd.tgMsg + '</span></div>' +
-    '<div class="tg-ai-label">AI Coach via Telegram</div><div class="bp-tg-result">' + pd.tgResult + '</div></div></div>' +
+    '<div class="tg-ai-label">MAN Daily (example reply)</div><div class="bp-tg-result">' + pd.tgResult + '</div></div></div>' +
     '<div class="bp-section"><div class="bp-section-label">Your ramp</div><div class="bp-section-title">A realistic sequence from where you are</div>' +
     '<div class="bp-ramp-list">' + rampHTML + '</div></div>' +
     '<div class="pos-strip" style="margin:28px -24px;">' +
-    '<div class="pos-strip-inner"><div class="pos-quote">You want to see your very own AI Coach live?</div>' +
-    '<div class="pos-sub">Not a dashboard. Not another tracker. A becoming protocol. MAN runs locally on your Mac. Available 24/7 on your phone via Telegram. Every day it checks in. Tracks patterns. Builds context from your real life, not isolated prompts. Your AI Coach sees the signals. I help interpret what they mean. Together, we identify: where you\'re stuck, what patterns keep repeating, what\'s actually getting in the way. Because most people don\'t need more information. They need reflection with memory. A daily practice. Grounded in where you are. Built for who you are becoming.</div>' +
+    '<div class="pos-strip-inner"><div class="pos-quote">Want a daily practice that remembers?</div>' +
+    '<div class="pos-sub">MAN Daily is a two-minute check-in, morning and evening, built with Claude Code and running in Claude. You set one anchor and one small rep for your weakest pillar. It keeps your history private to you and, over time, points out what keeps repeating. Each week we look at it together on a group call. I am building it in public with the founding group, so you would be shaping it with me.</div>' +
     '</div></div>' +
     '<div class="pull-quote" style="margin:28px 0 24px;">' +
     '<div class="pull-quote-text">"When you choose a belief rooted in possibility, you reclaim the power to shape what you see, and what becomes possible next."</div>' +
     '<div class="pull-quote-attr">Nir Eyal</div></div>' +
-    '<div class="bp-cta"><div class="bp-cta-title">Ready to see it live?</div>' +
-    '<div class="bp-cta-sub" style="text-align:center;">One setup session. Your existing phone. Your AI Coach live by end of day.</div>' +
+    '<div class="bp-cta"><div class="bp-cta-title">Talk it through</div>' +
+    '<div class="bp-cta-sub" style="text-align:center;">One 15-minute call. We go through your brief and see if the founding group starting in January fits you.</div>' +
     '<a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" class="bp-cta-btn">Book a 15-min call with Baz</a></div>' +
     '<div class="bp-further">' +
     '<div class="bp-further-label">Want to go further on your own first?</div>' +
@@ -613,6 +621,7 @@ function renderBriefContent(state) {
     '<div class="bp-prompt-box"><span id="futurePromptText">' + futurePrompt + '</span></div>' +
     '<button class="bp-copy-btn" onclick="copyPrompt()">Copy prompt</button>' +
     '</div>' +
+    '<div class="care-line">MAN is not therapy or medical advice. If you are struggling, call Lifeline 13 11 14 or MensLine 1300 78 99 78.</div>' +
   '</div>';
 }
 
