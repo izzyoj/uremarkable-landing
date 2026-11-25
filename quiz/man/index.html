@@ -587,7 +587,7 @@ function renderBriefContent(state) {
   var tieNote = tied.length > 1 ? '<div class="bp-tie-note">Your gap is level across ' + tied.map(function(k){ return pn[k]; }).join(tied.length === 3 ? ', ' : ' and ').replace(/, (?=[^,]*$)/, ' and ') + '. No single pillar stands out, so the brief starts with ' + pd.name + '. Start there and the others get easier to read.</div>' : '';
   var rampData = getRampData(state.tier, pd);
   var tierLabel = (TIER_DATA[state.tier] || TIER_DATA.intent).label;
-  var futurePrompt = 'Here are my MAN Protocol results: ' + tierLabel + ' tier. Dominant gap in ' + pd.name + '. Score ' + state.totalPts + '/36. Tell me a story of a day in my life once these three gaps are closed. Then create me a daily schedule to follow that will allow me to achieve this life.';
+  var futurePrompt = 'I took a self-check called MAN. It scores the gap between who I say I am and how I actually live, across three pillars: Mindset (the story I tell myself after a miss, what I feed my head first thing, the inner voice that talks me out of things), Action (planning versus doing, holding back where I could be judged, waiting for motivation) and Nourishment (food, sleep and what I let into my head across the day). Each pillar is out of 12 and higher means a bigger gap. My scores: Mindset ' + state.pillarScores.M + '/12, Action ' + state.pillarScores.A + '/12, Nourishment ' + state.pillarScores.N + '/12, total ' + state.totalPts + '/36. My biggest gap is ' + pd.name + '. Write me a short story of an ordinary day in my life once these gaps are closed, in plain language. Then give me a simple daily schedule with one small action for each pillar that moves me toward that day. Keep it realistic for a busy man in his 40s. This is not therapy or medical advice.';
   var rampHTML = rampData.map(function(r) {
     return '<div class="bp-ramp-item"><div class="bp-ramp-month">' + r.month + '</div><div class="bp-ramp-text">' + r.text + '</div></div>';
   }).join('');
@@ -611,9 +611,9 @@ function renderBriefContent(state) {
     '<div class="pull-quote" style="margin:28px 0 24px;">' +
     '<div class="pull-quote-text">"When you choose a belief rooted in possibility, you reclaim the power to shape what you see, and what becomes possible next."</div>' +
     '<div class="pull-quote-attr">Nir Eyal</div></div>' +
-    '<div class="bp-cta"><div class="bp-cta-title">Talk it through</div>' +
-    '<div class="bp-cta-sub" style="text-align:center;">One 15-minute call. We go through your brief and see if the founding group starting in January fits you.</div>' +
-    '<a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" class="bp-cta-btn">Book a 15-min call with Baz</a></div>' +
+    '<div class="bp-cta"><div class="bp-cta-title">Not sure where to start?</div>' +
+    '<div class="bp-cta-sub" style="text-align:center;">Have a 15-minute chat with me about your brief. I will point you to the daily path, or whichever tool fits where you are right now.</div>' +
+    '<a href="https://calendar.notion.so/meet/uremarkable/baz" target="_blank" class="bp-cta-btn">Chat with Baz</a></div>' +
     '<div class="bp-further">' +
     '<div class="bp-further-label">Want to go further on your own first?</div>' +
     '<div class="bp-further-title">Run the future self exercise with your results</div>' +
