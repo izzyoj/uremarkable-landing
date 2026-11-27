@@ -127,7 +127,7 @@
     .card-brand span { color: var(--gold); }
     .card-day-info { text-align: right; }
     .card-date { font-size: 13px; color: rgba(255,255,255,0.4); }
-    .card-streak {
+    .card-reps {
       font-size: 12px; color: var(--gold); font-weight: 700;
       margin-top: 4px;
     }
@@ -188,7 +188,7 @@
     .action-edit { background: #fff; color: var(--ink); border: 1.5px solid var(--border); }
     .action-quiz { background: var(--bg-soft); color: var(--ink); border: 1.5px solid var(--border); }
 
-    .streak-note {
+    .rep-note {
       text-align: center; font-size: 13px; color: var(--ink-soft);
       padding: 12px; background: var(--gold-light);
       border: 1px solid var(--gold-border); border-radius: 10px;
@@ -308,7 +308,7 @@
         <div class="card-brand">M·A·<span>N</span> Protocol</div>
         <div class="card-day-info">
           <div class="card-date" id="card-date"></div>
-          <div class="card-streak" id="card-streak"></div>
+          <div class="card-reps" id="card-reps"></div>
         </div>
       </div>
 
@@ -350,11 +350,14 @@
     </div>
 
     <div class="action-row">
-      <button class="action-btn action-save" onclick="saveRitual()">Save for tomorrow</button>
+      <button class="action-btn action-save" onclick="logRep('full')">Did it: log my rep</button>
+      <button class="action-btn action-edit" onclick="logRep('partly')">Partly: still a rep</button>
+    </div>
+    <div class="action-row">
       <button class="action-btn action-edit" onclick="showBuild()">Edit frame</button>
       <button class="action-btn action-quiz" onclick="window.location='/quiz/man/'">Take the quiz</button>
     </div>
-    <div class="streak-note" id="streak-note" style="display:none;"></div>
+    <div class="rep-note" id="rep-note" style="display:none;"></div>
 
   </div>
 
@@ -387,22 +390,61 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     localStorage.setItem(STORAGE_KEY + '_history', JSON.stringify(history));
 
-    renderCard(data, history);
+    renderCard(data);
     document.getElementById('view-build').classList.remove('active');
     document.getElementById('view-card').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function renderCard(data, history) {
+  // Progress is total reps. The total only ever goes up.
+  // reps = { total: n, days: { 'Fri Nov 27 2026': 'full' | 'partly' }, migrated: true }
+  const REPS_KEY = STORAGE_KEY + '_reps';
+  const DRILL_REPS = 21;
+
+  function loadReps() {
+    let reps = null;
+    try { reps = JSON.parse(localStorage.getItem(REPS_KEY) || 'null'); } catch(e) {}
+    if (!reps || typeof reps !== 'object') reps = { total: 0, days: {} };
+    if (!reps.days || typeof reps.days !== 'object') reps.days = {};
+    if (typeof reps.total !== 'number' || reps.total < 0) reps.total = 0;
+    if (!reps.migrated) {
+      // Older versions kept a 30-day history and showed a streak.
+      // Count every past day in that history as a rep. Today is left for the rep buttons.
+      // The history itself is left in place.
+      const todayStr = new Date().toDateString();
+      let history = [];
+      try { history = JSON.parse(localStorage.getItem(STORAGE_KEY + '_history') || '[]'); } catch(e) {}
+      if (Array.isArray(history)) {
+        history.forEach(h => {
+          const day = h && h.date ? new Date(h.date).toDateString() : null;
+          if (day && day !== 'Invalid Date' && day !== todayStr && !reps.days[day]) {
+            reps.days[day] = 'full';
+            reps.total++;
+          }
+        });
+      }
+      reps.migrated = true;
+      saveReps(reps);
+    }
+    return reps;
+  }
+
+  function saveReps(reps) {
+    try { localStorage.setItem(REPS_KEY, JSON.stringify(reps)); } catch(e) {}
+  }
+
+  function repWord(n) { return n === 1 ? 'rep' : 'reps'; }
+
+  function renderReps() {
+    const reps = loadReps();
+    const el = document.getElementById('card-reps');
+    el.textContent = reps.total > 0 ? reps.total + ' ' + repWord(reps.total) + ' total' : '';
+  }
+
+  function renderCard(data) {
     const today = new Date();
     document.getElementById('card-date').textContent = today.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
-
-    // streak
-    const streak = calcStreak(history);
-    const streakEl = document.getElementById('card-streak');
-    if (streak > 1) {
-      streakEl.textContent = streak + ' day streak';
-    }
+    renderReps();
 
     document.getElementById('card-identity-text').textContent = data.identity;
     document.getElementById('card-mindset').textContent = data.mindset;
@@ -411,28 +453,23 @@
     document.getElementById('card-one-thing').textContent = data.oneThing;
   }
 
-  function calcStreak(history) {
-    if (!history || history.length === 0) return 1;
-    const dates = history.map(d => new Date(d.date).toDateString());
-    let streak = 1;
-    const today = new Date();
-    for (let i = 1; i <= 30; i++) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
-      if (dates.includes(d.toDateString())) { streak++; }
-      else { break; }
-    }
-    return streak;
-  }
+  function logRep(kind) {
+    const reps = loadReps();
+    const todayStr = new Date().toDateString();
+    const already = !!reps.days[todayStr];
+    reps.days[todayStr] = kind;
+    if (!already) reps.total++;
+    saveReps(reps);
+    renderReps();
 
-  function saveRitual() {
-    const noteEl = document.getElementById('streak-note');
-    let history = [];
-    try { history = JSON.parse(localStorage.getItem(STORAGE_KEY + '_history') || '[]'); } catch(e) {}
-    const streak = calcStreak(history);
-    noteEl.textContent = streak > 1
-      ? 'Saved. ' + streak + '-day streak. Come back tomorrow morning.'
-      : 'Saved. Come back tomorrow morning.';
+    const left = DRILL_REPS - reps.total;
+    let msg = already ? 'Today\'s rep is updated. ' : 'Rep logged. ';
+    if (kind === 'partly') msg += 'A partly rep counts. ';
+    msg += 'That\'s ' + reps.total + ' ' + repWord(reps.total) + ' total. ';
+    msg += left > 0 ? left + ' to go to Drill.' : 'You\'ve got the reps for Drill.';
+    msg += ' Come back tomorrow morning.';
+    const noteEl = document.getElementById('rep-note');
+    noteEl.textContent = msg;
     noteEl.style.display = 'block';
   }
 
@@ -444,6 +481,7 @@
 
   // load saved on open
   window.addEventListener('load', () => {
+    loadReps(); // migrate old data before anything writes to history
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
@@ -452,9 +490,7 @@
         const savedDate = new Date(d.date).toDateString();
         const todayStr = new Date().toDateString();
         if (savedDate === todayStr) {
-          let history = [];
-          try { history = JSON.parse(localStorage.getItem(STORAGE_KEY + '_history') || '[]'); } catch(e) {}
-          renderCard(d, history);
+          renderCard(d);
           document.getElementById('view-build').classList.remove('active');
           document.getElementById('view-card').classList.add('active');
         } else {
