@@ -5,6 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAN Protocol · Become Who You Said You'd Be</title>
+  <meta name="description" content="For men in tech in their 40s who did everything right and still feel empty. MAN uses small daily reps to create meaning again.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.uremarkable.com/man/">
+  <meta property="og:title" content="MAN: You did everything right, so why do you still feel empty?">
+  <meta property="og:description" content="MAN uses small daily reps to create meaning again. Mindset, Action, Nourishment.">
+  <meta property="og:image" content="https://www.uremarkable.com/man/img/man-share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A gold MAN logo above a heavy bag by a bright window">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -627,7 +637,7 @@
     letter-spacing: 0.01em; line-height: 1.6;
   }
   .pillar-descriptors {
-    font-size: 15px; color: var(--text-2); margin-top: 8px;
+    font-size: 15px; color: var(--ink-soft); margin-top: 8px;
     text-align: center;
   }
   .for-section { background: var(--bg-warm); }
@@ -638,7 +648,7 @@
   }
   .for-item {
     background: var(--bg-soft); border-radius: 12px; padding: 20px 24px;
-    font-size: 15px; color: var(--text); line-height: 1.55;
+    font-size: 15px; color: var(--ink); line-height: 1.55;
     border-left: 3px solid var(--gold);
   }
   .not-for {
@@ -648,12 +658,12 @@
   }
   .not-for-label {
     font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--text-2); white-space: nowrap;
+    text-transform: uppercase; color: var(--ink-soft); white-space: nowrap;
   }
   .not-for-items { display: flex; gap: 10px; flex-wrap: wrap; }
   .not-for-items span {
     background: #fff; border: 1px solid #ddd; border-radius: 20px;
-    padding: 4px 14px; font-size: 13px; color: var(--text-2);
+    padding: 4px 14px; font-size: 13px; color: var(--ink-soft);
     text-decoration: line-through; opacity: 0.7;
   }
   .offer-section { background: var(--bg); }
@@ -671,8 +681,8 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.07);
   }
   .offer-icon { font-size: 24px; margin-bottom: 12px; }
-  .offer-item h4 { font-size: 16px; font-weight: 700; color: var(--text); margin: 0 0 8px; }
-  .offer-item p { font-size: 14px; color: var(--text-2); line-height: 1.55; margin: 0; }
+  .offer-item h4 { font-size: 16px; font-weight: 700; color: var(--ink); margin: 0 0 8px; }
+  .offer-item p { font-size: 14px; color: var(--ink-soft); line-height: 1.55; margin: 0; }
   .founding-callout {
     margin-top: 36px; background: #1d1d1f; border-radius: 14px;
     padding: 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px;
@@ -686,6 +696,35 @@
   .founding-callout p {
     font-size: 14px; color: rgba(255,255,255,0.75); margin: 0; line-height: 1.6; max-width: 560px;
   }
+
+  /* ── 27 NOV: BRIDGE, DAILY REP, LADDER, RECOVERY, OFFER ── */
+  .bridge-founder { font-size: 15px; color: var(--ink-soft); margin-top: 20px; }
+  .bridge-founder a { color: var(--gold-btn); font-weight: 600; }
+  .loop-steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 28px 0; counter-reset: step; }
+  @media (max-width: 600px) { .loop-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .loop-steps li { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-size: 14px; color: var(--ink-soft); line-height: 1.5; counter-increment: step; }
+  .loop-steps li::before { content: counter(step); display: block; font-weight: 700; color: var(--gold); font-size: 13px; margin-bottom: 4px; }
+  .loop-steps strong { display: block; color: var(--ink); font-size: 15px; }
+  .recipe-box { background: var(--gold-light); border: 1px solid var(--gold-border); border-radius: 12px; padding: 18px 22px; font-size: 18px; font-weight: 600; color: var(--ink); line-height: 1.5; margin-bottom: 20px; }
+  .example-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-btn); margin-right: 6px; }
+  .credit-note { font-size: 14px; color: var(--ink-soft); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 16px; margin-top: 24px; }
+  .ladder-table-wrap { overflow-x: auto; margin: 24px 0; }
+  .ladder-table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  .ladder-table th, .ladder-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .ladder-table th { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  .ladder-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; }
+  .fact { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+  .fact strong { display: block; color: var(--ink); margin-bottom: 4px; }
+  .status-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 20px; padding: 2px 10px; margin-left: 6px; vertical-align: middle; }
+  .status-live { background: #e8f3ea; color: #2f6b3a; }
+  .status-planned { background: var(--gold-light); color: var(--gold-btn); border: 1px solid var(--gold-border); }
+  .status-soon { background: var(--bg-soft); color: var(--ink-soft); border: 1px solid var(--border); }
+  .tool-card.is-soon { cursor: default; }
+  .account-note { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+  .founder-band { display: block; width: 100%; height: auto; max-height: 420px; object-fit: cover; }
+  .care-inline { font-size: 14px; color: var(--ink-soft); margin-top: 20px; }
+  a:focus-visible, .tool-card:focus-visible, .pillar-card:focus-visible, .inspiration-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -717,22 +756,34 @@
   </div>
 </div>
 
+<!-- MEANING BRIDGE -->
+<div style="background:#fff">
+  <section>
+    <div class="label">Where meaning comes from</div>
+    <h2>Meaning gets built, one rep at a time.</h2>
+    <p class="body-text">The next promotion won't hand it to you, and neither will the next book. You build meaning by choosing who you want to become, then doing small things every day that make that choice real.</p>
+    <p class="body-text">You build it the way you build fitness: small reps, repeated, on the days you don't feel like it.</p>
+    <p class="bridge-founder">Built by Baz Ozturk. 49, 39 years of martial arts, still climbing the ladder himself. <a href="#why">Why I built it ↓</a></p>
+  </section>
+</div>
+
 <!-- PROBLEM -->
 <div class="problem-bg" style="background:var(--bg-warm)">
   <section>
     <div class="label">Why nothing sticks</div>
     <h2>Every system you've tried was missing the foundation.</h2>
-    <p class="body-text">You've read the books, started the habits and downloaded the app. It works for two weeks, then life happens, the streak breaks, and you're back where you started.</p>
-    <p class="body-text">The problem is the sequence, not your discipline. You've been trying to <em>do</em> your way into <em>being</em>. It doesn't work that way.</p>
+    <p class="body-text">You've read the books, started the habits and downloaded the app. It works for two weeks. Then life gets busy, you miss a few days, and it feels like starting from scratch.</p>
+    <p class="body-text">The order was off. You tried to <em>do</em> your way into <em>being</em>. MAN starts with who you're being, then builds the doing around it.</p>
+    <p class="body-text">Part of who you're being was written early. As a boy you learned what it took to keep friends, feel safe at home and earn approval. For a lot of men that script was "do everything right". It worked then, and it's still running. MAN starts by seeing it.</p>
 
     <div class="failure-list">
       <div class="failure-item">
         <h4>The Identity Gap</h4>
-        <p>You set goals for the results you want, not for the person you need to become. You try to act like a disciplined person before you believe you are one. It collapses under pressure.</p>
+        <p>You set goals for the results you want, not for the man you need to become. You try to act like a disciplined man before you see yourself as one, and it collapses under pressure.</p>
       </div>
       <div class="failure-item">
         <h4>The Motivation Trap</h4>
-        <p>You wait for motivation to start. But motivation is a byproduct of identity, not a prerequisite. Systems built on motivation are one bad day away from collapse.</p>
+        <p>You wait for motivation to start. Motivation follows identity, so it shows up after you've decided who you are. Systems built on motivation alone are one bad day away from collapse.</p>
       </div>
       <div class="failure-item">
         <h4>The Body-Mind Disconnect</h4>
@@ -747,13 +798,13 @@
 <div class="for-section" style="background:#fff">
   <section>
     <div class="label">Is this for you?</div>
-    <h2>MAN is for you if.</h2>
+    <h2>MAN is for you if…</h2>
     <div class="for-grid">
       <div class="for-item">You know what to do, but you just don't do it consistently.</div>
       <div class="for-item">You restart the same habits every few weeks.</div>
       <div class="for-item">Two weeks of discipline, then drift, then guilt.</div>
       <div class="for-item">You want accountability without shame.</div>
-      <div class="for-item">You want a coach that remembers your patterns, not just today's check-in.</div>
+      <div class="for-item">You'd rather train alongside a few other men than follow a guru.</div>
       <div class="for-item">You're done waiting for motivation and ready to build evidence.</div>
     </div>
     <div class="not-for">
@@ -768,57 +819,12 @@
   </section>
 </div>
 
-<!-- THE THREE PILLARS -->
-<div class="pillars-strip" id="framework">
-  <div class="pillars-inner">
-    <div class="label">The MAN Protocol</div>
-    <h2>Three levers. One becoming protocol.</h2>
-    <p class="body-text">More than a morning routine or a habit tracker, it's an operating system for who you're becoming, built to compound, not collapse.</p>
-    <p class="pillar-descriptors"><strong>Mindset</strong> sets the identity. <strong>Action</strong> creates the evidence. <strong>Nourishment</strong> protects the state.</p>
-    <div class="pillars-grid">
-      <div class="pillar-card">
-        <div class="pillar-letter">M</div>
-        <div class="pillar-name">Mindset</div>
-        <div class="pillar-desc">Identity-first thinking. Visualization. The Be → Do → Have inversion. You don't think your way into a new life. You become your way in.</div>
-        <div class="pillar-tags">
-          <span class="pillar-tag">Identity</span>
-          <span class="pillar-tag">Be → Do → Have</span>
-          <span class="pillar-tag">Visualization</span>
-          <span class="pillar-tag">Self-authorship</span>
-        </div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-letter">A</div>
-        <div class="pillar-name">Action</div>
-        <div class="pillar-desc">Micro-actions over massive effort, and systems over willpower, so consistency compounds. A 1% better day every day is a 37x better year.</div>
-        <div class="pillar-tags">
-          <span class="pillar-tag">Micro-actions</span>
-          <span class="pillar-tag">Systems</span>
-          <span class="pillar-tag">Atomic habits</span>
-          <span class="pillar-tag">Compounding</span>
-        </div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-letter">N</div>
-        <div class="pillar-name">Nourishment</div>
-        <div class="pillar-desc">Intentional consumption across food, media, and environment. You are built from what you absorb, so it's where the other two start.</div>
-        <div class="pillar-tags">
-          <span class="pillar-tag">Food as fuel</span>
-          <span class="pillar-tag">Media diet</span>
-          <span class="pillar-tag">Environment design</span>
-          <span class="pillar-tag">Biochemistry</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- BE → DO → HAVE -->
 <div class="bdh-section" style="background:#fff">
   <section>
     <div class="label">The Core Inversion</div>
     <h2>Most people have the sequence backwards.</h2>
-    <p class="body-text">The culture tells you: get the result first, then you'll feel like the person. That's the trap, because outcomes follow identity, not the other way round.</p>
+    <p class="body-text">The culture tells you to get the result first, and then you'll feel like the person. MAN starts with who you want to be, and lets the daily reps build it.</p>
 
     <div class="bdh-compare">
       <div class="bdh-card wrong">
@@ -849,7 +855,7 @@
             <div class="bdh-num">3</div> HAVE what follows
           </div>
         </div>
-        <div class="bdh-card-desc">You start by deciding who you are. The actions that follow are consistent with that identity. The results are inevitable, not something you're chasing.</div>
+        <div class="bdh-card-desc">You start by deciding who you are. The actions that follow fit that identity, and each rep makes the belief stronger. What follows builds over time.</div>
       </div>
     </div>
 
@@ -860,13 +866,131 @@
   </section>
 </div>
 
+<!-- DAILY REP -->
+<div style="background:var(--bg-soft)" id="daily-rep">
+  <section>
+    <div class="label">The daily rep</div>
+    <h2>What a rep looks like.</h2>
+    <p class="body-text"><strong>It starts with Be.</strong> Before the first rep, you picture the man you're becoming. That picture gives the rep its reason. The cue tells you when, and the rep is small enough to do on any day.</p>
+    <ol class="loop-steps">
+      <li><strong>Cue</strong>Something you already do every day.</li>
+      <li><strong>Say 3, 2, 1</strong>The countdown before every rep.</li>
+      <li><strong>Tiny rep</strong>One small thing, the same every day.</li>
+      <li><strong>Log it</strong>One tap.</li>
+      <li><strong>Celebrate</strong>Two seconds. A nod, a "that's me".</li>
+      <li><strong>Next cue</strong>Back again tomorrow.</li>
+    </ol>
+    <div class="recipe-box">After I [cue], I say 3, 2, 1 and [tiny rep], then I [celebrate].</div>
+    <p class="body-text"><span class="example-tag">Example</span>After I pour my coffee, I say 3, 2, 1 and write one line about the man I'm becoming, then I nod and say "that's me".</p>
+    <p class="body-text"><span class="example-tag">Nourishment example</span>After I sit down for lunch, I say 3, 2, 1 and put my phone face down, then I take one slow breath and smile.</p>
+    <p class="body-text"><strong>Flat day?</strong> Do the Partly version, the smallest form of your rep. It still counts.</p>
+    <p class="body-text">MAN can put your cue in your calendar as a repeating event with an alert.</p>
+    <p class="credit-note">Why it works: BJ Fogg's research says behaviour happens when motivation, ability and a prompt meet (B = MAP). Your cue is the prompt, and a tiny rep keeps it easy, so motivation carries less of the load. The celebration comes from Fogg's Tiny Habits. The belt, the mates and getting back up come from my martial arts training.</p>
+  </section>
+</div>
+
+<!-- THE THREE PILLARS -->
+<div class="pillars-strip" id="framework">
+  <div class="pillars-inner">
+    <div class="label">The MAN Protocol</div>
+    <h2>Three levers. One becoming protocol.</h2>
+    <p class="body-text">More than a morning routine or a habit tracker. It's a way of training who you're becoming, and each pillar has its own ladder.</p>
+    <p class="pillar-descriptors"><strong>Mindset</strong> sets the identity. <strong>Action</strong> creates the evidence. <strong>Nourishment</strong> protects the state.</p>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-letter">M</div>
+        <div class="pillar-name">Mindset</div>
+        <div class="pillar-desc">Identity-first thinking. Visualization. The Be → Do → Have inversion. You don't think your way into a new life. You become your way in.</div>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Identity</span>
+          <span class="pillar-tag">Be → Do → Have</span>
+          <span class="pillar-tag">Visualization</span>
+          <span class="pillar-tag">Self-authorship</span>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-letter">A</div>
+        <div class="pillar-name">Action</div>
+        <div class="pillar-desc">Micro-actions over massive effort, and systems over willpower, so consistency compounds. If you got 1% better every day, the maths says you'd be about 37 times better after a year. Real life isn't that tidy, but small reps do add up.</div>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Micro-actions</span>
+          <span class="pillar-tag">Systems</span>
+          <span class="pillar-tag">Atomic habits</span>
+          <span class="pillar-tag">Compounding</span>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-letter">N</div>
+        <div class="pillar-name">Nourishment</div>
+        <div class="pillar-desc">Intentional consumption across food, media, and environment. You are built from what you absorb, so it's where the other two start.</div>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Food as fuel</span>
+          <span class="pillar-tag">Media diet</span>
+          <span class="pillar-tag">Environment design</span>
+          <span class="pillar-tag">Biochemistry</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LADDER AND PROGRESS -->
+<div style="background:#fff" id="ladder">
+  <section>
+    <div class="label">Progress</div>
+    <h2>One ladder per pillar. Every stage is something you do.</h2>
+    <div class="ladder-table-wrap">
+      <table class="ladder-table">
+        <thead><tr><th scope="col">Phase</th><th scope="col">Stages</th></tr></thead>
+        <tbody>
+          <tr><td>Turn up</td><td>Decide, Commit, Drill</td></tr>
+          <tr><td>Make it stick</td><td>Practice, Processes, Discipline</td></tr>
+          <tr><td>Make it better</td><td>Excel</td></tr>
+          <tr><td>Own it</td><td>Mastery, Systems</td></tr>
+          <tr><td>Pass it on</td><td>Mentor, Innovate</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="body-text">3, 2, 1 is the countdown you say before each rep. The ladder itself has 11 stages.</p>
+    <p class="body-text"><strong>Decide</strong> starts with seeing the old script, then choosing the man you're becoming.</p>
+    <div class="facts-grid">
+      <div class="fact"><strong>Total reps, never streaks</strong>Progress is the number of reps you've done. A Partly rep counts.</div>
+      <div class="fact"><strong>First belt: Drill</strong>21 reps, with at least 3 done on flat days. MAN counts it for you.</div>
+      <div class="fact"><strong>Later belts <span class="status-tag status-planned">Planned</span></strong>You bring your reps as the evidence, and the weekly class witnesses the belt. The class starts with the founding group.</div>
+    </div>
+  </section>
+</div>
+
+<!-- MISSED DAYS -->
+<div style="background:var(--bg-warm)" id="missed-days">
+  <section>
+    <div class="label">Getting back up</div>
+    <h2>When you miss a day.</h2>
+    <div class="failure-list">
+      <div class="failure-item"><h4>Missed one day</h4><p>Come back at your next cue.</p></div>
+      <div class="failure-item"><h4>Missed three</h4><p>Drop to the Partly version for a while.</p></div>
+      <div class="failure-item"><h4>Missed seven</h4><p>Step back one stage at most. Your total reps never go back to zero.</p></div>
+      <div class="failure-item"><h4>Any time it's hard</h4><p>Reach out to another MAN in your corner. Until corners start, email Baz at gday@uremarkable.com.</p></div>
+    </div>
+    <p class="body-text" style="margin-top:24px">A rough day counts as a Partly. MAN gives you a nudge at each point. Stepping back a stage is your call.</p>
+  </section>
+</div>
+
 <!-- FREE TOOLS -->
 <div class="tools-section" id="tools" style="background:var(--bg-soft)">
   <section>
-    <div class="label">Start using the protocol</div>
-    <h2>Free tools, built for this.</h2>
-    <p class="body-text">Two interactive tools you can use right now. No account and no app, just the framework applied directly to you.</p>
+    <div class="label">Start today</div>
+    <h2>Use it today, for free.</h2>
+    <p class="body-text">Start with the quiz. It shows which pillar has the biggest gap and gives you a first rep. Then try the tools. They run in your browser, with no sign-up.</p>
     <div class="tool-cards">
+      <a href="/quiz/man/" class="tool-card">
+        <div class="tool-icon">🧭</div>
+        <div>
+          <div class="tool-card-title">The quiz</div>
+          <div class="tool-card-desc">Nine questions. Your gap on screen, and a first rep to start with.</div>
+          <div class="tool-card-cta">Find my identity gap →</div>
+        </div>
+      </a>
       <a href="/man/tools/identity-map/" class="tool-card">
         <div class="tool-icon">🗺️</div>
         <div>
@@ -879,24 +1003,42 @@
         <div class="tool-icon">🌅</div>
         <div>
           <div class="tool-card-title">Morning Ritual Builder</div>
-          <div class="tool-card-desc">Build your daily M/A/N ritual: one identity anchor, three micro-actions, one thing. It saves your ritual and your streak, and takes two minutes to set up.</div>
+          <div class="tool-card-desc">Build your daily M/A/N ritual: one identity anchor, three micro-actions, one thing. Takes two minutes to set up.</div>
           <div class="tool-card-cta">Build your ritual →</div>
         </div>
       </a>
+      <a href="/man/tools/fear-filter/" class="tool-card">
+        <div class="tool-icon">🧱</div>
+        <div>
+          <div class="tool-card-title">Fear Filter</div>
+          <div class="tool-card-desc">Three questions. Name the filter that's been running under your decisions.</div>
+          <div class="tool-card-cta">Run the filter →</div>
+        </div>
+      </a>
+      <div class="tool-card is-soon" aria-label="MAN Free, coming soon">
+        <div class="tool-icon">📅</div>
+        <div>
+          <div class="tool-card-title">MAN Free <span class="status-tag status-soon">Coming soon</span></div>
+          <div class="tool-card-desc">The daily loop, calendar cue, check-ins, rough-day mode, week view and first belt.</div>
+          <div class="account-note">It runs inside Claude, so you'll need a free Claude account.</div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
 
 <!-- WHY -->
-<div class="why-section">
+<img class="founder-band" src="/man/img/man-training-hall.webp" width="1600" height="640" loading="lazy" alt="A heavy bag hanging by a bright window, with the gold MAN logo">
+<div class="why-section" id="why">
   <section>
     <div class="label">Why it exists</div>
     <h2>Built by someone who needed it.</h2>
     <p class="why-text">MAN wasn't built from theory. It was built from a specific kind of exhaustion: knowing exactly who you want to be, being able to describe that person in detail, and still waking up every day acting like someone else.</p>
     <p class="why-text">That gap has a structure. Who you are: the identity your brain has been constructing since childhood, the lens through which every thought gets filtered. Who you say you are: the version you present, perform, project. And who you're becoming: the direction you're either moving toward or running from.</p>
-    <p class="why-text">Most people treat that gap as a motivation problem, but it isn't one. The brain isn't looking for inspiration. It's looking for the fastest route to less discomfort. Every habit, every default behavior, every shortcut your nervous system takes is just the brain doing its job: find the pattern, groove the path, reduce the load.</p>
+    <p class="why-text">Most people treat that gap as a motivation problem. The brain isn't looking for inspiration. It's looking for the fastest route to less discomfort. Every habit, every default behavior, every shortcut your nervous system takes is just the brain doing its job: find the pattern, groove the path, reduce the load.</p>
     <p class="why-pivot">The problem is which path it grooves.</p>
     <p class="why-text">Without a system, the path of least resistance leads away from becoming. I knew that. 39 years of training had shown me exactly how to build one layer of a human life, the physical one. 49 years of living had shown me the gap in every other layer, especially the one that costs the most to leave unfilled: meaning.</p>
+    <p class="why-text">In the training hall I never had to find willpower. Class was at a set time. The drill was chosen for me. Feedback came straight away. A belt was earned, and someone else confirmed it. My mates were on the same mats, and after a hit you got back up. MAN brings that structure into everyday life.</p>
     <p class="why-text">MAN is the system that makes the becoming-path the easiest path, across Mindset, Action, and Nourishment. By design, not willpower.</p>
     <p class="why-anchor">Built because the gap was real, and it's still being closed.</p>
   </section>
@@ -921,416 +1063,23 @@
   </section>
 </div>
 
-<!-- DEMO: AI COACH IN ACTION -->
-<div class="demo-section" style="background:var(--bg-soft)" id="demo">
+<!-- FOUNDING GROUP -->
+<div class="offer-section" style="background:var(--bg-warm)" id="founding-group">
   <section>
-    <div class="label">The protocol in practice</div>
-    <h2>What a check-in could look like.</h2>
-    <p class="body-text">An example of where MAN is going: a daily check-in that remembers where you've been and holds you to who you said you'd become. The AI check-in is still being built, but the free tools below work today.</p>
-
-    <div class="demo-tabs">
-      <button class="demo-tab active" onclick="switchTab('morning')">🌅 Morning ritual</button>
-      <button class="demo-tab" onclick="switchTab('identity')">🪞 Identity work</button>
-      <button class="demo-tab" onclick="switchTab('reset')">🔄 Pattern interrupt</button>
-    </div>
-
-    <!-- SCENARIO 1: Morning ritual -->
-    <div class="demo-panel active" id="tab-morning">
-      <p class="demo-scenario-label">Marcus wakes up. Before he checks his phone, he opens the MAN protocol. Same as every morning. The ritual is the identity.</p>
-      <div class="phone-frame">
-        <div class="phone-header">
-          <div class="phone-avatar">✦</div>
-          <div>
-            <div class="phone-name">MAN Protocol</div>
-            <div class="phone-status">● Ready</div>
-          </div>
-        </div>
-        <div class="chat-body">
-          <div class="chat-date">Today, 6:14 AM</div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              <span class="identity-tag">✦ Morning frame</span><br>
-              Good morning Marcus. Day 12. Before anything else: who are you being today?
-            </div>
-          </div>
-          <div class="bubble-row out">
-            <div class="bubble out">A man who shows up fully. No half measures.</div>
-          </div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              That's your frame for the day. Hold it.<br><br>
-              Yesterday you said the 3pm energy dip cost you an hour. You logged it as reactive. What's different today?
-            </div>
-          </div>
-          <div class="bubble-row out">
-            <div class="bubble out">I'm eating before noon. No caffeine after 12.</div>
-          </div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              <span class="insight-tag">🔍 Pattern</span><br>
-              That's the third morning you've identified nourishment as the lever. Your body is telling you something. The protocol is listening.<br><br>
-              One micro-action today: <strong>eat before noon.</strong> That's it. The rest follows.
-            </div>
-          </div>
-        </div>
-        <div class="chat-input-bar">
-          <div class="chat-input-fake">Message MAN Protocol...</div>
-          <div class="send-btn">↑</div>
-        </div>
-      </div>
-      <div class="flow-callouts">
-        <div class="callout">
-          <div class="callout-icon" style="background:#fdf8ec;">✦</div>
-          <div><h4>Identity anchoring</h4><p>The first question every morning is "who are you being", not "what will you do."</p></div>
-        </div>
-        <div class="callout">
-          <div class="callout-icon" style="background:#e8f9ef;">🔍</div>
-          <div><h4>Pattern memory</h4><p>Connected three mornings of the same observation into a protocol adjustment.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SCENARIO 2: Identity work -->
-    <div class="demo-panel" id="tab-identity">
-      <p class="demo-scenario-label">Dan is three weeks in. He's taking action but something still feels off. Like he's performing discipline rather than living it.</p>
-      <div class="phone-frame">
-        <div class="phone-header">
-          <div class="phone-avatar">✦</div>
-          <div>
-            <div class="phone-name">MAN Protocol</div>
-            <div class="phone-status">● Ready</div>
-          </div>
-        </div>
-        <div class="chat-body">
-          <div class="chat-date">Yesterday, 8:31 PM</div>
-          <div class="bubble-row out">
-            <div class="bubble out">I'm doing everything right but it still feels forced. Like I'm pretending to be this person.</div>
-          </div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              <span class="identity-tag">✦ Identity layer</span><br>
-              That friction is the gap between your declared identity and your believed identity. You're saying the words. The belief hasn't caught up yet.<br><br>
-              That's not failure. That's the work. What does the version of you who actually is this person believe about themselves?
-            </div>
-          </div>
-          <div class="bubble-row out">
-            <div class="bubble out">That they deserve it. That they're worth the effort.</div>
-          </div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              There it is. The action was never the problem. The belief was.<br><br>
-              Every micro-action from here is a vote for that belief. Not evidence you need to collect. A vote you're casting. 3 weeks of votes is already a majority.
-            </div>
-          </div>
-          <div class="bubble-row out">
-            <div class="bubble out">That actually makes sense.</div>
-          </div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              <span class="insight-tag">📌 Logged</span><br>
-              Added to your identity file: "I deserve the effort." We'll surface this when the pattern comes back.
-            </div>
-          </div>
-        </div>
-        <div class="chat-input-bar">
-          <div class="chat-input-fake">Message MAN Protocol...</div>
-          <div class="send-btn">↑</div>
-        </div>
-      </div>
-      <div class="flow-callouts">
-        <div class="callout">
-          <div class="callout-icon" style="background:#fdf8ec;">✦</div>
-          <div><h4>Belief vs behaviour gap</h4><p>Surfaces the identity layer under the behaviour. The thing most coaches miss.</p></div>
-        </div>
-        <div class="callout">
-          <div class="callout-icon" style="background:#e8f2fd;">📌</div>
-          <div><h4>Identity file</h4><p>Logged for future recall. Won't ask Dan to rediscover this himself.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SCENARIO 3: Pattern interrupt -->
-    <div class="demo-panel" id="tab-reset">
-      <p class="demo-scenario-label">James had a rough afternoon. He reacted instead of responded. Sent an email from stress, skipped his workout, ordered junk food. He logs it honestly.</p>
-      <div class="phone-frame">
-        <div class="phone-header">
-          <div class="phone-avatar">✦</div>
-          <div>
-            <div class="phone-name">MAN Protocol</div>
-            <div class="phone-status">● Ready</div>
-          </div>
-        </div>
-        <div class="chat-body">
-          <div class="chat-date">Today, 7:55 PM</div>
-          <div class="bubble-row out">
-            <div class="bubble out">Bad afternoon. Reacted to everything, skipped the gym, ate garbage. Streak's broken.</div>
-          </div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              The streak isn't what you're building. The identity is.<br><br>
-              You just logged this honestly instead of pretending it didn't happen. That's what a man with this protocol does.
-            </div>
-          </div>
-          <div class="bubble-row out">
-            <div class="bubble out">Doesn't feel like it.</div>
-          </div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              <span class="identity-tag">✦ Reframe</span><br>
-              Missing once never ruins a habit. Missing twice starts a new one. You're one hour from tomorrow.<br><br>
-              What's one thing, one micro-action, you can do right now that the man you're becoming would do?
-            </div>
-          </div>
-          <div class="bubble-row out">
-            <div class="bubble out">10 minute walk. Water. Sleep by 10.</div>
-          </div>
-          <div class="bubble-row in">
-            <div class="bubble in">
-              Three votes cast for the right person tonight. That's the protocol working exactly as intended.<br><br>
-              See you at 6am. Same question. Same answer.
-            </div>
-          </div>
-        </div>
-        <div class="chat-input-bar">
-          <div class="chat-input-fake">Message MAN Protocol...</div>
-          <div class="send-btn">↑</div>
-        </div>
-      </div>
-      <div class="flow-callouts">
-        <div class="callout">
-          <div class="callout-icon" style="background:#fdf8ec;">✦</div>
-          <div><h4>No punishment loop</h4><p>Reframes the slip without dismissing it. Accountability without shame.</p></div>
-        </div>
-        <div class="callout">
-          <div class="callout-icon" style="background:#e8f9ef;">🔄</div>
-          <div><h4>Immediate recovery micro-action</h4><p>Doesn't wait for tomorrow. Casts three votes right now.</p></div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-</div>
-
-<!-- THE SUPERPOWER -->
-<div class="superpower-section" style="background:#fff">
-  <section>
-    <div class="label">Where it's headed</div>
-    <h2>Conversation is the surface.<br>This is what it builds.</h2>
-    <p class="body-text">This is where MAN is headed, and it's still being built. The idea: the protocol doesn't just talk to you, it builds tools for you, like personalised dashboards, identity maps and compound trackers, sent as a link that opens in your browser. The examples below are mock-ups with made-up data.</p>
-
-    <div class="superpower-intro">
-      <div class="superpower-icon">⚡</div>
-      <div>
-        <h3>On-demand tools, built for your protocol and specific to you.</h3>
-        <p>Each tool would be generated from your own data (your patterns, your identity file, your protocol state), so one message gets you your tool and your link.</p>
-      </div>
-    </div>
-
-    <div class="superpower-grid">
-
-      <!-- CARD 1: Daily ritual dashboard -->
-      <div class="superpower-card">
-        <div class="sc-trigger">
-          <div><div class="sc-chat-bubble">Build me my MAN dashboard for this week. I want to see everything in one place.</div></div>
-          <div class="sc-trigger-label">You →</div>
-        </div>
-        <div class="sc-response">
-          <div>
-            <div class="sc-bot-bubble">
-              Done. Built from your ritual logs, current identity anchors, and this week's micro-action stack.
-              <div class="link-pill">🔗 Open: man-protocol-week-17.html</div>
-            </div>
-          </div>
-        </div>
-        <div class="browser-frame">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <div class="browser-dot red"></div><div class="browser-dot amber"></div><div class="browser-dot green"></div>
-            </div>
-            <div class="browser-url">example mock-up</div>
-          </div>
-          <div class="browser-content">
-            <div class="ritual-preview">
-              <h4>✦ Week 17 Protocol: Marcus</h4>
-              <div class="ritual-blocks">
-                <div class="ritual-block">
-                  <div class="ritual-check done">✓</div>
-                  <div>
-                    <div class="ritual-block-text">Morning identity anchor</div>
-                    <div class="ritual-block-sub">5/5 days this week</div>
-                  </div>
-                </div>
-                <div class="ritual-block">
-                  <div class="ritual-check done">✓</div>
-                  <div>
-                    <div class="ritual-block-text">Eat before noon</div>
-                    <div class="ritual-block-sub">4/5 days, one miss logged</div>
-                  </div>
-                </div>
-                <div class="ritual-block">
-                  <div class="ritual-check done">✓</div>
-                  <div>
-                    <div class="ritual-block-text">Evening reflection</div>
-                    <div class="ritual-block-sub">3/5 days, improving</div>
-                  </div>
-                </div>
-                <div class="ritual-block">
-                  <div class="ritual-check todo"></div>
-                  <div>
-                    <div class="ritual-block-text">Weekly identity review</div>
-                    <div class="ritual-block-sub">Tap to complete</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 2: Identity audit -->
-      <div class="superpower-card">
-        <div class="sc-trigger">
-          <div><div class="sc-chat-bubble">Run an identity audit on me based on what you know. I want to see the gaps.</div></div>
-          <div class="sc-trigger-label">You →</div>
-        </div>
-        <div class="sc-response">
-          <div>
-            <div class="sc-bot-bubble">
-              Built from 22 sessions of conversation, your identity file, and the patterns I've been tracking.
-              <div class="link-pill">🔗 Open: identity-audit-dan.html</div>
-            </div>
-          </div>
-        </div>
-        <div class="browser-frame">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <div class="browser-dot red"></div><div class="browser-dot amber"></div><div class="browser-dot green"></div>
-            </div>
-            <div class="browser-url">example mock-up</div>
-          </div>
-          <div class="browser-content">
-            <div class="identity-preview">
-              <h4>🪞 Identity Audit: Dan · Session 22</h4>
-              <div class="identity-cards">
-                <div class="id-card">
-                  <div class="id-label">Declared identity</div>
-                  <div class="id-val">Disciplined. Worth the effort. Shows up fully.</div>
-                </div>
-                <div class="id-card">
-                  <div class="id-label">Believed identity</div>
-                  <div class="id-val">Growing. Gap closing. 3 weeks of votes counted.</div>
-                </div>
-                <div class="id-card">
-                  <div class="id-label">Strongest pattern</div>
-                  <div class="id-val">Performs well in mornings; reactive after 3pm trigger events.</div>
-                </div>
-                <div class="id-card">
-                  <div class="id-label">Focus for week 4</div>
-                  <div class="id-val">Close the belief gap. Stop performing. Start being.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 3: Compound tracker -->
-      <div class="superpower-card">
-        <div class="sc-trigger">
-          <div><div class="sc-chat-bubble">Show me my compound progress. I want to see what's actually stacking up.</div></div>
-          <div class="sc-trigger-label">You →</div>
-        </div>
-        <div class="sc-response">
-          <div>
-            <div class="sc-bot-bubble">
-              90-day view. Built from your logged micro-actions and weekly check-ins. The compound is real.
-              <div class="link-pill">🔗 Open: compound-tracker-james.html</div>
-            </div>
-          </div>
-        </div>
-        <div class="browser-frame">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <div class="browser-dot red"></div><div class="browser-dot amber"></div><div class="browser-dot green"></div>
-            </div>
-            <div class="browser-url">example mock-up</div>
-          </div>
-          <div class="browser-content">
-            <div class="compound-preview">
-              <h4>📈 90-Day Compound: James · Day 47</h4>
-              <div class="compound-bars">
-                <div class="compound-row">
-                  <div class="compound-label">Mindset</div>
-                  <div class="compound-track"><div class="compound-fill" style="width:82%; background:#b8860b;"></div></div>
-                  <div class="compound-pct">82%</div>
-                </div>
-                <div class="compound-row">
-                  <div class="compound-label">Action</div>
-                  <div class="compound-track"><div class="compound-fill" style="width:74%; background:#34c759;"></div></div>
-                  <div class="compound-pct">74%</div>
-                </div>
-                <div class="compound-row">
-                  <div class="compound-label">Nourishment</div>
-                  <div class="compound-track"><div class="compound-fill" style="width:61%; background:#0071e3;"></div></div>
-                  <div class="compound-pct">61%</div>
-                </div>
-                <div class="compound-row">
-                  <div class="compound-label">Recovery</div>
-                  <div class="compound-track"><div class="compound-fill" style="width:88%; background:#5856d6;"></div></div>
-                  <div class="compound-pct">88%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-<!-- WHAT YOU GET -->
-<div class="offer-section" style="background:var(--bg-warm)">
-  <section>
-    <div class="label">Founding cohort</div>
-    <h2>Where the protocol is going.</h2>
-    <p class="positioning-line">What the founding cohort will help shape, and some of it is still being built.</p>
+    <div class="label">Founding group</div>
+    <h2>Train with others.</h2>
+    <p class="positioning-line">Reps are easier with mates. The founding group is small, and it's open now.</p>
     <div class="offer-grid">
-      <div class="offer-item">
-        <div class="offer-icon">✦</div>
-        <h4>Daily identity check-in</h4>
-        <p>Starts with who you're being, not what you're doing. The question that frames everything else.</p>
-      </div>
-      <div class="offer-item">
-        <div class="offer-icon">🔍</div>
-        <h4>Pattern memory</h4>
-        <p>MAN remembers what keeps repeating. You stop rediscovering the same problem every two weeks.</p>
-      </div>
-      <div class="offer-item">
-        <div class="offer-icon">⚡</div>
-        <h4>Micro-action stack</h4>
-        <p>One vote a day toward the man you're becoming, so it's evidence, not a to-do list.</p>
-      </div>
-      <div class="offer-item">
-        <div class="offer-icon">📌</div>
-        <h4>Identity file</h4>
-        <p>Your beliefs, friction points, and anchors stay visible. The protocol never asks you to rediscover yourself.</p>
-      </div>
-      <div class="offer-item">
-        <div class="offer-icon">📈</div>
-        <h4>Weekly dashboard</h4>
-        <p>See what's compounding across Mindset, Action, and Nourishment. Built from your data, not a template.</p>
-      </div>
-      <div class="offer-item">
-        <div class="offer-icon">🎯</div>
-        <h4>Founder setup</h4>
-        <p>First session shapes the protocol around your real life. Not a generic onboarding flow.</p>
-      </div>
+      <div class="offer-item"><h4>Your corner <span class="status-tag status-planned">Planned</span></h4><p>3 or 4 men on the same path. You can choose to share your rep counts with them. Your notes and feelings stay private.</p></div>
+      <div class="offer-item"><h4>Weekly class with Baz <span class="status-tag status-planned">Planned</span></h4><p>Where you bring your reps and the class witnesses your later belts. It starts with the founding group.</p></div>
+      <div class="offer-item"><h4>Patterns and a monthly story</h4><p>Claude reflects your month back in your own words. In the full app.</p></div>
+      <div class="offer-item"><h4>Private by default <span class="status-tag status-live">Live</span></h4><p>Only you can read your check-ins.</p></div>
     </div>
     <div class="founding-callout">
-      <div class="founding-badge">Founding cohort</div>
-      <p>A small group, with spots opening for the January 2027 cohort. The first group gets direct access, founder setup, and input on where the protocol goes next.</p>
-      <a href="/quiz/man/" class="btn-gold founding-cta">Find my identity gap</a>
+      <div class="founding-badge">Founding group</div>
+      <p>No price yet. I'll set it after talking with the first men. You'll get input on where MAN goes next.</p>
+      <a href="mailto:gday@uremarkable.com?subject=About%20MAN%3A%20founding%20group" class="btn-gold founding-cta">Join the founding group</a>
+      <p>Or email gday@uremarkable.com with the subject "About MAN: founding group".</p>
     </div>
   </section>
 </div>
@@ -1340,8 +1089,16 @@
   <section>
     <div class="label">Inspiration</div>
     <h2>What shaped it.</h2>
-    <p class="body-text">Six thinkers whose work is embedded in MAN. Not referenced loosely: each one contributes a specific mechanism to the protocol.</p>
+    <p class="body-text">Seven thinkers whose work is embedded in MAN. Each one adds something different, and they work together.</p>
     <div class="inspiration-grid">
+      <a href="/man/inspiration/bj-fogg/" class="inspiration-card">
+        <div class="inspiration-body">
+          <div class="inspiration-name">BJ Fogg</div>
+          <div class="inspiration-work">Tiny Habits</div>
+          <div class="inspiration-note">Behaviour happens when motivation, ability and a prompt meet. Make it tiny, anchor it to something you already do, and celebrate it.</div>
+        </div>
+        <div class="inspiration-arrow">→</div>
+      </a>
       <a href="/man/inspiration/james-clear/" class="inspiration-card">
         <div class="inspiration-body">
           <div class="inspiration-name">James Clear</div>
@@ -1362,15 +1119,15 @@
         <div class="inspiration-body">
           <div class="inspiration-name">Chase Hughes</div>
           <div class="inspiration-work">The Ellipsis Manual</div>
-          <div class="inspiration-note">Identity compliance. Threat modeling. How belief drives behaviour.</div>
+          <div class="inspiration-note">Why you are who you are. The needs underneath your behaviour, like approval, belonging and the fear of not being loved. Once you can see them, you can choose differently.</div>
         </div>
         <div class="inspiration-arrow">→</div>
       </a>
       <a href="/man/inspiration/nir-eyal/" class="inspiration-card">
         <div class="inspiration-body">
           <div class="inspiration-name">Nir Eyal</div>
-          <div class="inspiration-work">Hooked · Indistractable</div>
-          <div class="inspiration-note">Behavioural design. Trigger-action-reward. Attention as architecture.</div>
+          <div class="inspiration-work">Indistractable</div>
+          <div class="inspiration-note">What pulls you away from what you said you'd do, and how to notice it.</div>
         </div>
         <div class="inspiration-arrow">→</div>
       </a>
@@ -1386,7 +1143,7 @@
         <div class="inspiration-body">
           <div class="inspiration-name">Andrew Huberman</div>
           <div class="inspiration-work">Huberman Lab</div>
-          <div class="inspiration-note">Neuroscience of sleep, light, attention, and inputs. The science behind the Nourishment pillar.</div>
+          <div class="inspiration-note">Daily inputs like light, sleep and attention. An inspiration for the Nourishment pillar.</div>
         </div>
         <div class="inspiration-arrow">→</div>
       </a>
@@ -1461,24 +1218,16 @@
 <!-- FINAL CTA -->
 <div class="final-cta" id="waitlist">
   <h2>Close the gap.</h2>
-  <p class="cta-sub">MAN helps you close the gap between the man you say you are and the man your habits keep proving. It's free to start, and the founding cohort is small by design.</p>
+  <p class="cta-sub">MAN helps you close the gap between the man you say you are and the man your habits keep proving. It's free to start, and the founding group is small by design.</p>
   <div class="hero-cta-row" style="justify-content:center"><a href="/quiz/man/" class="btn-gold">Find my identity gap</a></div>
   <p class="cta-footnote">Free quiz · Nine questions · Your gap on screen in ninety seconds</p>
 </div>
 
 <footer>
-  <p>Not therapy or medical advice. If it's heavy right now, talk to someone: Lifeline 13 11 14 · MensLine 1300 78 99 78.</p>
+  <p>This isn't therapy or medical advice. If you're struggling, call Lifeline on 13 11 14 or MensLine on 1300 78 99 78.</p>
   <p>MAN Protocol · Built by Baz Ozturk · Sydney, Australia · <a href="mailto:gday@uremarkable.com?subject=About%20MAN">gday@uremarkable.com</a> · © 2026</p>
 </footer>
 
-<script>
-  function switchTab(id) {
-    document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById('tab-' + id).classList.add('active');
-  }
-</script>
 
 </body>
 </html>

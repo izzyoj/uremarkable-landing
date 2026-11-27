@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BJ Fogg | MAN Inspiration</title>
+  <meta name="description" content="BJ Fogg and Tiny Habits: how B = MAP and celebration shape the MAN daily rep." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
+      --bg: #ffffff;
+      --bg-soft: #f5f5f7;
+      --bg-warm: #faf8f4;
+      --border: #e5e5ea;
+      --gold: #b8860b;
+      --gold-light: #fdf8ec;
+      --gold-border: #e8d5a0;
+    }
+
+    html {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    /* NAV */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-brand span {
+      color: var(--ink-soft);
+      font-weight: 400;
+      margin: 0 4px;
+    }
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold-border);
+      background: var(--gold-light);
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.75; }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px 24px 0;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+    .breadcrumb a {
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* SECTION BASE */
+    .section {
+      padding: 72px 24px;
+    }
+    .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--bg);
+      padding: 56px 24px 72px;
+    }
+    .hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .hero-tagline {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+      max-width: 540px;
+    }
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .chip-m { background: #e8f0fe; color: #2563eb; }
+    .chip-a { background: #fef3c7; color: #92400e; }
+    .chip-n { background: #d1fae5; color: #065f46; }
+    .chip-book {
+      background: var(--bg-soft);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .chip-book:hover { opacity: 0.7; }
+    .chip-book-icon {
+      margin-right: 5px;
+      font-style: normal;
+    }
+
+    /* SECTION LABELS AND HEADINGS */
+    .section h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .section p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* DARK SECTION */
+    .section-dark {
+      background: var(--ink);
+      color: #f5f5f7;
+    }
+    .section-dark .label { color: #86868b; }
+    .section-dark h2 { color: #f5f5f7; }
+    .section-dark p { color: #a1a1a6; }
+
+    /* QUOTE BLOCK */
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin: 32px 0;
+      background: rgba(255,255,255,0.05);
+      border-radius: 0 8px 8px 0;
+    }
+    .quote-block blockquote {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #f5f5f7;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .quote-block cite {
+      font-size: 14px;
+      color: #86868b;
+      font-style: normal;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .card-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    /* GOLD/PILLAR SECTION */
+    .section-gold {
+      background: var(--gold-light);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .section-gold .label { color: var(--gold); }
+    .section-gold p { color: var(--ink-soft); }
+
+    /* BOOK SECTION */
+    .book-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold-border);
+      background: var(--gold-light);
+      padding: 10px 20px;
+      border-radius: 24px;
+      transition: opacity 0.15s;
+    }
+    .book-link:hover { opacity: 0.75; }
+
+    /* CTA SECTION */
+    .section-cta {
+      background: var(--ink);
+      text-align: center;
+    }
+    .section-cta h2 { color: #f5f5f7; }
+    .section-cta p { color: #a1a1a6; }
+    .btn-primary {
+      display: inline-block;
+      margin-top: 28px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 28px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .cta-secondary {
+      display: block;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #86868b;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .cta-secondary:hover { color: #f5f5f7; }
+
+    /* FOOTER */
+    .footer {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+    }
+    .footer-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      align-items: center;
+    }
+    .footer-brand {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      margin-right: 8px;
+    }
+    .footer a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer a:hover { color: var(--ink); }
+    .footer-sep {
+      color: var(--border);
+    }
+
+    @media (min-width: 560px) {
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cards .card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <a href="/man/" class="nav-brand">MAN <span>/</span> Inspiration</a>
+      <a href="/quiz/man/" class="nav-cta">Take the quiz</a>
+    </div>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="/man/">MAN Protocol</a>
+    <span>›</span>
+    <a href="/man/inspiration/">Inspiration</a>
+    <span>›</span>
+    BJ Fogg
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="label">The Do Mechanism</div>
+      <h1>BJ Fogg</h1>
+      <p class="hero-tagline">Behaviour scientist at Stanford and author of Tiny Habits. His model explains why a small rep at a set moment beats a big plan that waits for motivation.</p>
+      <div class="chip-row">
+        <span class="chip chip-a">Action</span>
+        <span class="chip chip-m">Mindset</span>
+        <a href="https://tinyhabits.com/" class="chip chip-book" target="_blank" rel="noopener">
+          <i class="chip-book-icon">📖</i> Tiny Habits
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- WHO HE IS -->
+  <section class="section" style="background: var(--bg);">
+    <div class="section-inner">
+      <div class="label">Who he is</div>
+      <h2>The man who made habits tiny.</h2>
+      <p>BJ Fogg founded the Behavior Design Lab at Stanford. He has spent decades studying what makes people act, and his answer is simpler than most: behaviour happens when three things meet at the same moment.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- THE INSIGHT -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <div class="label">The core insight</div>
+      <h2>B = MAP</h2>
+      <p><strong>Behaviour happens when Motivation, Ability and a Prompt meet.</strong> If one is missing, nothing happens. Motivation comes and goes, so Fogg works on the other two. Make the action so small it's easy on any day, and tie it to a prompt that already exists in your life.</p>
+      <p>His Tiny Habits method adds one more piece: celebrate straight after the action. A quick moment of feeling good helps the habit stick.</p>
+    </div>
+  </section>
+
+  <!-- HOW MAN APPLIES IT -->
+  <section class="section" style="background: var(--bg-soft);">
+    <div class="section-inner">
+      <div class="label">How MAN uses it</div>
+      <h2>The daily rep.</h2>
+      <p>MAN's daily rep is built on Fogg's model: "After I [cue], I say 3, 2, 1 and [tiny rep], then I [celebrate]."</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Prompt: the cue</div>
+          <div class="card-body">Something you already do every day, like pouring your coffee. MAN can add it to your calendar too.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Ability: the tiny rep</div>
+          <div class="card-body">One small thing, the same every day, with a Partly version for flat days. It still counts.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Celebration</div>
+          <div class="card-body">Two seconds after the rep. A nod, a "that's me". This part comes from Tiny Habits.</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 24px;">Fogg's model covers motivation, ability and the prompt, plus celebration. The rest of MAN's structure comes from Baz's 39 years of martial arts: the belt, the mates on the same path, and getting back up after a missed day. Those are MAN's additions, not part of Fogg's model.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- PILLARS -->
+  <section class="section section-gold">
+    <div class="section-inner">
+      <div class="label">Pillars</div>
+      <div class="chip-row" style="margin-bottom: 16px;">
+        <span class="chip chip-a">Action</span>
+        <span class="chip chip-m">Mindset</span>
+      </div>
+      <p>Fogg's work sits mostly in Action, in how the rep actually happens. In MAN it follows Be: you picture the man you're becoming, and the tiny rep makes that choice real every day.</p>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="section" style="background: var(--bg);">
+    <div class="section-inner">
+      <div class="label">Read the source</div>
+      <h2>Tiny Habits</h2>
+      <p>A practical book on starting small and building from there. If big plans keep stalling, start here.</p>
+      <a href="https://tinyhabits.com/" class="book-link" target="_blank" rel="noopener">
+        tinyhabits.com ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-cta">
+    <div class="section-inner" style="text-align: center;">
+      <h2>See where your gap is.</h2>
+      <p>The quiz takes less than five minutes and tells you which pillar is under the most pressure right now.</p>
+      <a href="/quiz/man/" class="btn-primary">Take the quiz</a>
+      <a href="/man/inspiration/" class="cta-secondary">Back to Inspiration</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="/man/" class="footer-brand">MAN Protocol</a>
+      <span class="footer-sep">·</span>
+      <a href="/man/inspiration/">Inspiration</a>
+      <span class="footer-sep">·</span>
+      <a href="/man/pillars/mindset/">Mindset</a>
+      <span class="footer-sep">·</span>
+      <a href="/man/pillars/action/">Action</a>
+      <span class="footer-sep">·</span>
+      <a href="/man/pillars/nourishment/">Nourishment</a>
+    </div>
+    <p class="care-line" style="text-align:center;font-size:13px;margin-top:12px;opacity:.8">This isn't therapy or medical advice. If you're struggling, call Lifeline on 13 11 14 or MensLine on 1300 78 99 78.</p>
+  </footer>
+
+</body>
+</html>
