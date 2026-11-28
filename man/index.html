@@ -722,6 +722,18 @@
   .status-soon { background: var(--bg-soft); color: var(--ink-soft); border: 1px solid var(--border); }
   .tool-card.is-soon { cursor: default; }
   .account-note { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+  .free-list { margin-top: 16px; }
+  .free-list-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .free-list-row input { flex: 1; min-width: 0; font: inherit; font-size: 15px; padding: 11px 16px; border: 1px solid var(--border); border-radius: 980px; background: #fff; color: var(--ink); }
+  .free-list-row input:focus { outline: 3px solid var(--gold-border); border-color: var(--gold); }
+  .free-list-row button { font: inherit; font-size: 15px; font-weight: 600; padding: 11px 20px; border: 0; border-radius: 980px; background: var(--gold-btn); color: #fff; cursor: pointer; }
+  .free-list-row button:disabled { opacity: .6; cursor: default; }
+  .free-list-tick { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink); margin-top: 10px; cursor: pointer; }
+  .free-list-tick input { width: 18px; height: 18px; accent-color: var(--gold-btn); }
+  .free-list a, .free-list-done a { color: var(--gold-btn); }
+  .free-list-done { margin-top: 16px; font-size: 15px; color: var(--ink); background: var(--gold-light); border: 1px solid var(--gold-border); border-radius: 12px; padding: 12px 14px; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (max-width: 480px) { .free-list-row button { width: 100%; } }
   .founder-band { display: block; width: 100%; height: auto; max-height: 420px; object-fit: cover; }
   .care-inline { font-size: 14px; color: var(--ink-soft); margin-top: 20px; }
   a:focus-visible, .tool-card:focus-visible, .pillar-card:focus-visible, .inspiration-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
@@ -1010,12 +1022,24 @@
           <div class="tool-card-cta">Run the filter →</div>
         </div>
       </a>
-      <div class="tool-card is-soon" aria-label="MAN Free, coming soon">
+      <div class="tool-card is-soon" id="man-free" aria-label="MAN Free, coming soon">
         <div class="tool-icon">📅</div>
-        <div>
+        <div style="flex:1;min-width:0">
           <div class="tool-card-title">MAN Free <span class="status-tag status-soon">Coming soon</span></div>
-          <div class="tool-card-desc">The daily loop, calendar cue, check-ins, rough-day mode, week view and first belt.</div>
+          <div class="tool-card-desc">One small rep a day, built around a cue you already have. Every rep counts toward your first belt, including the Partly ones on flat days.</div>
+          <div class="tool-card-desc" style="margin-top:8px">Inside: the daily loop, a calendar cue, check-ins, rough-day mode, a week view and your first belt.</div>
           <div class="account-note">It runs inside Claude, so you'll need a free Claude account.</div>
+          <form class="free-list" id="freeListForm" onsubmit="return joinFreeList(event)">
+            <label class="visually-hidden" for="freeListEmail">Your email</label>
+            <div class="free-list-row">
+              <input type="email" id="freeListEmail" placeholder="your@email.com" required autocomplete="email" />
+              <button type="submit" id="freeListBtn">Count me in</button>
+            </div>
+            <label class="free-list-tick"><input type="checkbox" id="freeListFounding" /> I'd also like to hear about the founding group</label>
+            <p class="account-note">The men on the list get MAN Free first, and what they tell me shapes it. Want more than the app? The <a href="#founding-group">founding group</a> adds a corner of 3 or 4 men and a weekly class with Baz, where your later belts are witnessed. No price yet.</p>
+            <p class="account-note">I'll only email you about MAN, from gday@uremarkable.com. Reply "unsubscribe" any time.</p>
+          </form>
+          <div class="free-list-done" id="freeListDone" hidden role="status">You're on the list. I'll email you when MAN Free opens. While you wait, <a href="/quiz/man/">the quiz</a> finds your biggest gap.</div>
         </div>
       </div>
     </div>
@@ -1216,5 +1240,24 @@
 </footer>
 
 
+<script>
+function joinFreeList(e) {
+  e.preventDefault();
+  var email = document.getElementById('freeListEmail').value.trim();
+  if (!email || email.indexOf('@') < 1) { document.getElementById('freeListEmail').focus(); return false; }
+  var founding = document.getElementById('freeListFounding').checked;
+  var btn = document.getElementById('freeListBtn');
+  btn.disabled = true; btn.textContent = 'Adding you…';
+  fetch('https://formsubmit.co/ajax/gday@uremarkable.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ email: email, _subject: 'MAN Free waitlist', source: 'uremarkable.com/man (MAN Free card)', founding_group_interest: founding ? 'Yes' : 'No' })
+  }).catch(function() {}).then(function() {
+    document.getElementById('freeListForm').hidden = true;
+    document.getElementById('freeListDone').hidden = false;
+  });
+  return false;
+}
+</script>
 </body>
 </html>
